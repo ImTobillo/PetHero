@@ -1,0 +1,81 @@
+
+
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem;
+}
+
+/*MAIN*/
+.main {
+    display: grid;
+    background-color: #8a8388;
+    border-radius: 50px;
+    padding: 1rem;
+    width: 30rem;
+    height: 20rem;
+}
+
+.main h1{
+    color: #ffb353;
+    text-align: center;
+}
+
+/*FORMULARIO*/
+.form{
+    margin: 1rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+}
+
+.form .input_usuario{
+    grid-row: 1/2;
+    padding: 1rem;
+    padding-left: 1rem;
+}
+
+.form .input_email{
+    grid-row: 2/3;
+    padding: 1rem;
+    padding-left: 1rem;
+}
+
+.form .input_contra{
+    grid-row: 3/4;
+    padding: 1rem;
+    padding-left: 1rem;
+}
+
+.contenedor_button{
+    grid-row: 4/5;
+    justify-self: center;
+}
+
+/*GENERALES*/
+.button{
+    background-color: #ffb353;
+    border: 0ch;
+    border-radius: 50px;
+    padding: .5rem;
+    margin: .5rem;
+    width: 7rem;
+    text-align: center;
+    font-size: medium;
+}
+
+input {
+    border-radius: 50px;
+    border: none;
+    margin: .5rem;
+}
+
+/*MEDIAS*/
+@media  only screen and (max-width: 600px) {
+    .main{
+        width: auto;
+        height: auto;
+    }  
+}
+
