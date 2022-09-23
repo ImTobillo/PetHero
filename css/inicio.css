@@ -1,0 +1,44 @@
+.navegador .registrarse-link{
+    text-decoration: none;
+    color: #000;
+    align-content: flex-end;
+}
+
+/*MAIN*/
+.main {
+    display: grid;
+    background-color: #8a8388;
+    border-radius: 50px;
+    padding: 1rem;
+    width: 30rem;
+    height: 20rem;
+}
+
+/*FORMULARIO*/
+.form{
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+
+.button .iniciar{
+    justify-self: stretch;
+    align-self: stretch;
+}
+
+.contenedor-registrarse{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+
+.registrarse{
+    grid-column: 1/3;
+}
+
+/*MEDIAS*/
+@media  only screen and (max-width: 600px) {
+    .main{
+        width: auto;
+        height: auto;
+    }  
+}

@@ -1,0 +1,50 @@
+.contenedor-form{
+    display: grid;
+    justify-content: center;
+    background-color: #8a8388;
+    border-radius: 50px;
+    padding: 1rem;
+    width: 45rem;
+    height: 40rem;
+}
+
+.form{
+    grid-template-columns: 1fr 1fr;
+}
+
+label{
+    display: block;
+    text-align: center;
+}
+
+.selector-tamaño{
+    grid-column: 1/2;
+    grid-row: 2/3;
+}
+
+.input-edad{
+    grid-column: 1/2;
+    grid-row: 3/4;
+}
+
+.input-raza{
+    grid-row: 4/5;
+    grid-column: 1/2;
+}
+.input-obs{
+    grid-column: 1/3;
+    grid-row: 5/6;
+    border-radius: 10px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode';
+}
+
+.input-images{
+    grid-row: 1/5;
+}
+
+.button{
+    grid-row: 6/7;
+    grid-column: 2/3;
+    justify-self:stretch;
+    align-self: stretch;
+}
