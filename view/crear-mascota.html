@@ -11,20 +11,29 @@
 </head>
 <body>
     <header>
-        <h1>PetHero</h1>
-        <img src="../imagenes/dog-logo-illustration-free-vector.jpg" alt="Logo">
+        
+        <nav>
+
+            <ul>
+                <li><a href="inicio.html">Inicio</a></li>
+                <li><a href="#">Sobre nosotros</a></li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
+
+            <div class="conTitulo"><h1 class="titulo">PetHero</h1></div>
+            <div class="contImg"><img class="logo" src="../imagenes/logo.png" alt="Logo"></div>
+
+        </nav>
     </header>
 
-    <nav class="navegador">
-        <a href="inicio.html">Inicio</a>
-    </nav>
-
     <main>
-        <div class="contenedor-form">
+        <div class="contenedor">
             <h1>Registrar mascota</h1>
 
             <form class="form">
+
                 <input class="input-nombre" type="text" placeholder="Nombre" require>
+                
                 <select name="tamaño" class="selector-tamaño">
                     <option disabled selected>Tamaño</option>
                     <option value="1">Pequeño</option>
@@ -34,10 +43,14 @@
                     <option value="3">Grande</option>
                     
                 </select>
+
                 <input class="input-edad" type="number" placeholder="Edad" require min="0" max="20">
+                
                 <input class="input-raza" type="text" placeholder="Raza" require>
+                
                 <textarea class="input-obs" name="observaciones" id="1" cols="30" rows="10">Observaciones</textarea>
-                <div class="input-images">
+                
+                <div class="contenedor-imagenes">
                     <label>Plan de vacunacion
                     <input accept="image/png,image/jpeg" type="file" required>
                     </label>
@@ -48,9 +61,12 @@
                     <input accept="video/*" type="file">
                     </label>
                 </div>
+
                 <button class="button" type="submit">Registrar</button>
             </form>
+
         </div>
+
     </main>
         
 

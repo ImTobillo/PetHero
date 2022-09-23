@@ -11,26 +11,33 @@
 </head>
 <body>
     <header>
-        <h1>PetHero</h1>
-        <img src="../imagenes/dog-logo-illustration-free-vector.jpg" alt="Logo">
+        
+        <nav>
 
+            <ul>
+                <li><a href="inicio.html">Inicio</a></li>
+                <li><a href="#">Sobre nosotros</a></li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
+
+            <div class="conTitulo"><h1 class="titulo">PetHero</h1></div>
+            <div class="contImg"><img class="logo" src="../imagenes/logo.png" alt="Logo"></div>
+
+        </nav>
     </header>
 
-    <nav class="navegador">
-        <a href="inicio.html">Inicio</a>
-    </nav>
-
     <main>
-        <div class="main">
-            <h1>Inicio sesion</h1>
+        <div class="contenedor">
+            <h1 class="titulo">Inicio sesion</h1>
 
             <form class="form"> 
                 <input class="input_email" type="email" required placeholder="Email"> 
                 <input class="input_contra" type="password" required placeholder="Contraseña">
                 <button  class="button iniciar" type="submit">Iniciar</button>
             </form>
+
             <div class="contenedor-registrarse">
-                <h2 class="registrarse">Registrarse como</h2>
+                <h2 class="tituloh2">Registrarse como</h2>
                 <button class="button">Dueño</button>
                 <button class="button">Guardian</button>
             </div>
