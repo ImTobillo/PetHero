@@ -5,35 +5,36 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Dokdo&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="CSS/basic.css">
-    <link rel="stylesheet" href="CSS/inicio.css">
+    <link rel="stylesheet" href="../css/basic.css">
+    <link rel="stylesheet" href="../css/inicio.css">
     <title>PetHero</title>
 </head>
 <body>
     <header>
         <h1>PetHero</h1>
-        <img src="imagenes/dog-logo-illustration-free-vector.jpg" alt="Logo">
+        <img src="../imagenes/dog-logo-illustration-free-vector.jpg" alt="Logo">
 
     </header>
 
     <nav class="navegador">
         <a href="inicio.html">Inicio</a>
-        <a href="perfil-html">Perfil</a>
     </nav>
 
     <main>
         <div class="main">
             <h1>Inicio sesion</h1>
 
-            <form class="form">
-                <input class="input_usuario" type="text" required placeholder="Usuario"> 
+            <form class="form"> 
                 <input class="input_email" type="email" required placeholder="Email"> 
                 <input class="input_contra" type="password" required placeholder="Contraseña">
-                <div class="contenedor_button">
-                    <button  class="button">Registrarse</button>
-                    <button  class="button">Iniciar</button>
-                </div>
+                <button  class="button iniciar" type="submit">Iniciar</button>
             </form>
+            <div class="contenedor-registrarse">
+                <h2 class="registrarse">Registrarse como</h2>
+                <button class="button">Dueño</button>
+                <button class="button">Guardian</button>
+            </div>
+            
         </div>
     </main>
 
