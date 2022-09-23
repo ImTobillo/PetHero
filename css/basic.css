@@ -1,41 +1,87 @@
 body{
     background-color: #eddbc4;
     margin: 0;
+    padding: 0;
     font-family: "'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif";
     height: 100%;
     width: 100%;
 }
 
 /*HEADER*/
+
 header{
-    display: flex;
-    justify-content: end;
     font-family: fantasy;
     color: #ffb353;
-    height: 7rem;
+    height: 6rem;
     background-color: #8a8388;
 }
 
-header h1{
-    margin: 0;
-    padding: 1rem 1rem 1rem;
-    padding-right: 0;
-    font-size: 4em;
+.conTitulo{
+    width: 30%;
+    background-color: #a3c9a7;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+
 }
 
-header img{
-    height: 100px;
-    width: 100px;
-    align-self: center;
-}
-
-h1, h2{
+.titulo{
     font-family: 'Dokdo', cursive;
-    font-size: 3em;
+    font-size: 4em;
     padding: 0;
     margin : 0;
-    color: #ffb353;
-    text-align: center;
+    color:#FB6A3D;
+}
+
+.contImg{
+    width: auto;
+    align-items: center;
+    display: flex;
+}
+
+.logo{
+    justify-content: center;
+    width: 100px;
+    margin: 0 20px 0 0;
+}
+
+/*NAVEGACION*/
+
+nav {
+    width: 100%;
+    background-color: #a3c9a7;
+    display: flex;
+}
+
+nav ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+    width: 70%;
+}
+	
+nav ul li {
+	display: inline-block;
+	line-height: 105px;
+}
+			
+nav ul li a {
+    font-size: 20px;
+	display: block;
+    padding: 0 10px;
+    padding-left: 50px;
+    padding-right: 50px;
+    text-decoration: none;
+}
+			
+nav ul li a:hover {
+	background:#FB6A3D;
+}
+
+a{
+    text-decoration: none;
+    color: #000;
+    padding: 1rem 3rem;
 }
 
 h2{
@@ -58,22 +104,6 @@ input {
     border: none;
     margin: .5rem;
     padding: .5rem;
-}
-
-/*NAVEGACION*/
-.navegador{
-    background-color: #a3c9a7;
-   padding: 1rem;
-}
-
-.navegador a{
-    text-decoration: none;
-    color: #000;
-    padding: 1rem 3rem;
-}
-
-.navegador a:hover{
-    background-color: #ffb353;
 }
 
 /*FOOTER*/
