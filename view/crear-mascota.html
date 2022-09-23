@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Dokdo&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/basic.css">
+    <link rel="stylesheet" href="../css/crear-mascota.css">
     <title>PetHero</title>
 </head>
 <body>
@@ -33,20 +34,19 @@
                     <option value="3">Grande</option>
                     
                 </select>
-                <input class="input-edad" type="number" placeholder="Edad" require>
+                <input class="input-edad" type="number" placeholder="Edad" require min="0" max="20">
                 <input class="input-raza" type="text" placeholder="Raza" require>
                 <textarea class="input-obs" name="observaciones" id="1" cols="30" rows="10">Observaciones</textarea>
-                <div class="input-image">
-                    <label>Plan de vacunación</label>
+                <div class="input-images">
+                    <label>Plan de vacunacion
                     <input accept="image/png,image/jpeg" type="file" required>
-                </div>
-                <div class="input-image">
-                    <label>imagen</label>
-                    <input accept="image/png,image/jpeg" type="file" required>
-                </div>
-                <div class="input-image">
-                    <label>Video</label>
-                    <input accept="video/*" type="file" required>
+                    </label>
+                    <label>Imagen
+                    <input class="image"accept="image/png,image/jpeg" type="file">
+                    </label>
+                    <label>Video
+                    <input accept="video/*" type="file">
+                    </label>
                 </div>
                 <button class="button" type="submit">Registrar</button>
             </form>
