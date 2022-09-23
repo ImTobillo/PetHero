@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Dokdo&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/basic.css">
+    <title>PetHero</title>
+</head>
+<body>
+    <header>
+        <h1>PetHero</h1>
+        <img src="../imagenes/dog-logo-illustration-free-vector.jpg" alt="Logo">
+    </header>
+
+    <nav class="navegador">
+        <a href="inicio.html">Inicio</a>
+    </nav>
+
+    <main>
+        <div class="contenedor-form">
+            <h1>Registrar mascota</h1>
+
+            <form class="form">
+                <input class="input-nombre" type="text" placeholder="Nombre" require>
+                <select name="tamaño" class="selector-tamaño">
+                    <option disabled selected>Tamaño</option>
+                    <option value="1">Pequeño</option>
+                    
+                    <option value="2">Mediano</option>
+                    
+                    <option value="3">Grande</option>
+                    
+                </select>
+                <input class="input-edad" type="number" placeholder="Edad" require>
+                <input class="input-raza" type="text" placeholder="Raza" require>
+                <textarea class="input-obs" name="observaciones" id="1" cols="30" rows="10">Observaciones</textarea>
+                <div class="input-image">
+                    <label>Plan de vacunación</label>
+                    <input accept="image/png,image/jpeg" type="file" required>
+                </div>
+                <div class="input-image">
+                    <label>imagen</label>
+                    <input accept="image/png,image/jpeg" type="file" required>
+                </div>
+                <div class="input-image">
+                    <label>Video</label>
+                    <input accept="video/*" type="file" required>
+                </div>
+                <button class="button" type="submit">Registrar</button>
+            </form>
+        </div>
+    </main>
+        
+
+    <footer>
+        <p>footer</p>
+    </footer>
+</body>
+</html>
