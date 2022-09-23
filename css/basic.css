@@ -21,7 +21,6 @@ header h1{
     padding: 1rem 1rem 1rem;
     padding-right: 0;
     font-size: 4em;
-    font-family: 'Dokdo', cursive;;
 }
 
 header img{
@@ -30,11 +29,35 @@ header img{
     align-self: center;
 }
 
-h1{
+h1, h2{
     font-family: 'Dokdo', cursive;
     font-size: 3em;
     padding: 0;
     margin : 0;
+    color: #ffb353;
+    text-align: center;
+}
+
+h2{
+    font-size: 2em;
+}
+
+/*GENERALES*/
+.button{
+    background-color: #ffb353;
+    border: 0ch;
+    border-radius: 50px;
+    padding: .5rem;
+    margin: .5rem;
+    text-align: center;
+    font-size: medium;
+}
+
+input {
+    border-radius: 50px;
+    border: none;
+    margin: .5rem;
+    padding: .5rem;
 }
 
 /*NAVEGACION*/
@@ -79,3 +102,4 @@ footer{
         width: 100%;
     }
 }
+
