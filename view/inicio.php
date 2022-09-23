@@ -1,18 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Dokdo&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/basic.css">
-    <link rel="stylesheet" href="../css/inicio.css">
-    <title>PetHero</title>
-</head>
-<body>
-    <header>
+<header>
         <h1>PetHero</h1>
-        <img src="../imagenes/dog-logo-illustration-free-vector.jpg" alt="Logo">
+        <img src="PetHero/imagenes/logo.png" alt="Logo">
 
     </header>
 
@@ -41,5 +29,3 @@
     <footer>
         <p>footer</p>
     </footer>
-</body>
-</html>

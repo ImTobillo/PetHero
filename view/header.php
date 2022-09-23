@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +10,3 @@
     <title>PetHero</title>
 </head>
 <body>
-    <?php require_once 'view/inicio.php'; ?>
-</body>
-</html>
