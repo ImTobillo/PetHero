@@ -1,5 +1,8 @@
-
-
+.navegador .registrarse-link{
+    text-decoration: none;
+    color: #000;
+    align-content: flex-end;
+}
 main{
     display: flex;
     justify-content: center;
@@ -17,58 +20,26 @@ main{
     height: 20rem;
 }
 
-.main h1{
-    color: #ffb353;
-    text-align: center;
-}
-
 /*FORMULARIO*/
 .form{
-    margin: 1rem;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
 }
 
-.form .input_usuario{
-    grid-row: 1/2;
-    padding: 1rem;
-    padding-left: 1rem;
+.button .iniciar{
+    justify-self: stretch;
+    align-self: stretch;
 }
 
-.form .input_email{
-    grid-row: 2/3;
-    padding: 1rem;
-    padding-left: 1rem;
+.contenedor-registrarse{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
 }
 
-.form .input_contra{
-    grid-row: 3/4;
-    padding: 1rem;
-    padding-left: 1rem;
-}
-
-.contenedor_button{
-    grid-row: 4/5;
-    justify-self: center;
-}
-
-/*GENERALES*/
-.button{
-    background-color: #ffb353;
-    border: 0ch;
-    border-radius: 50px;
-    padding: .5rem;
-    margin: .5rem;
-    width: 7rem;
-    text-align: center;
-    font-size: medium;
-}
-
-input {
-    border-radius: 50px;
-    border: none;
-    margin: .5rem;
+.registrarse{
+    grid-column: 1/3;
 }
 
 /*MEDIAS*/
@@ -78,4 +49,3 @@ input {
         height: auto;
     }  
 }
-
