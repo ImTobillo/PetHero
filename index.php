@@ -1,17 +1,7 @@
+<?php require_once 'view/head.php'; ?>
 
+<main>
+    <h1>Hola ayudame locooooo</h1>
+</main>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Dokdo&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/basic.css">
-    <link rel="stylesheet" href="css/inicio.css">
-    <title>PetHero</title>
-</head>
-<body>
-    <?php require_once 'view/inicio.php'; ?>
-</body>
-</html>
+<?php require_once 'view/footer.php' ?>
