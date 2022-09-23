@@ -1,26 +1,15 @@
-main{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 2rem;
-}
-
 .contenedor-form{
     display: grid;
     justify-content: center;
     background-color: #8a8388;
     border-radius: 50px;
     padding: 1rem;
-    width: 60rem;
-    height: 30rem;
+    width: 50rem;
+    height: 25rem;
 }
 
 /*formulario*/
 .form{
-    margin: 0;
-    display: grid;
-    justify-content: center;
-    align-content: center;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
 }

@@ -3,12 +3,6 @@
     color: #000;
     align-content: flex-end;
 }
-main{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 2rem;
-}
 
 /*MAIN*/
 .main {
@@ -22,7 +16,6 @@ main{
 
 /*FORMULARIO*/
 .form{
-    display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr 1fr;
 }

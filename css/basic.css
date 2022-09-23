@@ -6,6 +6,32 @@ body{
     width: 100%;
 }
 
+::placeholder{
+    color: #000;
+    padding: .5rem;
+}
+
+label{
+    font-family: 'Dokdo', cursive;
+    color:#ffb353;
+    font-size: xx-large;
+}
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem;
+}
+
+.form{
+    margin: 0;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    justify-items: stretch;
+}
+
 /*HEADER*/
 header{
     display: flex;
@@ -41,7 +67,6 @@ h1, h2{
 h2{
     font-size: 2em;
 }
-
 /*GENERALES*/
 .button{
     background-color: #ffb353;
@@ -53,7 +78,7 @@ h2{
     font-size: medium;
 }
 
-input {
+input, select, textarea{
     border-radius: 50px;
     border: none;
     margin: .5rem;
