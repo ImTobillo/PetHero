@@ -1,0 +1,77 @@
+
+body, *:hover{
+
+    cursor: url("../imagenes/Paw.cur"), auto;
+}
+
+
+.contenedor{
+    background-color: #8A8388;
+    width: 60%;
+    margin: 0 auto;
+    height: auto;
+    border-radius: 10px;
+}
+
+.formulario{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+    height: auto;
+    margin: 0 auto;
+    margin-top: 30px;
+}
+
+input, label, select{
+    color: black;
+    font-size: 26px;
+    margin: 0;
+    padding: 0;
+    width: 300px;
+    border-radius: 10px;
+    outline: none;
+}
+
+input, select{
+    background-color: #EDDBC4;
+    font-family: Arial; 
+    font-size: 15px;
+    padding: 10px;  
+}
+
+option{
+    background-color: #EDDBC4;
+}
+
+div{    
+    width: 80%;
+    align-self: center;
+    justify-self: center;
+}    
+
+.item1, .item2, .item3, .item4, .item5{
+    grid-column: 1 / 2;
+}
+
+.item9{
+    grid-column: 1 / 4;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+button{
+    font-family: 'Dokdo', cursive;
+    font-size: 30px;
+    background-color: #FFB353;
+    border-radius: 10px;
+    width: 90%;
+    height: 50px;
+    border: none;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+button:hover{
+    background-color: #FB6A3D;
+}

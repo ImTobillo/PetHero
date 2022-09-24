@@ -1,0 +1,80 @@
+h1 {
+    font-family: 'Dokdo', cursive;
+    font-size: 4em;
+    padding: 0;
+    margin : 10px;
+    color:#FB6A3D;
+    text-align: center;
+}
+
+.contenedor{
+    background-color: #8A8388;
+    width: 80%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.padre{
+    width: 90%;  
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 50% 50%; 
+    margin: 0 auto;
+}
+
+.hijo{
+    background-color: #FBE5AC;
+    width: 80%;
+    height: 300px;
+    border-radius: 10px;
+    margin: 10px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    align-self: center;
+    justify-self: center;
+}
+
+.hijo a{
+    margin: 0;
+    padding: 0;
+    font-size: 26px;
+    float: right;
+    margin-top: 130px;
+    margin-right: 15px;
+    color: #FB6A3D;
+}
+
+h2, h3, p{
+    margin: 0;
+    margin-left: 15px;
+    margin-top: 15px;
+    padding: 0;
+}
+
+h3{
+    color: #6C757D;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
