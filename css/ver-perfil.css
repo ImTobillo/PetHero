@@ -1,0 +1,29 @@
+main{
+    display: grid;
+
+}
+.contenedor-perfil{
+    display: flex;
+    justify-content: end;
+    align-self: center;
+    border-bottom: #8a8388;
+    border-bottom-style: dashed;
+    margin: 1rem;
+}
+
+.contenedor-datos{
+    justify-content: start;
+    align-content: center;
+    background-color: #8a8388;
+    border-radius: 50px;
+    padding: 1rem;
+    width: 30rem;
+    height: 21rem; 
+}
+
+.parrafo{
+    justify-content: stretch;
+    margin: 1rem;
+    border-bottom: #fff;
+    border-bottom-style: double;
+}

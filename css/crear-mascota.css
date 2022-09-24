@@ -1,4 +1,4 @@
-.contenedor-form{
+.contenedor{
     display: grid;
     justify-content: center;
     background-color: #8a8388;
@@ -10,11 +10,6 @@
 
 .form{
     grid-template-columns: 1fr 1fr;
-}
-
-label{
-    display: block;
-    text-align: center;
 }
 
 .selector-tamaño{
@@ -38,7 +33,7 @@ label{
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode';
 }
 
-.input-images{
+.contenedor-imagenes{
     grid-row: 1/5;
 }
 
