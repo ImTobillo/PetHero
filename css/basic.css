@@ -184,3 +184,10 @@ footer{
 button:hover, a:hover, select option{
     cursor: url("../imagenes/cursor/hover-cursor.png"), auto;
 }
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 40px;
+}
