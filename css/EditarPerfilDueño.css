@@ -1,0 +1,66 @@
+.nuevoMain{
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background-color: #EDDBC4;
+}
+
+.primero{
+    display: flex;
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid black;
+    align-items: baseline;
+}
+
+.perf{
+    margin: 0;
+    padding: 0;
+    font-size: 40px;
+    font-family: 'Dokdo', cursive;
+}
+
+.foto{
+    margin: 10px;
+    width: 130px;
+    height: 130px;
+}
+
+.huella{
+    display: flex;
+    width: 50px;
+    height: 50px;
+    margin-left: auto;
+    margin-right: 20px;
+    margin-bottom: 5px;
+}
+
+.segundo{
+    display: flex;
+    background-color: #8A8388;
+    width: 80%;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    margin-top: 30px;
+    border-radius: 10px 10px 0 0;
+}
+
+
+.boton{
+        font-family: 'Dokdo', cursive;
+        font-size: 30px;
+        background-color: #FFB353;
+        border-radius: 10px;
+        width: 100%;
+        height: 50px;
+        border: none;
+        margin-top: 20px;
+        margin-bottom: 30px;
+}
+    
+.boton:hover{
+    background-color: #FB6A3D;
+}        
+

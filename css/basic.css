@@ -3,7 +3,7 @@ body{
     margin: 0;
     padding: 0;
     font-family: "'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif";
-    height: 100%;
+    height: auto;
     width: 100%;
 }
 
@@ -25,14 +25,17 @@ main{
     margin: 2rem;
 }
 
-.form{
-    margin: 0;
-    display: grid;
-    justify-content: center;
-    align-content: center;
-    align-items: center;
-    justify-items: stretch;
-}
+/*
+Cata
+    .form{
+        margin: 0;
+        display: grid;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+        justify-items: stretch;
+    }
+*/
 
 /*HEADER*/
 header{
@@ -51,7 +54,6 @@ header{
     display: flex;
     justify-content: end;
     align-items: center;
-
 }
 
 .titulo{
@@ -124,6 +126,7 @@ a{
 }
 
 /*GENERALES*/
+
 .button{
     background-color: #ffb353;
     border: 0ch;
@@ -135,10 +138,15 @@ a{
 }
 
 input, select, textarea{
-    border-radius: 50px;
+    border-radius: 40px;
     border: none;
+
+/*  
+ Cata
     margin: .5rem;
     padding: .5rem;
+*/
+
 }
 
 /*FOOTER*/
