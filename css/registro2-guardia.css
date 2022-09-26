@@ -1,0 +1,25 @@
+.contenedor{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #5C5259;
+    border-radius: 50px;
+    padding: 1rem;
+    width: 50rem;
+    height: 25rem;
+}
+
+.contenedor .titulo {
+    color: #FFB353;
+}
+
+.opciones{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.lado1, .lado2{
+    display: flex;
+    flex-direction: column;
+}
