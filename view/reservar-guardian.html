@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link href="https://fonts.googleapis.com/css2?family=Dokdo&display=swap" rel="stylesheet">
-    <link href="../css/basic.css" rel="stylesheet">
-    <link href="../css/ver-perfil.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/basic.css">
+    <link rel="stylesheet" href="../css/reservar-guardian.css">
 
     <title>Reservar guardian</title>
 </head>
@@ -25,16 +25,41 @@
         </nav>
     </header>
 
-    <main>
-        <div class="contenedor-datos">
-            <div class="parrafo"><p>Nombre</p></div>
-            <div class="parrafo"><p>Apellido</p></div>
-            <div class="parrafo"><p>Edad</p></div>
-            <div class="parrafo"><p>Email</p></div>
-            <div class="parrafo"><p>Telefono</p></div>
-            <div class="parrafo"><p>Tipo de perro</p></div>
+    <main class="contenedor">
+        <div class="heading">
+
+            <img class="foto" src="../imagenes/perfil.png" alt="Perfil">
+
+            <h1 class="perf">Perfil</h1>
+
+            <img class="huella" src="../imagenes/huellas-perro.png" alt="Huellas">
+
+        </div>
+
+        <div class="info-y-enviar">
+            <div class="contenedor-datos ">
+                    <div class="datosGuardian"><p>Nombre</p></div>
+                    <div class="datosGuardian"><p>Apellido</p></div>
+                    <div class="datosGuardian"><p>Edad</p></div>
+                    <div class="datosGuardian"><p>Email</p></div>
+                    <div class="datosGuardian"><p>Telefono</p></div>
+                    <div class="datosGuardian"><p>Tipo de perro</p></div>
+            </div>
+    
+            <div class="formReservaGuardian">
+                <h1>Selecciona el dia</h1>
+                
+                <form action="" method="get">
+                    <div class="inputs">
+                        <input type="date" name="fechaRequerida">
+                        <input class="horaForm" type="time" name="horaInicial">
+                        <input class="horaForm" type="time" name="horaFinal">
+                    </div>
+
+                    <button class="" type="submit">Elegir</button>
+                </form>
+            </div>
         </div>
     </main>
-    
 </body>
 </html>
