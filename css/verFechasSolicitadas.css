@@ -22,6 +22,12 @@ main{
     text-align: center;
 }
 
+.info h2 {
+    font-family: 'Dokdo', cursive;
+    font-size: xx-large;
+    margin: 1% auto 1% 3%;
+}
+
 .igual{
     margin: 10px;
     width: 80%;
@@ -29,19 +35,19 @@ main{
     border-radius: 10px;
     display: flex;
     margin-bottom: 50px;
+    height: 100%;
 }
 
 .info{
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 200px;
+    height: 100%;
+    align-items: flex-start;
 }
 
-p{
-    margin: 0;
-    margin-left: 20px;
-    margin-top: 20px;
+p, .info button{
+    margin: 1% auto 1% 3%;
     padding: 0;
 }
 
@@ -49,22 +55,28 @@ p{
     margin: 0;
     padding: 0;
     width: 200px;
-    height: 200px;
+    height: auto;
     background-color: #868F96;
 }
 
-.boton{
+.info button{
     font-family: 'Dokdo', cursive;
-    font-size: 30px;
+    font-size: large;
     background-color: #FFB353;
     border-radius: 10px;
-    width: 30%;
+    width: 100%;
     border: none;
-    margin-top: auto;
-    margin-left: 20px;
-    margin-bottom: 20px;
+    padding: 2%;
+    justify-content: flex-end;
 }
 
-.boton:hover{
+.info button:hover{
 background-color: #FB6A3D;
+}
+
+.Aceptar-Rechazar{
+    display: flex;
+    align-self: flex-end;
+    padding: 5%;
+    width: 40%;
 }
