@@ -1,0 +1,70 @@
+header{
+    margin-bottom: 3%;
+}
+
+main{
+    background-color: #868F96;
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    height: 100%;
+    margin: 0 auto;
+    border-radius: 10px 10px 0 0;
+    border: 2px solid black;
+}
+
+.tituloG{
+    color: black;
+    font-family: 'Dokdo', cursive;
+    font-size: 4em;
+    padding: 0;
+    margin : 0;
+    text-align: center;
+}
+
+.igual{
+    margin: 10px;
+    width: 80%;
+    background-color: #EDDBC4;
+    border-radius: 10px;
+    display: flex;
+    margin-bottom: 50px;
+}
+
+.info{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 200px;
+}
+
+p{
+    margin: 0;
+    margin-left: 20px;
+    margin-top: 20px;
+    padding: 0;
+}
+
+.imagenPerf{
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    height: 200px;
+    background-color: #868F96;
+}
+
+.boton{
+    font-family: 'Dokdo', cursive;
+    font-size: 30px;
+    background-color: #FFB353;
+    border-radius: 10px;
+    width: 30%;
+    border: none;
+    margin-top: auto;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.boton:hover{
+background-color: #FB6A3D;
+}
