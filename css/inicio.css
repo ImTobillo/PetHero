@@ -6,8 +6,19 @@
     height: 20rem;
 }
 
+input{
+    margin: .5rem;
+    padding: .5rem;
+}
 /*FORMULARIO*/
+
 .form{
+    margin: 0;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    justify-items: stretch;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr 1fr;
 }
