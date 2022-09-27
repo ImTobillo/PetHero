@@ -9,7 +9,18 @@
 }
 
 .form{
+    margin: 0;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    justify-items: stretch;
     grid-template-columns: 1fr 1fr;
+}
+
+input, select, textarea{
+    margin: .5rem;
+    padding: .5rem;
 }
 
 .selector-tamaño{
@@ -37,9 +48,15 @@
     grid-row: 1/5;
 }
 
+.contenedor-button{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-self: stretch;
+    align-self: stretch;
+    grid-column: 1/3;
+}
+
 .button{
-    grid-row: 6/7;
-    grid-column: 2/3;
-    justify-self:stretch;
+    justify-self: stretch;
     align-self: stretch;
 }

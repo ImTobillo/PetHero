@@ -1,10 +1,15 @@
 main{
     display: grid;
-
 }
+
+input, select, textarea{
+    margin: .5rem;
+    padding: .5rem;
+}
+
 .contenedor-perfil{
     display: flex;
-    justify-content: end;
+    justify-content: space-between;
     align-self: center;
     border-bottom: #8a8388;
     border-bottom-style: dashed;
