@@ -8,8 +8,19 @@
     height: 25rem;
 }
 
+input{
+    margin: .5rem;
+    padding: .5rem;
+}
+
 /*formulario*/
 .form{
+    margin: 0;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    justify-items: stretch;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
 }
@@ -43,8 +54,15 @@
     grid-column: 3/5;
 }
 
+.contenedor_button{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-self: stretch;
+    align-self: stretch;
+    grid-column: 3/5;
+}
+
 .button{
-    grid-column: 4/5;
     justify-self: stretch;
     align-self: stretch;
 }

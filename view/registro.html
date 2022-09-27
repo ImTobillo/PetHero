@@ -42,9 +42,14 @@
                     <input class="input-nacimiento" type="date" required placeholder="Fecha de nacimiento">
                     <input class="input-ciudad" type="text" required placeholder="Ciudad">
                     <input class="input-calle" type="text" required placeholder="Calle">
-                    <input class="input-num-calle" type="number" required placeholder="Numero">
+                    <input class="input-num-calle" type="number" required placeholder="Numero" min="0">
 
-                    <button class="button" type="submit">Registrarse</button>
+                    <div class="contenedor_button">
+                        <button class="button" type="button">Cancelar</button>
+                        <button class="button" type="submit">Registrarse</button>
+                    </div>
+                    
+
             </form>
         </div>
     </main>
