@@ -1,0 +1,52 @@
+header{
+    margin-bottom: 50px;
+}
+
+main {
+    flex-direction: column;
+}
+
+.tit{
+    font-family: 'Dokdo', cursive;
+    font-size: 3em;
+    text-align: center;
+    color: black;
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+
+.contenedor{
+    background-color: #8A8388;
+    width: 85%;
+    border-radius: 20px;
+    margin: 0 auto;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.contInfo{
+    background-color: #FBE5AC;
+    border-radius: 5px;
+    margin: 10px 0 20px 0;
+    width: 90%;
+    display: flex;
+    justify-content: center;
+}
+
+.tabla{
+    width: 100%;
+}
+
+.tabla td{
+    text-align: center;
+}
+
+table{
+    border-collapse: collapse;
+    border: black solid 1px;
+    border-radius: 10px;
+    
+}
