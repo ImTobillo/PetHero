@@ -1,25 +1,118 @@
-.contenedor{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background-color: #5C5259;
-    border-radius: 50px;
-    padding: 1rem;
-    width: 50rem;
-    height: 25rem;
+.contenedor {
+  display: flex;
+  flex-direction: column;
+  font-family: "Dokdo", cursive;
+  justify-content: center;
+  background-color: #5c5259;
+  border-radius: 50px;
+  padding: 1rem;
+  width: 50rem;
+  height: 25rem;  
 }
 
 .contenedor .titulo {
     color: #FFB353;
+    margin: 5px auto 5px auto;
+    font-size: 2.5em;
 }
 
-.opciones{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+.opciones {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
-.lado1, .lado2{
-    display: flex;
-    flex-direction: column;
+.lado1,
+.lado2 {
+  display: flex;
+  flex-direction: column;
+  margin: auto 10px auto 10px;
+  width: 80%;
+}
+
+input,
+select {
+  background-color: #eddbc4;
+  font-size: 15px;
+  padding: 10px;
+}
+
+.disponible {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.opciones h3 {
+  color: #ffb353;
+  font-size: x-large;
+  margin-top: auto;
+  margin-bottom: 5px;
+}
+
+.opcionesDisponibles {
+  display: flex;
+  flex-direction: row;
+}
+
+.contenedorOpcionesDisponibles {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.disponible label{
+    font-size: x-large;
+}
+
+.inputsFecha {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.opcionFecha {
+  margin: auto;
+  width: 40%;
+}
+
+.lado1 input,
+.lado1 select {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.botonesForm {
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
+}
+
+.button{
+    width: 30%;
+}
+
+.contenedorOpcionesDisponibles label {
+    margin-right: auto;
+}
+
+.disponible label input{
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+button:hover {
+  background-color: #fb6a3d;
+}
+
+#timePickerInicial::before {
+  content: "Hora Inicial:";
+  margin-right: 0.6em;
+  color: #9d9d9d;
+}
+
+#timePickerFinal::before {
+  content: "Hora Final:";
+  margin-right: 0.6em;
+  color: #9d9d9d;
 }
