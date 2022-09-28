@@ -1,62 +1,117 @@
-header{
-    margin-bottom: 50px;
+header {
+  margin-bottom: 50px;
 }
 
 main {
-    flex-direction: column;
+  flex-direction: column;
 }
 
-.tit{
-    font-family: 'Dokdo', cursive;
-    font-size: 3em;
-    text-align: center;
-    color: black;
-    margin-top: 20px;
-    margin-bottom: 5px;
+.tit {
+  font-family: "Dokdo", cursive;
+  font-size: 3em;
+  text-align: center;
+  color: black;
+  margin-top: 20px;
+  margin-bottom: 5px;
 }
 
-.contenedor{
-    background-color: #8A8388;
-    width: 85%;
-    border-radius: 20px;
-    margin: 0 auto;
-    
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+.contenedor {
+  background-color: #8a8388;
+  width: 85%;
+  border-radius: 20px;
+  margin: 0 auto;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  animation-duration: 2s;
+  animation-name: slidein;
 }
 
-.contInfo{
-    background-color: #FBE5AC;
-    border-radius: 5px;
-    margin: 10px 0 20px 0;
-    width: 90%;
-    display: flex;
-    justify-content: center;
+.contInfo {
+  background-color: inherit;
+  border-radius: 5px;
+  margin: 10px 0 20px 0;
+  width: 90%;
+  display: flex;
+  justify-content: center;
 }
 
-td, th{
-    text-align: center;
-    border: 2px solid black;
-    padding: 5px;
+/* tabla */
+
+td,
+th {
+  text-align: center;
+  padding: 5px;
 }
 
-table{
-    width: 100%;
-    border-collapse: collapse;
-    border: black solid 1px;
-    border-radius: 10px;
+table {
+  background-color: #eddbc4;
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: separate;
+  border: rgba(0, 0, 0, 0.726) solid 2px;
+  border-radius: 20px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 500;
+  overflow: hidden;
 }
 
 tfoot td {
-    text-align: start;
+  text-align: start;
+  letter-spacing: 1px;
+  padding: 5px 5px 5px 10px;
 }
 
-tr:nth-child(odd){
-    background-color: ;
+tbody tr:nth-child(odd) {
+  background-color: #8a838833;
 }
 
-tr:hover {
-    background-color: rgb(138, 131, 136, 0.25);
+thead th:nth-child(1) {
+  width: 12%;
+}
+
+thead th:nth-child(2) {
+  width: 14%;
+}
+
+thead th:nth-child(3) {
+  width: 15%;
+}
+
+thead th:nth-child(4) {
+  width: 8%;
+}
+
+thead th:nth-child(5) {
+  width: 18%;
+}
+
+thead th:nth-child(6) {
+  width: 16%;
+}
+
+thead,
+tfoot {
+  background-color: #a3c9a78a;
+}
+
+tbody tr:hover {
+  background-color: rgba(138, 131, 136, 0.568);
+}
+
+/* animacion */
+
+@keyframes slidein {
+  from {
+    margin-left: 100%;
+    width: 300%;
+  }
+
+  to {
+    margin-left: 7.5%;
+    width: 85%;
+  }
 }

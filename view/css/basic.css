@@ -159,9 +159,9 @@ footer{
 
 /* custom cursor */
 * {
-    cursor: url("../imagenes/cursor/default-cursor.png"), auto;
+    cursor: url("../img/cursor/default-cursor.png"), auto;
 }
 
 button:hover, a:hover, select option{
-    cursor: url("../imagenes/cursor/hover-cursor.png"), auto;
+    cursor: url("../img/cursor/hover-cursor.png"), auto;
 }
