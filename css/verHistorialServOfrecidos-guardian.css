@@ -36,17 +36,27 @@ main {
     justify-content: center;
 }
 
-.tabla{
-    width: 100%;
-}
-
-.tabla td{
+td, th{
     text-align: center;
+    border: 2px solid black;
+    padding: 5px;
 }
 
 table{
+    width: 100%;
     border-collapse: collapse;
     border: black solid 1px;
     border-radius: 10px;
-    
+}
+
+tfoot td {
+    text-align: start;
+}
+
+tr:nth-child(odd){
+    background-color: ;
+}
+
+tr:hover {
+    background-color: rgb(138, 131, 136, 0.25);
 }
