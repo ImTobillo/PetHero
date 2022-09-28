@@ -133,9 +133,9 @@ input, select, textarea{
 /*FOOTER*/
 footer{
     background-color: #8a8388;
-    height: auto;
-    text-align: center;
-    padding: .3rem;
+    bottom: 0;
+    width: 100%;
+    height: 40px;
 }
 
 /*querys*/
@@ -164,11 +164,4 @@ footer{
 
 button:hover, a:hover, select option{
     cursor: url("../imagenes/cursor/hover-cursor.png"), auto;
-}
-
-footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    height: 40px;
 }
