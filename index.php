@@ -1,4 +1,5 @@
 <?php
 
-echo 'holaaa';
+require_once 'Views/html/inicio.html';
+
 ?>
