@@ -1,0 +1,86 @@
+header{
+    margin-bottom: 2%;
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    padding-bottom: 4%;
+    background-color: #8A8388;
+    width: 80%;
+    height: 550px;
+    border-radius: 100px 0 100px 0;
+    justify-content: start;
+}
+
+.contenedor{
+    width: 90%;
+    margin: 0 auto;
+    padding: 0;
+    height: 350px;
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    place-items: center;
+}
+
+.tit{
+    font-family: 'Dokdo', cursive;
+    font-size: 4em;
+}
+
+.iguales{
+    display: grid;
+    background-color: #D6D6D6;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    border: 1px solid black;
+    position: relative;
+}
+
+h2{
+    margin: 20px 0 0 0;
+    padding: 0;
+    font-size: 2em;
+    color: #FF6E4A;
+}
+
+p{
+    margin: 0px;
+    padding: 0;
+    font-size: 1.2em;
+}
+
+.icono{
+    margin: 0 auto;
+    width: 30px;
+    height: 30px;
+}
+
+.enlace {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    padding: 0;
+}
+
+.enlace:hover{
+    background-color: white;
+    opacity: 40%;
+}
+
+.contenedor2{
+    width: 60%;
+    margin: 0 auto;
+    padding: 0;
+    height: 80%;
+    border-radius: 10px;
+    display: grid;
+}
