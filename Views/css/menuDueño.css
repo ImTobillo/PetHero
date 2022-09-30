@@ -71,9 +71,8 @@ p{
     padding: 0;
 }
 
-.enlace:hover{
+.iguales:hover{
     background-color: white;
-    opacity: 40%;
 }
 
 .contenedor2{
