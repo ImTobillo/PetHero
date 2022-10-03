@@ -17,7 +17,7 @@ main {
 
 .contenedor {
   background-color: #8a8388;
-  width: 85%;
+  width: 90%;
   border-radius: 20px;
   margin: 0 auto;
 
@@ -25,9 +25,6 @@ main {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-
-  animation-duration: 2s;
-  animation-name: slidein;
 }
 
 .contInfo {
@@ -102,16 +99,3 @@ tbody tr:hover {
   background-color: rgba(138, 131, 136, 0.568);
 }
 
-/* animacion */
-
-@keyframes slidein {
-  from {
-    margin-left: 100%;
-    width: 300%;
-  }
-
-  to {
-    margin-left: 7.5%;
-    width: 85%;
-  }
-}

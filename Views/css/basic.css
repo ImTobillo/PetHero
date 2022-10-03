@@ -30,6 +30,9 @@ main {
   justify-content: center;
   align-items: center;
   margin: 10% auto;
+
+  animation-duration: 2s;
+  animation-name: slidein;
 }
 
 /*HEADER*/
@@ -194,4 +197,18 @@ button:hover,
 a:hover,
 select option {
   cursor: url("../img/cursor/hover-cursor.png"), auto;
+}
+
+/* animaciones */
+
+@keyframes slidein {
+  from {
+    margin-left: 100%;
+    width: 300%;
+  }
+
+  to {
+    margin-left: inherit;
+    width: inherit;
+  }
 }
