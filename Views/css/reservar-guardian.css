@@ -86,7 +86,7 @@ input {
 }
 
 .horaForm{
-    width: 15%;
+    width: 23%;
 }
 
 button{
@@ -101,4 +101,9 @@ button{
 
 button:hover{
     background-color: #FB6A3D;
+}
+
+.timePickerInicial, .timePickerFinal {
+    padding: 1%;
+    font-size: x-small;
 }

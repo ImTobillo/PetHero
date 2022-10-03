@@ -105,14 +105,4 @@ button:hover {
   background-color: #fb6a3d;
 }
 
-#timePickerInicial::before {
-  content: "Hora Inicial:";
-  margin-right: 0.6em;
-  color: #9d9d9d;
-}
 
-#timePickerFinal::before {
-  content: "Hora Final:";
-  margin-right: 0.6em;
-  color: #9d9d9d;
-}
