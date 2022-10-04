@@ -80,3 +80,15 @@ background-color: #FB6A3D;
     padding: 5%;
     width: 40%;
 }
+
+@keyframes slidein {
+    from {
+      margin-left: 100%;
+      width: 300%;
+    }
+  
+    to {
+      margin-left: 20%;
+      width: 60%;
+    }
+  }
