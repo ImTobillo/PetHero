@@ -8,5 +8,5 @@
       href="https://fonts.googleapis.com/css2?family=Dokdo&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="Views/css/basic.css" />
-    <link rel="shortcut icon" href="Views/img/logo.png" type="image/x-icon" />
+    <link rel="stylesheet" href="css/basic.css" />
+    <link rel="shortcut icon" href="img/logo.png" type="image/x-icon" />

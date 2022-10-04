@@ -12,8 +12,6 @@ main{
     height: 550px;
     border-radius: 100px 0 100px 0;
     justify-content: start;
-    animation-duration: 2s;
-    animation-name: slidein;
 }
 
 .contenedor{

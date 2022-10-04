@@ -1,19 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php require_once 'header.php'?>
 
-<head>
-
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link href="https://fonts.googleapis.com/css2?family=Dokdo&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/basic.css">
     <link rel="stylesheet" href="css/pagar.css">
-    <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
-
     <title>Pagar</title>
-
 </head>
 
 <body>
@@ -28,7 +16,7 @@
             </ul>
 
             <div class="conTitulo"><h1 class="titulo">PetHero</h1></div>
-            <div class="contImg"><img class="logo" src="../img/logo.png" alt="Logo"></div>
+            <div class="contImg"><img class="logo" src="img/logo.png" alt="Logo"></div>
 
         </nav>
     </header>
@@ -89,6 +77,5 @@
 
         </div>
     </main>
-</body>
 
-</html>
+<?php require_once 'footer.php'?>
