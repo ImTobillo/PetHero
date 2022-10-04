@@ -17,7 +17,7 @@
         <h1 class="titulo">PetHero</h1>
       </div>
       <div class="contImg">
-        <img class="logo" src="../img/logo.png" alt="Logo" />
+        <img class="logo" src="Views/img/logo.png" alt="Logo" />
       </div>
     </nav>
   </header>
