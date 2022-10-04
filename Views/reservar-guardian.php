@@ -1,16 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link href="https://fonts.googleapis.com/css2?family=Dokdo&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/basic.css">
-    <link rel="stylesheet" href="../css/reservar-guardian.css">
-    <link rel="shortcut icon" href="../img/logo.png" type="image/x-icon">
+<?php require_once 'header.php' ?>
 
     <title>Reservar guardian</title>
+    <link rel="stylesheet" href="css/reservar-guardian.css">
 </head>
 <body>
     <header>
@@ -22,14 +13,14 @@
             </ul>
 
             <div class="conTitulo"><h1 class="titulo">PetHero</h1></div>
-            <div class="contImg"><img class="logo" src="../img/logo.png" alt="Logo"></div>
+            <div class="contImg"><img class="logo" src="img/logo.png" alt="Logo"></div>
         </nav>
     </header>
 
     <main class="contenedor">
         <div class="heading">
 
-            <img class="foto" src="../img/perfil.png" alt="Perfil">
+            <img class="foto" src="img/perfil.png" alt="Perfil">
 
             <h1 class="perf">Perfil</h1>
 
@@ -52,9 +43,9 @@
                 
                 <form action="" method="get">
                     <div class="inputs">
-                        <input type="date" name="fechaRequerida">
-                        <input class="horaForm timePickerInicial" type="time" name="horaInicial">
-                        <input class="horaForm timePickerFinal" type="time" name="horaFinal">
+                        <input type="date" name="fechaRequerida" required>
+                        <input class="horaForm timePickerInicial" type="time" name="horaInicial" required>
+                        <input class="horaForm timePickerFinal" type="time" name="horaFinal" required>
                     </div>
 
                     <button class="" type="submit">Elegir</button>
@@ -62,5 +53,4 @@
             </div>
         </div>
     </main>
-</body>
-</html>
+<?php require_once 'footer.php' ?>
