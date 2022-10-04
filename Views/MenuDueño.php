@@ -1,18 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link href="https://fonts.googleapis.com/css2?family=Dokdo&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/basic.css">
-    <link rel="stylesheet" href="css/menuDueño.css">
-    <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
-
+<?php require_once 'header.php' ?>
+    
     <title>Menu dueño</title>
+    <link rel="stylesheet" href="css/menuDueño.css">
 
 </head>
 
@@ -91,11 +80,4 @@
 
     </main>
 
-    <footer>
-        <p>Todos los derechos reservados. Copyright 2022 © | | | Propiedad de Liste, Catalina - Manzo, Lautaro - Noya, Tobias </p>
-      </footer>
-    </html>
-
-</body>
-
-</html>
+    <?php require_once 'footer.php' ?>
