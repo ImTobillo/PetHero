@@ -1,11 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<?php require_once 'header.php' ?>
 
-    <link href="https://fonts.googleapis.com/css2?family=Dokdo&display=swap" rel="stylesheet">
     <link href="css/basic.css" rel="stylesheet">
     <link href="css/ver-perfil.css" rel="stylesheet">
     <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
@@ -45,5 +39,5 @@
             <div class="parrafo"><p>Tamaño</p></div>
         </div>
     </main>
-</body>
-</html>
+
+<?php require_once 'footer.php' ?>
