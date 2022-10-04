@@ -68,3 +68,15 @@ p{
 .boton:hover{
 background-color: #FB6A3D;
 }
+
+@keyframes slidein {
+    from {
+      margin-left: 100%;
+      width: 300%;
+    }
+  
+    to {
+      margin-left: 20%;
+      width: 60%;
+    }
+  }
