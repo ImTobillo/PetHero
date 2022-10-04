@@ -1,16 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<?php require_once 'header.php' ?>
 
-    <link href="https://fonts.googleapis.com/css2?family=Dokdo&display=swap" rel="stylesheet">
-    <link href="../css/basic.css" rel="stylesheet">
-    <link href="../css/ver-perfil-mascota.css" rel="stylesheet">
-
-    <link rel="shortcut icon" href="../img/logo.png" type="image/x-icon">
-
+    <link href="css/ver-perfil-mascota.css" rel="stylesheet">
     <title>Perfil</title>
 </head>
 <body>
@@ -25,14 +15,14 @@
             </ul>
 
             <div class="conTitulo"><h1 class="titulo">PetHero</h1></div>
-            <div class="contImg"><img class="logo" src="../img/logo.png" alt="Logo"></div>
+            <div class="contImg"><img class="logo" src="img/logo.png" alt="Logo"></div>
 
         </nav>
     </header>
 
     <main class="main">
         <div class="contenedor-perfil">
-            <img src="" alt="foto perfil">
+            <img src="img/ejemploPerro1.jpg" alt="foto perfil" width="100x100">
             <button class="button">Editar</button>
         </div>
 
@@ -47,12 +37,8 @@
         <div class="contenedor-multimedia">
             <div class="video"><iframe width="400" height="200" src="https://www.youtube.com/embed/7bhKI0Mw6Yk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
-            <div class="imagen"><img src="../imagenes/logo.png" alt="imagen perro" height="200" width="200"></div>
+            <div class="imagen"><img src="img/logo.png" alt="imagen perro" height="200" width="200"></div>
         </div>
     </main>
 
-    <footer>
-        
-    </footer>
-</body>
-</html>
+    <?php require_once 'footer.php' ?>
