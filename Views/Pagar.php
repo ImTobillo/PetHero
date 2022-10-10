@@ -1,6 +1,6 @@
 <?php require_once 'header.php'?>
 
-    <link rel="stylesheet" href="css/pagar.css">
+    <link rel="stylesheet" href=" <?php echo CSS_PATH . 'pagar.css' ?> ">
     <title>Pagar</title>
 </head>
 
@@ -16,7 +16,7 @@
             </ul>
 
             <div class="conTitulo"><h1 class="titulo">PetHero</h1></div>
-            <div class="contImg"><img class="logo" src="img/logo.png" alt="Logo"></div>
+            <div class="contImg"><img class="logo" src=" <?php echo IMG_PATH . 'logo.png' ?> " alt="Logo"></div>
 
         </nav>
     </header>

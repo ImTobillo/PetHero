@@ -1,6 +1,6 @@
 <?php require_once 'header.php' ?>
 
-    <link href="css/verPagosPendientes.css" rel="stylesheet">
+    <link href=" <?php echo CSS_PATH . 'verPagosPendientes.css' ?> " rel="stylesheet">
     <title>Pagos Pendientes</title>
 
 </head>
@@ -17,7 +17,7 @@
             </ul>
 
             <div class="conTitulo"><h1 class="titulo">PetHero</h1></div>
-            <div class="contImg"><img class="logo" src="img/logo.png" alt="Logo"></div>
+            <div class="contImg"><img class="logo" src=" <?php echo IMG_PATH . 'logo.png' ?> " alt="Logo"></div>
 
         </nav>
     </header>

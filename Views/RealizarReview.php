@@ -1,7 +1,7 @@
 <?php require_once 'header.php' ?>
 
     <title>Realizar Review</title>
-    <link rel="stylesheet" href="css/realizarReview.css">
+    <link rel="stylesheet" href=" <?php echo CSS_PATH . 'realizarReview.css' ?> ">
 </head>
 
 <body>
@@ -16,7 +16,7 @@
             </ul>
 
             <div class="conTitulo"><h1 class="titulo">PetHero</h1></div>
-            <div class="contImg"><img class="logo" src="img/logo.png" alt="Logo"></div>
+            <div class="contImg"><img class="logo" src=" <?php echo IMG_PATH . 'logo.png' ?> " alt="Logo"></div>
 
         </nav>
     </header>

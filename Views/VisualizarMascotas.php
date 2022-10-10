@@ -1,6 +1,6 @@
 <?php require_once 'header.php'?>
 
-    <link rel="stylesheet" href="css/visualizarGuardianes.css">
+    <link rel="stylesheet" href=" <?php echo CSS_PATH . 'visualizarGuardianes-Mascotas.css' ?> ">
     <title>Visualizar Mascotas</title>
 
 </head>
@@ -17,7 +17,7 @@
             </ul>
 
             <div class="conTitulo"><h1 class="titulo">PetHero</h1></div>
-            <div class="contImg"><img class="logo" src="img/logo.png" alt="Logo"></div>
+            <div class="contImg"><img class="logo" src=" <?php echo IMG_PATH . 'logo.png' ?> " alt="Logo"></div>
 
         </nav>
     </header>
@@ -27,7 +27,7 @@
         <h1 class="tituloG">Mascotas</h1>
 
         <div class="igual">
-            <img class="imagenPerf" src="img/ejemploPerro1.jpg" alt="">
+            <img class="imagenPerf" src=" <?php echo IMG_PATH . 'ejemploPerro1.jpg' ?> " alt="">
             <div class="info">
                 <p>Nombre</p>
                 <p>Disponibilidad</p>
@@ -36,7 +36,7 @@
         </div>
 
         <div class="igual">
-            <img class="imagenPerf" src="img/ejemploPerro2.jpg" alt="">
+            <img class="imagenPerf" src=" <?php echo IMG_PATH . 'ejemploPerro2.jpg' ?> " alt="">
             <div class="info">
             <p>Nombre</p>
             <p>Disponibilidad</p>

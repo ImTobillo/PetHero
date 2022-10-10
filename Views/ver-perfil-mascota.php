@@ -1,6 +1,6 @@
 <?php require_once 'header.php' ?>
 
-    <link href="css/ver-perfil-mascota.css" rel="stylesheet">
+    <link href=" <?php echo CSS_PATH . 'ver-perfil-mascota.css' ?> " rel="stylesheet">
     <title>Perfil</title>
 </head>
 <body>
@@ -15,14 +15,14 @@
             </ul>
 
             <div class="conTitulo"><h1 class="titulo">PetHero</h1></div>
-            <div class="contImg"><img class="logo" src="img/logo.png" alt="Logo"></div>
+            <div class="contImg"><img class="logo" src=" <?php echo IMG_PATH . 'logo.png' ?> " alt="Logo"></div>
 
         </nav>
     </header>
 
     <main class="main">
         <div class="contenedor-perfil">
-            <img src="img/ejemploPerro1.jpg" alt="foto perfil" width="100x100">
+            <img src=" <?php echo IMG_PATH . 'ejemploPerro1.jpg' ?> " alt="foto perfil" width="100x100">
             <button class="button">Editar</button>
         </div>
 

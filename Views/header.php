@@ -8,6 +8,6 @@
       href="https://fonts.googleapis.com/css2?family=Dokdo&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="css/basic.css" />
-    <link rel="shortcut icon" href="img/logo.png" type="image/x-icon" />
+    <link rel="stylesheet" href=" <?php echo CSS_PATH . 'basic.css' ?> " />
+    <link rel="shortcut icon" href=" <?php echo IMG_PATH . 'logo.png' ?> " type="image/x-icon" />
     

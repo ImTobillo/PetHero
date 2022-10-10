@@ -1,8 +1,7 @@
 <?php require_once 'header.php' ?>
 
-    <link href="css/basic.css" rel="stylesheet">
-    <link href="css/ver-perfil.css" rel="stylesheet">
-    <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
+    <link href=" <?php echo CSS_PATH . 'ver-perfil.css' ?> " rel="stylesheet">
+    <link rel="shortcut icon" href=" <?php echo IMG_PATH . 'logo.png' ?> " type="image/x-icon">
 
     <title>Perfil</title>
 </head>
@@ -18,7 +17,7 @@
             </ul>
 
             <div class="conTitulo"><h1 class="titulo">PetHero</h1></div>
-            <div class="contImg"><img class="logo" src="img/logo.png" alt="Logo"></div>
+            <div class="contImg"><img class="logo" src=" <?php echo IMG_PATH . 'logo.png' ?> " alt="Logo"></div>
 
         </nav>
     </header>

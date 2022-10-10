@@ -2,7 +2,7 @@
 
     <link
       rel="stylesheet"
-      href="css/verHistorialServOfrecidos-guardian.css"
+      href=" <?php echo CSS_PATH . 'verHistorialServOfrecidos-guardian.css' ?> "
     />
     <title>Historial de servicios ofrecidos</title>
   </head>
@@ -18,7 +18,7 @@
 
         <div class="conTitulo"><h1 class="titulo">PetHero</h1></div>
         <div class="contImg">
-          <img class="logo" src="img/logo.png" alt="Logo" />
+          <img class="logo" src=" <?php echo IMG_PATH . 'logo.png' ?> " alt="Logo" />
         </div>
       </nav>
     </header>

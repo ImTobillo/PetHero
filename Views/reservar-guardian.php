@@ -1,7 +1,7 @@
 <?php require_once 'header.php' ?>
 
     <title>Reservar guardian</title>
-    <link rel="stylesheet" href="css/reservar-guardian.css">
+    <link rel="stylesheet" href=" <?php echo CSS_PATH . 'reservar-guardian.css' ?> ">
 </head>
 <body>
     <header>
@@ -13,18 +13,18 @@
             </ul>
 
             <div class="conTitulo"><h1 class="titulo">PetHero</h1></div>
-            <div class="contImg"><img class="logo" src="img/logo.png" alt="Logo"></div>
+            <div class="contImg"><img class="logo" src=" <?php echo IMG_PATH . 'logo.png' ?> " alt="Logo"></div>
         </nav>
     </header>
 
     <main class="contenedor">
         <div class="heading">
 
-            <img class="foto" src="img/perfil.png" alt="Perfil">
+            <img class="foto" src=" <?php echo IMG_PATH . 'perfil.png' ?> " alt="Perfil">
 
             <h1 class="perf">Perfil</h1>
 
-            <img class="huella" src="../img/huellas-perro.png" alt="Huellas">
+            <img class="huella" src=" <?php echo IMG_PATH . 'huellas-perro.png' ?> " alt="Huellas">
 
         </div>
 

@@ -1,7 +1,7 @@
 <?php require_once 'header.php' ?>
     
     <title>Menu dueño</title>
-    <link rel="stylesheet" href="css/menuDueño.css">
+    <link rel="stylesheet" href=" <?php echo CSS_PATH . 'menuDueño-Guardian.css' ?> ">
 
 </head>
 
@@ -17,7 +17,7 @@
             </ul>
 
             <div class="conTitulo"><h1 class="titulo">PetHero</h1></div>
-            <div class="contImg"><img class="logo" src="img/logo.png" alt="Logo"></div>
+            <div class="contImg"><img class="logo" src=" <?php echo IMG_PATH . 'logo.png' ?> " alt="Logo"></div>
 
         </nav>
     </header>
@@ -36,7 +36,7 @@
 
                 <p>Revise su perfil para chequear su información y editar lo que gustes.</p>
 
-                <img class="icono" src="img/person.png" alt="persona">
+                <img class="icono" src=" <?php echo IMG_PATH . 'person.png' ?> " alt="persona">
 
             </div>
 
@@ -48,7 +48,7 @@
 
                 <p>Clickeá acá para ver a quien le debés.</p>
 
-                <img class="icono" src="img/compra.png" alt="compra">
+                <img class="icono" src=" <?php echo IMG_PATH . 'compra.png' ?> " alt="compra">
 
             </div>
 
@@ -60,7 +60,7 @@
 
                 <p>Mire su lista de pichichus registrados</p>
 
-                <img class="icono" src="img/dog.png" alt="perro">
+                <img class="icono" src=" <?php echo IMG_PATH . 'dog.png' ?> " alt="perro">
 
             </div>
 
@@ -72,7 +72,7 @@
 
                 <p>Aca puede agregar una nueva mascota a su lista</p>
 
-                <img class="icono" src="img/pet.png" alt="perro">
+                <img class="icono" src=" <?php echo IMG_PATH . 'pet.png' ?> " alt="perro">
 
             </div>
 

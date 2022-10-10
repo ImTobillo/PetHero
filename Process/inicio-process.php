@@ -1,5 +1,5 @@
 <?php 
 $tipoCuenta = $_POST["tipoCuenta"];
-header("location: ../Views/html/registro.html");
+header("location: ../Views/registro.php");
 
 ?>
