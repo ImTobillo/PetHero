@@ -10,7 +10,7 @@ class DueñoDAO implements IRepositorio
     private $dueñosLista = array();
     private $fileName = ROOT . 'Data/dueños.json';
 
-    public function add(Dueño $dueño)
+    public function add($dueño)
     {
         $this->RetrieveData();
         $dueño->setId($this->GetNextId());

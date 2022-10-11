@@ -26,14 +26,8 @@
     <div class="contenedor">
       <h1 class="titulo">Inicio sesion</h1>
 
-      <form action="" method="" class="form">
-        <select name="tipoCuenta" required>
-          <option value="" disabled selected hidden>Tipo de Cuenta</option>
-          <option value="dueño">Dueño</option>
-          <option value="guardian">Guardian</option>
-        </select>
-
-        <input class="input_email" type="email" required placeholder="Email" />
+      <form action= " <?php echo FRONT_ROOT . 'Home/Login' ?> " method="" class="form">
+        <input class="input_email" type="username" required placeholder="Email" />
         <input class="input_contra" type="password" required placeholder="Contraseña" />
         <button class="button iniciar" type="submit">Iniciar</button>
       </form>
@@ -41,7 +35,7 @@
       <div class="contenedor-registrarse">
         <h2 class="tituloh2">Registrarse como</h2>
 
-        <form action="" method="post">
+        <form action=" <?php echo FRONT_ROOT . 'Home/registrarCuenta' ?> " method="post">
           <button type="submit" class="button" name="tipoCuenta" value="duenio">Dueño</button>
           <button type="submit" class="button" name="tipoCuenta" value="guardian">Guardian</button>
         </form>
