@@ -5,7 +5,7 @@ namespace DAO;
 use Models\Dueño as Dueño;
 use DAO\IRepositorio as IRepositorio;
 
-class GuadianDAO implements IRepositorio
+class DueñoDAO implements IRepositorio
 {
     private $dueñosLista = array();
     private $fileName = ROOT . 'Data/dueños.json';
