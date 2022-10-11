@@ -1,6 +1,6 @@
 <?php require_once 'header.php'?>
 
-    <link rel="stylesheet" href="  <?php echo CSS_PATH . 'crear-mascota.css' ?>  "> 
+    <link rel="stylesheet" href=" <?php echo CSS_PATH . 'crear-mascota.css' ?> "> 
     <title>Crear mascota</title>
 
 </head>

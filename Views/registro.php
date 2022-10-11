@@ -41,7 +41,6 @@
                         <button class="button" type="submit">Registrarse</button>
                     </div>
                     
-
             </form>
         </div>
     </main>
