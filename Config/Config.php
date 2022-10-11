@@ -10,5 +10,6 @@ define("IMG_PATH", VIEWS_PATH . "img/");
 ?>
 
 
-
-
+D            D          D            D
+nombre
+m1 m2 m3
