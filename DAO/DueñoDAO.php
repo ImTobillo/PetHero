@@ -68,8 +68,9 @@ class DueñoDAO implements IRepositorio
             $contentArray = ($jsonToDecode) ? json_decode($jsonToDecode, true) : array();
 
             foreach ($contentArray as $content) {
-                $dueño = new Dueño($content["mascota"], $content["nombre"], $content["apellido"], $content['fechaNacimiento'], $content['dni'], $content['telefono'],  $content['email'], $content['contraseña'], $content['ciudad'], $content['calle'], $content['numCalle']);
+                $dueño = new Dueño($content["nombre"], $content["apellido"], $content['fechaNacimiento'], $content['dni'], $content['telefono'],  $content['email'], $content['contraseña'], $content['ciudad'], $content['calle'], $content['numCalle']);
                 $dueño->setId($content["id"]);
+                $dueño->setMascotas($content["mascota"]);
                 array_push($this->dueñosLista, $dueño);
             }
         }
@@ -82,7 +83,7 @@ class DueñoDAO implements IRepositorio
         foreach ($this->dueñosLista as $dueño) {
             $valuesArray = array();
             $valuesArray["id"] = $dueño->getId();
-            $valuesArray["mascota"] = $dueño->getMascota();
+            $valuesArray["mascota"] = $dueño->getMascotas();
             $valuesArray["nombre"] = $dueño->getNombre();
             $valuesArray["apellido"] = $dueño->getApellido();
             $valuesArray["fechaNacimiento"] = $dueño->getFechaNacimiento();
