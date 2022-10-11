@@ -3,9 +3,10 @@
 
     class HomeController
     {
+        
         public function Index($message = "")
         {
-            require_once(VIEWS_PATH."inicio.php");
+            require_once(VIEWS_PATH."crear-mascota.php");
         }        
     }
 ?>
