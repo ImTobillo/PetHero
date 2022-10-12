@@ -23,9 +23,13 @@
         <div class="contenedor">
             <h1 class="titulo">Registro</h1>
             <h2 class="tituloh2">Datos personales</h2>
-
+            <?php    
+                        if(isset($error)){ ?>
+                            <h5> <?php echo $error; ?></h5>
+                      <?php  } ?>
             <form action="<?php echo FRONT_ROOT . "Home/registro"?>" method="post" class="form">
                 <!-- agregar names a los inputs -->
+                    
                     <input name="nombre" class="input-nombre" type="text" required placeholder="Nombre">
                     <input name="apellido" class="input-apellido" type="text" required placeholder="Apellido">
                     <input name="dni" class="input-dni" type="number" required placeholder="DNI">
@@ -43,12 +47,6 @@
                     if($tipoCuenta == "dueño"){ ?>
                         <input type="text" name="tipoCuenta" value="dueño" hidden>
                    <?php } ?>
-
-                   <?php
-
-                    if(isset($error)){ 
-                       echo $error;
-                    } ?>
 
                     <div class="contenedor_button">
                         <button class="button" type="button">Cancelar</button>

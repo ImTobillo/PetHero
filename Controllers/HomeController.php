@@ -70,30 +70,28 @@ class HomeController
     }
 
     #agregar funcion de registro que guarde los datos de persona
-    public function registro($nombre, $apellido, $dni, $email, $contraseña, $telefono, $fechaNacimiento, $ciudad, $calle, $numCalle, $tipoCuenta, $nombreUser){
-        $user = new User($nombreUser, $contraseña, $tipoCuenta);
-        #verificar que el user no esté repetido y agregarlo al jsonUSer
-        if($tipoCuenta == "dueño"){
-            $dueños = $this->dueñosDAO->getAll();
+    public function registro($nombre, $apellido, $dni, $email, $contraseña, $telefono, $fechaNacimiento, $ciudad, $calle, $numCalle, $tipoCuenta, $nombreUser)
+    {
 
+        if ($tipoCuenta == "dueño") {
+            $dueños = $this->dueñosDAO->getAll();
+            $bool = false;
             foreach ($dueños as $value) {
-                if($value['email'] == $email){
+                if ($value->getEmail() == $email) {
                     //advertencia email invalido
-                    $error = "El email no está disponible";
+                    $bool = true;
+                    $error = "El email no está disponible"; #esto se ve feo en el html
                     require_once(VIEWS_PATH . "registro.php");
                 }
             }
-    
-            $dueño = new Dueño($nombre, $apellido, $fechaNacimiento, $dni, $telefono, $email, $ciudad, $calle, $numCalle);
-    
-            $this->dueñosDAO->add($dueño);
-    
-            require_once(VIEWS_PATH . "crear-mascota.php");
-        }else{
+            if ($bool == false) {
+                $dueño = new Dueño($nombre, $apellido, $fechaNacimiento, $dni, $telefono, $email, $ciudad, $calle, $numCalle);
 
+                $this->dueñosDAO->add($dueño);
+
+                require_once(VIEWS_PATH . "crear-mascota.php");
+            }
+        } else {
         }
-
     }
 }
-
-?>
