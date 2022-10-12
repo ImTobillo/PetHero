@@ -23,10 +23,7 @@
         <div class="contenedor">
             <h1 class="titulo">Registro</h1>
             <h2 class="tituloh2">Datos personales</h2>
-            <?php    
-                        if(isset($error)){ ?>
-                            <h5> <?php echo $error; ?></h5>
-                      <?php  } ?>
+    
             <form action="<?php echo FRONT_ROOT . "Home/registro"?>" method="post" class="form">
                 <!-- agregar names a los inputs -->
                     
