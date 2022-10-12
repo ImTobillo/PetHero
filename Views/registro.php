@@ -35,11 +35,13 @@
                     <input class="input-ciudad" type="text" required placeholder="Ciudad">
                     <input class="input-calle" type="text" required placeholder="Calle">
                     <input class="input-num-calle" type="number" required placeholder="Numero" min="0">
+                    <input class="" type="text" required placeholder="Nombre de usuario"> <!-- arreglar -->
 
                     <div class="contenedor_button">
                         <button class="button" type="button">Cancelar</button>
                         <button class="button" type="submit">Registrarse</button>
                     </div>
+                    
                     
             </form>
         </div>

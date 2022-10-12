@@ -4,7 +4,7 @@ namespace DAO;
 
 interface IRepositorio
 {
-    function add($usuario); // revisar
+    function add($obj);
     function remove($id);
     function getById($id);
     function getAll();

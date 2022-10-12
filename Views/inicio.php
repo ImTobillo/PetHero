@@ -36,7 +36,7 @@
         <h2 class="tituloh2">Registrarse como</h2>
 
         <form action=" <?php echo FRONT_ROOT . 'Home/registrarCuenta' ?> " method="post">
-          <button type="submit" class="button" name="tipoCuenta" value="duenio">Dueño</button>
+          <button type="submit" class="button" name="tipoCuenta" value="dueño">Dueño</button>
           <button type="submit" class="button" name="tipoCuenta" value="guardian">Guardian</button>
         </form>
       </div>

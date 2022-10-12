@@ -23,7 +23,7 @@ class HomeController
 
     public function Index($message = "")
     {
-        require_once(VIEWS_PATH . "inicio.php");
+        require_once(VIEWS_PATH . "crear-mascota.php");
     }
 
     public function mostrarMenu($tipoCuenta)
@@ -58,10 +58,16 @@ class HomeController
 
     public function registrarCuenta($tipoCuenta)
     {
-        if ($tipoCuenta == "duenio") {
+        if ($tipoCuenta == "dueño") {
             
         } else {
-
+            
         }
+    }
+
+    public function cerrarSesion()
+    {
+        session_destroy();
+        $this->Index();
     }
 }
