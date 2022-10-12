@@ -8,13 +8,16 @@ class Dueño extends Persona{
     #atributos 
     private $mascotas;
 
-    public function __construct($mascotas, $nombre, $apellido, $fechaNacimiento, $dni, $telefono, $email, $contraseña, $ciudad, $calle, $numCalle){
-        parent::__construct($nombre, $apellido, $fechaNacimiento, $dni, $telefono, $email, $contraseña, $ciudad, $calle, $numCalle);
-        $this->mascotas = $mascotas;
+    public function __construct($nombre, $apellido, $fechaNacimiento, $dni, $telefono, $email, $ciudad, $calle, $numCalle){
+        parent::__construct($nombre, $apellido, $fechaNacimiento, $dni, $telefono, $email, $ciudad, $calle, $numCalle);
     }
       
     public function getmascotas(){
         return $this->mascotas;
+    }
+
+    public function setMascotas($mascotas){
+        $this->mascotas = $mascotas;
     }
 }
 

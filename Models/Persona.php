@@ -15,8 +15,7 @@ abstract class Persona{
     private $calle;
     private $numCalle;
 
-    public function __construct($id, $nombre, $apellido, $fechaNacimiento, $dni, $telefono, $email, $ciudad, $calle, $numCalle){
-        $this->id = $id;
+    public function __construct($nombre, $apellido, $fechaNacimiento, $dni, $telefono, $email, $ciudad, $calle, $numCalle){
         $this->nombre = $nombre;
         $this->apellido = $apellido;
         $this->fechaNacimiento = $fechaNacimiento;
