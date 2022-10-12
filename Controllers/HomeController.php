@@ -5,6 +5,7 @@ namespace Controllers;
 use DAO\UserDAO as UserDAO;
 use DAO\GuardianDAO as GuardianDAO;
 use DAO\DueñoDAO as DueñoDAO;
+use Models\Dueño as Dueño;
 use Models\User as User;
 
 
@@ -23,7 +24,7 @@ class HomeController
 
     public function Index($message = "")
     {
-        require_once(VIEWS_PATH . "crear-mascota.php");
+        require_once(VIEWS_PATH . "inicio.php");
     }
 
     public function mostrarMenu($tipoCuenta)
@@ -58,11 +59,8 @@ class HomeController
 
     public function registrarCuenta($tipoCuenta)
     {
-        if ($tipoCuenta == "dueño") {
-            
-        } else {
-            
-        }
+        $tipoCuenta;
+        require_once(VIEWS_PATH . 'registro.php');
     }
 
     public function cerrarSesion()
@@ -70,4 +68,31 @@ class HomeController
         session_destroy();
         $this->Index();
     }
+
+    #agregar funcion de registro que guarde los datos de persona
+    public function registro($nombre, $apellido, $dni, $email, $contraseña, $telefono, $fechaNacimiento, $ciudad, $calle, $numCalle, $tipoCuenta, $nombreUser){
+        
+        if($tipoCuenta == "dueño"){
+            $dueños = $this->dueñosDAO->getAll();
+
+            foreach ($dueños as $value) {
+                if($value['email'] == $email){
+                    //advertencia email invalido
+                    $error = "El email no está disponible";
+                    require_once(VIEWS_PATH . "registro.php");
+                }
+            }
+    
+            $dueño = new Dueño($nombre, $apellido, $fechaNacimiento, $dni, $telefono, $email, $ciudad, $calle, $numCalle);
+    
+            $this->dueñosDAO->add($dueño);
+    
+            require_once(VIEWS_PATH . "crear-mascota.php");
+        }else{
+
+        }
+
+    }
 }
+
+?>
