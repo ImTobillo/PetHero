@@ -37,7 +37,7 @@ class HomeController
             require_once VIEWS_PATH . 'MenuDue%C3%B1o.php';
     }
 
-    public function Login($username, $password)
+    public function Login($username, $password, $tipoCuenta)
     {
         $user = $this->userDAO->getByUser($username);
 
@@ -72,26 +72,33 @@ class HomeController
     #agregar funcion de registro que guarde los datos de persona
     public function registro($nombre, $apellido, $dni, $email, $contraseña, $telefono, $fechaNacimiento, $ciudad, $calle, $numCalle, $tipoCuenta, $nombreUser)
     {
-
-        if ($tipoCuenta == "dueño") {
-            $dueños = $this->dueñosDAO->getAll();
-            $bool = false;
-            foreach ($dueños as $value) {
-                if ($value->getEmail() == $email) {
-                    //advertencia email invalido
-                    $bool = true;
-                    $error = "El email no está disponible"; #esto se ve feo en el html
-                    require_once(VIEWS_PATH . "registro.php");
+        $user = $this->userDAO->getByUser($nombreUser);
+        if($user != null){
+            echo "<script> if(confirm('Nombre de usuario no disponible')); </script>";
+            require_once(VIEWS_PATH . "registro.php");
+        }else{
+            $newUser = new User($nombreUser, $contraseña, $tipoCuenta);
+            $this->userDAO->add($newUser);
+            if ($tipoCuenta == "dueño") {
+                $dueños = $this->dueñosDAO->getAll();
+                $bool = false;
+                foreach ($dueños as $value) {
+                    if ($value->getEmail() == $email) {
+                        //advertencia email invalido
+                        $bool = true;
+                        echo "<script> if(confirm('Email no disponible')); </script>";
+                        require_once(VIEWS_PATH . "registro.php");
+                    }
                 }
+                if ($bool == false) {
+                    $dueño = new Dueño($nombre, $apellido, $fechaNacimiento, $dni, $telefono, $email, $ciudad, $calle, $numCalle);
+    
+                    $this->dueñosDAO->add($dueño);
+    
+                    require_once(VIEWS_PATH . "crear-mascota.php");
+                }
+            } else {
             }
-            if ($bool == false) {
-                $dueño = new Dueño($nombre, $apellido, $fechaNacimiento, $dni, $telefono, $email, $ciudad, $calle, $numCalle);
-
-                $this->dueñosDAO->add($dueño);
-
-                require_once(VIEWS_PATH . "crear-mascota.php");
-            }
-        } else {
-        }
+        }   
     }
 }

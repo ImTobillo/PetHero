@@ -87,8 +87,8 @@ class UserDAO implements IRepositorio
             $contentArray = ($jsonToDecode) ? json_decode($jsonToDecode, true) : array();
 
             foreach ($contentArray as $content) {
-                $user = new User($content['id'], $content['username'], $content['password'], $content['tipoCuenta']);
-
+                $user = new User($content['username'], $content['password'], $content['tipoCuenta']);
+                $user->setId($content['id']);
                 array_push($this->usersList, $user);
             }
         }
