@@ -9,9 +9,8 @@ class User
     private $password;
     private $tipoCuenta;
 
-    function __construct($id, $username, $password, $tipoCuenta)
-    {
-        $this->id = $id;
+    function __construct($username, $password, $tipoCuenta)
+    { #saco id, que lo hagaautoincremental el dao
         $this->username = $username;
         $this->password = $password;
         $this->tipoCuenta = $tipoCuenta;
