@@ -71,7 +71,8 @@ class HomeController
 
     #agregar funcion de registro que guarde los datos de persona
     public function registro($nombre, $apellido, $dni, $email, $contraseña, $telefono, $fechaNacimiento, $ciudad, $calle, $numCalle, $tipoCuenta, $nombreUser){
-        
+        $user = new User($nombreUser, $contraseña, $tipoCuenta);
+        #verificar que el user no esté repetido y agregarlo al jsonUSer
         if($tipoCuenta == "dueño"){
             $dueños = $this->dueñosDAO->getAll();
 
