@@ -27,8 +27,15 @@
       <h1 class="titulo">Inicio sesion</h1>
 
       <form action= " <?php echo FRONT_ROOT . 'Home/Login' ?> " method="" class="form">
-        <input class="input_email" type="username" required placeholder="Email" />
-        <input class="input_contra" type="password" required placeholder="Contraseña" />
+        <select name="tipoCuenta" required>
+          <option value="" disabled selected hidden>Tipo de Cuenta</option>
+          <option value="dueño">Dueño</option>
+          <option value="guardian">Guardian</option>
+        </select>
+
+        <input name="username" class="input_email" type="text" required placeholder="Nombre de usuario" />
+        <input name="password" class="input_contra" type="password" required placeholder="Contraseña" />
+
         <button class="button iniciar" type="submit">Iniciar</button>
       </form>
       
