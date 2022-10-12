@@ -36,7 +36,7 @@
                     <input name="email" class="input-email" type="email" required placeholder="Email">
                     <input name="contraseña" class="input-contraseña" type="password" required placeholder="Contraseña">
                     <input name="telefono" class="input-telefono" type="tel" required placeholder="Telefono">
-                    <input name="fechaNacimiento" class="input-nacimiento" type="date" required placeholder="Fecha de nacimiento">
+                    <input name="fechaNacimiento" class="input-nacimiento" type="date" max="<?php echo date("Y-m-d",strtotime(date("Y-m-d")."- 13 year"));?>" required placeholder="Fecha de nacimiento">
                     <input name="ciudad" class="input-ciudad" type="text" required placeholder="Ciudad">
                     <input name="calle" class="input-calle" type="text" required placeholder="Calle">
                     <input name="numCalle" class="input-num-calle" type="number" required placeholder="Numero" min="0">
