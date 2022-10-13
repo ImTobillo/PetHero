@@ -37,7 +37,7 @@ class HomeController
             require_once VIEWS_PATH . 'MenuDue%C3%B1o.php';
     }
 
-    public function Login($username, $password, $tipoCuenta)
+    public function Login($username, $password)
     {
         $user = $this->userDAO->getByUser($username);
 
@@ -70,7 +70,7 @@ class HomeController
     }
 
     #agregar funcion de registro que guarde los datos de persona
-    public function registro($nombre, $apellido, $dni, $email, $contraseña, $telefono, $fechaNacimiento, $ciudad, $calle, $numCalle, $tipoCuenta, $nombreUser)
+    public function registro($nombre, $apellido, $dni, $email, $contraseña, $telefono, $fechaNacimiento, $ciudad, $calle, $numCalle, $nombreUser, $tipoCuenta)
     {
         $user = $this->userDAO->getByUser($nombreUser);
         if($user != null){

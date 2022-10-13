@@ -26,12 +26,7 @@
     <div class="contenedor">
       <h1 class="titulo">Inicio sesion</h1>
 
-      <form action= " <?php echo FRONT_ROOT . 'Home/Login' ?> " method="" class="form">
-        <select name="tipoCuenta" required>
-          <option value="" disabled selected hidden>Tipo de Cuenta</option>
-          <option value="dueño">Dueño</option>
-          <option value="guardian">Guardian</option>
-        </select>
+      <form action= " <?php echo FRONT_ROOT . 'Home/Login' ?> " method="post" class="form">
 
         <input name="username" class="input_email" type="text" required placeholder="Nombre de usuario" />
         <input name="password" class="input_contra" type="password" required placeholder="Contraseña" />

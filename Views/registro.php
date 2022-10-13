@@ -1,4 +1,4 @@
-<?php require_once 'header.php' ?>
+<?php require_once 'header.php'; ?>
     <title>Registrarse</title>
     <link href=" <?php echo CSS_PATH . 'registro.css' ?> " rel="stylesheet">
 </head>
