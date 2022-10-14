@@ -13,7 +13,6 @@ class GuardianDAO implements IRepositorio
     public function add($guardian)
     {
         $this->RetrieveData();
-        $guardian->setId($this->GetNextId());
         array_push($this->guardianList, $guardian);
         $this->SaveData();
     }
@@ -68,7 +67,7 @@ class GuardianDAO implements IRepositorio
             $contentArray = ($jsonToDecode) ? json_decode($jsonToDecode, true) : array();
 
             foreach ($contentArray as $content) {
-                $guardian = new Guardian($content['id'], $content['remuneracion'], $content['tamaño'], $content['diasDisponibles'], $content['horaDisponible'], $content['nombre'], $content['apellido'], $content['fechaNacimiento'], $content['dni'], $content['telefono'], $content['email'], $content['contraseña'], $content['ciudad'], $content['calle'], $content['numCalle']);
+                $guardian = new Guardian($content['id'], $content['nombre'], $content['apellido'], $content['fechaNacimiento'], $content['dni'], $content['telefono'], $content['email'], $content['ciudad'], $content['calle'], $content['numCalle']);
 
                 array_push($this->guardianList, $guardian);
             }
@@ -102,16 +101,6 @@ class GuardianDAO implements IRepositorio
         $fileContent = json_encode($arrayToEncode, JSON_PRETTY_PRINT);
 
         file_put_contents($this->fileName, $fileContent);
-    }
-
-    private function GetNextId()
-    {
-        $id = 0;
-
-        if (!empty($this->guardianList))
-            $id = end($this->guardianList)->getId() + 1;
-
-        return $id;
     }
 }
 ?>
