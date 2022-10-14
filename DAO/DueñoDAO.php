@@ -13,7 +13,6 @@ class DueñoDAO implements IRepositorio
     public function add($dueño)
     {
         $this->RetrieveData();
-        $dueño->setId($this->GetNextId());
         array_push($this->dueñosLista, $dueño);
         $this->SaveData();
     }
@@ -68,8 +67,8 @@ class DueñoDAO implements IRepositorio
             $contentArray = ($jsonToDecode) ? json_decode($jsonToDecode, true) : array();
 
             foreach ($contentArray as $content) {
-                $dueño = new Dueño($content["nombre"], $content["apellido"], $content['fechaNacimiento'], $content['dni'], $content['telefono'],  $content['email'], $content['ciudad'], $content['calle'], $content['numCalle']);
-                $dueño->setId($content["id"]);
+                $dueño = new Dueño($content["id"], $content["nombre"], $content["apellido"], $content['fechaNacimiento'], $content['dni'], $content['telefono'],  $content['email'], $content['ciudad'], $content['calle'], $content['numCalle']);
+
                 //recorrer dao mascotas
                 $dueño->setMascotas($content["mascota"]);
                 array_push($this->dueñosLista, $dueño);
@@ -100,16 +99,6 @@ class DueñoDAO implements IRepositorio
         $fileContent = json_encode($arrayToEncode, JSON_PRETTY_PRINT);
 
         file_put_contents($this->fileName, $fileContent);
-    }
-
-    private function GetNextId()
-    {
-        $id = 0;
-
-        if (!empty($this->dueñosLista))
-            $id = end($this->dueñosLista)->getId() + 1;
-
-        return $id;
     }
 }
 ?>
