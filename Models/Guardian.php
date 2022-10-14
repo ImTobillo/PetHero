@@ -9,12 +9,8 @@ class Guardian extends Persona
     private $diasDisponibles;
     private $horaDisponible;
     
-    public function __construct($id, $remuneracion, $tamaño, $diasDisponibles, $horaDisponible, $nombre, $apellido, $fechaNacimiento, $dni, $telefono, $email, $contraseña, $ciudad, $calle, $numCalle){
-        parent::__construct($id, $nombre, $apellido, $fechaNacimiento, $dni, $telefono, $email, $contraseña, $ciudad, $calle, $numCalle);
-        $this->remuneracion = $remuneracion;
-        $this->tamaño = $tamaño;
-        $this->diasDisponibles = $diasDisponibles;
-        $this->horaDisponible = $horaDisponible;
+    public function __construct($id, $nombre, $apellido, $fechaNacimiento, $dni, $telefono, $email, $ciudad, $calle, $numCalle){
+        parent::__construct($id, $nombre, $apellido, $fechaNacimiento, $dni, $telefono, $email, $ciudad, $calle, $numCalle);
     }
 
     public function getRemuneracion()
