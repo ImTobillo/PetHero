@@ -39,11 +39,12 @@
                     <input name="numCalle" class="input-num-calle" type="number" required placeholder="Numero" min="0">
                     <input name="nombreUser" class="" type="text" required placeholder="Nombre de usuario"> <!-- arreglar -->
 
-                    <?php
-
-                    if($tipoCuenta == "dueño"){ ?>
+                    <?php if($tipoCuenta == "dueño"){ ?>
                         <input type="text" name="tipoCuenta" value="dueño" hidden>
-                   <?php } ?>
+                   <?php } else{ ?>
+                        <input type="text" name="tipoCuenta" value="guardian" hidden>
+                    <?php } ?>
+
 
                     <div class="contenedor_button">
                         <button class="button" type="button">Cancelar</button>
