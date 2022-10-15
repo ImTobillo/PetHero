@@ -13,7 +13,7 @@
             <ul>
                 <li><a href="inicio.html">Inicio</a></li>
                 <li><a href="#">Sobre nosotros</a></li>
-                <li><a href="#">Contacto</a></li>
+                <li><a href="<?php echo FRONT_ROOT . "Mascota/ShowListView" ?>">Ver mascotas</a></li>
             </ul>
 
             <div class="conTitulo">

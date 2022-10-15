@@ -19,7 +19,7 @@
             </ul>
 
             <div class="conTitulo"><h1 class="titulo">PetHero</h1></div>
-            <div class="contImg"><img class="logo" src="<?php echo IMG_PATH . 'logo.png' ?>" alt="Logo"></div>
+            <div class="contImg"><img class="logo" src="<?php echo FRONT_ROOT . IMG_PATH . 'logo.png' ?>" alt="Logo"></div>
 
         </nav>
     </header>
@@ -32,8 +32,8 @@
 
             <div class="igual">
                 
-                <img class="imagenPerf" src="<?php echo IMG_PATH . 'ImgMascotas/' . $value->getPlanVacunacion() ?> " alt="Mascota">
- 
+                <img class="imagenPerf" src="<?php echo FRONT_ROOT . IMG_PATH . 'ImgMascotas/' . $value->getPlanVacunacion() ?> " alt="Mascota">
+
                 <div class="info">
                     <p><?php echo $value->getNombre(); ?></p>
                     <p><?php echo $value->getEdad(); ?></p>

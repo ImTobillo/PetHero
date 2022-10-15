@@ -72,8 +72,8 @@ class MascotaDAO implements IRepositorio{
                 $mascota->setRaza($content['raza']);
                 $mascota->setObservaciones($content['observaciones']);
                 $mascota->setPlanVacunacion($content['planVacunacion']);
-                $mascota->setPlanVacunacion($content['imgPerro']);
-                $mascota->setPlanVacunacion($content['videoPerro']);
+                $mascota->setImgPerro($content['imgPerro']);
+                $mascota->setVideoPerro($content['videoPerro']);
 
                 array_push($this->listMascotas, $mascota);
             }
