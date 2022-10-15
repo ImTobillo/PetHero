@@ -2,7 +2,7 @@
     require_once 'header.php'
 ?>
 
-    <link rel="stylesheet" href=" <?php echo CSS_PATH . 'visualizarGuardianes-Mascotas.css' ?> ">
+    <link rel="stylesheet" href="<?php echo CSS_PATH . 'visualizarGuardianes-Mascotas.css'?>">
     <title>Visualizar Mascotas</title>
 
 </head>
@@ -19,7 +19,7 @@
             </ul>
 
             <div class="conTitulo"><h1 class="titulo">PetHero</h1></div>
-            <div class="contImg"><img class="logo" src=" <?php echo IMG_PATH . 'logo.png' ?> " alt="Logo"></div>
+            <div class="contImg"><img class="logo" src="<?php echo IMG_PATH . 'logo.png' ?>" alt="Logo"></div>
 
         </nav>
     </header>
@@ -27,18 +27,21 @@
     <main>
 
         <h1 class="tituloG">Mascotas</h1>
-        <?php foreach ($listMascotas as $value) { ?>
+        <?php foreach ($listMascotas as $value) { 
+            if($value->getIdDueño() == 1){ ?>
+
             <div class="igual">
                 
-                <img class="imagenPerf" src=" <?php echo IMG_PATH . 'ImgMascotas/' . $value->getPlanVacunacion();  ?> " alt="">
-                
+                <img class="imagenPerf" src="<?php echo IMG_PATH . 'ImgMascotas/' . $value->getPlanVacunacion() ?> " alt="Mascota">
+ 
                 <div class="info">
                     <p><?php echo $value->getNombre(); ?></p>
+                    <p><?php echo $value->getEdad(); ?></p>
 
                     <button class="boton" type="submit"> Ver perfil </button>
                 </div>
             </div>
-        <?php } ?>
+        <?php }} ?>
 
     </main>
 

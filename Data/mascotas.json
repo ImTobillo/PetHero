@@ -1,22 +1,110 @@
 [
     {
-        "id": null,
-        "idDue\u00f1o": null,
-        "nombre": null,
-        "tama\u00f1o": null,
-        "edad": null,
-        "raza": null,
-        "observaciones": null,
-        "planVacunacion": null
+        "id": 0,
+        "idDue\u00f1o": 1,
+        "nombre": "Juan",
+        "tama\u00f1o": "1",
+        "edad": "2",
+        "raza": "Golden",
+        "observaciones": "asd",
+        "planVacunacion": null,
+        "imgPerro": null,
+        "videoPerro": null
     },
     {
         "id": 1,
         "idDue\u00f1o": 1,
-        "nombre": "Lautaro",
+        "nombre": "Juan",
+        "tama\u00f1o": "1",
+        "edad": "2",
+        "raza": "Golden",
+        "observaciones": "asd",
+        "planVacunacion": null,
+        "imgPerro": null,
+        "videoPerro": null
+    },
+    {
+        "id": 2,
+        "idDue\u00f1o": 1,
+        "nombre": "Juan",
+        "tama\u00f1o": "1",
+        "edad": "2",
+        "raza": "Golden",
+        "observaciones": "asd",
+        "planVacunacion": null,
+        "imgPerro": null,
+        "videoPerro": null
+    },
+    {
+        "id": 3,
+        "idDue\u00f1o": 1,
+        "nombre": "Juan",
+        "tama\u00f1o": "1",
+        "edad": "2",
+        "raza": "Golden",
+        "observaciones": "asd",
+        "planVacunacion": null,
+        "imgPerro": null,
+        "videoPerro": null
+    },
+    {
+        "id": 4,
+        "idDue\u00f1o": 1,
+        "nombre": "Juan",
+        "tama\u00f1o": "1",
+        "edad": "2",
+        "raza": "Golden",
+        "observaciones": "asd",
+        "planVacunacion": null,
+        "imgPerro": null,
+        "videoPerro": null
+    },
+    {
+        "id": 5,
+        "idDue\u00f1o": 1,
+        "nombre": "carlos",
         "tama\u00f1o": "2",
-        "edad": "12",
-        "raza": "asdasd",
-        "observaciones": "asdasd",
-        "planVacunacion": "imagenes-png.png"
+        "edad": "2",
+        "raza": "Salchicha",
+        "observaciones": "asd",
+        "planVacunacion": null,
+        "imgPerro": null,
+        "videoPerro": null
+    },
+    {
+        "id": 6,
+        "idDue\u00f1o": 1,
+        "nombre": "carlos",
+        "tama\u00f1o": "2",
+        "edad": "2",
+        "raza": "Salchicha",
+        "observaciones": "asd",
+        "planVacunacion": null,
+        "imgPerro": null,
+        "videoPerro": null
+    },
+    {
+        "id": 7,
+        "idDue\u00f1o": 1,
+        "nombre": "carlos",
+        "tama\u00f1o": "2",
+        "edad": "2",
+        "raza": "Caniche",
+        "observaciones": "asd",
+        "planVacunacion": null,
+        "imgPerro": null,
+        "videoPerro": null
+    },
+    {
+        "id": 8,
+        "idDue\u00f1o": 1,
+        "nombre": "carlos",
+        "tama\u00f1o": "2",
+        "edad": "2",
+        "raza": "Caniche",
+        "observaciones": "asd",
+        "planVacunacion": "imagenes-png.png",
+        "imgPerro": null,
+        "videoPerro": null
     }
 ]

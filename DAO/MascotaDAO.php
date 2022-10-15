@@ -62,17 +62,19 @@ class MascotaDAO implements IRepositorio{
             $contentArray = ($jsonToDecode) ? json_decode($jsonToDecode, true) : array();
 
             foreach ($contentArray as $content) {
-                $mascota = new Mascota($content['id'],
-                                        $content['idDueño'],
-                                        $content['nombre'],
-                                        $content['tamaño'],
-                                        $content['edad'],
-                                        $content['raza'],
-                                        $content['observaciones'],
-                                        $content['planVacunacion']);
-                                        //$content['imgPerro'],
-                                        //$content['videoPerro']);
-                
+                $mascota = new Mascota();
+
+                $mascota->setId($content['id']);
+                $mascota->setIdDueño($content['idDueño']);
+                $mascota->setNombre($content['nombre']);
+                $mascota->setTamaño($content['tamaño']);
+                $mascota->setEdad($content['edad']);
+                $mascota->setRaza($content['raza']);
+                $mascota->setObservaciones($content['observaciones']);
+                $mascota->setPlanVacunacion($content['planVacunacion']);
+                $mascota->setPlanVacunacion($content['imgPerro']);
+                $mascota->setPlanVacunacion($content['videoPerro']);
+
                 array_push($this->listMascotas, $mascota);
             }
         }
@@ -92,8 +94,9 @@ class MascotaDAO implements IRepositorio{
             $valuesArray['raza'] = $mascota->getRaza();
             $valuesArray['observaciones'] = $mascota->getObservaciones();
             $valuesArray['planVacunacion'] = $mascota->getPlanVacunacion(); 
-            //$valuesArray["imgPerro"] = $mascota->getImgPerro(); 
-            //$valuesArray["videoPerro"] = $mascota->getVideoPerro(); 
+            $valuesArray["imgPerro"] = $mascota->getImgPerro(); 
+            $valuesArray["videoPerro"] = $mascota->getVideoPerro(); 
+
             array_push($arrayToEncode, $valuesArray);
         }
 

@@ -34,14 +34,14 @@ class MascotaController{
         $mascota->setRaza($raza);
         $mascota->setObservaciones($observaciones);
 
-        $mascota->setPlanVacunacion($_FILES['planVacunacion']['name']);
-
-        $this->subirImg($planVacunacion);
+        $mascota->setPlanVacunacion($_FILES['planVacunacion']['name']); // Guarda nombre de la imagen
+        $this->subirImg($planVacunacion);   // Guarda imagen en carpeta del proyecto
 
         $this->mascotasDAO->add($mascota);
 
 //        $this->ShowAddView();
         $this->ShowListView();
+//        header("location: " . VIEWS_PATH . "VisualizarMascotas.php");
     }
 
     public function subirImg($planVacunacion){
@@ -66,9 +66,9 @@ class MascotaController{
                      //Cambiamos los permisos del archivo a 777 para poder modificarlo posteriormente
                      chmod(IMG_PATH . 'ImgMascotas/' .$archivo, 0777);
                      //Mostramos el mensaje de que se ha subido co éxito
-                     echo '<div><b>Se ha subido correctamente la imagen.</b></div>';
+                     echo "<script> if(confirm('Imagen subida correctamente')); </script>";
                      //Mostramos la imagen subida
-                     echo '<p><img src=" ' . IMG_PATH . 'ImgMascotas/' . $archivo . '"></p>';
+                     //echo '<p><img src=" ' . IMG_PATH . 'ImgMascotas/' . $archivo . '"></p>';
                  }
                  else {
                     //Si no se ha podido subir la imagen, mostramos un mensaje de error
