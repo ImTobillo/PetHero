@@ -11,19 +11,18 @@ abstract class Persona{
     private $dni;
     private $telefono;
     private $email;
-    private $contraseña;
     private $ciudad;
     private $calle;
     private $numCalle;
 
-    public function __construct($nombre, $apellido, $fechaNacimiento, $dni, $telefono, $email, $contraseña, $ciudad, $calle, $numCalle){
+    public function __construct($id, $nombre, $apellido, $fechaNacimiento, $dni, $telefono, $email, $ciudad, $calle, $numCalle){
+        $this->id = $id;
         $this->nombre = $nombre;
         $this->apellido = $apellido;
-        $this->fechaNac = $fechaNacimiento;
+        $this->fechaNacimiento = $fechaNacimiento;
         $this->dni = $dni;
         $this->telefono = $telefono;
         $this->email = $email;
-        $this->contraseña = $contraseña;
         $this->ciudad = $ciudad;
         $this->calle = $calle;
         $this->numCalle = $numCalle;
@@ -40,7 +39,7 @@ abstract class Persona{
         return $this->apellido;
     }
     public function getfechaNacimiento(){
-        return $this->fechaNac;
+        return $this->fechaNacimiento;
     }
     public function getDni(){
         return $this->dni;
@@ -51,9 +50,6 @@ abstract class Persona{
     public function getEmail(){
         return $this->email;
     }
-    public function getContraseña(){
-        return $this->contraseña;
-    } 
     public function getCiudad(){
         return $this->ciudad;
     } 
@@ -67,6 +63,42 @@ abstract class Persona{
     #set
     public function setId($id){
         $this->id = $id;
+    }
+
+    public function setNombre($nombre){
+        $this->nombre = $nombre;
+    }
+
+    public function setApellido($apellido){
+        $this->apellido = $apellido;
+    }
+
+    public function setFechaNacimiento($fechaNacimiento){
+        $this->fechaNacimiento = $fechaNacimiento;
+    }
+
+    public function setDni($dni){
+        $this->dni = $dni;
+    }
+
+    public function setTelefono($telefono){
+        $this->telefono = $telefono;
+    }
+
+    public function setEmail($email){
+        $this->email = $email;
+    }
+
+    public function setCiudad($ciudad){
+        $this->ciudad = $ciudad;
+    }
+
+    public function setCalle($calle){
+        $this->calle = $calle;
+    }
+
+    public function setNumCalle($numCalle){
+        $this->numCalle = $numCalle;
     }
 }
 ?>

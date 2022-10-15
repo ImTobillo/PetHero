@@ -43,7 +43,7 @@
                 
                 <input class="input-raza" type="text" placeholder="Raza" require>
                 
-                <textarea class="input-obs" name="observaciones" id="1" cols="30" rows="10">Observaciones</textarea>
+                <textarea class="input-obs" name="observaciones" id="1" cols="30" rows="10" placeholder="Observaciones"></textarea>
                 
                 <div class="contenedor-imagenes">
                     <label>Plan de vacunacion
