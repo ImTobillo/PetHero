@@ -24,7 +24,8 @@ class HomeController
 
     public function Index($message = "")
     {
-        require_once(VIEWS_PATH . "inicio.php");
+        //require_once(VIEWS_PATH . "inicio.php");
+        require_once(VIEWS_PATH . "crear-mascota.php");
     }
 
     public function mostrarMenu($tipoCuenta)
@@ -91,7 +92,7 @@ class HomeController
                     }
                 }
                 if ($bool == false) {
-                    $dueño = new Dueño($nombre, $apellido, $fechaNacimiento, $dni, $telefono, $email, $ciudad, $calle, $numCalle);
+                    $dueño = new Dueño($newUser->getId(), $nombre, $apellido, $fechaNacimiento, $dni, $telefono, $email, $ciudad, $calle, $numCalle);
     
                     $this->dueñosDAO->add($dueño);
     

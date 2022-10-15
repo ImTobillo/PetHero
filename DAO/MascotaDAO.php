@@ -14,7 +14,7 @@ class MascotaDAO implements IRepositorio{
     {
         $this->RetrieveData();
         $mascota->setId($this->GetNextId());
-        array_push($this->guardianList, $mascota);
+        array_push($this->listMascotas, $mascota);
         $this->SaveData();
     }
 
@@ -24,7 +24,7 @@ class MascotaDAO implements IRepositorio{
         if (!empty($this->listMascotas)) {
             foreach ($this->listMascotas as $mascota) {
                 if ($id == $mascota->getId()) {
-                    $index = array_search($mascota, $this->guardianList);
+                    $index = array_search($mascota, $this->listMascotas);
                     array_splice($this->listMascotas, $index, 1);
                     $this->SaveData();
                 }
@@ -62,16 +62,16 @@ class MascotaDAO implements IRepositorio{
             $contentArray = ($jsonToDecode) ? json_decode($jsonToDecode, true) : array();
 
             foreach ($contentArray as $content) {
-                $mascota = new Mascota($content["id"],
+                $mascota = new Mascota($content['id'],
                                         $content['idDueño'],
-                                        $content["nombre"],
+                                        $content['nombre'],
                                         $content['tamaño'],
                                         $content['edad'],
                                         $content['raza'],
                                         $content['observaciones'],
-                                        $content['planVacunacion'],
-                                        $content['imgPerro'],
-                                        $content['videoPerro']);
+                                        $content['planVacunacion']);
+                                        //$content['imgPerro'],
+                                        //$content['videoPerro']);
                 
                 array_push($this->listMascotas, $mascota);
             }
@@ -84,16 +84,16 @@ class MascotaDAO implements IRepositorio{
 
         foreach ($this->listMascotas as $mascota) {
             $valuesArray = array();
-            $valuesArray["id"] = $mascota->getId();
-            $valuesArray["idDueño"] = $mascota->getIdDueño();
-            $valuesArray["nombre"] = $mascota->getNombre();
-            $valuesArray["tamaño"] = $mascota->getTamaño();
-            $valuesArray["edad"] = $mascota->getEdad();
-            $valuesArray["raza"] = $mascota->getRaza();
-            $valuesArray["observaciones"] = $mascota->getObservaciones();
-            $valuesArray["planVacunacion"] = $mascota->getPlanVacunacion(); // ???????????????
-            $valuesArray["imgPerro"] = $mascota->getImgPerro(); // ???????????????
-            $valuesArray["videoPerro"] = $mascota->getVideoPerro(); // ???????????????
+            $valuesArray['id'] = $mascota->getId();
+            $valuesArray['idDueño'] = $mascota->getIdDueño();
+            $valuesArray['nombre'] = $mascota->getNombre();
+            $valuesArray['tamaño'] = $mascota->getTamaño();
+            $valuesArray['edad'] = $mascota->getEdad();
+            $valuesArray['raza'] = $mascota->getRaza();
+            $valuesArray['observaciones'] = $mascota->getObservaciones();
+            $valuesArray['planVacunacion'] = $mascota->getPlanVacunacion(); 
+            //$valuesArray["imgPerro"] = $mascota->getImgPerro(); 
+            //$valuesArray["videoPerro"] = $mascota->getVideoPerro(); 
             array_push($arrayToEncode, $valuesArray);
         }
 

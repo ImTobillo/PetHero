@@ -1,0 +1,22 @@
+[
+    {
+        "id": null,
+        "idDue\u00f1o": null,
+        "nombre": null,
+        "tama\u00f1o": null,
+        "edad": null,
+        "raza": null,
+        "observaciones": null,
+        "planVacunacion": null
+    },
+    {
+        "id": 1,
+        "idDue\u00f1o": 1,
+        "nombre": "Lautaro",
+        "tama\u00f1o": "2",
+        "edad": "12",
+        "raza": "asdasd",
+        "observaciones": "asdasd",
+        "planVacunacion": "imagenes-png.png"
+    }
+]

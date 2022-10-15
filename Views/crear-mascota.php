@@ -25,29 +25,26 @@
         <div class="contenedor">
             <h1 class="titulo">Registrar mascota</h1>
 
-            <form class="form">
+            <form class="form" action="<?php echo "Mascota/creaMascota" ?>" method="POST" enctype="multipart/form-data" >
 
-                <input class="input-nombre" type="text" placeholder="Nombre" require>
+                <input class="input-nombre" name="nombre" type="text" placeholder="Nombre" require>
                 
                 <select name="tamaño" class="selector-tamaño">
                     <option disabled selected>Tamaño</option>
                     <option value="1">Pequeño</option>
-                    
                     <option value="2">Mediano</option>
-                    
                     <option value="3">Grande</option>
-                    
                 </select>
 
-                <input class="input-edad" type="number" placeholder="Edad" require min="0" max="20">
+                <input class="input-edad" name="edad" type="number" placeholder="Edad" require min="0" max="20">
                 
-                <input class="input-raza" type="text" placeholder="Raza" require>
+                <input class="input-raza" name="raza" type="text" placeholder="Raza" require>
                 
                 <textarea class="input-obs" name="observaciones" id="1" cols="30" rows="10" placeholder="Observaciones"></textarea>
                 
                 <div class="contenedor-imagenes">
                     <label>Plan de vacunacion
-                    <input accept="image/png,image/jpeg" type="file" required>
+                    <input accept="image/png,image/jpeg" name="planVacunacion" type="file" > <!-- Agregar required -->
                     </label>
                     <label>Imagen
                     <input class="image"accept="image/png,image/jpeg" type="file">
