@@ -4,6 +4,8 @@ namespace Models;
 
 class Mascota{
 
+    private $id;    
+    private $idDueño;
     private $nombre;
     private $tamaño;
     private $edad;
@@ -108,7 +110,30 @@ class Mascota{
 
         return $this;
     }
-    
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    public function getIdDueño()
+    {
+        return $this->idDueño;
+    }
+
+    public function setIdDueño($idDueño)
+    {
+        $this->idDueño = $idDueño;
+
+        return $this;
+    }
 }
 
 ?>

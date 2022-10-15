@@ -73,8 +73,7 @@ class GuadianDAO implements IRepositorio
             }
         }
     }
-
-
+    
     // métodos JSON
 
     private function SaveData()
