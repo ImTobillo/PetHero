@@ -1,11 +1,12 @@
 <?php require_once 'header.php' ?>
 
-    <link href=" <?php echo CSS_PATH . 'ver-perfil-mascota.css' ?> " rel="stylesheet">
-    <title>Perfil</title>
+<link href=" <?php echo CSS_PATH . 'ver-perfil-mascota.css' ?> " rel="stylesheet">
+<title>Perfil</title>
 </head>
+
 <body>
     <header>
-        
+
         <nav>
 
             <ul>
@@ -14,30 +15,45 @@
                 <li><a href="#">Contacto</a></li>
             </ul>
 
-            <div class="conTitulo"><h1 class="titulo">PetHero</h1></div>
-            <div class="contImg"><img class="logo" src=" <?php echo IMG_PATH . 'logo.png' ?> " alt="Logo"></div>
+            <div class="conTitulo">
+                <h1 class="titulo">PetHero</h1>
+            </div>
+            <div class="contImg"><img class="logo" src=" <?php echo FRONT_ROOT . IMG_PATH . 'logo.png' ?> " alt="Logo"></div>
 
         </nav>
     </header>
 
     <main class="main">
         <div class="contenedor-perfil">
-            <img src=" <?php echo IMG_PATH . 'ejemploPerro1.jpg' ?> " alt="foto perfil" width="100x100">
+            <img src="<?php echo FRONT_ROOT . IMG_PATH . 'ImgMascotas/' . $mascota->getImgPerro() ?>" alt="foto perfil" width="100x100">
             <button class="button">Editar</button>
         </div>
 
         <div class="contenedor-datos">
-            <div class="parrafo"><p>Nombre</p></div>
-            <div class="parrafo"><p>Tamaño</p></div>
-            <div class="parrafo"><p>Edad</p></div>
-            <div class="parrafo"><p>Raza</p></div>
-            <div class="parrafo"><p>Observaciones</p></div>
+            <div class="parrafo">
+                <p><?php echo $mascota->getNombre() ?></p>
+            </div>
+            <div class="parrafo">
+                <p><?php echo $mascota->getTamaño() ?></p>
+            </div>
+            <div class="parrafo">
+                <p><?php echo $mascota->getEdad() ?></p>
+            </div>
+            <div class="parrafo">
+                <p><?php echo $mascota->getRaza() ?></p>
+            </div>
+            <div class="parrafo">
+                <p><?php echo $mascota->getObservaciones() ?></p>
+            </div>
         </div>
 
         <div class="contenedor-multimedia">
-            <div class="video"><iframe width="400" height="200" src="https://www.youtube.com/embed/7bhKI0Mw6Yk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <div class="video">
+                <video width="320" height="240" controls>
+                    <source src="<?php echo FRONT_ROOT . IMG_PATH . 'ImgMascotas/' . $mascota->getVideoPerro() ?>" type="video/mp4">
+                </video>
             </div>
-            <div class="imagen"><img src="img/logo.png" alt="imagen perro" height="200" width="200"></div>
+            <div class="imagen"><img src="<?php echo FRONT_ROOT . IMG_PATH . 'ImgMascotas/' . $mascota->getPlanVacunacion() ?>" alt="imagen perro" height="200" width="200"></div>
         </div>
     </main>
 

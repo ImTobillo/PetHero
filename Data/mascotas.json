@@ -1,41 +1,5 @@
 [
     {
-        "id": 0,
-        "idDue\u00f1o": 1,
-        "nombre": "Natanael",
-        "tama\u00f1o": "1",
-        "edad": "4",
-        "raza": "Golden",
-        "observaciones": "asd",
-        "planVacunacion": "tamano-redes-blog-655x470.png",
-        "imgPerro": null,
-        "videoPerro": null
-    },
-    {
-        "id": 1,
-        "idDue\u00f1o": 1,
-        "nombre": "asdasd",
-        "tama\u00f1o": "2",
-        "edad": "4",
-        "raza": "Golden",
-        "observaciones": "asd",
-        "planVacunacion": "imagenes-png.png",
-        "imgPerro": null,
-        "videoPerro": null
-    },
-    {
-        "id": 2,
-        "idDue\u00f1o": 1,
-        "nombre": "asdasd",
-        "tama\u00f1o": "2",
-        "edad": "4",
-        "raza": "Golden",
-        "observaciones": "asd",
-        "planVacunacion": "imagenes-png.png",
-        "imgPerro": null,
-        "videoPerro": null
-    },
-    {
         "id": 3,
         "idDue\u00f1o": 1,
         "nombre": "lautaro",
@@ -43,19 +7,7 @@
         "edad": "4",
         "raza": "chihuahua",
         "observaciones": "manco en fifa",
-        "planVacunacion": "descarga.jpg",
-        "imgPerro": null,
-        "videoPerro": null
-    },
-    {
-        "id": 4,
-        "idDue\u00f1o": 1,
-        "nombre": "lautaro",
-        "tama\u00f1o": "1",
-        "edad": "4",
-        "raza": "chihuahua",
-        "observaciones": "manco en fifa",
-        "planVacunacion": "descarga.jpg",
+        "planVacunacion": null,
         "imgPerro": null,
         "videoPerro": null
     }

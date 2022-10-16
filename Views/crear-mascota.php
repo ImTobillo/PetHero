@@ -50,10 +50,10 @@
                         <input accept="image/png,image/jpeg" name="planVacunacion" type="file"> <!-- Agregar required -->
                     </label>
                     <label>Imagen
-                        <input class="image" accept="image/png,image/jpeg" type="file">
+                        <input class="image" accept="image/png,image/jpeg" name="imgPerro" type="file">
                     </label>
                     <label>Video
-                        <input accept="video/*" type="file">
+                        <input accept="video/*" name="videoPerro" type="file">
                     </label>
                 </div>
 
