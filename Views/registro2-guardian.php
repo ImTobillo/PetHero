@@ -29,7 +29,7 @@
         <div class="opciones">
           <div class="lado1">
             <input name="remuneracion" class="" type="number" required placeholder="Remuneracion" />
-            <select name="Tamanio">
+            <select name="tamanio">
               <option value="" disabled selected hidden>Tamaño</option>
               <!--placeholder-->
               <option value="pequenio">Pequeño</option>

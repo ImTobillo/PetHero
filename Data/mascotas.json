@@ -34,5 +34,29 @@
         "planVacunacion": "imagenes-png.png",
         "imgPerro": null,
         "videoPerro": null
+    },
+    {
+        "id": 3,
+        "idDue\u00f1o": 1,
+        "nombre": "lautaro",
+        "tama\u00f1o": "1",
+        "edad": "4",
+        "raza": "chihuahua",
+        "observaciones": "manco en fifa",
+        "planVacunacion": "descarga.jpg",
+        "imgPerro": null,
+        "videoPerro": null
+    },
+    {
+        "id": 4,
+        "idDue\u00f1o": 1,
+        "nombre": "lautaro",
+        "tama\u00f1o": "1",
+        "edad": "4",
+        "raza": "chihuahua",
+        "observaciones": "manco en fifa",
+        "planVacunacion": "descarga.jpg",
+        "imgPerro": null,
+        "videoPerro": null
     }
 ]

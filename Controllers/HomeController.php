@@ -6,6 +6,7 @@ use DAO\UserDAO as UserDAO;
 use DAO\GuardianDAO as GuardianDAO;
 use DAO\DueñoDAO as DueñoDAO;
 use Models\Dueño as Dueño;
+use Models\Guardian;
 use Models\User as User;
 
 
@@ -93,12 +94,31 @@ class HomeController
                 }
                 if ($bool == false) {
                     $dueño = new Dueño($newUser->getId(), $nombre, $apellido, $fechaNacimiento, $dni, $telefono, $email, $ciudad, $calle, $numCalle);
-    
+
+                    $_SESSION['loggedUser'] = $dueño;
+                    
                     $this->dueñosDAO->add($dueño);
-    
+                    
                     require_once(VIEWS_PATH . "crear-mascota.php");
                 }
             } else {
+                $guardianes = $this->guardianesDAO->getAll();
+                $bool = false;
+                foreach ($guardianes as $value) {
+                    if ($value->getEmail() == $email) {
+                        //advertencia email invalido
+                        $bool = true;
+                        echo "<script> if(confirm('Email no disponible')); </script>";
+                        require_once(VIEWS_PATH . "registro.php");
+                    }
+                }
+                if ($bool == false) {
+                    $guardian = new Guardian($newUser->getId(), $nombre, $apellido, $fechaNacimiento, $dni, $telefono, $email, $ciudad, $calle, $numCalle);
+
+                    $this->guardianesDAO->add($guardian);
+    
+                    require_once(VIEWS_PATH . "registro2-guardian.php");
+                }
             }
         }   
     }
