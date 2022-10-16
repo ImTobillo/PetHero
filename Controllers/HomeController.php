@@ -25,13 +25,31 @@ class HomeController
 
     public function Index($message = "")
     {
-        //require_once(VIEWS_PATH . "inicio.php");
-        require_once(VIEWS_PATH . "crear-mascota.php");
+        
+        var_dump(isset($_SESSION['loggedUser']));
+
+        if (isset($_SESSION['loggedUser']))
+        {
+            echo 'queeee';
+            if ($this->userDAO->getById($_SESSION['loggedUser'])->getTipoCuenta() == "guardian")
+                require_once(VIEWS_PATH . "MenuGuardian.php");
+            else
+                require_once(VIEWS_PATH . "MenuDueño.php");
+
+        }
+        else
+        {
+            var_dump($_SESSION['loggedUser']);
+            echo $this->userDAO->getById($_SESSION['loggedUser'])->getUsername();
+            require_once(VIEWS_PATH . "inicio.php");
+        }
     }
 
     public function mostrarMenu($tipoCuenta)
     {
         require_once VIEWS_PATH . 'validarSesion.php';
+
+        echo 'holaaa';
 
         if ($tipoCuenta == "guardian")
             require_once VIEWS_PATH . 'MenuGuardian.php';
@@ -51,7 +69,7 @@ class HomeController
             else
                 $userLogueado = $this->dueñosDAO->getById($user->getId());
 
-            $_SESSION['userLogged'] = $userLogueado;
+            $_SESSION['loggedUser'] = $userLogueado;
             $this->mostrarMenu($user->getTipoCuenta());
         } else {
             $this->Index();
@@ -68,7 +86,7 @@ class HomeController
     public function cerrarSesion()
     {
         session_destroy();
-        $this->Index();
+        header('Location: '. ROOT);
     }
 
     #agregar funcion de registro que guarde los datos de persona

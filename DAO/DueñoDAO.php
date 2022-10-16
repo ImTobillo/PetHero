@@ -69,8 +69,6 @@ class DueñoDAO implements IRepositorio
             foreach ($contentArray as $content) {
                 $dueño = new Dueño($content["id"], $content["nombre"], $content["apellido"], $content['fechaNacimiento'], $content['dni'], $content['telefono'],  $content['email'], $content['ciudad'], $content['calle'], $content['numCalle']);
 
-                //recorrer dao mascotas
-                $dueño->setMascotas($content["mascota"]);
                 array_push($this->dueñosLista, $dueño);
             }
         }
@@ -83,7 +81,6 @@ class DueñoDAO implements IRepositorio
         foreach ($this->dueñosLista as $dueño) {
             $valuesArray = array();
             $valuesArray["id"] = $dueño->getId();
-            $valuesArray["mascota"] = $dueño->getMascotas();
             $valuesArray["nombre"] = $dueño->getNombre();
             $valuesArray["apellido"] = $dueño->getApellido();
             $valuesArray["fechaNacimiento"] = $dueño->getFechaNacimiento();

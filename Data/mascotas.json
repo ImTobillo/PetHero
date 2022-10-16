@@ -10,5 +10,17 @@
         "planVacunacion": null,
         "imgPerro": null,
         "videoPerro": null
+    },
+    {
+        "id": 4,
+        "idDue\u00f1o": 1,
+        "nombre": "mia",
+        "tama\u00f1o": "2",
+        "edad": "1",
+        "raza": "collie",
+        "observaciones": "la perrita",
+        "planVacunacion": "",
+        "imgPerro": "",
+        "videoPerro": ""
     }
 ]

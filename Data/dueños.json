@@ -1,15 +1,1 @@
-[
-    {
-        "id": 0,
-        "mascota": null,
-        "nombre": "Tobias",
-        "apellido": "Noya",
-        "fechaNacimiento": "2003-01-02",
-        "dni": "44562987",
-        "telefono": "2231114343",
-        "email": "tobias@email.com",
-        "ciudad": "Mar del Plata",
-        "calle": "la calle",
-        "numCalle": "123123"
-    }
-]
+[]

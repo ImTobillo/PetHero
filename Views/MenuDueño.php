@@ -11,9 +11,9 @@
         <nav>
 
             <ul>
-                <li><a href="inicio.html">Inicio</a></li>
+                <li><a href=" <?php echo ROOT ?> ">Inicio</a></li>
                 <li><a href="#">Sobre nosotros</a></li>
-                <li><a href="#">Contacto</a></li>
+                <li><a href=" <?php echo FRONT_ROOT . 'Home/cerrarSesion' ?> ">Cerrar Sesion</a></li>
             </ul>
 
             <div class="conTitulo"><h1 class="titulo">PetHero</h1></div>
@@ -54,7 +54,7 @@
 
             <div class="iguales">
 
-                <a href="VisualizarMascotas.html" class="enlace"></a>
+                <a href=" <?php echo FRONT_ROOT . "Mascota/ShowListView" ?> " class="enlace"></a>
 
                 <h2>Visualizar mascotas</h2>
 
