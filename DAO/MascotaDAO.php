@@ -35,15 +35,17 @@ class MascotaDAO implements IRepositorio{
     public function getById($id)
     {
         $this->RetrieveData();
+
+        $mascota = null;
+
         if (!empty($this->listMascotas)) {
-            foreach ($this->listMascotas as $mascota) {
-                if ($id == $mascota->getId()) {
-                    $index = array_search($mascota, $this->listMascotas);
-                    array_splice($this->listMascotas, $index, 1);
-                    $this->SaveData();
+            foreach ($this->listMascotas as $masc) {
+                if ($id == $masc->getId()) {
+                    $mascota = $masc;
                 }
             }
         }
+        return $mascota;
     }
 
     public function getAll()
