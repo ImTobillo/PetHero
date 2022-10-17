@@ -14,12 +14,12 @@ class MascotaController
         $this->mascotasDAO = new MascotaDAO();
     }
 
-    function ShowAddView()
+    public function ShowAddView()
     {
         require_once(VIEWS_PATH . "crear-mascota.php");
     }
 
-    function ShowListView()
+    public function ShowListView()
     {
         $listMascotas = $this->mascotasDAO->getAll();
         require_once(VIEWS_PATH . "VisualizarMascotas.php");
@@ -30,7 +30,7 @@ class MascotaController
 
         $mascota = new Mascota();
 
-        $mascota->setIdDueño(1);    // $_SESSION['userLogged'] 
+        $mascota->setIdDueño($_SESSION['userLogged']);    // $_SESSION['userLogged'] 
         $mascota->setNombre($nombre);
         $mascota->setTamaño($tamaño);
         $mascota->setEdad($edad);

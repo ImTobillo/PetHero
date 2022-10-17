@@ -39,30 +39,20 @@ class HomeController
         }
     }
 
-    public function mostrarMenu($tipoCuenta)
-    {
-        require_once VIEWS_PATH . 'validarSesion.php';
-
-        if ($tipoCuenta == "guardian")
-            require_once VIEWS_PATH . 'MenuGuardian.php';
-        else
-            require_once VIEWS_PATH . 'MenuDueño.php';
-    }
-
     public function Login($username, $password)
     {
         $user = $this->userDAO->getByUser($username);
 
         if (($user != null) && ($user->getPassword() == $password)) {
             $userLogueado = null;
-
+            
             if ($user->getTipoCuenta() == 'guardian')
                 $userLogueado = $this->guardianesDAO->getById($user->getId());
             else
                 $userLogueado = $this->dueñosDAO->getById($user->getId());
 
             $_SESSION['loggedUser'] = $userLogueado;
-            $this->mostrarMenu($user->getTipoCuenta());
+            $this->Index();
         } else {
             $this->Index();
             echo "<script> if(confirm('Usuario y/o Contraseña incorrectos')); </script>";
@@ -71,14 +61,13 @@ class HomeController
 
     public function registrarCuenta($tipoCuenta)
     {
-        $tipoCuenta;
         require_once(VIEWS_PATH . 'registro.php');
     }
 
     public function cerrarSesion()
     {
-        session_destroy();
-        header('Location: '. ROOT);
+        $_SESSION = []; // resetea el session
+        $this->Index();
     }
 
     #agregar funcion de registro que guarde los datos de persona
@@ -125,7 +114,7 @@ class HomeController
                 if ($bool == false) {
                     $guardian = new Guardian($newUser->getId(), $nombre, $apellido, $fechaNacimiento, $dni, $telefono, $email, $ciudad, $calle, $numCalle);
 
-                    $this->guardianesDAO->add($guardian);
+                    $_SESSION['loggedUser'] = $guardian;
     
                     require_once(VIEWS_PATH . "registro2-guardian.php");
                 }

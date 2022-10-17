@@ -1,0 +1,18 @@
+[
+    {
+        "id": 1,
+        "nombre": "tobias",
+        "apellido": "Noya",
+        "fechaNacimiento": "2003-01-02",
+        "dni": "44562987",
+        "telefono": "2231114343",
+        "email": "tobias@email.com",
+        "ciudad": "Mar del Plata",
+        "calle": "la calle",
+        "numCalle": "123123",
+        "remuneracion": "1000",
+        "tama\u00f1o": "pequenio",
+        "diasDisponibles": "lunes - martes - miercoles - jueves - viernes",
+        "horaDisponible": "18:30 - 22:30"
+    }
+]

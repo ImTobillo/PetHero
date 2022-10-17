@@ -1,15 +1,16 @@
 <?php
 require_once 'header.php'; 
 require_once 'nav.php';
+require_once 'validarSesion.php';
 ?>
 
 <link rel="stylesheet" property="stylesheet" href=" <?php echo CSS_PATH . 'crear-mascota.css' ?> ">
 
     <main>
         <div class="contenedor">
-            <h1 class="titulo">Registrar mascota</h1>
+            <h1 class="titulo">Agregar mascota</h1>
 
-            <form class="form" action="<?php echo FRONT_ROOT . "Mascota/creaMascota" ?>" method="POST" enctype="multipart/form-data">
+            <form class="form" action="<?php echo FRONT_ROOT . "Mascota/creaMascota" ?>" method="post" enctype="multipart/form-data">
 
                 <input class="input-nombre" name="nombre" type="text" placeholder="Nombre" require>
 
@@ -28,7 +29,7 @@ require_once 'nav.php';
 
                 <div class="contenedor-imagenes">
                     <label>Plan de vacunacion
-                        <input accept="image/png,image/jpeg" name="planVacunacion" type="file"> <!-- Agregar required -->
+                        <input accept="image/png,image/jpeg" name="planVacunacion" type="file" required>
                     </label>
                     <label>Imagen
                         <input class="image" accept="image/png,image/jpeg" name="imgPerro" type="file">

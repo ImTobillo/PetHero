@@ -20,9 +20,14 @@ class GuardianController
 
         $guardianNuevo->setRemuneracion($remuneracion);
         $guardianNuevo->setTamaño($tamanio);
-        //$guardianNuevo->disponibilidad(implode());
+        $guardianNuevo->setDiasDisponibles($disponibilidad);
+        $guardianNuevo->setHoraDisponible($horaInicial, $horaFinal);
 
         $_SESSION['loggedUser'] = $guardianNuevo;
+
+        $this->guardianDAO->add($guardianNuevo);
+
+        require_once VIEWS_PATH . 'MenuGuardian.php';
     }
 }
 

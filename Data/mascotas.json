@@ -22,5 +22,41 @@
         "planVacunacion": "",
         "imgPerro": "",
         "videoPerro": ""
+    },
+    {
+        "id": 5,
+        "idDue\u00f1o": null,
+        "nombre": "Lautaro",
+        "tama\u00f1o": "2",
+        "edad": "3",
+        "raza": "chihuahua",
+        "observaciones": "dfasdfasddas",
+        "planVacunacion": null,
+        "imgPerro": null,
+        "videoPerro": null
+    },
+    {
+        "id": 6,
+        "idDue\u00f1o": null,
+        "nombre": "Lautaro",
+        "tama\u00f1o": "2",
+        "edad": "3",
+        "raza": "chihuahua",
+        "observaciones": "dfasdfasddas",
+        "planVacunacion": null,
+        "imgPerro": null,
+        "videoPerro": null
+    },
+    {
+        "id": 7,
+        "idDue\u00f1o": null,
+        "nombre": null,
+        "tama\u00f1o": null,
+        "edad": null,
+        "raza": null,
+        "observaciones": null,
+        "planVacunacion": null,
+        "imgPerro": null,
+        "videoPerro": null
     }
 ]

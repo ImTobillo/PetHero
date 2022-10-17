@@ -1,6 +1,7 @@
 <?php
 require_once 'header.php'; 
 require_once 'nav.php';
+require_once 'validarSesion.php';
 ?>
     
     <link rel="stylesheet" property="stylesheet" href=" <?php echo CSS_PATH . 'menuDueño-Guardian.css' ?> ">
@@ -49,9 +50,9 @@ require_once 'nav.php';
 
             <div class="iguales">
 
-                <a href="crear-mascota.html" class="enlace"></a>
+                <a href=" <?php echo FRONT_ROOT . "Mascota/ShowAddView" ?> " class="enlace"></a>
 
-                <h2>Crear mascota</h2>
+                <h2>Agregar mascota</h2>
 
                 <p>Aca puede agregar una nueva mascota a su lista</p>
 

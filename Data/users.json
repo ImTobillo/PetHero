@@ -4,5 +4,11 @@
         "username": "napo123",
         "password": "123456",
         "tipoCuenta": "due\u00f1o"
+    },
+    {
+        "id": 1,
+        "username": "tobillo",
+        "password": "123456",
+        "tipoCuenta": "guardian"
     }
 ]

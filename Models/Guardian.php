@@ -47,16 +47,17 @@ class Guardian extends Persona
         return $this;
     }
 
-    public function setDiasDisponibles($diasDisponibles)
+    public function setDiasDisponibles($diasDisponibles) // recibe arreglo de strings
     {
-        $this->diasDisponibles = $diasDisponibles;
-
+        if (!empty($diasDisponibles))
+            $this->diasDisponibles = implode(" - ", $diasDisponibles);
+            
         return $this;
     }
 
-    public function setHoraDisponible($horaDisponible)
+    public function setHoraDisponible($horaInicial, $horaFinal)
     {
-        $this->horaDisponible = $horaDisponible;
+        $this->horaDisponible = $horaInicial . ' - ' . $horaFinal;
 
         return $this;
     }
