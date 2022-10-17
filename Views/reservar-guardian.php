@@ -1,21 +1,8 @@
-<?php require_once 'header.php' ?>
-
-    <title>Reservar guardian</title>
-    <link rel="stylesheet" href=" <?php echo CSS_PATH . 'reservar-guardian.css' ?> ">
-</head>
-<body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="inicio.html">Inicio</a></li>
-                <li><a href="#">Sobre nosotros</a></li>
-                <li><a href="#">Contacto</a></li>
-            </ul>
-
-            <div class="conTitulo"><h1 class="titulo">PetHero</h1></div>
-            <div class="contImg"><img class="logo" src=" <?php echo IMG_PATH . 'logo.png' ?> " alt="Logo"></div>
-        </nav>
-    </header>
+<?php
+require_once 'header.php'; 
+require_once 'nav.php';
+?>
+    <link property="stylesheet" rel="stylesheet" href=" <?php echo CSS_PATH . 'reservar-guardian.css' ?> ">
 
     <main class="contenedor">
         <div class="heading">

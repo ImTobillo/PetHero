@@ -42,16 +42,17 @@ class DueñoDAO implements IRepositorio
     {
         $this->RetrieveData();
 
+        $dueño = null;
+
         if (!empty($this->dueñosLista)) {
-            foreach ($this->dueñosLista as $dueño) {
-                if ($id == $dueño->getId()) {
-                    $index = array_search($dueño, $this->dueñosLista);
-                    array_splice($this->dueñosLista, $index, 1);
-                    $this->SaveData();
+            foreach ($this->dueñosLista as $dueñoValue) {
+                if ($id == $dueñoValue->getId()) {
+                    $dueño = $dueñoValue;
                 }
             }
         }
 
+        return $dueño;
     }
     
     

@@ -1,25 +1,9 @@
-<?php require_once 'header.php' ?>
-<title>PetHero</title>
-<link href=" <?php echo CSS_PATH . 'registro2-guardia.css' ?> " rel="stylesheet" />
-</head>
+<?php
+require_once 'header.php'; 
+require_once 'nav.php';
+?>
 
-<body>
-  <header>
-    <nav>
-      <ul>
-        <li><a href="inicio.html">Inicio</a></li>
-        <li><a href="#">Sobre nosotros</a></li>
-        <li><a href="#">Contacto</a></li>
-      </ul>
-
-      <div class="conTitulo">
-        <h1 class="titulo">PetHero</h1>
-      </div>
-      <div class="contImg">
-        <img class="logo" src=" <?php echo IMG_PATH . 'logo.png' ?> " alt="Logo" />
-      </div>
-    </nav>
-  </header>
+<link property="stylesheet" href=" <?php echo CSS_PATH . 'registro2-guardia.css' ?> " rel="stylesheet" />
 
   <main>
     <div class="contenedor">

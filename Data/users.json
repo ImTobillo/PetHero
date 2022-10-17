@@ -1,19 +1,7 @@
 [
     {
         "id": 0,
-        "username": "tobillo",
-        "password": "123456",
-        "tipoCuenta": "due\u00f1o"
-    },
-    {
-        "id": 1,
-        "username": "lauchaMDP",
-        "password": "123456",
-        "tipoCuenta": "due\u00f1o"
-    },
-    {
-        "id": 2,
-        "username": "lauchaMDPPPP",
+        "username": "napo123",
         "password": "123456",
         "tipoCuenta": "due\u00f1o"
     }

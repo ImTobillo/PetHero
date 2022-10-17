@@ -1,27 +1,8 @@
-<?php require_once 'header.php'?>
-
-    <link href="css/basic.css" rel="stylesheet">
-    <link href=" <?php echo CSS_PATH . 'editar-perfil-mascota.css' ?> " rel="stylesheet">
-    <link rel="shortcut icon" href=" <?php echo IMG_PATH . 'logo.png' ?> " type="image/x-icon">
-
-    <title>Editar perfil</title>
-</head>
-<body>
-    <header>
-        
-        <nav>
-
-            <ul>
-                <li><a href="inicio.html">Inicio</a></li>
-                <li><a href="#">Sobre nosotros</a></li>
-                <li><a href="#">Contacto</a></li>
-            </ul>
-
-            <div class="conTitulo"><h1 class="titulo">PetHero</h1></div>
-            <div class="contImg"><img class="logo" src=" <?php echo IMG_PATH . 'logo.png' ?> " alt="Logo"></div>
-
-        </nav>
-    </header>
+<?php
+require_once 'header.php'; 
+require_once 'nav.php';
+?>
+    <link property="stylesheet" href=" <?php echo CSS_PATH . 'editar-perfil-mascota.css' ?> " rel="stylesheet">
 
     <main class="main">
         <div class="contenedor-perfil">

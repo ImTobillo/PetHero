@@ -1,1 +1,14 @@
-[]
+[
+    {
+        "id": 0,
+        "nombre": "napoleon",
+        "apellido": "Noya",
+        "fechaNacimiento": "2009-09-30",
+        "dni": "4243232",
+        "telefono": "2231114343",
+        "email": "tobias@email.com",
+        "ciudad": "Mar del Plata",
+        "calle": "la calle",
+        "numCalle": "33432"
+    }
+]

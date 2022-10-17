@@ -10,4 +10,5 @@
     />
     <link rel="stylesheet" href=" <?php echo CSS_PATH . 'basic.css' ?> " />
     <link rel="shortcut icon" href=" <?php echo IMG_PATH . 'logo.png' ?> " type="image/x-icon" />
-    
+    <title>PetHero</title>
+</head>

@@ -6,7 +6,7 @@ use DAO\UserDAO as UserDAO;
 use DAO\GuardianDAO as GuardianDAO;
 use DAO\DueñoDAO as DueñoDAO;
 use Models\Dueño as Dueño;
-use Models\Guardian;
+use Models\Guardian as Guardian;
 use Models\User as User;
 
 
@@ -25,22 +25,16 @@ class HomeController
 
     public function Index($message = "")
     {
-        
-        var_dump(isset($_SESSION['loggedUser']));
-
         if (isset($_SESSION['loggedUser']))
         {
-            echo 'queeee';
-            if ($this->userDAO->getById($_SESSION['loggedUser'])->getTipoCuenta() == "guardian")
-                require_once(VIEWS_PATH . "MenuGuardian.php");
-            else
+            if (get_class($_SESSION['loggedUser']) == "Models\Dueño")
                 require_once(VIEWS_PATH . "MenuDueño.php");
+            else
+                require_once(VIEWS_PATH . "MenuGuardian.php");
 
         }
         else
         {
-            var_dump($_SESSION['loggedUser']);
-            echo $this->userDAO->getById($_SESSION['loggedUser'])->getUsername();
             require_once(VIEWS_PATH . "inicio.php");
         }
     }
@@ -49,12 +43,10 @@ class HomeController
     {
         require_once VIEWS_PATH . 'validarSesion.php';
 
-        echo 'holaaa';
-
         if ($tipoCuenta == "guardian")
             require_once VIEWS_PATH . 'MenuGuardian.php';
         else
-            require_once VIEWS_PATH . 'MenuDue%C3%B1o.php';
+            require_once VIEWS_PATH . 'MenuDueño.php';
     }
 
     public function Login($username, $password)
