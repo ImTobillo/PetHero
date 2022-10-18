@@ -9,7 +9,7 @@ require_once 'nav.php';
     <div class="contenedor">
       <h1 class="titulo">Registro</h1>
 
-      <form action="<?php echo FRONT_ROOT . "Guardian/agregarGuardian"?>" method="post" class="formulario">
+      <form action="<?php echo FRONT_ROOT . "Guardian/agregarGuardian"?>" method="post" class="formulario" enctype="multipart/form-data">
         <div class="opciones">
           <div class="lado1">
             <input name="remuneracion" type="number" required placeholder="Remuneracion" />

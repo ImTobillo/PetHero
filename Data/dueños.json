@@ -10,5 +10,17 @@
         "ciudad": "Mar del Plata",
         "calle": "la calle",
         "numCalle": "33432"
+    },
+    {
+        "id": 2,
+        "nombre": "Lautaro",
+        "apellido": "Manzo",
+        "fechaNacimiento": "2001-03-13",
+        "dni": "3123123",
+        "telefono": "22341234",
+        "email": "laksd@hotmail.com",
+        "ciudad": "Mar del Plata",
+        "calle": "11 de febrero",
+        "numCalle": "2234"
     }
 ]

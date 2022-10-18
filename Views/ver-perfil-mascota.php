@@ -8,7 +8,7 @@ require_once 'validarSesion.php';
 
     <main class="main">
         <div class="contenedor-perfil">
-            <img src="<?php echo FRONT_ROOT . IMG_PATH . 'ImgMascotas/' . $mascota->getImgPerro() ?>" alt="foto perfil" width="100x100">
+            <img src="<?php echo IMG_PATH . 'ImgMascotas/' . $mascota->getImgPerro() ?>" alt="foto perfil" width="100x100">
             <button class="button">Editar</button>
         </div>
 
@@ -33,10 +33,10 @@ require_once 'validarSesion.php';
         <div class="contenedor-multimedia">
             <div class="video">
                 <video width="320" height="240" controls>
-                    <source src="<?php echo FRONT_ROOT . IMG_PATH . 'ImgMascotas/' . $mascota->getVideoPerro() ?>" type="video/mp4">
+                    <source src="<?php echo IMG_PATH . 'ImgMascotas/' . $mascota->getVideoPerro() ?>" type="video/mp4">
                 </video>
             </div>
-            <div class="imagen"><img src="<?php echo FRONT_ROOT . IMG_PATH . 'ImgMascotas/' . $mascota->getPlanVacunacion() ?>" alt="imagen perro" height="200" width="200"></div>
+            <div class="imagen"><img src="<?php echo IMG_PATH . 'ImgMascotas/' . $mascota->getPlanVacunacion() ?>" alt="imagen perro" height="200" width="200"></div>
         </div>
     </main>
 

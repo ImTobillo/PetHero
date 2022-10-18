@@ -25,13 +25,14 @@ class MascotaController
         require_once(VIEWS_PATH . "VisualizarMascotas.php");
     }
 
-    public function creaMascota($nombre = null, $tamaño = null, $edad = null, $raza = null, $observaciones = null, $planVacunacion = null, $imgPerro = null, $videoPerro = null)
-    { 
-        var_dump($GLOBALS);
 
+
+
+    public function creaMascota($nombre, $tamaño, $edad, $raza, $observaciones, $planVacunacion, $imgPerro, $videoPerro)
+    {
         $mascota = new Mascota();
 
-        $mascota->setIdDueño($_SESSION['userLogged']);    // $_SESSION['userLogged'] 
+        $mascota->setIdDueño($_SESSION['loggedUser']->getId());    // $_SESSION['userLogged'] 
         $mascota->setNombre($nombre);
         $mascota->setTamaño($tamaño);
         $mascota->setEdad($edad);
@@ -64,27 +65,26 @@ class MascotaController
                 $tamano = $_FILES[$nombreArch]['size'];
                 $temp = $_FILES[$nombreArch]['tmp_name'];
 
-                /*Se comprueba si el archivo a cargar es correcto observando su extensión y tamaño
-              if (!((strpos($tipo, "jpeg") || strpos($tipo, "jpg") || strpos($tipo, "mp4") || strpos($tipo, "png")) && ($tamano < 100000000000))) {
-                 echo '<div><b>Error. La extensión o el tamaño de los archivos no es correcta.<br/>
+                //Se comprueba si el archivo a cargar es correcto observando su extensión y tamaño
+                if (!((strpos($tipo, "jpeg") || strpos($tipo, "jpg") || strpos($tipo, "mp4") || strpos($tipo, "png")) && ($tamano < 10000000000000))) {
+                    echo '<div><b>Error. La extensión o el tamaño de los archivos no es correcta.<br/>
                  - Se permiten archivos .gif, .jpg, .png. y de 200 kb como máximo.</b></div>';
-               }
-              else { */
-                
-                //Si la imagen es correcta en tamaño y tipo
-                //Se intenta subir al servidor
-                if (move_uploaded_file($temp, IMG_PATH . 'ImgMascotas/' . $archivo)) {
-                    //Cambiamos los permisos del archivo a 777 para poder modificarlo posteriormente
-                    chmod(IMG_PATH . 'ImgMascotas/' . $archivo, 0777);
-                    //Mostramos el mensaje de que se ha subido co éxito
-                    echo "<script> if(confirm('Imagen subida correctamente')); </script>";
-                    //Mostramos la imagen subida
-                    //echo '<p><img src=" ' . IMG_PATH . 'ImgMascotas/' . $archivo . '"></p>';
                 } else {
-                    //Si no se ha podido subir la imagen, mostramos un mensaje de error
-                    echo '<div><b>Ocurrió algún error al subir el fichero. No pudo guardarse.</b></div>';
+
+                    //Si la imagen es correcta en tamaño y tipo
+                    //Se intenta subir al servidor
+                    if (move_uploaded_file($temp, VIEWS_PATH . 'img/ImgMascotas/' . $archivo)) {
+                        //Cambiamos los permisos del archivo a 777 para poder modificarlo posteriormente
+                        chmod(VIEWS_PATH . 'img/ImgMascotas/' . $archivo, 0777);
+                        //Mostramos el mensaje de que se ha subido co éxito
+                        echo "<script> if(confirm('Imagen subida correctamente')); </script>";
+                        //Mostramos la imagen subida
+                        //echo '<p><img src=" ' . IMG_PATH . 'ImgMascotas/' . $archivo . '"></p>';
+                    } else {
+                        //Si no se ha podido subir la imagen, mostramos un mensaje de error
+                        echo '<div><b>Ocurrió algún error al subir el fichero. No pudo guardarse.</b></div>';
+                    }
                 }
-                /* } */
             }
         }
     }
@@ -96,5 +96,4 @@ class MascotaController
         $mascota = $this->mascotasDAO->getById($id);
         require_once(VIEWS_PATH . "ver-perfil-mascota.php");
     }
-    
 }

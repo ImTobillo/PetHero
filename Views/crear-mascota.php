@@ -10,20 +10,20 @@ require_once 'validarSesion.php';
         <div class="contenedor">
             <h1 class="titulo">Agregar mascota</h1>
 
-            <form class="form" action="<?php echo FRONT_ROOT . "Mascota/creaMascota" ?>" method="post" enctype="multipart/form-data">
+            <form class="form" action="<?php echo FRONT_ROOT . "Mascota/creaMascota" ?>" method="POST" enctype="multipart/form-data">
 
-                <input class="input-nombre" name="nombre" type="text" placeholder="Nombre" require>
+                <input class="input-nombre" name="nombre" type="text" placeholder="Nombre" required>
 
-                <select name="tamaño" class="selector-tamaño">
+                <select name="tamaño" class="selector-tamaño" required>
                     <option disabled selected>Tamaño</option>
                     <option value="1">Pequeño</option>
                     <option value="2">Mediano</option>
                     <option value="3">Grande</option>
                 </select>
 
-                <input class="input-edad" name="edad" type="number" placeholder="Edad" require min="0" max="20">
+                <input class="input-edad" name="edad" type="number" placeholder="Edad" required min="0" max="20">
 
-                <input class="input-raza" name="raza" type="text" placeholder="Raza" require>
+                <input class="input-raza" name="raza" type="text" placeholder="Raza" required>
 
                 <textarea class="input-obs" name="observaciones" id="1" cols="30" rows="10" placeholder="Observaciones"></textarea>
 

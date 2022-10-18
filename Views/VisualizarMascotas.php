@@ -10,11 +10,11 @@ require_once 'validarSesion.php';
         <form action="<?php echo FRONT_ROOT . "Mascota/verPerfil" ?>" method="post">
             <h1 class="tituloG">Mascotas</h1>
             <?php foreach ($listMascotas as $value) {
-                if ($value->getIdDueño() == 1) { ?>
+                if ($value->getIdDueño() == $_SESSION['loggedUser']->getId()) { ?>
 
                     <div class="igual">
 
-                        <img class="imagenPerf" src="<?php echo FRONT_ROOT . IMG_PATH . 'ImgMascotas/' . $value->getPlanVacunacion() ?> " alt="Mascota">
+                        <img class="imagenPerf" src="<?php echo IMG_PATH . 'ImgMascotas/' . $value->getPlanVacunacion() ?> " alt="Mascota">
 
                         <div class="info">
                             <p><?php echo $value->getNombre(); ?></p>
