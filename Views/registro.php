@@ -10,7 +10,7 @@ require_once 'nav.php';
             <h1 class="titulo">Registro</h1>
             <h2 class="tituloh2">Datos personales</h2>
     
-            <form action="<?php echo FRONT_ROOT . "Home/registro"?>" method="post" class="form">
+            <form action="<?php echo FRONT_ROOT . "Home/registro"?>" method="post" class="form" enctype="multipart/form-data">
                 <!-- agregar names a los inputs -->
                     
                     <input name="nombre" class="input-nombre" type="text" required placeholder="Nombre">

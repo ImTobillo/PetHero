@@ -10,5 +10,11 @@
         "username": "tobillo",
         "password": "123456",
         "tipoCuenta": "guardian"
+    },
+    {
+        "id": 2,
+        "username": "lauta",
+        "password": "123456",
+        "tipoCuenta": "due\u00f1o"
     }
 ]
