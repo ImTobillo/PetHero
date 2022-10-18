@@ -2,6 +2,7 @@
 require_once 'header.php'; 
 require_once 'nav.php';
 require_once 'validarSesion.php';
+var_dump($GLOBALS);
 ?>
     
     <link rel="stylesheet" property="stylesheet" href=" <?php echo CSS_PATH . 'menuDueño-Guardian.css' ?> ">
@@ -14,7 +15,7 @@ require_once 'validarSesion.php';
             
             <div class="iguales">
 
-                <a href="VisualizarGuardianes.html" class="enlace"></a>
+                <a href=" <?php echo FRONT_ROOT . "Guardian/ShowListView" ?> " class="enlace"></a>
 
                 <h2>Visualizar guardianes</h2>
 
