@@ -27,7 +27,7 @@ class GuardianController
         $guardianNuevo->setRemuneracion($remuneracion);
         $guardianNuevo->setTamaño($tamanio);
         $guardianNuevo->setDiasDisponibles($disponibilidad);
-        $guardianNuevo->setHoraDisponible($horaInicial, $horaFinal);
+        $guardianNuevo->setHoraDisponible($horaInicial . ' - ' . $horaFinal);
 
         $_SESSION['loggedUser'] = $guardianNuevo;
 

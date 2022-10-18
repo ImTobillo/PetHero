@@ -2,7 +2,7 @@
 require_once 'header.php'; 
 require_once 'nav.php';
 require_once 'validarSesion.php';
-var_dump($GLOBALS);
+
 ?>
     
     <link rel="stylesheet" property="stylesheet" href=" <?php echo CSS_PATH . 'menuDueño-Guardian.css' ?> ">

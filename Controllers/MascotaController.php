@@ -25,10 +25,7 @@ class MascotaController
         require_once(VIEWS_PATH . "VisualizarMascotas.php");
     }
 
-
-
-
-    public function creaMascota($nombre, $tamaño, $edad, $raza, $observaciones, $planVacunacion, $imgPerro, $videoPerro)
+    public function creaMascota($nombre, $tamaño, $edad, $raza, $observaciones, $planVacunacion, $imgPerro, $videoPerro = null)
     {
         $mascota = new Mascota();
 
@@ -45,8 +42,11 @@ class MascotaController
         $mascota->setImgPerro($_FILES['imgPerro']['name']);
         $this->subirArch("imgPerro", $imgPerro);
 
-        $mascota->setVideoPerro($_FILES['videoPerro']['name']);
-        $this->subirArch("videoPerro", $videoPerro);
+        if ($videoPerro)
+        {
+            $mascota->setVideoPerro($_FILES['videoPerro']['name']);
+            $this->subirArch("videoPerro", $videoPerro);
+        }
 
         $this->mascotasDAO->add($mascota);
 
@@ -68,7 +68,7 @@ class MascotaController
                 //Se comprueba si el archivo a cargar es correcto observando su extensión y tamaño
                 if (!((strpos($tipo, "jpeg") || strpos($tipo, "jpg") || strpos($tipo, "mp4") || strpos($tipo, "png")) && ($tamano < 10000000000000))) {
                     echo '<div><b>Error. La extensión o el tamaño de los archivos no es correcta.<br/>
-                 - Se permiten archivos .gif, .jpg, .png. y de 200 kb como máximo.</b></div>';
+                    - Se permiten archivos .gif, .jpg, .png. y de 200 kb como máximo.</b></div>';
                 } else {
 
                     //Si la imagen es correcta en tamaño y tipo

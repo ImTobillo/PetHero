@@ -49,15 +49,18 @@ class Guardian extends Persona
 
     public function setDiasDisponibles($diasDisponibles) // recibe arreglo de strings
     {
-        if (!empty($diasDisponibles))
+        if (is_array($diasDisponibles) && !empty($diasDisponibles))
             $this->diasDisponibles = implode(" - ", $diasDisponibles);
-            
+        else
+            $this->diasDisponibles = $diasDisponibles;
+        
+
         return $this;
     }
 
-    public function setHoraDisponible($horaInicial, $horaFinal)
+    public function setHoraDisponible($horaDisponible)
     {
-        $this->horaDisponible = $horaInicial . ' - ' . $horaFinal;
+        $this->horaDisponible = $horaDisponible;
 
         return $this;
     }

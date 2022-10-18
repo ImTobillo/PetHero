@@ -35,13 +35,13 @@ require_once 'validarSesion.php';
                         <input class="image" accept="image/png,image/jpeg" name="imgPerro" type="file">
                     </label>
                     <label>Video
-                        <input accept="video/*" name="videoPerro" type="file">
+                        <input accept=".mp4" name="videoPerro" type="file">
                     </label>
                 </div>
 
                 <div class="contenedor-button">
                     <button class="button" type="button">Cancelar</button>
-                    <button class="button" type="submit">Registrar</button>
+                    <button class="button" type="submit" value="Enviar datos">Registrar</button>
                 </div>
 
             </form>

@@ -13,31 +13,13 @@ require_once 'validarSesion.php';
 
         <h1 class="tituloG">Guardianes</h1>
 
-        <div class="igual">
-            <img class="imagenPerf" src=" <?php echo IMG_PATH . 'ejemploGuardian1.jpg' ?> " alt="">
-            <div class="info">
-                <p>Julian Weich</p>
-                <p>Disponibilidad</p>
-                <button class="boton" type="submit">Ver perfil</button>
-            </div>
-        </div>
-
-        <div class="igual">
-            <img class="imagenPerf" src=" <?php echo IMG_PATH . 'ejemploGuardian2.jpg' ?> " alt="">
-            <div class="info">
-                <p>Marley</p>
-                <p>Disponibilidad</p>
-                <button class="boton" type="submit">Ver perfil</button>
-            </div>
-        </div>
-
         <?php foreach ($guardianList as $guardian) 
-            {?>
+            { ?>
             <div class="igual">
-                <img class="imagenPerf" src=" <?php echo IMG_PATH . 'ejemploGuardian2.jpg' ?> " alt="">
+                <img class="imagenPerf" src="http://www.gentedecanaveral.com/wp-content/uploads/2016/05/DATA_ART_8378410_VERTIL.jpg" alt="">
                 <div class="info">
-                    <p> <?php echo $guardian->getNomhbre() ?> </p>
-                    <p> <?php echo $guardian->getDiasDisponibles() ?> </p>
+                    <p> <?php echo $guardian->getNombre(); ?> </p>
+                    <p> <?php echo $guardian->getDiasDisponibles(); ?> </p>
                     <button class="boton" type="submit">Ver perfil</button>
                 </div>
             </div>

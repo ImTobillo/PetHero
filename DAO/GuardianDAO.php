@@ -68,6 +68,10 @@ class GuardianDAO implements IRepositorio
 
             foreach ($contentArray as $content) {
                 $guardian = new Guardian($content['id'], $content['nombre'], $content['apellido'], $content['fechaNacimiento'], $content['dni'], $content['telefono'], $content['email'], $content['ciudad'], $content['calle'], $content['numCalle']);
+                $guardian->setRemuneracion($content['remuneracion']);
+                $guardian->setTamaño($content['tamaño']);
+                $guardian->setDiasDisponibles($content['diasDisponibles']);
+                $guardian->setHoraDisponible($content['horaDisponible']);
 
                 array_push($this->guardianList, $guardian);
             }
