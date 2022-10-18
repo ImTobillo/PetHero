@@ -16,9 +16,9 @@ require_once 'validarSesion.php';
 
                 <select name="tamaño" class="selector-tamaño" required>
                     <option disabled selected>Tamaño</option>
-                    <option value="1">Pequeño</option>
-                    <option value="2">Mediano</option>
-                    <option value="3">Grande</option>
+                    <option value="Pequeño">Pequeño</option>
+                    <option value="Mediano">Mediano</option>
+                    <option value="Grande">Grande</option>
                 </select>
 
                 <input class="input-edad" name="edad" type="number" placeholder="Edad" required min="0" max="20">

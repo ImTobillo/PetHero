@@ -2,49 +2,13 @@
     {
         "id": 0,
         "idDue\u00f1o": 2,
-        "nombre": "Lautaro",
-        "tama\u00f1o": "2",
-        "edad": "3",
+        "nombre": "Juan",
+        "tama\u00f1o": "Mediano",
+        "edad": "5",
         "raza": "Salchicha",
-        "observaciones": "asd",
+        "observaciones": "asdasd",
         "planVacunacion": "8226053.jpg",
         "imgPerro": "",
         "videoPerro": ""
-    },
-    {
-        "id": 1,
-        "idDue\u00f1o": 2,
-        "nombre": "Juan",
-        "tama\u00f1o": "3",
-        "edad": "5",
-        "raza": "Border Collie",
-        "observaciones": "asdad",
-        "planVacunacion": "8226053.jpg",
-        "imgPerro": "8226053.jpg",
-        "videoPerro": ""
-    },
-    {
-        "id": 2,
-        "idDue\u00f1o": 2,
-        "nombre": "Natanael",
-        "tama\u00f1o": "3",
-        "edad": "1",
-        "raza": "Salchicha",
-        "observaciones": "asd",
-        "planVacunacion": "8226053.jpg",
-        "imgPerro": "8226053.jpg",
-        "videoPerro": "y2mate.com - Perros Ladrando Muy Fuerte para molestar a tu perro o gato HD  6_v144P.mp4"
-    },
-    {
-        "id": 3,
-        "idDue\u00f1o": 2,
-        "nombre": "Juan",
-        "tama\u00f1o": "2",
-        "edad": "2",
-        "raza": "Salchicha",
-        "observaciones": "asd",
-        "planVacunacion": "ParcialBD.png",
-        "imgPerro": "ParcialBD.png",
-        "videoPerro": "y2mate.com - Le salieron los perros Caninos frustran robo y ladr\u00f3n se avienta desde la azotea_v144P.mp4"
     }
 ]
