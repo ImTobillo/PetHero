@@ -43,9 +43,9 @@ input{
     align-self: center;
 }
 
-.formularioTipoCuenta button
-{
-    grid: 1/3;
+.formu{
+    grid-column: 1/3;
+    margin: 0 auto;
 }
 
 /*MEDIAS*/
