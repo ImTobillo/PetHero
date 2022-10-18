@@ -1,1 +1,50 @@
-[]
+[
+    {
+        "id": 0,
+        "idDue\u00f1o": 0,
+        "nombre": "Lautaro",
+        "tama\u00f1o": "Peque\u00f1o",
+        "edad": "3",
+        "raza": "chihuahua",
+        "observaciones": "fgdjndfgdfgm",
+        "planVacunacion": "calendario_de_vacunas_para_perros_20221_orig.jpg",
+        "imgPerro": "Degaen.jpg",
+        "videoPerro": ""
+    },
+    {
+        "id": 1,
+        "idDue\u00f1o": 3,
+        "nombre": "india",
+        "tama\u00f1o": "Grande",
+        "edad": "6",
+        "raza": "golden",
+        "observaciones": "golden pa",
+        "planVacunacion": "calendario_de_vacunas_para_perros_20221_orig.jpg",
+        "imgPerro": "Degaen.jpg",
+        "videoPerro": ""
+    },
+    {
+        "id": 2,
+        "idDue\u00f1o": 3,
+        "nombre": "napo",
+        "tama\u00f1o": "Grande",
+        "edad": "8",
+        "raza": "collie",
+        "observaciones": "el napo",
+        "planVacunacion": "calendario_de_vacunas_para_perros_20221_orig.jpg",
+        "imgPerro": "Degaen.jpg",
+        "videoPerro": ""
+    },
+    {
+        "id": 3,
+        "idDue\u00f1o": 3,
+        "nombre": "mia",
+        "tama\u00f1o": "Mediano",
+        "edad": "1",
+        "raza": "border collie",
+        "observaciones": "la border collie",
+        "planVacunacion": "calendario_de_vacunas_para_perros_20221_orig.jpg",
+        "imgPerro": "Degaen.jpg",
+        "videoPerro": "y2mate.com - Le salieron los perros Caninos frustran robo y ladr\u00f3n se avienta desde la azotea_v144P.mp4"
+    }
+]

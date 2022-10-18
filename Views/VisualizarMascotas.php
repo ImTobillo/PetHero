@@ -15,7 +15,7 @@ require_once 'validarSesion.php';
 
                     <div class="igual">
 
-                        <img class="imagenPerf" src="<?php echo IMG_PATH . 'ImgMascotas/' . $value->getPlanVacunacion() ?> " alt="Mascota">
+                        <img class="imagenPerf" src="<?php echo IMG_PATH . 'ImgMascotas/' . $value->getImgPerro() ?> " alt="Mascota">
 
                         <div class="info">
                             <p><b>Nombre:</b> <?php echo $value->getNombre(); ?></p>
