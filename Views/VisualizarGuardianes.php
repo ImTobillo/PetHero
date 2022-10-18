@@ -1,4 +1,7 @@
 <?php
+
+use Models\Guardian;
+
 require_once 'header.php'; 
 require_once 'nav.php';
 require_once 'validarSesion.php';
@@ -28,6 +31,17 @@ require_once 'validarSesion.php';
             </div>
         </div>
 
+        <?php foreach ($guardianList as $guardian) 
+            {?>
+            <div class="igual">
+                <img class="imagenPerf" src=" <?php echo IMG_PATH . 'ejemploGuardian2.jpg' ?> " alt="">
+                <div class="info">
+                    <p> <?php echo $guardian->getNomhbre() ?> </p>
+                    <p> <?php echo $guardian->getDiasDisponibles() ?> </p>
+                    <button class="boton" type="submit">Ver perfil</button>
+                </div>
+            </div>
+    <?php  } ?>
     </main>
 
     <?php require_once 'footer.php' ?>

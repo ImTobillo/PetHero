@@ -25,6 +25,9 @@ class MascotaController
         require_once(VIEWS_PATH . "VisualizarMascotas.php");
     }
 
+
+
+
     public function creaMascota($nombre, $tamaño, $edad, $raza, $observaciones, $planVacunacion, $imgPerro, $videoPerro)
     {
         $mascota = new Mascota();

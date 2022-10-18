@@ -50,4 +50,4 @@ require_once 'validarSesion.php';
 
     </main>
 
-    <?php require_once 'footer.php' ?>
+    <?php require_once 'footer.php'; ?>

@@ -14,6 +14,12 @@ class GuardianController
         $this->guardianDAO = new GuardianDAO();
     }
 
+    public function ShowListView()
+    {
+        $guardianList = $this->guardianDAO->getAll();
+        require_once VIEWS_PATH . 'VisualizarGuardianes.php';
+    }
+
     public function agregarGuardian($remuneracion, $tamanio, $disponibilidad, $horaInicial, $horaFinal)
     {
         $guardianNuevo = $_SESSION['loggedUser'];
