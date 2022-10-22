@@ -4,6 +4,8 @@ namespace DAO;
 
 use DAO\IRepositorio as IRepositorio;
 use Models\Mascota as Mascota;
+use Models\Perro as Perro;
+use Models\Gato as Gato;
 
 class MascotaDAO implements IRepositorio{
 
@@ -64,10 +66,17 @@ class MascotaDAO implements IRepositorio{
             $contentArray = ($jsonToDecode) ? json_decode($jsonToDecode, true) : array();
 
             foreach ($contentArray as $content) {
-                $mascota = new Mascota();
+                
+                if($content['tipoMascota'] == "Perro"){
+                    $mascota = new Perro();
+                }
+                else{
+                    $mascota = new Gato();
+                }
 
                 $mascota->setId($content['id']);
                 $mascota->setIdDueño($content['idDueño']);
+                $mascota->setTipoMascota($content['tipoMascota']);
                 $mascota->setNombre($content['nombre']);
                 $mascota->setTamaño($content['tamaño']);
                 $mascota->setEdad($content['edad']);
@@ -90,6 +99,7 @@ class MascotaDAO implements IRepositorio{
             $valuesArray = array();
             $valuesArray['id'] = $mascota->getId();
             $valuesArray['idDueño'] = $mascota->getIdDueño();
+            $valuesArray['tipoMascota'] = $mascota->getTipoMascota();
             $valuesArray['nombre'] = $mascota->getNombre();
             $valuesArray['tamaño'] = $mascota->getTamaño();
             $valuesArray['edad'] = $mascota->getEdad();

@@ -4,6 +4,8 @@ namespace Controllers;
 
 use Models\Mascota as Mascota;
 use DAO\MascotaDAO as MascotaDAO;
+use Models\Perro as Perro;
+use Models\Gato as Gato;
 
 class MascotaController
 {
@@ -25,15 +27,21 @@ class MascotaController
         require_once(VIEWS_PATH . "VisualizarMascotas.php");
     }
 
-    public function creaMascota($nombre, $tamaño, $edad, $raza, $observaciones, $planVacunacion, $imgPerro, $videoPerro = null)
+    public function creaMascota($nombre, $tamaño, $edad, $raza, $observaciones, $tipoMascota, $planVacunacion, $imgPerro, $videoPerro)
     {
-        $mascota = new Mascota();
+        if($tipoMascota == "Perro"){
+            $mascota = new Perro();
+        }
+        else{
+            $mascota = new Gato();
+        }
 
         $mascota->setIdDueño($_SESSION['loggedUser']->getId());    // $_SESSION['userLogged'] 
         $mascota->setNombre($nombre);
         $mascota->setTamaño($tamaño);
         $mascota->setEdad($edad);
         $mascota->setRaza($raza);
+        $mascota->setTipoMascota($tipoMascota);
         $mascota->setObservaciones($observaciones);
 
         $mascota->setPlanVacunacion($_FILES['planVacunacion']['name']); // Guarda nombre de la imagen
