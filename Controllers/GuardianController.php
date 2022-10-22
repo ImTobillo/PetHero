@@ -20,13 +20,14 @@ class GuardianController
         require_once VIEWS_PATH . 'VisualizarGuardianes.php';
     }
 
-    public function agregarGuardian($remuneracion, $tamanio, $disponibilidad, $horaInicial, $horaFinal)
+    public function agregarGuardian($remuneracion, $tamanio, $fechaInicio, $fechaFinal, $horaInicial, $horaFinal)
     {
         $guardianNuevo = $_SESSION['loggedUser'];
 
         $guardianNuevo->setRemuneracion($remuneracion);
         $guardianNuevo->setTamaño($tamanio);
-        $guardianNuevo->setDiasDisponibles($disponibilidad);
+        $guardianNuevo->setFechaInicio($fechaInicio);
+        $guardianNuevo->setFechaFinal($fechaFinal);
         $guardianNuevo->setHoraDisponible($horaInicial . ' - ' . $horaFinal);
 
         $_SESSION['loggedUser'] = $guardianNuevo;

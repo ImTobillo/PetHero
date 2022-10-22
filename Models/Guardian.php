@@ -6,7 +6,8 @@ class Guardian extends Persona
 {
     private $remuneracion;
     private $tamaño;
-    private $diasDisponibles;
+    private $fechaInicio;
+    private $fechaFinal;
     private $horaDisponible;
     
     public function __construct($id, $nombre, $apellido, $fechaNacimiento, $dni, $telefono, $email, $ciudad, $calle, $numCalle){
@@ -21,11 +22,6 @@ class Guardian extends Persona
     public function getTamaño()
     {
         return $this->tamaño;
-    }
-
-    public function getDiasDisponibles()
-    {
-        return $this->diasDisponibles;
     }
 
     public function getHoraDisponible()
@@ -47,20 +43,33 @@ class Guardian extends Persona
         return $this;
     }
 
-    public function setDiasDisponibles($diasDisponibles) // recibe arreglo de strings
+    public function setHoraDisponible($horaDisponible)
     {
-        if (is_array($diasDisponibles) && !empty($diasDisponibles))
-            $this->diasDisponibles = implode(" - ", $diasDisponibles);
-        else
-            $this->diasDisponibles = $diasDisponibles;
-        
+        $this->horaDisponible = $horaDisponible;
 
         return $this;
     }
 
-    public function setHoraDisponible($horaDisponible)
+    public function getFechaInicio()
     {
-        $this->horaDisponible = $horaDisponible;
+        return $this->fechaInicio;
+    }
+
+    public function setFechaInicio($fechaInicio)
+    {
+        $this->fechaInicio = $fechaInicio;
+
+        return $this;
+    }
+
+    public function getFechaFinal()
+    {
+        return $this->fechaFinal;
+    }
+
+    public function setFechaFinal($fechaFinal)
+    {
+        $this->fechaFinal = $fechaFinal;
 
         return $this;
     }

@@ -124,18 +124,6 @@ a {
 
 /*GENERALES*/
 
-.timePickerInicial::before {
-  content: "Hora Inicial:";
-  margin-right: 0.6em;
-  color: #9d9d9d;
-}
-
-.timePickerFinal::before {
-  content: "Hora Final:";
-  margin-right: 0.6em;
-  color: #9d9d9d;
-}
-
 .button {
   background-color: #ffb353;
   border: 0ch;

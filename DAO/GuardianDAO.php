@@ -70,7 +70,8 @@ class GuardianDAO implements IRepositorio
                 $guardian = new Guardian($content['id'], $content['nombre'], $content['apellido'], $content['fechaNacimiento'], $content['dni'], $content['telefono'], $content['email'], $content['ciudad'], $content['calle'], $content['numCalle']);
                 $guardian->setRemuneracion($content['remuneracion']);
                 $guardian->setTamaño($content['tamaño']);
-                $guardian->setDiasDisponibles($content['diasDisponibles']);
+                $guardian->setFechaInicio($content['fechaInicio']);
+                $guardian->setFechaFinal($content['fechaFinal']);
                 $guardian->setHoraDisponible($content['horaDisponible']);
 
                 array_push($this->guardianList, $guardian);
@@ -96,7 +97,8 @@ class GuardianDAO implements IRepositorio
             $valuesArray["numCalle"] = $guardian->getNumCalle();
             $valuesArray["remuneracion"] = $guardian->getRemuneracion();
             $valuesArray["tamaño"] = $guardian->getTamaño();
-            $valuesArray["diasDisponibles"] = $guardian->getDiasDisponibles();
+            $valuesArray["fechaInicio"] = $guardian->getFechaInicio();
+            $valuesArray["fechaFinal"] = $guardian->getFechaFinal();
             $valuesArray["horaDisponible"] = $guardian->getHoraDisponible();
 
             array_push($arrayToEncode, $valuesArray);
