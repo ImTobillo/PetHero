@@ -33,7 +33,7 @@ require_once 'nav.php';
 
 
                     <div class="contenedor_button">
-                        <button class="button" type="button">Cancelar</button>
+                        <button class="button" type="reset">Cancelar</button>
                         <button class="button" type="submit">Registrarse</button>
                     </div>
                     

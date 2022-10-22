@@ -9,10 +9,10 @@ require_once 'nav.php';
     <div class="contenedor">
       <h1 class="titulo">Registro</h1>
 
-      <form action="<?php echo FRONT_ROOT . "Guardian/agregarGuardian"?>" method="post" class="formulario" enctype="multipart/form-data">
+      <form action="<?php echo FRONT_ROOT . "Guardian/agregarGuardian"?>" method="post" id="formularioRegistroGuardian" class="formulario" enctype="multipart/form-data">
         <div class="opciones">
           <div class="lado1">
-            <input name="remuneracion" type="number" required placeholder="Remuneracion" />
+            <input name="remuneracion" type="number" required placeholder="Remuneracion por hora" />
             <select name="tamanio">
               <option value="" disabled selected hidden>Tamaño</option>
               <!--placeholder-->
@@ -26,19 +26,13 @@ require_once 'nav.php';
             <div class="disponible">
               <h3>Definir disponibilidad</h3>
               <div class="opcionesDisponibles">
-                <div class="contenedorOpcionesDisponibles">
-                  <label><input type="checkbox" name="disponibilidad[]" value="lunes" />Lunes</label>
-                  <label><input type="checkbox" name="disponibilidad[]" value="martes" />Martes</label>
-                  <label><input type="checkbox" name="disponibilidad[]" value="miercoles" />Miercoles</label>
+                <div class="contenedorFecha">
+                  <input class="datePickerInicio" id="inputFechaInicio"  name="fechaInicio" oninput="validarFecha()" type="date" min="<?php echo date("Y-m-d"); ?>" required placeholder="Fecha de inicio">
                 </div>
-                <div class="contenedorOpcionesDisponibles">
-                  <label><input type="checkbox" name="disponibilidad[]" value="jueves" />Jueves</label>
-                  <label><input type="checkbox" name="disponibilidad[]" value="viernes" />Viernes</label>
-                  <label><input type="checkbox" name="disponibilidad[]" value="sabado" />Sábado</label>
+                <div class="contenedorFecha">
+                  <input class="datePickerFinal" id="inputFechaFinal"  name="fechaFinal" disabled type="date" min="<?php echo date("Y-m-d"); ?>" required placeholder="Fecha de final">
                 </div>
               </div>
-
-              <label><input type="checkbox" name="disponibilidad[]" value="domingo" />Domingo</label>
             </div>
           </div>
         </div>
@@ -55,4 +49,5 @@ require_once 'nav.php';
       </form>
     </div>
   </main>
+  <script src="<?php echo JS_PATH . "validarFecha.js" ?>"></script> 
   <?php require_once 'footer.php' ?>
