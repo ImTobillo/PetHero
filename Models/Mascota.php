@@ -2,10 +2,11 @@
 
 namespace Models;
 
-class Mascota{
+abstract class Mascota{
 
     private $id;    
     private $idDueño;
+    private $tipoMascota;
     private $nombre;
     private $tamaño;
     private $edad;
@@ -131,6 +132,18 @@ class Mascota{
     public function setIdDueño($idDueño)
     {
         $this->idDueño = $idDueño;
+
+        return $this;
+    }
+
+    public function getTipoMascota()
+    {
+        return $this->tipoMascota;
+    }
+
+    public function setTipoMascota($tipoMascota)
+    {
+        $this->tipoMascota = $tipoMascota;
 
         return $this;
     }

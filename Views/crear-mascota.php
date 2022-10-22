@@ -28,6 +28,14 @@ require_once 'validarSesion.php';
                 <textarea class="input-obs" name="observaciones" id="1" cols="30" rows="10" placeholder="Observaciones"></textarea>
 
                 <div class="contenedor-imagenes">
+                    <label>Tipo de mascota
+                        <select name="tipoMascota" required>
+                            <option disabled selected>Tipo</option>
+                            <option value="Perro">Perro</option>
+                            <option value="Gato">Gato</option>
+                        </select>
+                    </label>
+
                     <label>Plan de vacunacion
                         <input accept="image/png,image/jpeg" name="planVacunacion" type="file" required>
                     </label>

@@ -8,14 +8,12 @@ require_once 'validarSesion.php';
 
     <main class="main">
         <div class="contenedor-perfil">
-            <img src="<?php echo IMG_PATH . 'ImgMascotas/' . $mascota->getImgPerro() ?>" alt="foto perfil" width="100x100">
+            <img class="imgP" src="<?php echo IMG_PATH . 'ImgMascotas/' . $mascota->getImgPerro() ?>" alt="foto perfil" width="100x100">
+            <h1><?php echo $mascota->getNombre() ?></h1>
             <button class="button">Editar</button>
         </div>
 
         <div class="contenedor-datos">
-            <div class="parrafo">
-                <p><?php echo $mascota->getNombre() ?></p>
-            </div>
             <div class="parrafo">
                 <p><?php echo $mascota->getTamaño() ?></p>
             </div>
@@ -28,15 +26,20 @@ require_once 'validarSesion.php';
             <div class="parrafo">
                 <p><?php echo $mascota->getObservaciones() ?></p>
             </div>
-        </div>
-
-        <div class="contenedor-multimedia">
+            <div class="parrafo">
+                <p><?php echo $mascota->getTipoMascota() ?></p>
+            </div>
+            <?php if($mascota->getVideoPerro() != ""){ ?>
             <div class="video">
                 <video width="320" height="240" controls>
                     <source src="<?php echo IMG_PATH . 'ImgMascotas/' . $mascota->getVideoPerro() ?>" type="video/mp4">
                 </video>
             </div>
-            <div class="imagen"><img src="<?php echo IMG_PATH . 'ImgMascotas/' . $mascota->getPlanVacunacion() ?>" alt="imagen perro" height="200" width="200"></div>
+            <?php } ?>
+        </div>
+
+        <div class="contenedor-multimedia">
+            <div class="imagen"><img class="imgPlan" src="<?php echo IMG_PATH . 'ImgMascotas/' . $mascota->getPlanVacunacion() ?>" alt="imagen perro" height="200" width="200"></div>
         </div>
     </main>
 
