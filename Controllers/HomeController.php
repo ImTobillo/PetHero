@@ -35,7 +35,7 @@ class HomeController
         }
         else
         {*/
-            require_once(VIEWS_PATH . "verHistorialServOfrecidos-guardian.php");
+            require_once(VIEWS_PATH . "visualizarFechasSolicitadas.php");
         //}
     }
 

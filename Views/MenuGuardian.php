@@ -14,7 +14,7 @@ require_once 'validarSesion.php';
             
             <div class="iguales">
 
-                <a href="visualizarFechasSolicitadas.html" class="enlace"></a>
+                <a href=" <?php echo FRONT_ROOT . 'Reserva/ShowListaReservas' ?> " class="enlace"></a>
 
                 <h2>Fechas solicitadas</h2>
 
