@@ -2,6 +2,14 @@
 require_once 'header.php'; 
 require_once 'nav.php';
 require_once 'validarSesion.php';
+
+    use DAO\GuardianDAO as GuardianDAO;
+    use DAO\MascotaDAO as MascotaDAO;
+    $listaGuardianes = new GuardianDAO();
+    $guardian = $listaGuardianes->getById($id_guardian);
+
+    $listaMascotas = new MascotaDAO();
+    $mascotasDuenio = $listaMascotas->getAll();
 ?>
     <link property="stylesheet" rel="stylesheet" href=" <?php echo CSS_PATH . 'reservar-guardian.css' ?> ">
 
@@ -18,27 +26,53 @@ require_once 'validarSesion.php';
 
         <div class="info-y-enviar">
             <div class="contenedor-datos ">
-                    <div class="datosGuardian"><p>Nombre</p></div>
-                    <div class="datosGuardian"><p>Apellido</p></div>
-                    <div class="datosGuardian"><p>Edad</p></div>
-                    <div class="datosGuardian"><p>Email</p></div>
-                    <div class="datosGuardian"><p>Telefono</p></div>
-                    <div class="datosGuardian"><p>Tamaño que cuida</p></div>
+                    <div class="datosGuardian"><p>Nombre: <?php echo $guardian->getNombre(); ?></p></div>
+                    <div class="datosGuardian"><p>Apellido: <?php echo $guardian->getApellido(); ?></p></div>
+                    <div class="datosGuardian"><p>Fecha de nacimiento: <?php echo $guardian->getfechaNacimiento(); ?></p></div>
+                    <div class="datosGuardian"><p>Email: <?php echo $guardian->getEmail(); ?></p></div>
+                    <div class="datosGuardian"><p>Telefono: <?php echo $guardian->getTelefono(); ?></p></div>
+                    <div class="datosGuardian"><p>Tamaño de mascota: <?php echo $guardian->getTamaño(); ?></p></div>
             </div>
     
             <div class="formReservaGuardian">
-                <h1>Selecciona el dia</h1>
+                <h1>Solicitar reserva</h1>
                 
-                <form action="" method="get">
+                <form action="<?php echo FRONT_ROOT . 'Reserva/solicitarReserva'?>" method="post">
+
                     <div class="inputs">
-                        <input type="date" name="fechaRequerida" required>
-                        <input class="horaForm timePickerInicial" type="time" name="horaInicial" required>
-                        <input class="horaForm timePickerFinal" type="time" name="horaFinal" required>
+
+                        <p>Fecha inicio</p> 
+                        <input class="datePickerInicio" id="inputFechaInicio"  name="fechaInicio" oninput="validarFecha()" type="date" min="<?php echo $guardian->getFechaInicio(); ?>" required>
+                        <p>Fecha final</p>
+                        <input class="datePickerFinal" id="inputFechaFinal"  name="fechaFinal" disabled type="date" max="<?php echo $guardian->getFechaFinal(); ?>" required>
                     </div>
 
-                    <button class="" type="submit">Elegir</button>
+                    <div class="inputs">
+                        <?php $array = explode("-", $guardian->getHoraDisponible()?? "");?>
+                        <input class="horaForm timePickerInicial" type="time" name="horaInicial" min="<?php echo $array[0] ?>" required>
+                        <input class="horaForm timePickerFinal" type="time" name="horaFinal" max="<?php echo $array[1] ?>" required>
+                    </div>
+                        
+                    <div>
+                        <select name="mascota" id="">
+                            <option value="" disabled selected hidden>Mascota</option>
+
+                            <?php foreach ($mascotasDuenio as $mascota) {
+                                
+                                if ($mascota->getIdDueño() == $_SESSION['loggedUser']->getId()) { 
+                                    if(strcasecmp($mascota->getTamaño(), $guardian->getTamaño()) == 0){ ?>
+                                       <option value="<?php echo $mascota->getId(); ?>"><?php echo $mascota->getNombre();?></option>
+                                   <?php }
+                                } 
+                            } ?>
+                        </select>
+
+                    </div>
+
+                    <button name="id_guardian" value="<?php echo $guardian->getId();?>" type="submit">Solicitar</button>
                 </form>
             </div>
         </div>
     </main>
+    <script src="<?php echo JS_PATH . "validarFecha.js" ?>"></script> 
 <?php require_once 'footer.php' ?>

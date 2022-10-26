@@ -5,7 +5,7 @@ namespace Controllers;
 use Models\Dueño as Dueño;
 use DAO\DueñoDAO as DueñoDAO;
 
-class DueñoController
+class DuenioController
 {
      private $dueñosDAO;
      
@@ -14,7 +14,10 @@ class DueñoController
         $this->dueñosDAO = new DueñoDAO();
      }
 
-     
+     public function ShowViewReservar($id_guardian){
+         require_once(VIEWS_PATH . 'reservar-guardian.php');
+     }
+ 
 }
 
 

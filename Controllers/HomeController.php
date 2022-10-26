@@ -25,7 +25,7 @@ class HomeController
 
     public function Index($message = "")
     {
-/*        if (isset($_SESSION['loggedUser']))
+        if (isset($_SESSION['loggedUser']))
         {
             if (get_class($_SESSION['loggedUser']) == "Models\Dueño")
                 require_once(VIEWS_PATH . "MenuDueño.php");
@@ -34,9 +34,9 @@ class HomeController
 
         }
         else
-        {*/
-            require_once(VIEWS_PATH . "visualizarFechasSolicitadas.php");
-        //}
+        {
+            require_once(VIEWS_PATH . "inicio.php");
+        }
     }
 
     public function Login($username, $password)
@@ -121,4 +121,6 @@ class HomeController
             }
         }   
     }
+
+    
 }
