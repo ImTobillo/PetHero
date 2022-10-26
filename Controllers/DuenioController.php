@@ -14,7 +14,7 @@ class DuenioController
         $this->dueñosDAO = new DueñoDAO();
      }
 
-     public function ShowViewReservar(){
+     public function ShowViewReservar($id_guardian){
          require_once(VIEWS_PATH . 'reservar-guardian.php');
      }
  
