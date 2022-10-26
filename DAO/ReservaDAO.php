@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace DAO;
 
@@ -37,7 +37,7 @@ class ReservaDAO implements IRepositorio
         $this->RetrieveData();
         return $this->reservaLista;
     }
-    
+
     public function getById($id)
     {
         $this->RetrieveData();
@@ -54,8 +54,19 @@ class ReservaDAO implements IRepositorio
 
         return $reserva;
     }
-    
-    
+
+    public function setEstadoReserva($id, $estado)
+    {
+        $this->RetrieveData();
+
+        foreach ($this->reservaLista as $reservaValues) {
+            if ($id == $reservaValues->getId())
+                $reservaValues->setEstado($estado);
+        }
+        
+        $this->SaveData();
+    }
+
     // métodos JSON
 
     private function RetrieveData()
@@ -101,4 +112,3 @@ class ReservaDAO implements IRepositorio
         file_put_contents($this->fileName, $fileContent);
     }
 }
-?>
