@@ -20,6 +20,14 @@ class ReservaController
         require_once 'visualizarFechasSolicitadas.php';
     }
 
+    public function solicitarReserva($fechaInicio, $fechaFinal, $horaInicial, $horaFinal, $mascota, $id_guardian){
+        $reserva = new Reserva($id_guardian, $_SESSION['loggedUser']->getId(), $fechaInicio, $fechaFinal, $horaInicial, $horaFinal, $mascota);
+
+        $this->reservaDAO->add($reserva);
+
+        require_once(VIEWS_PATH . 'MenuDueño.php');
+    }
+
     public function aceptarReserva($id)
     {
         
