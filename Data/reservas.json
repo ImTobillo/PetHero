@@ -1,0 +1,14 @@
+[
+    {
+        "id_reserva": 0,
+        "id_guardian": "4",
+        "id_due\u00f1o": 3,
+        "fecha_inicio": "2022-10-27",
+        "fecha_final": "2022-10-30",
+        "hora_inicio": "06:19",
+        "hora_final": "20:19",
+        "estado": null,
+        "id_pago": null,
+        "id_mascota": "3"
+    }
+]

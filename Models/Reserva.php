@@ -14,17 +14,16 @@ class Reserva{
     private $id_pago;
     private $id_mascota;
 
-    public function __construct($id_reserva, $id_guardian, $id_dueño, $fecha_inicio, $fecha_final, $hora_inicio, $hora_final, $id_pago, $id_mascota)
+    public function __construct($id_guardian, $id_dueño, $fecha_inicio, $fecha_final, $hora_inicio, $hora_final, $id_mascota)
     {
-        $this->id_reserva = $id_reserva;
         $this->id_guardian = $id_guardian;
         $this->id_dueño = $id_dueño;
         $this->fecha_inicio =$fecha_inicio;
         $this->fecha_final = $fecha_final;
         $this->hora_inicio = $hora_inicio;
         $this->hora_final = $hora_final;
-        $this->estado = false;
-        $this->id_pago = $id_pago;
+        $this->estado = null;
+        $this->id_pago = null;
         $this->id_mascota = $id_mascota;
     }
 
@@ -143,6 +142,18 @@ class Reserva{
     public function setId_mascota($id_mascota)
     {
         $this->id_mascota = $id_mascota;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of id_reserva
+     *
+     * @return  self
+     */ 
+    public function setId_reserva($id_reserva)
+    {
+        $this->id_reserva = $id_reserva;
 
         return $this;
     }

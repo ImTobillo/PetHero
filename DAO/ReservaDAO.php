@@ -13,6 +13,7 @@ class ReservaDAO implements IRepositorio
     public function add($reserva)
     {
         $this->RetrieveData();
+        $reserva->setId_reserva($this->GetNextId());
         array_push($this->reservaLista, $reserva);
         $this->SaveData();
     }
@@ -68,8 +69,10 @@ class ReservaDAO implements IRepositorio
             $contentArray = ($jsonToDecode) ? json_decode($jsonToDecode, true) : array();
 
             foreach ($contentArray as $content) {
-                $reserva = new Reserva($content['id_reserva'], $content['id_guardian'], $content['id_dueño'], $content['fecha_inicio'], $content['fecha_final'], $content['hora_inicio'], $content['hora_final'], $content['id_pago'], $content['id_mascota']);
+                $reserva = new Reserva($content['id_guardian'], $content['id_dueño'], $content['fecha_inicio'], $content['fecha_final'], $content['hora_inicio'], $content['hora_final'], $content['id_mascota']);
+                $reserva->setId_reserva($content['id_reserva']);
                 $reserva->setEstado($content['estado']);
+                $reserva->setId_pago($content['id_pago']);
 
                 array_push($this->reservaLista, $reserva);
             }
@@ -99,6 +102,36 @@ class ReservaDAO implements IRepositorio
         $fileContent = json_encode($arrayToEncode, JSON_PRETTY_PRINT);
 
         file_put_contents($this->fileName, $fileContent);
+    }
+
+    private function GetNextId()
+    {
+        $id = 0;
+
+        if (!empty($this->reservaLista))
+            $id = end($this->reservaLista)->getId() + 1;
+
+        return $id;
+    }
+
+    public function updateEstado($id_reserva, $nuevo_estado){
+        $reserva = $this->getById($id_reserva);
+
+        if($reserva->getEstado() == null){
+            $reserva->setEstado($nuevo_estado);
+        }
+        
+        $this->SaveData();
+    }
+
+    public function updatePago($id_reserva, $id_pago){
+        $reserva = $this->getById($id_reserva);
+
+        if($reserva->getEstado() == null){
+            $reserva->setEstado($id_pago);
+        }
+        
+        $this->SaveData();
     }
 }
 ?>
