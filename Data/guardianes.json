@@ -1,1 +1,19 @@
-[]
+[
+    {
+        "id": 0,
+        "nombre": "tobias",
+        "apellido": "noya",
+        "fechaNacimiento": "2009-10-22",
+        "dni": "44562987",
+        "telefono": "2231114343",
+        "email": "tobias@email.com",
+        "ciudad": "Mar del Plata",
+        "calle": "la calle",
+        "numCalle": "1312",
+        "remuneracion": "100",
+        "tama\u00f1o": "mediano",
+        "fechaInicio": "2022-10-26",
+        "fechaFinal": "2022-12-01",
+        "horaDisponible": "20:40 - 08:50"
+    }
+]

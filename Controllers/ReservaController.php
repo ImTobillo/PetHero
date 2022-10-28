@@ -20,11 +20,11 @@ class ReservaController
     public function ShowListaReservas()
     {
         $listaReservas = $this->reservaDAO->getAll();
-        require_once 'visualizarFechasSolicitadas.php';
+        require_once VIEWS_PATH . 'visualizarFechasSolicitadas.php';
     }
 
-    public function solicitarReserva($fechaInicio, $fechaFinal, $horaInicial, $horaFinal, $mascota, $id_guardian){
-        $reserva = new Reserva($id_guardian, $_SESSION['loggedUser']->getId(), $fechaInicio, $fechaFinal, $horaInicial, $horaFinal, $mascota);
+    public function solicitarReserva($dia, $horaInicial, $horaFinal, $mascota, $id_guardian){
+        $reserva = new Reserva($id_guardian, $_SESSION['loggedUser']->getId(), $dia, $horaInicial, $horaFinal, $mascota);
 
         $this->reservaDAO->add($reserva);
 
@@ -34,11 +34,29 @@ class ReservaController
     public function aceptarReserva($id)
     {
         $this->reservaDAO->setEstadoReserva($id, "Aceptado");
+        $this->ShowListaReservas();
     }
 
     public function rechazarReserva($id)
     {
         $this->reservaDAO->setEstadoReserva($id, "Rechazado");
+        $this->ShowListaReservas();
+    }
+
+    public function puedeAceptarRaza($reserva) // se valida que no haya otra raza aceptada en la misma fecha
+    {
+        $bool = true;
+        
+        $listaReservas = $this->reservaDAO->getAll();
+
+        foreach ($listaReservas as $reservaValue) {
+            if (($reservaValue->getEstado() == "Aceptado")  
+            && ($reservaValue->dia == $reserva->getDia()) 
+            && ($this->mascotaDAO->getById($reservaValue->getId_mascota())->getRaza() != $reserva->getRaza())) 
+                $bool = false;
+        }
+
+        return $bool;
     }
 }
 

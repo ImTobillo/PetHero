@@ -1,1 +1,15 @@
-[]
+[
+    {
+        "id": 0,
+        "idDue\u00f1o": 1,
+        "tipoMascota": "Perro",
+        "nombre": "Mia",
+        "tama\u00f1o": "Mediano",
+        "edad": "1",
+        "raza": "border collie",
+        "observaciones": "le gusta el futbol",
+        "planVacunacion": "calendario-vacunaci\u00f3n-border.png",
+        "imgPerro": "Border_Collie.jpg",
+        "videoPerro": "border-collie-video.mp4"
+    }
+]

@@ -40,11 +40,8 @@ require_once 'validarSesion.php';
                 <form action="<?php echo FRONT_ROOT . 'Reserva/solicitarReserva'?>" method="post">
 
                     <div class="inputs">
-
-                        <p>Fecha inicio</p> 
-                        <input class="datePickerInicio" id="inputFechaInicio"  name="fechaInicio" oninput="validarFecha()" type="date" min="<?php echo $guardian->getFechaInicio(); ?>" required>
-                        <p>Fecha final</p>
-                        <input class="datePickerFinal" id="inputFechaFinal"  name="fechaFinal" disabled type="date" max="<?php echo $guardian->getFechaFinal(); ?>" required>
+                        <p>Fecha</p> 
+                        <input class="datePickerInicio" id="inputFechaInicio"  name="dia" type="date" min="<?php echo date("Y-m-d"); ?>" required>
                     </div>
 
                     <div class="inputs">
@@ -54,7 +51,7 @@ require_once 'validarSesion.php';
                     </div>
                         
                     <div>
-                        <select name="mascota" id="">
+                        <select name="mascota" id="" required>
                             <option value="" disabled selected hidden>Mascota</option>
 
                             <?php foreach ($mascotasDuenio as $mascota) {
@@ -74,5 +71,4 @@ require_once 'validarSesion.php';
             </div>
         </div>
     </main>
-    <script src="<?php echo JS_PATH . "validarFecha.js" ?>"></script> 
 <?php require_once 'footer.php' ?>

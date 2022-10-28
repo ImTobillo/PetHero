@@ -11,10 +11,10 @@ require_once 'validarSesion.php';
 
             <form class="formulario" action="" method="">
 
-                <div class="item1">
+                <!-- <div class="item1">
                     <label for="">Fecha de pago</label>
                     <input type="text" name="" id="">
-                </div>
+                </div> se crea automaticamente ¿?  -->  
 
                 <div class="item6">
                     <label for="">Metodo de pago</label>
@@ -34,10 +34,10 @@ require_once 'validarSesion.php';
                     <input type="text" name="" id="">
                 </div>
 
-                <div class="item3">
+                <!-- <div class="item3">
                     <label for="">Propina</label>
                     <input type="text" name="" id="">
-                </div>
+                </div> -->
 
                 <div class="item8">
                     <label for="">Codigo de seguridad</label>

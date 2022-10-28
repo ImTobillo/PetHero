@@ -12,23 +12,26 @@ require_once 'nav.php';
     <h1 class="tituloG">Fechas solicitadas</h1>
 
     <?php
-    if (!empty($reservaLista)) {
-        foreach ($reservaLista as $reserva) {
-            if ($_SESSION['loggedUser']->getTamaño() == $this->mascotaDAO->getById($reserva->getId_mascota())->getTamaño()) {
+    if (!empty($listaReservas)) { // guardian recibe solo mascotas que coincidan con el tamaño que cuida (validacion hecha ya en lado del dueño)
+        foreach ($listaReservas as $reserva) {
+            if (($reserva->getEstado() == null) && ($reserva->getId_guardian() == $_SESSION['loggedUser']->getId()) && $this->puedeAceptarRaza($reserva)){
+                $mascota = $this->mascotaDAO->getById($reserva->getId_mascota());
     ?>
-                <div class="igual">
-                    <img class="imagenPerf" src="https://us.123rf.com/450wm/isselee/isselee2003/isselee200300398/142504822-bulldog-ingl%C3%A9s-perro-sacando-la-lengua-aislado-en-blanco.jpg?ver=6" alt="">
-                    <div class="info">
-                        <h2>Dia / Hora</h2>
-                        <p>Nombre mascota</p>
-                        <p>Tamaño</p>
-                        <p>Edad</p>
-                        <div class="Aceptar-Rechazar">
-                            <button type="submit" onclick="location.href= <?php echo FRONT_ROOT . 'Reserva/aceptarFecha/id=' . $reserva->getId_reserva(); ?>;">Aceptar</button>
-                            <button type="submit" onclick="location.href= <?php echo FRONT_ROOT . 'Reserva/rechazarFecha/id=' . $reserva->getId_reserva();  ?>;">Rechazar</button>
-                        </div>
+            <div class="igual">
+                <img class="imagenPerf" src="<?php echo IMG_PATH . 'ImgMascotas/' . $mascota->getImgPerro();?>" alt="foto perro">
+                <div class="info">
+                    <h2><?php echo 'Dia: ' . $reserva->getDia();?></h2>
+                    <h2><?php echo 'Hora: ' . $reserva->getHora_inicio() . ' - ' . $reserva->getHora_final();?></h2>
+                    <p><?php echo 'Nombre de Mascota: ' . $mascota->getNombre(); ?></p>
+                    <p><?php echo 'Tamaño: ' . $mascota->getTamaño(); ?></p>
+                    <p><?php echo 'Edad: ' . $mascota->getEdad();  ?></p>
+                    <p><?php echo 'Raza: ' . $mascota->getRaza();  ?></p>
+                    <div class="Aceptar-Rechazar">
+                        <button type="button"><a href="<?php echo FRONT_ROOT . 'Reserva/aceptarReserva/id=' . $reserva->getId_reserva(); ?>">Aceptar</a></button>
+                        <button type="button"><a href="<?php echo FRONT_ROOT . 'Reserva/rechazarReserva/id=' . $reserva->getId_reserva(); ?>">Rechazar</a></button>
                     </div>
                 </div>
+            </div>
 
     <?php }
         }

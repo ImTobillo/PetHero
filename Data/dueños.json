@@ -1,1 +1,14 @@
-[]
+[
+    {
+        "id": 1,
+        "nombre": "Lautaro",
+        "apellido": "Manzo",
+        "fechaNacimiento": "2009-10-15",
+        "dni": "43564234",
+        "telefono": "2231114343",
+        "email": "laucha_mdp@gmail.com",
+        "ciudad": "Mar del Plata",
+        "calle": "la calle",
+        "numCalle": "24234"
+    }
+]

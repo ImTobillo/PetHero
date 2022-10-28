@@ -61,12 +61,14 @@ class ReservaDAO implements IRepositorio
         $this->RetrieveData();
 
         foreach ($this->reservaLista as $reservaValues) {
-            if ($id == $reservaValues->getId())
+            if ($id == $reservaValues->getId_reserva())
                 $reservaValues->setEstado($estado);
         }
         
         $this->SaveData();
     }
+
+
 
     // métodos JSON
 
@@ -80,7 +82,7 @@ class ReservaDAO implements IRepositorio
             $contentArray = ($jsonToDecode) ? json_decode($jsonToDecode, true) : array();
 
             foreach ($contentArray as $content) {
-                $reserva = new Reserva($content['id_guardian'], $content['id_dueño'], $content['fecha_inicio'], $content['fecha_final'], $content['hora_inicio'], $content['hora_final'], $content['id_mascota']);
+                $reserva = new Reserva($content['id_guardian'], $content['id_dueño'], $content['dia'], $content['hora_inicio'], $content['hora_final'], $content['id_mascota']);
                 $reserva->setId_reserva($content['id_reserva']);
                 $reserva->setEstado($content['estado']);
                 $reserva->setId_pago($content['id_pago']);
@@ -99,12 +101,11 @@ class ReservaDAO implements IRepositorio
             $valuesArray["id_reserva"] = $reserva->getId_reserva();
             $valuesArray["id_guardian"] = $reserva->getId_guardian();
             $valuesArray["id_dueño"] = $reserva->getId_dueño();
-            $valuesArray["fecha_inicio"] = $reserva->getFecha_inicio();
-            $valuesArray["fecha_final"] = $reserva->getFecha_final();
+            $valuesArray["dia"] = $reserva->getDia();
             $valuesArray["hora_inicio"] = $reserva->getHora_inicio();
             $valuesArray["hora_final"] = $reserva->getHora_final();
             $valuesArray["estado"] = $reserva->getEstado();
-            $valuesArray["id_pago"] = $reserva->getEstado();
+            $valuesArray["id_pago"] = $reserva->getId_pago();
             $valuesArray["id_mascota"] = $reserva->getId_mascota();
 
             array_push($arrayToEncode, $valuesArray);
@@ -138,8 +139,8 @@ class ReservaDAO implements IRepositorio
     public function updatePago($id_reserva, $id_pago){
         $reserva = $this->getById($id_reserva);
 
-        if($reserva->getEstado() == null){
-            $reserva->setEstado($id_pago);
+        if($reserva->getId_pago() == null){
+            $reserva->setId_pago($id_pago);
         }
         
         $this->SaveData();
