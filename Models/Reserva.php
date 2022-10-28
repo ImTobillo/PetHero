@@ -6,18 +6,20 @@ class Reserva{
     private $id_reserva;
     private $id_guardian; #solicitado
     private $id_dueño; #solicitante
-    private $dia;
+    private $fechaInicio;
+    private $fechaFinal;
     private $hora_inicio;
     private $hora_final;
     private $estado; #aceptado/rechazado
     private $id_pago;
     private $id_mascota;
 
-    public function __construct($id_guardian, $id_dueño, $dia, $hora_inicio, $hora_final, $id_mascota)
+    public function __construct($id_guardian, $id_dueño, $fechaInicio, $fechaFinal, $hora_inicio, $hora_final, $id_mascota)
     {
         $this->id_guardian = $id_guardian;
         $this->id_dueño = $id_dueño;
-        $this->dia = $dia;
+        $this->fechaInicio = $fechaInicio;
+        $this->fechaFinal = $fecha;
         $this->hora_inicio = $hora_inicio;
         $this->hora_final = $hora_final;
         $this->estado = null;
@@ -25,7 +27,29 @@ class Reserva{
         $this->id_mascota = $id_mascota;
     }
 
-    
+    public function setFechaInicio()
+    {
+        $this->fechaInicio = $fechaInicio;
+
+        return $this;
+    }
+
+    public function getFechaInicio()
+    {
+        return $this->fechaInicio;
+    }
+
+    public function setFechaFinal()
+    {
+        $this->fechaFinal = $fechaFinal;
+
+        return $this;
+    }
+
+    public function getFechaFinal()
+    {
+        return $this->fechaFinal;
+    }
 
 
     public function getId_reserva()

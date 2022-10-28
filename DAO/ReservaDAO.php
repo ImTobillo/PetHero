@@ -82,7 +82,7 @@ class ReservaDAO implements IRepositorio
             $contentArray = ($jsonToDecode) ? json_decode($jsonToDecode, true) : array();
 
             foreach ($contentArray as $content) {
-                $reserva = new Reserva($content['id_guardian'], $content['id_dueño'], $content['dia'], $content['hora_inicio'], $content['hora_final'], $content['id_mascota']);
+                $reserva = new Reserva($content['id_guardian'], $content['id_dueño'], $content['fechaInicio'], $content['fechaFinal'], $content['hora_inicio'], $content['hora_final'], $content['id_mascota']);
                 $reserva->setId_reserva($content['id_reserva']);
                 $reserva->setEstado($content['estado']);
                 $reserva->setId_pago($content['id_pago']);
@@ -101,7 +101,8 @@ class ReservaDAO implements IRepositorio
             $valuesArray["id_reserva"] = $reserva->getId_reserva();
             $valuesArray["id_guardian"] = $reserva->getId_guardian();
             $valuesArray["id_dueño"] = $reserva->getId_dueño();
-            $valuesArray["dia"] = $reserva->getDia();
+            $valuesArray["fechaInicio"] = $reserva->getFechaInicio();
+            $valuesArray["fechaFinal"] = $reserva->getFechaFinal();
             $valuesArray["hora_inicio"] = $reserva->getHora_inicio();
             $valuesArray["hora_final"] = $reserva->getHora_final();
             $valuesArray["estado"] = $reserva->getEstado();

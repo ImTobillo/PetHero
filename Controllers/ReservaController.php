@@ -23,8 +23,8 @@ class ReservaController
         require_once VIEWS_PATH . 'visualizarFechasSolicitadas.php';
     }
 
-    public function solicitarReserva($dia, $horaInicial, $horaFinal, $mascota, $id_guardian){
-        $reserva = new Reserva($id_guardian, $_SESSION['loggedUser']->getId(), $dia, $horaInicial, $horaFinal, $mascota);
+    public function solicitarReserva($fechaInicio, $fechaFinal, $horaInicial, $horaFinal, $mascota, $id_guardian){
+        $reserva = new Reserva($id_guardian, $_SESSION['loggedUser']->getId(), $fechaInicio, $fechaFinal, $horaInicial, $horaFinal, $mascota);
 
         $this->reservaDAO->add($reserva);
 
@@ -51,7 +51,7 @@ class ReservaController
 
         foreach ($listaReservas as $reservaValue) {
             if (($reservaValue->getEstado() == "Aceptado")  
-            && ($reservaValue->dia == $reserva->getDia()) 
+            && ($reservaValue->dia == $reserva->getDia())  // arreglar
             && ($this->mascotaDAO->getById($reservaValue->getId_mascota())->getRaza() != $reserva->getRaza())) 
                 $bool = false;
         }
