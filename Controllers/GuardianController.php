@@ -38,6 +38,10 @@ class GuardianController
         require_once VIEWS_PATH . 'VisualizarGuardianes.php';
     }
 
+    public function ShowMenuGuardian(){
+        require_once VIEWS_PATH . 'MenuGuardian.php';
+    }
+
     public function agregarGuardian($remuneracion, $tamanio, $fechaInicio, $fechaFinal, $horaInicial, $horaFinal)
     {
         $guardianNuevo = $_SESSION['loggedUser'];
@@ -52,12 +56,14 @@ class GuardianController
 
         $this->guardianDAO->add($guardianNuevo);
 
-        require_once VIEWS_PATH . 'MenuGuardian.php';
+        $this->ShowMenuGuardian();
     }
 
     public function filtrarGuardianes($fechaInicio, $fechaFinal){
+        
         $guardianes = $this->guardianDAO->getAll();
         $guardianList = array();
+
         foreach($guardianes as $guardian){
 
             if($guardian->getFechaInicio() <= $fechaInicio && $fechaInicio <= $guardian->getFechaFinal()){
