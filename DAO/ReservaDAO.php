@@ -82,6 +82,7 @@ class ReservaDAO implements IRepositorio
             $contentArray = ($jsonToDecode) ? json_decode($jsonToDecode, true) : array();
 
             foreach ($contentArray as $content) {
+                
                 $reserva = new Reserva($content['id_guardian'], $content['id_dueño'], $content['fechaInicio'], $content['fechaFinal'], $content['hora_inicio'], $content['hora_final'], $content['id_mascota']);
                 $reserva->setId_reserva($content['id_reserva']);
                 $reserva->setEstado($content['estado']);
