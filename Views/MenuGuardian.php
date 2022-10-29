@@ -8,7 +8,7 @@ require_once 'validarSesion.php';
 
     <main>
 
-        <h1 class="tit">Bienvenido de nuevo @</h1>
+        <h1 class="tit">Bienvenido de nuevo <?php echo $_SESSION['loggedUser']->getNombre()?></h1>
 
         <div class="contenedor2">
             

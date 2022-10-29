@@ -25,6 +25,8 @@ require_once 'validarSesion.php';
         </div>
 
         <div class="info-y-enviar">
+
+        <!-- INFORMACIÓN GUARDIAN !-->
             <div class="contenedor-datos ">
                     <div class="datosGuardian"><p>Nombre: <?php echo $guardian->getNombre(); ?></p></div>
                     <div class="datosGuardian"><p>Apellido: <?php echo $guardian->getApellido(); ?></p></div>
@@ -32,26 +34,52 @@ require_once 'validarSesion.php';
                     <div class="datosGuardian"><p>Email: <?php echo $guardian->getEmail(); ?></p></div>
                     <div class="datosGuardian"><p>Telefono: <?php echo $guardian->getTelefono(); ?></p></div>
                     <div class="datosGuardian"><p>Tamaño de mascota: <?php echo $guardian->getTamaño(); ?></p></div>
+                    <div class="datosGuardian"><p>Precio por hora: $<?php echo $guardian->getRemuneracion(); ?></p></div>
             </div>
     
+        <!-- SOLICITUD RESERVA !-->    
             <div class="formReservaGuardian">
                 <h1>Solicitar reserva</h1>
                 
                 <form action="<?php echo FRONT_ROOT . 'Reserva/solicitarReserva'?>" method="post">
 
                     <div class="inputs">
+
+                        <!-- INGRESAR FECHAS !-->
                         <p>Fecha inicial</p> 
                         <input class="datePickerInicio" id="inputFechaInicio"  name="fechaInicio" type="date" oninput="validarFecha()" min="<?php echo $guardian->getFechaInicio(); ?>" required>
                         <p>Fecha final</p>
                         <input class="datePickerFinal" id="inputFechaFinal"  name="fechaFinal" disabled type="date" max="<?php echo $guardian->getFechaFinal(); ?>" required>
-                    </div>
+                    </div>              
 
-                    <div class="inputs">
-                        <?php $array = explode("-", $guardian->getHoraDisponible()?? "");?>
-                        <input class="horaForm timePickerInicial" type="time" name="horaInicial" min="<?php echo $array[0] ?>" required>
-                        <input class="horaForm timePickerFinal" type="time" name="horaFinal" max="<?php echo $array[1] ?>" required>
-                    </div>
+                        <?php 
+                            //valido que fecha es menor para saber cual es el minimo de fecha inicial
+                            if($guardian->getFechaInicio() < date("Y-m-d")){
+                                //la fecha de inicio del guardian ya pasó, el minimo es la fecha de hoy
+                                $fecha_inicio = date("Y-m-d");
+                            }else{
+                                //la fecha de inicio del guardian todavía no pasó, el minimo será esa fecha
+                                $fecha_inicio = $guardian->getFechaInicio();
+                            }
+                        ?>
+
+                        <input class="datePickerInicio" id="inputFechaInicio"  name="fechaInicio" oninput="validarFecha()" type="date" min="<?php echo $fecha_inicio; ?>" required>
                         
+                        <p>Fecha final</p>
+                        <input class="datePickerFinal" id="inputFechaFinal"  name="fechaFinal" disabled type="date" max="<?php echo $guardian->getFechaFinal(); ?>" required>
+                    </div>
+                    
+                    <!-- INGRESAR HORARIOS !-->
+                    <div class="inputs">  
+
+                        <?php $array = explode("-", $guardian->getHoraDisponible()?? "");?>
+                        
+                        <input class="horaForm timePickerInicial" type="time" name="horaInicial" min=<?php echo $array[0] ?> required>
+                        <input class="horaForm timePickerFinal" type="time" name="horaFinal" max=<?php echo $array[1] ?> required>
+                        
+                    </div>
+                     
+                    <!-- ELEGIR MASCOTA DE ACUERDO AL TAMAÑO !-->
                     <div>
                         <select name="mascota" id="" required>
                             <option value="" disabled selected hidden>Mascota</option>
@@ -73,5 +101,9 @@ require_once 'validarSesion.php';
             </div>
         </div>
     </main>
+<<<<<<< HEAD
     <script src="<?php echo JS_PATH . "validarFecha.js" ?>"></script> 
+=======
+<script src="<?php echo JS_PATH . "validarFecha.js" ?>"></script> 
+>>>>>>> 921292baa24a6a0c4dfe9dc56abe6658cdde9589
 <?php require_once 'footer.php' ?>

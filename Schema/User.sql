@@ -10,5 +10,5 @@ CREATE TABLE IF NOT EXISTS User
     Contraseña varchar(50) not null,
     CONSTRAINT PK_IdUser PRIMARY KEY (IdUser),
     CONSTRAINT FK_IdTipo FOREIGN KEY (IdTipo) REFERENCES TipoUser(IdTipo),
-    CONSTRAINT UNQ_Username (Username);
+    CONSTRAINT UNQ_Username UNIQUE(Username)
 ) Engine=InnoDB;

@@ -19,7 +19,7 @@ class Reserva{
         $this->id_guardian = $id_guardian;
         $this->id_dueño = $id_dueño;
         $this->fechaInicio = $fechaInicio;
-        $this->fechaFinal = $fecha;
+        $this->fechaFinal = $fechaFinal;
         $this->hora_inicio = $hora_inicio;
         $this->hora_final = $hora_final;
         $this->estado = null;
@@ -27,7 +27,7 @@ class Reserva{
         $this->id_mascota = $id_mascota;
     }
 
-    public function setFechaInicio()
+    public function setFechaInicio($fechaInicio)
     {
         $this->fechaInicio = $fechaInicio;
 
@@ -39,7 +39,7 @@ class Reserva{
         return $this->fechaInicio;
     }
 
-    public function setFechaFinal()
+    public function setFechaFinal($fechaFinal)
     {
         $this->fechaFinal = $fechaFinal;
 
