@@ -1,13 +1,1 @@
-[
-    {
-        "id_reserva": 0,
-        "id_guardian": "0",
-        "id_due\u00f1o": 1,
-        "dia": "2022-11-23",
-        "hora_inicio": "10:15",
-        "hora_final": "14:30",
-        "estado": "Aceptado",
-        "id_pago": null,
-        "id_mascota": "0"
-    }
-]
+[]

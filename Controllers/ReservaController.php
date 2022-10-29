@@ -43,20 +43,21 @@ class ReservaController
         $this->ShowListaReservas();
     }
 
-    public function puedeAceptarRaza($reserva) // se valida que no haya otra raza aceptada en la misma fecha
+    public function puedeAceptarRaza($reserva) // se valida que no haya otra raza ACEPTADA en la misma fecha
     {
         $bool = true;
         
         $listaReservas = $this->reservaDAO->getAll();
 
         foreach ($listaReservas as $reservaValue) {
-            if (($reservaValue->getEstado() == "Aceptado")  
-            && ($reservaValue->dia == $reserva->getDia())  // arreglar
-            && ($this->mascotaDAO->getById($reservaValue->getId_mascota())->getRaza() != $reserva->getRaza())) 
-                $bool = false;
+            if (($reservaValue->getId_guardian() == $reserva->getId_guardian()) // si este guardian
+            && ($reservaValue->getEstado() == "Aceptado")  // ya acepto una mascota
+            && (($reservaValue->getFechaInicial() <= $reserva->getFechaInicial()) && ($reservaValue->getFechaInicial() >= $reserva->getFechaInicial()))  // en las mismas fechas
+            && ($this->mascotaDAO->getById($reservaValue->getId_mascota())->getRaza() != $reserva->getRaza())) // con una raza distinta
+                $bool = false; // no puede cuidar una raza distinta
         }
 
-        return $bool;
+        return $bool; 
     }
 }
 

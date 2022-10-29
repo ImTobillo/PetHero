@@ -14,7 +14,7 @@ require_once 'nav.php';
     <?php
     if (!empty($listaReservas)) { // guardian recibe solo mascotas que coincidan con el tamaño que cuida (validacion hecha ya en lado del dueño)
         foreach ($listaReservas as $reserva) {
-            if (($reserva->getEstado() == null) && ($reserva->getId_guardian() == $_SESSION['loggedUser']->getId()) && $this->puedeAceptarRaza($reserva)){
+            if (($reserva->getEstado() == null) && ($reserva->getId_guardian() == $_SESSION['loggedUser']->getId())){
                 $mascota = $this->mascotaDAO->getById($reserva->getId_mascota());
     ?>
             <div class="igual">
@@ -27,7 +27,11 @@ require_once 'nav.php';
                     <p><?php echo 'Edad: ' . $mascota->getEdad();  ?></p>
                     <p><?php echo 'Raza: ' . $mascota->getRaza();  ?></p>
                     <div class="Aceptar-Rechazar">
-                        <button type="button"><a href="<?php echo FRONT_ROOT . 'Reserva/aceptarReserva/id=' . $reserva->getId_reserva(); ?>">Aceptar</a></button>
+                        <button type="button" <?php if(!$this->puedeAceptarRaza($reserva)){?> disabled <?php }?> >
+                            <a href="<?php echo FRONT_ROOT . 'Reserva/aceptarReserva/id=' . $reserva->getId_reserva(); ?>"
+                                >Aceptar
+                            </a>
+                        </button>
                         <button type="button"><a href="<?php echo FRONT_ROOT . 'Reserva/rechazarReserva/id=' . $reserva->getId_reserva(); ?>">Rechazar</a></button>
                     </div>
                 </div>
