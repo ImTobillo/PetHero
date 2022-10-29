@@ -123,7 +123,7 @@ class ReservaDAO implements IRepositorio
         $id = 0;
 
         if (!empty($this->reservaLista))
-            $id = end($this->reservaLista)->getId() + 1;
+            $id = end($this->reservaLista)->getId_reserva() + 1;
 
         return $id;
     }
