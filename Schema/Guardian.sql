@@ -4,9 +4,9 @@ USE PetHero;
 
 CREATE TABLE IF NOT EXISTS Guardian
 (
-    IdGuardian int,
     IdUser int,
     IdCiudad int,
+    IdTamaño int,
     Nombre varchar(30) not null,
     Apellido varchar(30) not null,
     FechaNacimiento Date not null,
@@ -15,8 +15,12 @@ CREATE TABLE IF NOT EXISTS Guardian
     Email varchar(30) not null,
     Calle varchar(30) not null,
     NumCalle int not null,
-    CONSTRAINT PK_IdGuardian PRIMARY KEY (IdGuardian),
-    CONSTRAINT FK_IdUser FOREIGN KEY (IdUser) REFERENCES User(IdUser),
-    CONSTRAINT FK_IdCiudad FOREIGN KEY (IdCiudad) REFERENCES Ciudad(IdCiudad),
-    CONSTRAINT UNQ_Dni_Email (Dni, Email);
+    Remuneracion float not null,
+    FechaInicio Date not null,
+    FechaFinal Date not null,
+    CONSTRAINT PK_IdUserG PRIMARY KEY (IdUser),
+    CONSTRAINT FK_IdUserG FOREIGN KEY (IdUser) REFERENCES User(IdUser),
+    CONSTRAINT FK_IdCiudadG FOREIGN KEY (IdCiudad) REFERENCES Ciudad(IdCiudad),
+    CONSTRAINT FK_IdTamañoG FOREIGN KEY (IdTamaño) REFERENCES TamañoMascota(IdTamañoMascota),
+    CONSTRAINT UNQ_Dni_EmailG UNIQUE(Dni, Email)
 ) Engine=InnoDB;

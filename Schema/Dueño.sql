@@ -4,7 +4,6 @@ USE PetHero;
 
 CREATE TABLE IF NOT EXISTS Dueño
 (
-    IdDueño int,
     IdUser int,
     IdCiudad int,
     Nombre varchar(30) not null,
@@ -15,10 +14,10 @@ CREATE TABLE IF NOT EXISTS Dueño
     Email varchar(30) not null,
     Calle varchar(30) not null,
     NumCalle int not null,
-    CONSTRAINT PK_IdDueño PRIMARY KEY (IdDueño),
+    CONSTRAINT PK_IdUser PRIMARY KEY (IdUser),
     CONSTRAINT FK_IdUser FOREIGN KEY (IdUser) REFERENCES User(IdUser),
     CONSTRAINT FK_IdCiudad FOREIGN KEY (IdCiudad) REFERENCES Ciudad(IdCiudad),
-    CONSTRAINT UNQ_Dni_Email (Dni, Email);
+    CONSTRAINT UNQ_Dni_Email UNIQUE (Dni, Email)
 ) Engine=InnoDB;
 
 

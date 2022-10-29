@@ -8,5 +8,5 @@ CREATE TABLE IF NOT EXISTS Ciudad
     IdPais int not null,
     Nombre varchar(30) not null,
     CONSTRAINT PK_IdCiudad PRIMARY KEY (IdCiudad),
-    CONSTRAINT FK_IdPais FOREIGN KEY (IdPais) REFERENCES Pais(IdPais);
+    CONSTRAINT FK_IdPais FOREIGN KEY (IdPais) REFERENCES Pais(IdPais)
 ) Engine=InnoDB;
