@@ -54,6 +54,22 @@ class GuardianController
 
         require_once VIEWS_PATH . 'MenuGuardian.php';
     }
+
+    public function filtrarGuardianes($fechaInicio, $fechaFinal){
+        $guardianes = $this->guardianDAO->getAll();
+        $guardianList = array();
+        foreach($guardianes as $guardian){
+
+            if($guardian->getFechaInicio() <= $fechaInicio && $fechaInicio <= $guardian->getFechaFinal()){
+
+                if($guardian->getFechaFinal() >= $fechaFinal && $fechaFinal >= $guardian->getFechaInicio()){
+                    array_push($guardianList, $guardian);
+                }
+            }
+        }
+
+        require_once(VIEWS_PATH . 'VisualizarGuardianes.php');
+    }
 }
 
 ?>

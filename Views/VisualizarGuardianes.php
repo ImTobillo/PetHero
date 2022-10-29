@@ -13,7 +13,8 @@ require_once 'validarSesion.php';
 
         <h1 class="tituloG">Guardianes</h1>
         <div>
-            <form action="<?php echo FRONT_ROOT . 'Home/filtrarGuardianes'?>" method="post">
+            <!-- FILTRAR GUARDIANES POR FECHA DE DISPONIBILIDAD !-->
+            <form action="<?php echo FRONT_ROOT . 'Guardian/filtrarGuardianes'?>" method="post">
                 <h3>Filtrar disponibilidad</h3>
                 <div class="contenedorFecha">
                     <label for="">Fecha inicio</label> 
