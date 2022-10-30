@@ -4,7 +4,7 @@ use Models\Guardian;
 
 require_once 'header.php'; 
 require_once 'nav.php';
-require_once 'validarSesion.php';
+
 ?>
 
 <link property="stylesheet" rel="stylesheet" href=" <?php echo CSS_PATH . 'visualizarGuardianes-Mascotas.css' ?> ">

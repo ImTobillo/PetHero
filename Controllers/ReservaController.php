@@ -19,6 +19,7 @@ class ReservaController
 
     public function ShowListaReservas()
     {
+        require_once VIEWS_PATH . 'validarSesion.php';
         $listaReservas = $this->reservaDAO->getAll();
         require_once VIEWS_PATH . 'visualizarFechasSolicitadas.php';
     }

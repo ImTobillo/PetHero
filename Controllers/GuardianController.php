@@ -28,17 +28,20 @@ class GuardianController
 
     public function ShowHistorial()
     {
+        require_once VIEWS_PATH . 'validarSesion.php';
         $listaReservas = $this->reservasDAO->getAll();
         require_once VIEWS_PATH . 'verHistorialServOfrecidos-guardian.php';
     }
 
     public function ShowListView()
     {
+        require_once VIEWS_PATH . 'validarSesion.php';
         $guardianList = $this->guardianDAO->getAll();
         require_once VIEWS_PATH . 'VisualizarGuardianes.php';
     }
 
     public function ShowMenuGuardian(){
+        require_once VIEWS_PATH . 'validarSesion.php';
         require_once VIEWS_PATH . 'MenuGuardian.php';
     }
 
@@ -60,6 +63,7 @@ class GuardianController
     }
 
     public function filtrarGuardianes($fechaInicio, $fechaFinal){
+        
         
         $guardianes = $this->guardianDAO->getAll();
         $guardianList = array();

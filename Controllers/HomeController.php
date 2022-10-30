@@ -37,11 +37,10 @@ class HomeController
         {
             require_once(VIEWS_PATH . "inicio.php");
         }
-        //require_once(VIEWS_PATH . "verHistorialServOfrecidos-guardian.php");
     }
 
     public function verPerfil(){
-        
+        require_once VIEWS_PATH . 'validarSesion.php';
         if(get_class($_SESSION['loggedUser']) == "Models\Dueño"){ 
             require_once(VIEWS_PATH . 'ver-perfil-dueño.php');
         }else{
