@@ -45,13 +45,6 @@ require_once 'validarSesion.php';
 
                     <div class="inputs">
 
-                        <!-- INGRESAR FECHAS !-->
-                        <p>Fecha inicial</p> 
-                        <input class="datePickerInicio" id="inputFechaInicio"  name="fechaInicio" type="date" oninput="validarFecha()" min="<?php echo $guardian->getFechaInicio(); ?>" required>
-                        <p>Fecha final</p>
-                        <input class="datePickerFinal" id="inputFechaFinal"  name="fechaFinal" disabled type="date" max="<?php echo $guardian->getFechaFinal(); ?>" required>
-                    </div>              
-
                         <?php 
                             //valido que fecha es menor para saber cual es el minimo de fecha inicial
                             if($guardian->getFechaInicio() < date("Y-m-d")){
@@ -60,10 +53,13 @@ require_once 'validarSesion.php';
                             }else{
                                 //la fecha de inicio del guardian todavía no pasó, el minimo será esa fecha
                                 $fecha_inicio = $guardian->getFechaInicio();
-                            }
+                            } 
                         ?>
 
-                        <input class="datePickerInicio" id="inputFechaInicio"  name="fechaInicio" oninput="validarFecha()" type="date" min="<?php echo $fecha_inicio; ?>" required>
+                        <!-- INGRESAR FECHAS !-->
+
+                        <p>Fecha inicial</p> 
+                        <input class="datePickerInicio" id="inputFechaInicio"  name="fechaInicio" oninput="validarFecha()" type="date" min="<?php echo $fecha_inicio; ?>" max="<?php echo $guardian->getFechaFinal(); ?>" required>
                         
                         <p>Fecha final</p>
                         <input class="datePickerFinal" id="inputFechaFinal"  name="fechaFinal" disabled type="date" max="<?php echo $guardian->getFechaFinal(); ?>" required>
@@ -74,8 +70,8 @@ require_once 'validarSesion.php';
 
                         <?php $array = explode("-", $guardian->getHoraDisponible()?? "");?>
                         
-                        <input class="horaForm timePickerInicial" type="time" name="horaInicial" min=<?php echo $array[0] ?> required>
-                        <input class="horaForm timePickerFinal" type="time" name="horaFinal" max=<?php echo $array[1] ?> required>
+                        <input class="horaForm timePickerInicial" id="inputHoraInicio" type="time" name="horaInicial" oninput="validarHora()" min=<?php echo $array[0] ?> required>
+                        <input class="horaForm timePickerFinal" id="inputHoraFinal" type="time" name="horaFinal" max=<?php echo $array[1] ?> required>
                         
                     </div>
                      
@@ -101,9 +97,6 @@ require_once 'validarSesion.php';
             </div>
         </div>
     </main>
-<<<<<<< HEAD
-    <script src="<?php echo JS_PATH . "validarFecha.js" ?>"></script> 
-=======
-<script src="<?php echo JS_PATH . "validarFecha.js" ?>"></script> 
->>>>>>> 921292baa24a6a0c4dfe9dc56abe6658cdde9589
+
+    <script src="<?php echo JS_PATH . "validar.js" ?>"></script> 
 <?php require_once 'footer.php' ?>

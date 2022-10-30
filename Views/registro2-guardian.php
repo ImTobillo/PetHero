@@ -38,8 +38,8 @@ require_once 'nav.php';
         </div>
 
         <div class="inputsFecha">
-          <input class="opcionFecha timePickerInicial" type="time" name="horaInicial" />
-          <input class="opcionFecha timePickerFinal" type="time" name="horaFinal" />
+          <input class="opcionFecha timePickerInicial" id="inputHoraInicio" type="time" name="horaInicial" oninput="validarHora()"/>
+          <input class="opcionFecha timePickerFinal" id="inputHoraFinal" type="time" name="horaFinal" />
         </div>
 
         <div class="botonesForm">
@@ -49,5 +49,8 @@ require_once 'nav.php';
       </form>
     </div>
   </main>
-  <script src="<?php echo JS_PATH . "validarFecha.js" ?>"></script> 
+  <script src="<?php echo JS_PATH . "validar.js" ?>"></script> 
+  <script>
+    
+  </script>
   <?php require_once 'footer.php' ?>

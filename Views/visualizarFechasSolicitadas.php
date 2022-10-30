@@ -20,19 +20,22 @@ require_once 'nav.php';
             <div class="igual">
                 <img class="imagenPerf" src="<?php echo IMG_PATH . 'ImgMascotas/' . $mascota->getImgPerro();?>" alt="foto perro">
                 <div class="info">
-                    <h2><?php echo 'Dia: ' . $reserva->getDia();?></h2>
+                    <h2><?php echo 'Fecha Inicial: ' . date("d-m-y", strtotime($reserva->getFechaInicio()))?></h2>
+                    <h2><?php echo 'Fecha Final: ' . date("d-m-y", strtotime($reserva->getFechaFinal()))?></h2>
                     <h2><?php echo 'Hora: ' . $reserva->getHora_inicio() . ' - ' . $reserva->getHora_final();?></h2>
                     <p><?php echo 'Nombre de Mascota: ' . $mascota->getNombre(); ?></p>
                     <p><?php echo 'Tamaño: ' . $mascota->getTamaño(); ?></p>
                     <p><?php echo 'Edad: ' . $mascota->getEdad();  ?></p>
                     <p><?php echo 'Raza: ' . $mascota->getRaza();  ?></p>
                     <div class="Aceptar-Rechazar">
-                        <button type="button" <?php if(!$this->puedeAceptarRaza($reserva)){?> disabled <?php }?> >
-                            <a href="<?php echo FRONT_ROOT . 'Reserva/aceptarReserva/id=' . $reserva->getId_reserva(); ?>"
-                                >Aceptar
-                            </a>
-                        </button>
-                        <button type="button"><a href="<?php echo FRONT_ROOT . 'Reserva/rechazarReserva/id=' . $reserva->getId_reserva(); ?>">Rechazar</a></button>
+                        <?php if($this->puedeAceptarRaza($reserva)){ ?>
+                            <button type="button">
+                                <a href="<?php echo FRONT_ROOT . 'Reserva/aceptarReserva?id=' . $reserva->getId_reserva(); ?>"
+                                    >Aceptar
+                                </a>
+                            </button>
+                        <?php } ?>
+                        <button type="button"><a href="<?php echo FRONT_ROOT . 'Reserva/rechazarReserva?id=' . $reserva->getId_reserva(); ?>">Rechazar</a></button>
                     </div>
                 </div>
             </div>

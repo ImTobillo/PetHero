@@ -11,5 +11,18 @@
         "planVacunacion": "calendario-vacunaci\u00f3n-border.png",
         "imgPerro": "Border_Collie.jpg",
         "videoPerro": "border-collie-video.mp4"
+    },
+    {
+        "id": 1,
+        "idDue\u00f1o": 2,
+        "tipoMascota": "Gato",
+        "nombre": "corky",
+        "tama\u00f1o": "Mediano",
+        "edad": "3",
+        "raza": "siberiano",
+        "observaciones": "es un gato",
+        "planVacunacion": "Border_Collie.jpg",
+        "imgPerro": "calendario_de_vacunas_cihuahua.jpg",
+        "videoPerro": "Chihuahua-video.mp4"
     }
 ]

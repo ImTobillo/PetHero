@@ -26,7 +26,7 @@ require_once 'validarSesion.php';
 
             <div class="iguales">
 
-                <a href="verHistorialServOfrecidos-guardian.html" class="enlace"></a>
+                <a href=" <?php echo FRONT_ROOT . 'Guardian/ShowHistorial' ?> " class="enlace"></a>
 
                 <h2>Servicios ofrecidos</h2>
 

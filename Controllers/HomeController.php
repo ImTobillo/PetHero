@@ -37,6 +37,7 @@ class HomeController
         {
             require_once(VIEWS_PATH . "inicio.php");
         }
+        //require_once(VIEWS_PATH . "verHistorialServOfrecidos-guardian.php");
     }
 
     public function verPerfil(){

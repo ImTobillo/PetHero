@@ -10,5 +10,11 @@
         "username": "laucha",
         "password": "123456",
         "tipoCuenta": "due\u00f1o"
+    },
+    {
+        "id": 2,
+        "username": "catalina",
+        "password": "123456",
+        "tipoCuenta": "due\u00f1o"
     }
 ]

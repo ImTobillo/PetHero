@@ -10,3 +10,16 @@ function validarFecha()
     else if (inputFechaInicio.value >= inputFechaFinal.value)// si ya habia puesto fecha final y la nueva inicial es mayor
         inputFechaFinal.value = inputFechaInicio.value;
 }
+
+function validarHora()
+{
+    let inputHoraInicio = document.getElementById("inputHoraInicio");
+    let inputHoraFinal = document.getElementById("inputHoraFinal");
+
+    inputHoraFinal.setAttribute("min", inputHoraInicio.value);
+
+    if (!inputHoraFinal.value) // si todavia no puso hora final
+        inputHoraFinal.disabled = false;
+    else if (inputFechaInicio.value >= inputHoraFinal.value)// si ya habia puesto hora final y la nueva inicial es mayor
+        inputHoraFinal.value = inputHoraInicio.value;
+}
