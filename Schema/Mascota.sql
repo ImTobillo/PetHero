@@ -4,7 +4,7 @@ USE PetHero;
 
 CREATE TABLE IF NOT EXISTS Mascota
 (
-    IdMascota int,
+    IdMascota int IDENTITY,
     IdDueño int,
     IdRaza int,
     IdTamaño int,

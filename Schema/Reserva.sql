@@ -4,7 +4,7 @@ USE PetHero;
 
 CREATE TABLE IF NOT EXISTS Reserva
 (
-    IdReserva int,
+    IdReserva int IDENTITY,
     IdPago int,
     IdDueño int,
     IdGuardian int,

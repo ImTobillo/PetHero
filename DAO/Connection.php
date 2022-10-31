@@ -46,6 +46,7 @@
             }
             catch(Exception $ex)
             {
+                echo $ex->getMessage();
                 throw $ex;
             }
         }
