@@ -8,7 +8,9 @@
             <ul>
                 <li><a href=" <?php echo FRONT_ROOT . 'Home/Index' ?> ">Inicio</a></li>
                 <?php if (isset($_SESSION['loggedUser'])) { ?>
+                    <li><a href="<?php echo FRONT_ROOT . 'Home/verPerfil'?> ">Ver Perfil</a></li>
                     <li><a href=" <?php echo FRONT_ROOT . 'Home/cerrarSesion'; ?> ">Cerrar Sesion</a></li>
+                    
                     <!--<li><p>Bienvenido de nuevo <?php //echo $_SESSION['loggedUser']->getNombre(); ?> ! </p></li> -->
                 <?php } ?>
 

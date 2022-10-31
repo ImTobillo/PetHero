@@ -1,14 +1,13 @@
 <?php
 require_once 'header.php'; 
 require_once 'nav.php';
-require_once 'validarSesion.php';
 ?>
 
     <link property="stylesheet" rel="stylesheet" href=" <?php echo CSS_PATH . 'menuDueño-Guardian.css' ?> ">
 
     <main>
 
-        <h1 class="tit">Bienvenido de nuevo @</h1>
+        <h1 class="tit">Bienvenido de nuevo <?php echo $_SESSION['loggedUser']->getNombre()?></h1>
 
         <div class="contenedor2">
             
@@ -26,7 +25,7 @@ require_once 'validarSesion.php';
 
             <div class="iguales">
 
-                <a href="verHistorialServOfrecidos-guardian.html" class="enlace"></a>
+                <a href=" <?php echo FRONT_ROOT . 'Guardian/ShowHistorial' ?> " class="enlace"></a>
 
                 <h2>Servicios ofrecidos</h2>
 

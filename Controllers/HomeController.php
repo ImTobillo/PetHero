@@ -39,11 +39,20 @@ class HomeController
         }
     }
 
+    public function verPerfil(){
+        require_once VIEWS_PATH . 'validarSesion.php';
+        if(get_class($_SESSION['loggedUser']) == "Models\Dueño"){ 
+            require_once(VIEWS_PATH . 'ver-perfil-dueño.php');
+        }else{
+            require_once(VIEWS_PATH . 'ver-perfil-guardian.php');
+        } 
+    }
     public function Login($username, $password)
     {
         $user = $this->userDAO->getByUser($username);
 
         if (($user != null) && ($user->getPassword() == $password)) {
+
             $userLogueado = null;
             
             if ($user->getTipoCuenta() == 'guardian')
@@ -53,6 +62,7 @@ class HomeController
 
             $_SESSION['loggedUser'] = $userLogueado;
             $this->Index();
+
         } else {
             $this->Index();
             echo "<script> if(confirm('Usuario y/o Contraseña incorrectos')); </script>";
@@ -74,24 +84,33 @@ class HomeController
     public function registro($nombre, $apellido, $dni, $email, $contraseña, $telefono, $fechaNacimiento, $ciudad, $calle, $numCalle, $nombreUser, $tipoCuenta)
     {
         $user = $this->userDAO->getByUser($nombreUser);
-        if($user != null){
+        
+        if($user != null){ // ya hay un usuario con ese nombre
+
             echo "<script> if(confirm('Nombre de usuario no disponible')); </script>";
             require_once(VIEWS_PATH . "registro.php");
-        }else{
+
+        }else{ //el nombre de usuario esta disponible
+
             $newUser = new User($nombreUser, $contraseña, $tipoCuenta);
             $this->userDAO->add($newUser);
-            if ($tipoCuenta == "dueño") {
+
+            if ($tipoCuenta == "dueño") { //se quiere registrar un dueño
+
                 $dueños = $this->dueñosDAO->getAll();
                 $bool = false;
+
                 foreach ($dueños as $value) {
-                    if ($value->getEmail() == $email) {
+                    if ($value->getEmail() == $email) { //Valida que el email no exista en otro usuario
                         //advertencia email invalido
                         $bool = true;
                         echo "<script> if(confirm('Email no disponible')); </script>";
                         require_once(VIEWS_PATH . "registro.php");
                     }
                 }
-                if ($bool == false) {
+
+                if ($bool == false) { //dueño registrado con éxito
+
                     $dueño = new Dueño($newUser->getId(), $nombre, $apellido, $fechaNacimiento, $dni, $telefono, $email, $ciudad, $calle, $numCalle);
 
                     $_SESSION['loggedUser'] = $dueño;
@@ -100,18 +119,22 @@ class HomeController
                     
                     require_once(VIEWS_PATH . "crear-mascota.php");
                 }
-            } else {
+            } else { // se quiere registrar un guardian
+
                 $guardianes = $this->guardianesDAO->getAll();
                 $bool = false;
-                foreach ($guardianes as $value) {
-                    if ($value->getEmail() == $email) {
+
+                foreach ($guardianes as $value) { 
+
+                    if ($value->getEmail() == $email) { //Valida que el email no exista en otro usuario
                         //advertencia email invalido
                         $bool = true;
                         echo "<script> if(confirm('Email no disponible')); </script>";
                         require_once(VIEWS_PATH . "registro.php");
                     }
                 }
-                if ($bool == false) {
+                if ($bool == false) { //guardian registrado con exito
+
                     $guardian = new Guardian($newUser->getId(), $nombre, $apellido, $fechaNacimiento, $dni, $telefono, $email, $ciudad, $calle, $numCalle);
 
                     $_SESSION['loggedUser'] = $guardian;

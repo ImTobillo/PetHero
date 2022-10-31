@@ -1,7 +1,6 @@
 <?php
 require_once 'header.php'; 
 require_once 'nav.php';
-require_once 'validarSesion.php';
 ?>
 
     <link property="stylesheet" href=" <?php echo CSS_PATH . 'registro2-guardia.css' ?> " rel="stylesheet" />

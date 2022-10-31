@@ -28,14 +28,21 @@ class GuardianController
 
     public function ShowHistorial()
     {
+        require_once VIEWS_PATH . 'validarSesion.php';
         $listaReservas = $this->reservasDAO->getAll();
         require_once VIEWS_PATH . 'verHistorialServOfrecidos-guardian.php';
     }
 
     public function ShowListView()
     {
+        require_once VIEWS_PATH . 'validarSesion.php';
         $guardianList = $this->guardianDAO->getAll();
         require_once VIEWS_PATH . 'VisualizarGuardianes.php';
+    }
+
+    public function ShowMenuGuardian(){
+        require_once VIEWS_PATH . 'validarSesion.php';
+        require_once VIEWS_PATH . 'MenuGuardian.php';
     }
 
     public function agregarGuardian($remuneracion, $tamanio, $fechaInicio, $fechaFinal, $horaInicial, $horaFinal)
@@ -52,7 +59,26 @@ class GuardianController
 
         $this->guardianDAO->add($guardianNuevo);
 
-        require_once VIEWS_PATH . 'MenuGuardian.php';
+        $this->ShowMenuGuardian();
+    }
+
+    public function filtrarGuardianes($fechaInicio, $fechaFinal){
+        
+        
+        $guardianes = $this->guardianDAO->getAll();
+        $guardianList = array();
+
+        foreach($guardianes as $guardian){
+
+            if($guardian->getFechaInicio() <= $fechaInicio && $fechaInicio <= $guardian->getFechaFinal()){
+
+                if($guardian->getFechaFinal() >= $fechaFinal && $fechaFinal >= $guardian->getFechaInicio()){
+                    array_push($guardianList, $guardian);
+                }
+            }
+        }
+
+        require_once(VIEWS_PATH . 'VisualizarGuardianes.php');
     }
 }
 

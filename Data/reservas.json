@@ -3,11 +3,24 @@
         "id_reserva": 0,
         "id_guardian": "0",
         "id_due\u00f1o": 1,
-        "dia": "2022-11-23",
-        "hora_inicio": "10:15",
-        "hora_final": "14:30",
+        "fechaInicio": "2022-11-05",
+        "fechaFinal": "2022-11-30",
+        "hora_inicio": "09:25",
+        "hora_final": "12:30",
         "estado": "Aceptado",
         "id_pago": null,
         "id_mascota": "0"
+    },
+    {
+        "id_reserva": 1,
+        "id_guardian": "0",
+        "id_due\u00f1o": 2,
+        "fechaInicio": "2022-10-30",
+        "fechaFinal": "2022-11-30",
+        "hora_inicio": "19:42",
+        "hora_final": "20:30",
+        "estado": "Rechazado",
+        "id_pago": null,
+        "id_mascota": "1"
     }
 ]

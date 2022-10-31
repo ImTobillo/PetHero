@@ -18,11 +18,13 @@ class MascotaController
 
     public function ShowAddView()
     {
+        require_once VIEWS_PATH . 'validarSesion.php';
         require_once(VIEWS_PATH . "crear-mascota.php");
     }
 
     public function ShowListView()
     {
+        require_once VIEWS_PATH . 'validarSesion.php';
         $listMascotas = $this->mascotasDAO->getAll();
         require_once(VIEWS_PATH . "VisualizarMascotas.php");
     }
@@ -101,6 +103,7 @@ class MascotaController
 
     public function verPerfil($id)
     {
+        require_once VIEWS_PATH . 'validarSesion.php';
         $mascota = $this->mascotasDAO->getById($id);
         require_once(VIEWS_PATH . "ver-perfil-mascota.php");
     }

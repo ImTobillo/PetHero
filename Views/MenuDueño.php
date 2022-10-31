@@ -1,7 +1,6 @@
 <?php
 require_once 'header.php'; 
 require_once 'nav.php';
-require_once 'validarSesion.php';
 
 ?>
     
@@ -9,7 +8,7 @@ require_once 'validarSesion.php';
 
     <main>
 
-        <h1 class="tit">Bienvenido de nuevo @</h1>
+        <h1 class="tit">Bienvenido de nuevo <?php echo $_SESSION['loggedUser']->getNombre()?></h1>
 
         <div class="contenedor">
             
@@ -19,7 +18,7 @@ require_once 'validarSesion.php';
 
                 <h2>Visualizar guardianes</h2>
 
-                <p>Revise su perfil para chequear su información y editar lo que gustes.</p>
+                <p>Vea la lista de todos los guardianes disponibles.</p>
 
                 <img class="icono" src=" <?php echo IMG_PATH . 'person.png' ?> " alt="persona">
 

@@ -10,5 +10,17 @@
         "ciudad": "Mar del Plata",
         "calle": "la calle",
         "numCalle": "24234"
+    },
+    {
+        "id": 2,
+        "nombre": "Cata",
+        "apellido": "Liste",
+        "fechaNacimiento": "2009-09-09",
+        "dni": "23223423",
+        "telefono": "2231114343",
+        "email": "cata@gmail.com",
+        "ciudad": "Mar del Plata",
+        "calle": "la calle",
+        "numCalle": "3243"
     }
 ]
