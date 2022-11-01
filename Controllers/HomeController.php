@@ -8,6 +8,8 @@ use DAO\DueñoDAO as DueñoDAO;
 use Models\Dueño as Dueño;
 use Models\Guardian as Guardian;
 use Models\User as User;
+use Exception;
+use PDOException;
 
 
 class HomeController
@@ -49,7 +51,7 @@ class HomeController
     }
     public function Login($username, $password)
     {
-        $user = $this->userDAO->getByUser($username);
+       /* $user = $this->userDAO->getByUser($username);
 
         if (($user != null) && ($user->getPassword() == $password)) {
 
@@ -66,7 +68,7 @@ class HomeController
         } else {
             $this->Index();
             echo "<script> if(confirm('Usuario y/o Contraseña incorrectos')); </script>";
-        }
+        }*/
     }
 
     public function registrarCuenta($tipoCuenta)
@@ -83,7 +85,35 @@ class HomeController
     #agregar funcion de registro que guarde los datos de persona
     public function registro($nombre, $apellido, $dni, $email, $contraseña, $telefono, $fechaNacimiento, $ciudad, $calle, $numCalle, $nombreUser, $tipoCuenta)
     {
-        $user = $this->userDAO->getByUser($nombreUser);
+        try{
+            $newUser = new User($nombreUser, $contraseña, $tipoCuenta);
+            $this->userDAO->add($newUser);
+        }catch(Exception $e){
+            echo "<script> if(confirm('Nombre de usuario no disponible')); </script>";
+            require_once(VIEWS_PATH . "registro.php");
+        }
+        
+
+        if ($tipoCuenta == "dueño") { //se quiere registrar un dueño
+
+            try{
+                $dueño = new Dueño($newUser->getId(), $nombre, $apellido, $fechaNacimiento, $dni, $telefono, $email, $ciudad, $calle, $numCalle);
+
+                $_SESSION['loggedUser'] = $dueño;
+                
+                $this->dueñosDAO->add($dueño);
+                
+                require_once(VIEWS_PATH . "crear-mascota.php");
+            }catch(Exception $e){
+                echo "<script> if(confirm('Email no disponible')); </script>";
+                require_once(VIEWS_PATH . "registro.php");
+            }
+                
+            
+        } //else {}
+
+
+        /*$user = $this->userDAO->getByUser($nombreUser);
         
         if($user != null){ // ya hay un usuario con ese nombre
 
@@ -142,7 +172,7 @@ class HomeController
                     require_once(VIEWS_PATH . "registro2-guardian.php");
                 }
             }
-        }   
+        }*/   
     }
 
     
