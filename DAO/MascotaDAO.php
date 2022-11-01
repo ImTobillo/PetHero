@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace DAO;
 
@@ -10,79 +10,14 @@ use DAO\Connection as Connection;
 use Exception;
 use PDOException;
 
-class MascotaDAO implements IRepositorio{
-
+class MascotaDAO implements IRepositorio
+{
     private $connection;
-    private $listMascotas = array();
-    
     //private $fileName = ROOT . 'Data/mascotas.json';
 
-    private function devuelveIdRaza($nombreRaza, $tipoMascota){
-
-        $this->connection = Connection::GetInstance();
-        $idRetornar = null;
-        $query = "SELECT Raza.IdRaza AS id FROM Raza WHERE Raza.Raza = '$nombreRaza' ";
-        $resultado = $this->connection->Execute($query);
-
-        if(empty($resultado)){
-            $query = "INSERT INTO Raza (Raza, Especie) VALUES (:nombreRaza, :tipoMascota)";
-            $parameters['nombreRaza'] = $nombreRaza;
-            $parameters['tipoMascota'] = $tipoMascota;
-            $this->connection->ExecuteNonQuery($query, $parameters);
-            $query = "SELECT MAX(IdRaza) AS id FROM Raza";
-            $idRetornar = $this->connection->Execute($query);
-        }
-        else{
-            $idRetornar = $resultado;
-        }
-
-        return $idRetornar[0][0];
-    }
-    
-    private function devuelveIdTamanio($tamanio){
-
-        $this->connection = Connection::GetInstance();
-        $idRetornar = null;
-        $query = "SELECT TamanioMascota.IdTamanioMascota AS id FROM TamanioMascota WHERE TamanioMascota.Tamanio = '$tamanio' ";
-        $resultado = $this->connection->Execute($query);
-
-        if(empty($resultado)){
-            $query = "INSERT INTO TamanioMascota (Tamanio) VALUES (:Tamanio)";
-            $parameters['Tamanio'] = $tamanio;
-            $this->connection->ExecuteNonQuery($query, $parameters);
-            $query = "SELECT MAX(IdTamanioMascota) AS id FROM TamanioMascota";
-            $idRetornar = $this->connection->Execute($query);
-        }
-        else{
-            $idRetornar = $resultado;
-        }
-
-        return $idRetornar[0][0];
-    }
-
-    public function crearArchivo($arch){ 
-
-        $idRetornar = null;
-
-        $this->connection = Connection::GetInstance();
-
-        if($arch != null){
-            $query = "INSERT INTO Archivo(Url_) VALUES (:Url_)";
-            $parameters['Url_'] = $arch;
-            $this->connection->ExecuteNonQuery($query, $parameters);
-    
-            $query = "SELECT MAX(IdArchivo) AS id FROM Archivo";
-            $idRetornar = $this->connection->Execute($query);
-            
-            return $idRetornar[0][0];
-        }
-        else{
-            return null;
-        }
-    }
-
-    public function add($mascota){
-        try{
+    public function add($mascota)
+    {
+        try {
             $this->connection = Connection::GetInstance();
 
             $query = "INSERT INTO Mascota (IdDuenio, IdRaza, IdTamanio, IdArchivoImgPerfil, IdArchivoImgPlanVacunacion, IdArchivoVideoPerro, Nombre, Edad, Observaciones)
@@ -99,29 +34,29 @@ class MascotaDAO implements IRepositorio{
             $parameters['Observaciones'] = $mascota->getObservaciones();
 
             $this->connection->ExecuteNonQuery($query, $parameters);
-        }
-        catch(Exception $e){
+
+        } catch (Exception $e) {
             echo $e->getMessage();
             throw $e;
         }
     }
 
-    public function getAll(){
-        try
-        {
-            $array = Array();
+    public function getAll()
+    {
+        try {
+            $array = array();
             $query = "SELECT * FROM Mascota";
             $this->connection = Connection::GetInstance();
             $resultado = $this->connection->Execute($query);
 
             foreach ($resultado as $fila) {
 
-                $mascota = new Perro();
+                $mascota = ($this->getTipoMascota($fila['IdRaza']) == "Perro") ? new Perro() : new Gato();
 
                 $mascota->setId($fila['IdMascota']);
                 $mascota->setIdDueño($fila['IdDuenio']);
                 $mascota->setTipoMascota($this->getTipoMascota($fila['IdRaza']));
-                $mascota->setRaza($fila['IdRaza']);
+                $mascota->setRaza($this->getRaza($fila['IdRaza']));
                 $mascota->setTamaño($this->getTamañoBd($fila['IdTamanio']));
                 $mascota->setImgPerro($this->getArch($fila['IdArchivoImgPerfil']));
                 $mascota->setPlanVacunacion($this->getArch($fila['IdArchivoImgPlanVacunacion']));
@@ -134,28 +69,105 @@ class MascotaDAO implements IRepositorio{
             }
 
             return $array;
-        }
-        catch(Exception $e)
-        {
+
+        } catch (Exception $e) {
             throw $e;
         }
     }
 
-    private function getTipoMascota($IdRaza){
+    // Funciones para el Add
+
+    private function devuelveIdRaza($nombreRaza, $tipoMascota)
+    {
+        $this->connection = Connection::GetInstance();
+        $idRetornar = null;
+        $query = "SELECT Raza.IdRaza AS id FROM Raza WHERE Raza.Raza = '$nombreRaza' ";
+        $resultado = $this->connection->Execute($query);
+
+        if (empty($resultado)) {
+            $query = "INSERT INTO Raza (Raza, Especie) VALUES (:nombreRaza, :tipoMascota)";
+            $parameters['nombreRaza'] = $nombreRaza;
+            $parameters['tipoMascota'] = $tipoMascota;
+            $this->connection->ExecuteNonQuery($query, $parameters);
+            $query = "SELECT MAX(IdRaza) AS id FROM Raza";
+            $idRetornar = $this->connection->Execute($query);
+        } else {
+            $idRetornar = $resultado;
+        }
+
+        return $idRetornar[0][0];
+    }
+
+    private function devuelveIdTamanio($tamanio)
+    {
+
+        $this->connection = Connection::GetInstance();
+        $idRetornar = null;
+        $query = "SELECT TamanioMascota.IdTamanioMascota AS id FROM TamanioMascota WHERE TamanioMascota.Tamanio = '$tamanio' ";
+        $resultado = $this->connection->Execute($query);
+
+        if (empty($resultado)) {
+            $query = "INSERT INTO TamanioMascota (Tamanio) VALUES (:Tamanio)";
+            $parameters['Tamanio'] = $tamanio;
+            $this->connection->ExecuteNonQuery($query, $parameters);
+            $query = "SELECT MAX(IdTamanioMascota) AS id FROM TamanioMascota";
+            $idRetornar = $this->connection->Execute($query);
+        } else {
+            $idRetornar = $resultado;
+        }
+
+        return $idRetornar[0][0];
+    }
+
+    public function crearArchivo($arch)
+    {
+
+        $idRetornar = null;
+
+        $this->connection = Connection::GetInstance();
+
+        if ($arch != null) {
+            $query = "INSERT INTO Archivo(Url_) VALUES (:Url_)";
+            $parameters['Url_'] = $arch;
+            $this->connection->ExecuteNonQuery($query, $parameters);
+
+            $query = "SELECT MAX(IdArchivo) AS id FROM Archivo";
+            $idRetornar = $this->connection->Execute($query);
+
+            return $idRetornar[0][0];
+        } else {
+            return null;
+        }
+    }
+
+    // Funciones para getAll
+
+    private function getTipoMascota($IdRaza)
+    {
         $query = "SELECT Especie FROM Raza WHERE IdRaza = " . $IdRaza;
         $this->connection = Connection::GetInstance();
         $resultado = $this->connection->Execute($query);
         return $resultado[0][0];
     }
 
-    private function getTamañoBd($IdTamanio){
+    private function getRaza($IdRaza)
+    {
+        $query = "SELECT Raza FROM Raza WHERE IdRaza = " . $IdRaza;
+        $this->connection = Connection::GetInstance();
+        $resultado = $this->connection->Execute($query);
+        return $resultado[0][0];
+    }
+
+    private function getTamañoBd($IdTamanio)
+    {
         $query = "SELECT Tamanio FROM TamanioMascota WHERE IdTamanioMascota = " . $IdTamanio;
         $this->connection = Connection::GetInstance();
         $resultado = $this->connection->Execute($query);
         return $resultado[0][0];
     }
 
-    private function getArch($IdArch){
+    private function getArch($IdArch)
+    {
         $query = "SELECT Url_ FROM Archivo WHERE IdArchivo = " . $IdArch;
         $this->connection = Connection::GetInstance();
         $resultado = $this->connection->Execute($query);
@@ -165,12 +177,12 @@ class MascotaDAO implements IRepositorio{
     public function getById($id)
     {
         //$this->RetrieveData();
-        $this->getAll();
+        $listMascotas = $this->getAll();
 
         $mascota = null;
 
-        if (!empty($this->listMascotas)) {
-            foreach ($this->listMascotas as $masc) {
+        if (!empty($listMascotas)) {
+            foreach ($listMascotas as $masc) {
                 if ($id == $masc->getId()) {
                     $mascota = $masc;
                 }
@@ -179,7 +191,10 @@ class MascotaDAO implements IRepositorio{
         return $mascota;
     }
 
-/*
+    /*
+
+    // Funciones para Json
+
     private function GetNextId()
     {
         $id = 0;
@@ -281,7 +296,4 @@ class MascotaDAO implements IRepositorio{
         return $this->listMascotas;
     }
 */
-
 }
-
-?>

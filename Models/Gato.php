@@ -5,7 +5,7 @@ use Models\Mascota AS Mascota;
 
 class Gato extends Mascota{
 
-
+    
 
 }
 
