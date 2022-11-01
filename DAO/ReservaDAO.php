@@ -4,13 +4,60 @@ namespace DAO;
 
 use Models\Reserva as Reserva;
 use DAO\IRepositorio as IRepositorio;
+use DAO\Connection as Connection;
+use Exception;
+use PDOException;
 
 class ReservaDAO implements IRepositorio
 {
     private $reservaLista = array();
     private $fileName = ROOT . 'Data/reservas.json';
+    private $connection;
 
-    public function add($reserva)
+    public function add($reserva){
+            try{
+                $this->connection = Connection::GetInstance();
+    
+                $query = "INSERT INTO Reserva (IdDuenio, IdGuardian, IdMascota, FechaInicio, FechaFinal, HoraInicio, Estado, HoraFinal)
+                          VALUES (:IdDuenio, :IdGuardian, :IdMascota, :FechaInicio, :FechaFinal, :HoraInicio, :Estado, :HoraFinal)";
+    
+                //no pongo id pago porque todavia no está aceptada la reserva, no hay un pago
+                $parameters['IdDuenio'] = $reserva->getId_dueño();
+                $parameters['IdGuardian'] = $reserva->getId_guardian();
+                $parameters['IdMascota'] = $reserva->getId_mascota();
+                $parameters['FechaInicio'] = $reserva->getFechaInicio();
+                $parameters['FechaFinal'] = $reserva->getFechaFinal();
+                $parameters['HoraInicio'] = $reserva->getHora_inicio();
+                $parameters['Estado'] = $reserva->getEstado();
+                $parameters['HoraFinal'] = $reserva->getHora_final();
+    
+                $this->connection->ExecuteNonQuery($query, $parameters);
+            }
+            catch(Exception $e){
+                throw $e;
+            }
+    }
+
+    public function getAll()
+    {
+        try{
+            $array = array();
+        }catch(Exception $e){
+            throw $e;
+        }
+        return $array;
+    }
+
+    public function getById($id)
+    {
+        
+    }
+
+    public function setEstadoReserva($id, $estado){//cuando se acepte la reserva se setea el idpago y se crea el pago
+
+    }
+
+    /*public function add($reserva)
     {
         $this->RetrieveData();
         $reserva->setId_reserva($this->GetNextId());
@@ -146,5 +193,5 @@ class ReservaDAO implements IRepositorio
         }
         
         $this->SaveData();
-    }
+    }*/
 }
