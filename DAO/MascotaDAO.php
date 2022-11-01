@@ -21,40 +21,79 @@ class MascotaDAO implements IRepositorio{
 
         $this->connection = Connection::GetInstance();
         $idRetornar = null;
-
-        $query = "SELECT IdRaza AS id FROM Raza WHERE Raza = " . $nombreRaza;
+        $query = "SELECT Raza.IdRaza AS id FROM Raza WHERE Raza.Raza = '$nombreRaza' ";
         $resultado = $this->connection->Execute($query);
 
-        if(count($resultado) == 0){
+        if(empty($resultado)){
             $query = "INSERT INTO Raza (Raza, Especie) VALUES (:nombreRaza, :tipoMascota)";
-            $parameters['Raza'] = $this->Raza;
-            $parameters['Especie'] = $this->Raza;
+            $parameters['nombreRaza'] = $nombreRaza;
+            $parameters['tipoMascota'] = $tipoMascota;
             $this->connection->ExecuteNonQuery($query, $parameters);
+            $query = "SELECT MAX(IdRaza) AS id FROM Raza";
+            $idRetornar = $this->connection->Execute($query);
         }
         else{
-            $query = "SELECT MAX(IdRaza) AS id FROM Raza";
+            $idRetornar = $resultado;
         }
 
-        return $idRetornar;
-    }   
+        return $idRetornar[0][0];
+    }
+    
+    private function devuelveIdTamanio($tamanio){
+
+        $this->connection = Connection::GetInstance();
+        $idRetornar = null;
+        $query = "SELECT TamanioMascota.IdTamanioMascota AS id FROM TamanioMascota WHERE TamanioMascota.Tamanio = '$tamanio' ";
+        $resultado = $this->connection->Execute($query);
+
+        if(empty($resultado)){
+            $query = "INSERT INTO TamanioMascota (Tamanio) VALUES (:Tamanio)";
+            $parameters['Tamanio'] = $tamanio;
+            $this->connection->ExecuteNonQuery($query, $parameters);
+            $query = "SELECT MAX(IdTamanioMascota) AS id FROM TamanioMascota";
+            $idRetornar = $this->connection->Execute($query);
+        }
+        else{
+            $idRetornar = $resultado;
+        }
+
+        return $idRetornar[0][0];
+    }
+
+    public function crearArchivo($arch){ 
+
+        $idRetornar = null;
+
+        $this->connection = Connection::GetInstance();
+
+        if($arch != null){
+            $query = "INSERT INTO Archivo(Url_) VALUES (:Url_)";
+            $parameters['Url_'] = $arch;
+            $this->connection->ExecuteNonQuery($query, $parameters);
+    
+            $query = "SELECT MAX(IdArchivo) AS id FROM Archivo";
+            $idRetornar = $this->connection->Execute($query);
+            
+            return $idRetornar[0][0];
+        }
+        else{
+            return null;
+        }
+    }
 
     public function add($mascota){
         try{
             $this->connection = Connection::GetInstance();
 
-            $query = "SELECT IdRaza AS id FROM Raza WHERE Raza = " . $this->mascota->getRaza();
-            $resultado = $this->connection->Execute($query);
-            var_dump($resultado);
+            $query = "INSERT INTO Mascota (IdDuenio, IdRaza, IdTamanio, IdArchivoImgPerfil, IdArchivoImgPlanVacunacion, IdArchivoVideoPerro, Nombre, Edad, Observaciones)
+                      VALUES (:IdDuenio, :IdRaza, :IdTamanio, :IdArchivoImgPerfil, :IdArchivoImgPlanVacunacion, :IdArchivoVideoPerro, :Nombre, :Edad, :Observaciones)";
 
-            $query = "INSERT INTO Mascota (IdDueño, IdRaza, IdTamanio, IdArchivoImgPerfil, IdArchivoImgPlanVacunacion, IdArchivoVideoPerro, Nombre, Edad, Observaciones)
-                      VALUES (:IdDueño, :IdRaza, :IdTamanio, :IdArchivoImgPerfil, :IdArchivoImgPlanVacunacion, :IdArchivoVideoPerro, :Nombre, :Edad, :Observaciones)";
-
-            $parameters['IdDueño'] = $mascota->getIdDueño();
-            $parameters['IdRaza'] = $mascota->getRaza();
-            $parameters['IdTamanio'] = $mascota->getTamaño();
-            $parameters['IdArchivoImgPerfil'] = $mascota->getImgPerro();
-            $parameters['IdArchivoImgPlanVacunacion'] = $mascota->getPlanVacunacion();
-            $parameters['IdArchivoVideoPerro'] = $mascota->getVideoPerro();
+            $parameters['IdDuenio'] = $mascota->getIdDueño();
+            $parameters['IdRaza'] = $this->devuelveIdRaza($mascota->getRaza(), $mascota->getTipoMascota());
+            $parameters['IdTamanio'] = $this->devuelveIdTamanio($mascota->getTamaño());
+            $parameters['IdArchivoImgPerfil'] = $this->crearArchivo($mascota->getPlanVacunacion());
+            $parameters['IdArchivoImgPlanVacunacion'] = $this->crearArchivo($mascota->getPlanVacunacion());
+            $parameters['IdArchivoVideoPerro'] = $this->crearArchivo($mascota->getPlanVacunacion());
             $parameters['Nombre'] = $mascota->getNombre();
             $parameters['Edad'] = $mascota->getEdad();
             $parameters['Observaciones'] = $mascota->getObservaciones();
@@ -62,6 +101,7 @@ class MascotaDAO implements IRepositorio{
             $this->connection->ExecuteNonQuery($query, $parameters);
         }
         catch(Exception $e){
+            echo $e->getMessage();
             throw $e;
         }
     }
