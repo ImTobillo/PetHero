@@ -91,6 +91,7 @@ require_once 'nav.php';
 
                     </div>
 
+                    <input class="button" type='button' name="Cancelar" value="Cancelar" onClick="location.href='<?php echo FRONT_ROOT . 'Home/Index' ?>'">
                     <button name="id_guardian" value="<?php echo $guardian->getId();?>" type="submit">Solicitar</button>
                 </form>
             </div>

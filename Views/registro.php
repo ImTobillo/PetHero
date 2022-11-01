@@ -33,7 +33,7 @@ require_once 'nav.php';
 
 
                     <div class="contenedor_button">
-                        <button class="button" type="reset">Cancelar</button>
+                        <input class="button" type='button' name="Cancelar" value="Cancelar" onClick="location.href='<?php echo FRONT_ROOT . 'Home/Index' ?>'">
                         <button class="button" type="submit">Registrarse</button>
                     </div>
                     
