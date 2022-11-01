@@ -4,13 +4,69 @@ namespace DAO;
 
 use Models\User as User;
 use DAO\IRepositorio as IRepositorio;
+use DAO\Connection as Connection;
+use Exception;
+use PDOException;
 
 class UserDAO implements IRepositorio
 {
     private $usersList = array();
     private $fileName = ROOT . 'Data/users.json';
 
-    public function add($user)
+    private $connection;
+
+    public function add($user){
+        try{
+            $this->connection = Connection::GetInstance();
+
+            $query = "INSERT INTO User (IdTipo, Username, Contrasenia)
+                      VALUES (:IdTipo, :Username, :Contrasenia)";
+
+            $parameters['IdTipo'] = $this->getIdTipo($user->getTipoCuenta());
+            $parameters['Username'] = $user->getUsername();
+            $parameters['Contrasenia'] = $user->getPassword();
+
+            $this->connection->ExecuteNonQuery($query, $parameters);
+        }
+        catch(Exception $e){
+            throw $e;
+        }
+    }
+
+    private function getIdTipo($tipoCuenta){
+        $this->connection = Connection::GetInstance();
+        $idRetornar = null;
+        $query = "SELECT IdTipo AS id FROM TipoUser WHERE Tipo = '$tipoCuenta' ";
+        $resultado = $this->connection->Execute($query);
+
+        if(empty($resultado)){
+            $query = "INSERT INTO TipoUser (Tipo) VALUES (:tipo)";
+            $parameters['tipo'] = $tipoCuenta;
+
+            $this->connection->ExecuteNonQuery($query, $parameters);
+
+            $query = "SELECT MAX(IdTipo) AS id FROM TipoUser";
+
+            $idRetornar = $this->connection->Execute($query);
+        }
+        else{
+            $idRetornar = $resultado;
+        }
+
+        return $idRetornar[0][0];
+    }
+
+    public function getById($id){
+
+    }
+
+    public function getAll()
+    {
+        
+    }
+
+
+    /*public function add($user)
     {
         $this->RetrieveData();
         $user->setId($this->GetNextId());
@@ -121,7 +177,7 @@ class UserDAO implements IRepositorio
             $id = end($this->usersList)->getId() + 1;
 
         return $id;
-    }
+    }*/
 }
 
 

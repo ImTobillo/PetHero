@@ -99,8 +99,6 @@ class MascotaController
         }
     }
 
-    // Falta remove
-
     public function verPerfil($id)
     {
         require_once VIEWS_PATH . 'validarSesion.php';

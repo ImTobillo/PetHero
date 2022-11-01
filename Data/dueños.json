@@ -22,5 +22,41 @@
         "ciudad": "Mar del Plata",
         "calle": "la calle",
         "numCalle": "3243"
+    },
+    {
+        "id": 3,
+        "nombre": "Pablo",
+        "apellido": "Hasta",
+        "fechaNacimiento": "1999-07-29",
+        "dni": "53215677",
+        "telefono": "22361859122",
+        "email": "pablo@hotmail.com",
+        "ciudad": "Mar del Plata",
+        "calle": "Jujuy",
+        "numCalle": "1111"
+    },
+    {
+        "id": 4,
+        "nombre": "Martin",
+        "apellido": "Lopez",
+        "fechaNacimiento": "2001-12-30",
+        "dni": "98984394",
+        "telefono": "2234212312",
+        "email": "martin@hotmail.com",
+        "ciudad": "Mar del Plata",
+        "calle": "Salta",
+        "numCalle": "999"
+    },
+    {
+        "id": 5,
+        "nombre": "Lewis",
+        "apellido": "Hamilton",
+        "fechaNacimiento": "2009-11-01",
+        "dni": "11234123",
+        "telefono": "2235412311",
+        "email": "lewis@hotmail.com",
+        "ciudad": "Mar del Plata",
+        "calle": "San martin",
+        "numCalle": "1111"
     }
 ]
