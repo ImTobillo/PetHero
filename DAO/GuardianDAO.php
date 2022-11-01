@@ -56,11 +56,9 @@ class GuardianDAO implements IRepositorio
 
             foreach ($resultado as $fila) {
 
-                $guardian = new Guardian($fila['IdUser'], $fila['Nombre'], $fila['Apellido'], $fila['FechaNacimiento'], $fila['Dni'], $fila['Telefono'], $fila['Email'], /* ciudad */     $fila['Calle'], $fila['NumCalle']);
-
-                $guardian->setCiudad($fila['id']); // c
-                $guardian->setTamaño($fila['id']); // c
-                
+                $guardian = new Guardian($fila['IdUser'], $fila['Nombre'], $fila['Apellido'], $fila['FechaNacimiento'], $fila['Dni'], $fila['Telefono'], $fila['Email'], getCiudad($fila['IdCiudad']), $fila['Calle'], $fila['NumCalle']);
+                                
+                $guardian->setTamaño(getTamaño($fila['IdTamanio']));
                 $guardian->setRemuneracion($fila['Remuneracion']);
                 $guardian->setFechaInicio($fila['FechaInicio']);
                 $guardian->setFechaFinal($fila['FechaFinal']);
@@ -135,6 +133,23 @@ class GuardianDAO implements IRepositorio
 
         return $idRetornar[0][0];
     }
+
+    private function getTamaño($IdTamanio)
+    {
+        $query = "SELECT Tamanio FROM TamanioMascota WHERE IdTamanioMascota = '$IdTamanio' ";
+        $this->connection = Connection::GetInstance();
+        $resultado = $this->connection->Execute($query);
+        return $resultado[0][0];
+    }
+
+    private function getCiudad($idCiudad)
+    {
+        $query = "SELECT Ciudad.Nombre FROM Ciudad WHERE Ciudad.IdCiudad = '$IdCiudad' ";
+        $this->connection = Connection::GetInstance();
+        $resultado = $this->connection->Execute($query);
+        return $resultado[0][0];
+    }
+
     }
 
     /*
