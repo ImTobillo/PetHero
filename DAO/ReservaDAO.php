@@ -80,7 +80,23 @@ class ReservaDAO implements IRepositorio
     }
 
     public function setEstadoReserva($id, $estado){//cuando se acepte la reserva se setea el idpago y se crea el pago
-        
+        $this->connection = Connection::GetInstance();
+        $idRetornar = null;
+        $query = "SELECT TamanioMascota.IdTamanioMascota AS id FROM TamanioMascota WHERE TamanioMascota.Tamanio = '$tamanio' ";
+        $resultado = $this->connection->Execute($query);
+
+        if(empty($resultado)){
+            $query = "INSERT INTO TamanioMascota (Tamanio) VALUES (:Tamanio)";
+            $parameters['Tamanio'] = $tamanio;
+            $this->connection->ExecuteNonQuery($query, $parameters);
+            $query = "SELECT MAX(IdTamanioMascota) AS id FROM TamanioMascota";
+            $idRetornar = $this->connection->Execute($query);
+        }
+        else{
+            $idRetornar = $resultado;
+        }
+
+        return $idRetornar[0][0];
     }
 
     /*public function add($reserva)
