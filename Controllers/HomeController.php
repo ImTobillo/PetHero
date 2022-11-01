@@ -51,24 +51,32 @@ class HomeController
     }
     public function Login($username, $password)
     {
-       /* $user = $this->userDAO->getByUser($username);
-
-        if (($user != null) && ($user->getPassword() == $password)) {
-
-            $userLogueado = null;
+        try{
+            $user = $this->userDAO->getByUser($username);
             
-            if ($user->getTipoCuenta() == 'guardian')
-                $userLogueado = $this->guardianesDAO->getById($user->getId());
-            else
-                $userLogueado = $this->dueñosDAO->getById($user->getId());
+            if (($user != null) && ($user->getPassword() == $password)) {
 
-            $_SESSION['loggedUser'] = $userLogueado;
-            $this->Index();
-
-        } else {
-            $this->Index();
+                $userLogueado = null;
+                
+                if ($user->getTipoCuenta() == 'guardian'){
+                    $userLogueado = $this->guardianesDAO->getById($user->getId());
+                }
+                else{
+                    $userLogueado = $this->dueñosDAO->getById($user->getId());
+                }
+                var_dump($userLogueado);
+                $_SESSION['loggedUser'] = $userLogueado;
+                $this->Index();
+            }else{
+                echo "<script> if(confirm('Usuario y/o Contraseña incorrectos')); </script>"; 
+            }
+            
+        }catch(Exception $e){
+            
             echo "<script> if(confirm('Usuario y/o Contraseña incorrectos')); </script>";
-        }*/
+            
+        }
+        
     }
 
     public function registrarCuenta($tipoCuenta)
@@ -92,13 +100,14 @@ class HomeController
             echo "<script> if(confirm('Nombre de usuario no disponible')); </script>";
             require_once(VIEWS_PATH . "registro.php");
         }
-        
 
         if ($tipoCuenta == "dueño") { //se quiere registrar un dueño
-
+            
+            $user = $this->userDAO->getByUser($newUser->getUsername());
+            
             try{
-                $dueño = new Dueño($newUser->getId(), $nombre, $apellido, $fechaNacimiento, $dni, $telefono, $email, $ciudad, $calle, $numCalle);
-
+                $dueño = new Dueño($user->getId(), $nombre, $apellido, $fechaNacimiento, $dni, $telefono, $email, $ciudad, $calle, $numCalle);
+                
                 $_SESSION['loggedUser'] = $dueño;
                 
                 $this->dueñosDAO->add($dueño);

@@ -33,6 +33,47 @@ class UserDAO implements IRepositorio
         }
     }
 
+    public function getByUser($username){
+
+        try {
+            $this->connection = Connection::GetInstance();
+            $query = "SELECT * FROM User WHERE Username = '$username' ";
+            $resultado = $this->connection->Execute($query);
+           
+            $user = new User($resultado[0]['Username'], $resultado[0]['Contrasenia'], $this->getTipo($resultado[0]['IdTipo']));
+            $user->setId($resultado[0]['IdUser']);
+
+            return $user;
+
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
+
+    public function getById($id){
+        try {
+            $this->connection = Connection::GetInstance();
+            $query = "SELECT * FROM User WHERE IdUser = '$id' ";
+            $resultado = $this->connection->Execute($query);
+
+            $user = new User($resultado[0]['Username'], $resultado[0]['Contrasenia'], $this->getTipo($resultado[0]['IdTipo']));
+            $user->setId($resultado[0]['IdUser']);
+
+            return $user;
+
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
+
+    private function getTipo($id){
+        $this->connection = Connection::GetInstance();
+        $query = "SELECT Tipo AS nombreTipo FROM TipoUser WHERE IdTipo = '$id' ";
+        $resultado = $this->connection->Execute($query);
+
+        return $resultado[0][0];
+    }
+
     private function getIdTipo($tipoCuenta){
         $this->connection = Connection::GetInstance();
         $idRetornar = null;
@@ -56,9 +97,7 @@ class UserDAO implements IRepositorio
         return $idRetornar[0][0];
     }
 
-    public function getById($id){
-
-    }
+    
 
     public function getAll()
     {

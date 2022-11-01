@@ -16,7 +16,7 @@ class DueñoDAO implements IRepositorio
     private $connection;
 
     public function add($dueño){
-        try{
+        try {
             $this->connection = Connection::GetInstance();
 
             $query = "INSERT INTO Duenio (IdUser, IdCiudad, Nombre, Apellido, FechaNacimiento, Dni, Telefono, Email, Calle, NumCalle)
@@ -26,24 +26,42 @@ class DueñoDAO implements IRepositorio
             $parameters['IdCiudad'] = $this->getIdCiudad($dueño->getCiudad());
             $parameters['Nombre'] = $dueño->getNombre();
             $parameters['Apellido'] = $dueño->getApellido();
-            $parameters['FehaNacimiento'] = $dueño->getfechaNacimiento();
+            $parameters['FechaNacimiento'] = $dueño->getfechaNacimiento();
             $parameters['Dni'] = $dueño->getDni();
             $parameters['Telefono'] = $dueño->getTelefono();
             $parameters['Email'] = $dueño->getEmail();
             $parameters['Calle'] = $dueño->getCalle();
             $parameters['NumCalle'] = $dueño->getNumCalle();
 
-
             $this->connection->ExecuteNonQuery($query, $parameters);
-        }
-        catch(Exception $e){
+
+        } catch (Exception $e) {
             throw $e;
         }
     }
 
-    public function getById($id)
-    {
-        
+    public function getById($id){
+        try {
+            $this->connection = Connection::GetInstance();
+            $query = "SELECT * FROM Duenio WHERE IdUser = '$id' ";
+            $resultado = $this->connection->Execute($query);
+            var_dump($resultado);
+            $user = new Dueño($resultado[0]['IdUser'], $resultado[0]['Nombre'], $resultado[0]['Apellido'], $resultado[0]['FechaNacimiento'], $resultado[0]['Dni'],
+                              $resultado[0]['Telefono'], $resultado[0]['Email'], $this->getCiudad($resultado[0]['IdCiudad']), $resultado[0]['Calle'], $resultado[0]['NumCalle']);
+
+            return $user;
+
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
+
+    private function getCiudad($id){
+        $this->connection = Connection::GetInstance();
+        $query = "SELECT Nombre FROM Ciudad WHERE IdCiudad = '$id' ";
+        $resultado = $this->connection->Execute($query);
+
+        return $resultado[0][0];
     }
 
     private function getIdCiudad($ciudad){
