@@ -97,8 +97,6 @@ class UserDAO implements IRepositorio
         return $idRetornar[0][0];
     }
 
-    
-
     public function getAll()
     {
         

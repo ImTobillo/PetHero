@@ -45,7 +45,7 @@ class DueñoDAO implements IRepositorio
             $this->connection = Connection::GetInstance();
             $query = "SELECT * FROM Duenio WHERE IdUser = '$id' ";
             $resultado = $this->connection->Execute($query);
-            var_dump($resultado);
+            
             $user = new Dueño($resultado[0]['IdUser'], $resultado[0]['Nombre'], $resultado[0]['Apellido'], $resultado[0]['FechaNacimiento'], $resultado[0]['Dni'],
                               $resultado[0]['Telefono'], $resultado[0]['Email'], $this->getCiudad($resultado[0]['IdCiudad']), $resultado[0]['Calle'], $resultado[0]['NumCalle']);
 
@@ -87,62 +87,8 @@ class DueñoDAO implements IRepositorio
 
         return $idRetornar[0][0];
     }
-
-   private function getByUsername($username){
-
-       /* $this->connection = Connection::GetInstance();
-        $usernameEncontrado = null;
-        $query = "SELECT Raza.IdRaza AS id FROM Raza WHERE Raza.Raza = '$nombreRaza' ";
-        $resultado = $this->connection->Execute($query);
-
-        if(empty($resultado)){
-            $query = "INSERT INTO Raza (Raza, Especie) VALUES (:nombreRaza, :tipoMascota)";
-            $parameters['nombreRaza'] = $nombreRaza;
-            $parameters['tipoMascota'] = $tipoMascota;
-            $this->connection->ExecuteNonQuery($query, $parameters);
-            $query = "SELECT MAX(IdRaza) AS id FROM Raza";
-            $idRetornar = $this->connection->Execute($query);
-        }
-        else{
-            $idRetornar = $resultado;
-        }
-
-        return $idRetornar[0][0];*/
-    }
-
+    
     public function getAll(){
-       /* try
-        {
-            $array = Array();
-            $query = "SELECT * FROM Mascota";
-            $this->connection = Connection::GetInstance();
-            $resultado = $this->connection->Execute($query);
-
-            foreach ($resultado as $fila) {
-
-                $mascota = new Perro();
-
-                $mascota->setId($fila['IdMascota']);
-                $mascota->setIdDueño($fila['IdDuenio']);
-                $mascota->setTipoMascota($this->getTipoMascota($fila['IdRaza']));
-                $mascota->setRaza($fila['IdRaza']);
-                $mascota->setTamaño($this->getTamañoBd($fila['IdTamanio']));
-                $mascota->setImgPerro($this->getArch($fila['IdArchivoImgPerfil']));
-                $mascota->setPlanVacunacion($this->getArch($fila['IdArchivoImgPlanVacunacion']));
-                $mascota->setVideoPerro($this->getArch($fila['IdArchivoVideoPerro']));
-                $mascota->setNombre($fila['Nombre']);
-                $mascota->setEdad($fila['Edad']);
-                $mascota->setObservaciones($fila['Observaciones']);
-
-                array_push($array, $mascota);
-            }
-
-            return $array;
-        }
-        catch(Exception $e)
-        {
-            throw $e;
-        }*/
     }
 
    /* public function add($dueño)

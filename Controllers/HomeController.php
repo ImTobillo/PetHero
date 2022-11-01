@@ -49,6 +49,7 @@ class HomeController
             require_once(VIEWS_PATH . 'ver-perfil-guardian.php');
         } 
     }
+    
     public function Login($username, $password)
     {
         try{
@@ -64,16 +65,16 @@ class HomeController
                 else{
                     $userLogueado = $this->dueñosDAO->getById($user->getId());
                 }
-                var_dump($userLogueado);
+                
                 $_SESSION['loggedUser'] = $userLogueado;
+
                 $this->Index();
-            }else{
-                echo "<script> if(confirm('Usuario y/o Contraseña incorrectos')); </script>"; 
             }
             
         }catch(Exception $e){
             
             echo "<script> if(confirm('Usuario y/o Contraseña incorrectos')); </script>";
+            $this->Index();
             
         }
         
@@ -108,9 +109,9 @@ class HomeController
             try{
                 $dueño = new Dueño($user->getId(), $nombre, $apellido, $fechaNacimiento, $dni, $telefono, $email, $ciudad, $calle, $numCalle);
                 
-                $_SESSION['loggedUser'] = $dueño;
-                
                 $this->dueñosDAO->add($dueño);
+
+                $_SESSION['loggedUser'] = $dueño;
                 
                 require_once(VIEWS_PATH . "crear-mascota.php");
             }catch(Exception $e){
@@ -119,7 +120,7 @@ class HomeController
             }
                 
             
-        } //else {}
+        } else {}
 
 
         /*$user = $this->userDAO->getByUser($nombreUser);
