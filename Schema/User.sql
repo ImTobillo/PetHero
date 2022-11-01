@@ -2,13 +2,13 @@ CREATE DATABASE IF NOT EXISTS PetHero;
 
 USE PetHero;
 
-CREATE TABLE IF NOT EXISTS User
+create table user
 (
-    IdUser int IDENTITY,
-    IdTipo int not null,
-    Username varchar(30) not null,
-    Contraseña varchar(50) not null,
-    CONSTRAINT PK_IdUser PRIMARY KEY (IdUser),
-    CONSTRAINT FK_IdTipo FOREIGN KEY (IdTipo) REFERENCES TipoUser(IdTipo),
-    CONSTRAINT UNQ_Username UNIQUE(Username)
+    IdUser      int auto_increment,
+    IdTipo      int not null,
+    Username    varchar(30) not null,
+    Contrasenia varchar(50) not null,
+    constraint PK_IdUser primary key (IdUser),
+    constraint UNQ_Username unique (Username),
+    constraint FK_IdTipo foreign key (IdTipo) references tipouser (IdTipo)
 ) Engine=InnoDB;

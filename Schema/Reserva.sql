@@ -2,19 +2,22 @@ CREATE DATABASE IF NOT EXISTS PetHero;
 
 USE PetHero;
 
-CREATE TABLE IF NOT EXISTS Reserva
+create table reserva
 (
-    IdReserva int IDENTITY,
-    IdPago int,
-    IdDueño int,
-    IdGuardian int,
-    FechaInicio Date not null,
-    FechaFinal Date not null,
-    HoraInicio varchar(20) not null,
-    HoraFinal varchar(20) not null,
-    Estado Bit not null,
-    CONSTRAINT PK_IdReserva PRIMARY KEY (IdReserva),
-    CONSTRAINT FK_IdDueñoReserva FOREIGN KEY (IdDueño) REFERENCES Dueño(IdUser),
-    CONSTRAINT FK_IdPago FOREIGN KEY (IdPago) REFERENCES Pago(IdPago),
-    CONSTRAINT FK_IdGuardianReserva FOREIGN KEY (IdGuardian) REFERENCES Guardian(IdUser)
-) Engine=InnoDB;
+    IdReserva   int auto_increment,
+    IdPago      int,
+    IdDuenio    int,
+    IdGuardian  int,
+    IdMascota   int,
+    FechaInicio date not null,
+    FechaFinal  date not null,
+    HoraInicio  varchar(20) not null,
+    HoraFinal   varchar(20) not null,
+    Estado      varchar(20) not null,
+    
+    constraint PK_IdReserva primary key (IdReserva),
+    constraint FK_IdDueñoReserva foreign key (IdDuenio) references duenio (IdUser),
+    constraint FK_IdGuardianReserva foreign key (IdGuardian) references guardian (IdUser),
+    constraint FK_IdMascota foreign key (IdMascota) references mascota (IdMascota),
+    constraint FK_IdPago foreign key (IdPago) references pago (IdPago)
+); Engine=InnoDB;
