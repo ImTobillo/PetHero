@@ -109,7 +109,7 @@ require_once 'nav.php';
           </div>
 
           <div class="botonesForm">
-            <button class="button" type="button">Cancelar</button>
+            <input class="button" type='button' name="Cancelar" value="Cancelar" onClick="location.href='<?php echo FRONT_ROOT . 'Home/Index' ?>'">
             <button class="button" type="submit">Guardar cambios</button>
           </div>
         </form>
