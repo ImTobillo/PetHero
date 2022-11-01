@@ -40,21 +40,47 @@ class ReservaDAO implements IRepositorio
 
     public function getAll()
     {
-        try{
-            $array = array();
-        }catch(Exception $e){
+        try
+        {
+            $array = Array();
+            $query = "SELECT * FROM Reserva";
+            $this->connection = Connection::GetInstance();
+            $resultado = $this->connection->Execute($query);
+
+            foreach ($resultado as $fila) {
+
+                $reserva = new Reserva($fila['IdReserva'], /*$fila['Idpago'],*/ $fila['IdDueño'], $fila['IdGuardian'], $fila['IdMascota'], $fila['FechaInicio'], $fila['FechaFinal'], $fila['HoraInicio'], $fila['HoraFinal'], $fila['Estado']);
+
+                array_push($array, $reserva);
+            }
+
+            return $array;
+        }
+        catch(Exception $e)
+        {
             throw $e;
         }
-        return $array;
     }
 
     public function getById($id)
     {
-        
+        //$this->RetrieveData();
+        $this->reservaLista = $this->getAll();
+
+        $reserva = null;
+
+        if (!empty($this->reservaLista)) {
+            foreach ($this->reservaLista as $reservaValue) {
+                if ($id == $reservaValue->getId_reserva()) {
+                    $reserva = $reservaValue;
+                }
+            }
+        }
+        return $reserva;
     }
 
     public function setEstadoReserva($id, $estado){//cuando se acepte la reserva se setea el idpago y se crea el pago
-
+        
     }
 
     /*public function add($reserva)
