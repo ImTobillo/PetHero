@@ -16,5 +16,29 @@
         "username": "catalina",
         "password": "123456",
         "tipoCuenta": "due\u00f1o"
+    },
+    {
+        "id": 3,
+        "username": "pablo",
+        "password": "123456",
+        "tipoCuenta": "due\u00f1o"
+    },
+    {
+        "id": 4,
+        "username": "Martin",
+        "password": "123456",
+        "tipoCuenta": "due\u00f1o"
+    },
+    {
+        "id": 5,
+        "username": "lewis",
+        "password": "123456",
+        "tipoCuenta": "due\u00f1o"
+    },
+    {
+        "id": 10,
+        "username": "pablos",
+        "password": "123456",
+        "tipoCuenta": "due\u00f1o"
     }
 ]
