@@ -45,6 +45,6 @@ require_once 'nav.php';
             </div>
      <?php  } ?>
     </main>
-    <script src="<?php echo JS_PATH . "validarFecha.js" ?>"></script> 
+    <script src="<?php echo JS_PATH . "validar.js" ?>"></script> 
 
     <?php require_once 'footer.php' ?>

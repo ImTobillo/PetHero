@@ -56,15 +56,50 @@ class GuardianDAO implements IRepositorio
 
             foreach ($resultado as $fila) {
 
-                $guardian = new Guardian($fila['IdUser'], $fila['Nombre'], $fila['Apellido'], $fila['FechaNacimiento'], $fila['Dni'], $fila['Telefono'], $fila['Email'], getCiudad($fila['IdCiudad']), $fila['Calle'], $fila['NumCalle']);
+                $guardian = new Guardian($fila['IdUser'], $fila['Nombre'], $fila['Apellido'], $fila['FechaNacimiento'], $fila['Dni'], $fila['Telefono'], $fila['Email'], $this->getCiudad($fila['IdCiudad']), $fila['Calle'], $fila['NumCalle']);
                                 
-                $guardian->setTamaño(getTamaño($fila['IdTamanio']));
+                $guardian->setTamaño($this->getTamaño($fila['IdTamanio']));
                 $guardian->setRemuneracion($fila['Remuneracion']);
                 $guardian->setFechaInicio($fila['FechaInicio']);
                 $guardian->setFechaFinal($fila['FechaFinal']);
                 $guardian->setHoraDisponible($fila['HoraDisponible']);
 
-                array_push($array, $mascota);
+                array_push($array, $guardian);
+            }
+
+            return $array;
+        }
+        catch(Exception $e)
+        {
+            throw $e;
+        }
+    }
+
+    public function filtrar($fechaInicio, $fechaFinal){
+       
+        try
+        {
+            $array = Array();
+            $query = "SELECT * FROM Guardian 
+                      WHERE FechaInicio <= '$fechaInicio' AND FechaFinal >= '$fechaInicio' 
+                            AND FechaFinal >= '$fechaFinal' AND FechaInicio <= '$fechaFinal'";
+
+            $this->connection = Connection::GetInstance();
+            $resultado = $this->connection->Execute($query);
+
+            foreach ($resultado as $fila) {
+
+                $guardian = new Guardian($fila['IdUser'], $fila['Nombre'], $fila['Apellido'], $fila['FechaNacimiento'], $fila['Dni'], $fila['Telefono'],
+                                         $fila['Email'], $this->getCiudad($fila['IdCiudad']), $fila['Calle'], $fila['NumCalle']);
+
+                $guardian->setTamaño($this->getTamaño($fila['IdTamanio'])); // c
+                
+                $guardian->setRemuneracion($fila['Remuneracion']);
+                $guardian->setFechaInicio($fila['FechaInicio']);
+                $guardian->setFechaFinal($fila['FechaFinal']);
+                $guardian->setHoraDisponible($fila['HoraDisponible']);
+
+                array_push($array, $guardian);
             }
 
             return $array;
@@ -144,7 +179,7 @@ class GuardianDAO implements IRepositorio
 
     private function getCiudad($idCiudad)
     {
-        $query = "SELECT Ciudad.Nombre FROM Ciudad WHERE Ciudad.IdCiudad = '$IdCiudad' ";
+        $query = "SELECT Ciudad.Nombre FROM Ciudad WHERE Ciudad.IdCiudad = '$idCiudad' ";
         $this->connection = Connection::GetInstance();
         $resultado = $this->connection->Execute($query);
         return $resultado[0][0];
