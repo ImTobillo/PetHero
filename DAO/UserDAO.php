@@ -40,8 +40,13 @@ class UserDAO implements IRepositorio
             $query = "SELECT * FROM User WHERE Username = '$username' ";
             $resultado = $this->connection->Execute($query);
            
-            $user = new User($resultado[0]['Username'], $resultado[0]['Contrasenia'], $this->getTipo($resultado[0]['IdTipo']));
-            $user->setId($resultado[0]['IdUser']);
+            if (!empty($resultado))
+            {
+                $user = new User($resultado[0]['Username'], $resultado[0]['Contrasenia'], $this->getTipo($resultado[0]['IdTipo']));
+                $user->setId($resultado[0]['IdUser']);
+            }
+            else
+                $user = null;                
 
             return $user;
 

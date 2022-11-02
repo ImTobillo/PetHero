@@ -87,7 +87,7 @@ class MascotaController
                         //Cambiamos los permisos del archivo a 777 para poder modificarlo posteriormente
                         chmod(VIEWS_PATH . 'img/ImgMascotas/' . $archivo, 0777);
                         //Mostramos el mensaje de que se ha subido co éxito
-                        echo "<script> if(confirm('Archivo subido correctamente')); </script>";
+                                    //echo "<script> if(confirm('Archivo subido correctamente')); </script>";
                         //Mostramos la imagen subida
                         //echo '<p><img src=" ' . IMG_PATH . 'ImgMascotas/' . $archivo . '"></p>';
                     } else {

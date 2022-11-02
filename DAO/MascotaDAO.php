@@ -26,9 +26,9 @@ class MascotaDAO implements IRepositorio
             $parameters['IdDuenio'] = $mascota->getIdDueño();
             $parameters['IdRaza'] = $this->devuelveIdRaza($mascota->getRaza(), $mascota->getTipoMascota());
             $parameters['IdTamanio'] = $this->devuelveIdTamanio($mascota->getTamaño());
-            $parameters['IdArchivoImgPerfil'] = $this->crearArchivo($mascota->getPlanVacunacion());
+            $parameters['IdArchivoImgPerfil'] = $this->crearArchivo($mascota->getImgPerro());
             $parameters['IdArchivoImgPlanVacunacion'] = $this->crearArchivo($mascota->getPlanVacunacion());
-            $parameters['IdArchivoVideoPerro'] = $this->crearArchivo($mascota->getPlanVacunacion());
+            $parameters['IdArchivoVideoPerro'] = $this->crearArchivo($mascota->getVideoPerro());
             $parameters['Nombre'] = $mascota->getNombre();
             $parameters['Edad'] = $mascota->getEdad();
             $parameters['Observaciones'] = $mascota->getObservaciones();
@@ -168,7 +168,7 @@ class MascotaDAO implements IRepositorio
 
     private function getArch($IdArch)
     {
-        $query = "SELECT Url_ FROM Archivo WHERE IdArchivo = " . $IdArch;
+        $query = "SELECT Url_ FROM Archivo WHERE IdArchivo = '$IdArch'";
         $this->connection = Connection::GetInstance();
         $resultado = $this->connection->Execute($query);
         return $resultado[0][0];

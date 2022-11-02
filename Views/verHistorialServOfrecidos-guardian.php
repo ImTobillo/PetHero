@@ -42,7 +42,7 @@ require_once 'nav.php';
                 <tr>
                   <td><?php echo date("d-m-y"); //$pago->getFecha(); ?></td>
                   <td><?php echo $reserva->getId_reserva(); ?></td>
-                  <td><?php echo $dueño->getNombre() . $dueño->getApellido(); ?></td>
+                  <td><?php echo $dueño->getNombre() . ' ' . $dueño->getApellido(); ?></td>
                   <td><?php echo $dueño->getDni(); ?></td>
                   <td><?php echo $mascota->getNombre(); ?></td>
                   <td><?php echo $mascota->getRaza(); ?></td>

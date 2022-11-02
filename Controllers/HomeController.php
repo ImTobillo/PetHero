@@ -59,7 +59,7 @@ class HomeController
 
                 $userLogueado = null;
                 
-                if ($user->getTipoCuenta() == 'guardian'){
+                if ($user->getTipoCuenta() == 'Guardian'){
                     $userLogueado = $this->guardianesDAO->getById($user->getId());
                 }
                 else{
@@ -67,9 +67,9 @@ class HomeController
                 }
                 
                 $_SESSION['loggedUser'] = $userLogueado;
-
-                $this->Index();
             }
+
+            $this->Index();
             
         }catch(Exception $e){
             

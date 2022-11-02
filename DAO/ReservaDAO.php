@@ -11,7 +11,7 @@ use PDOException;
 class ReservaDAO implements IRepositorio
 {
     private $reservaLista = array();
-    private $fileName = ROOT . 'Data/reservas.json';
+    // private $fileName = ROOT . 'Data/reservas.json';
     private $connection;
 
     public function add($reserva){
@@ -49,7 +49,10 @@ class ReservaDAO implements IRepositorio
 
             foreach ($resultado as $fila) {
 
-                $reserva = new Reserva($fila['IdReserva'], /*$fila['Idpago'],*/ $fila['IdDueño'], $fila['IdGuardian'], $fila['IdMascota'], $fila['FechaInicio'], $fila['FechaFinal'], $fila['HoraInicio'], $fila['HoraFinal'], $fila['Estado']);
+                $reserva = new Reserva($fila['IdGuardian'], /*$fila['Idpago'],*/ $fila['IdDuenio'], $fila['FechaInicio'], $fila['FechaFinal'], $fila['HoraInicio'], $fila['HoraFinal'], $fila['IdMascota']);
+
+                $reserva->setId_reserva($fila['IdReserva']);
+                $reserva->setEstado($fila['Estado']);
 
                 array_push($array, $reserva);
             }
@@ -81,22 +84,10 @@ class ReservaDAO implements IRepositorio
 
     public function setEstadoReserva($id, $estado){//cuando se acepte la reserva se setea el idpago y se crea el pago
         $this->connection = Connection::GetInstance();
-        $idRetornar = null;
-        $query = "SELECT TamanioMascota.IdTamanioMascota AS id FROM TamanioMascota WHERE TamanioMascota.Tamanio = '$tamanio' ";
-        $resultado = $this->connection->Execute($query);
+        
+        $query = "UPDATE Reserva SET Reserva.Estado = '$estado' WHERE Reserva.IdReserva = '$id' ";
 
-        if(empty($resultado)){
-            $query = "INSERT INTO TamanioMascota (Tamanio) VALUES (:Tamanio)";
-            $parameters['Tamanio'] = $tamanio;
-            $this->connection->ExecuteNonQuery($query, $parameters);
-            $query = "SELECT MAX(IdTamanioMascota) AS id FROM TamanioMascota";
-            $idRetornar = $this->connection->Execute($query);
-        }
-        else{
-            $idRetornar = $resultado;
-        }
-
-        return $idRetornar[0][0];
+        $this->connection->Execute($query);
     }
 
     /*public function add($reserva)
