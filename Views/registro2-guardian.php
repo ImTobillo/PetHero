@@ -16,9 +16,10 @@ require_once 'nav.php';
             <select name="tamanio">
               <option value="" disabled selected hidden>Tamaño</option>
               <!--placeholder-->
-              <option value="pequenio">Pequeño</option>
-              <option value="mediano">Mediano</option>
-              <option value="grande">Grande</option>
+              <option value="Chiquito">Chiquito</option>
+              <option value="Mediano">Mediano</option>
+              <option value="Grande">Grande</option>
+              <option value="Enorme">Enorme</option>
             </select>
           </div>
 

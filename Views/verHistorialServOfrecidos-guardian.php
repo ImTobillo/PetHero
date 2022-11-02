@@ -23,15 +23,6 @@ require_once 'nav.php';
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>20/11/2021</td>
-            <td>1002203</td>
-            <td>Tobias Noya</td>
-            <td>44562987</td>
-            <td>Napo</td>
-            <td>Collie</td>
-            <td>1000</td>
-          </tr>
           <?php
           if (!empty($listaReservas)) {
             foreach ($listaReservas as $reserva) {
@@ -109,7 +100,7 @@ require_once 'nav.php';
                           ? ((new DateTime($reserva->getFechaInicio()))->diff((new DateTime($reserva->getFechaFinal()))))->format('%D')
                           : 1)
 
-                        * 1 /* monto por hora */); ?></td> <!-- $pago->getMonto() -->
+                        * $_SESSION["loggedUser"]->getRemuneracion() /* monto por hora */); ?></td> <!-- $pago->getMonto() -->
                 </tr>
           <?php }
             }

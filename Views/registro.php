@@ -15,7 +15,7 @@ require_once 'nav.php';
                     
                     <input name="nombre" class="input-nombre" type="text" required placeholder="Nombre">
                     <input name="apellido" class="input-apellido" type="text" required placeholder="Apellido">
-                    <input name="dni" class="input-dni" type="number" required placeholder="DNI">
+                    <input name="dni" class="input-dni" type="number" min="1000000" required placeholder="DNI">
                     <input name="email" class="input-email" type="email" required placeholder="Email">
                     <input name="contraseña" class="input-contraseña" type="password" required placeholder="Contraseña">
                     <input name="telefono" class="input-telefono" type="tel" required placeholder="Telefono">

@@ -115,12 +115,25 @@ class HomeController
                 
                 require_once(VIEWS_PATH . "crear-mascota.php");
             }catch(Exception $e){
-                echo "<script> if(confirm('Email no disponible')); </script>";
+                echo "<script> if(confirm('Uno de los datos ya existe en otro usuario')); </script>";
                 require_once(VIEWS_PATH . "registro.php");
             }
                 
             
-        } else {}
+        } else {
+            $user = $this->userDAO->getByUser($newUser->getUsername());
+            
+            try{
+                $guardian = new Guardian($user->getId(), $nombre, $apellido, $fechaNacimiento, $dni, $telefono, $email, $ciudad, $calle, $numCalle);
+
+                $_SESSION['loggedUser'] = $guardian;
+                
+                require_once(VIEWS_PATH . "registro2-guardian.php");
+            }catch(Exception $e){
+                echo "<script> if(confirm('Uno de los datos ya existe en otro usuario')); </script>";
+                require_once(VIEWS_PATH . "registro.php");
+            }
+        }
 
 
         /*$user = $this->userDAO->getByUser($nombreUser);
