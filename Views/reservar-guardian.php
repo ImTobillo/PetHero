@@ -10,19 +10,20 @@ require_once 'nav.php';
     $listaMascotas = new MascotaDAO();
     $mascotasDuenio = $listaMascotas->getAll();
 ?>
-    <link property="stylesheet" rel="stylesheet" href=" <?php echo CSS_PATH . 'reservar-guardian.css' ?> ">
+    <link rel="stylesheet" href=" <?php echo CSS_PATH . 'reservar-guardian.css?v=32' ?> ">
 
+   
     <main class="contenedor">
+                
         <div class="heading">
 
             <img class="foto" src=" <?php echo IMG_PATH . 'perfil.png' ?> " alt="Perfil">
 
-            <h1 class="perf">Perfil</h1>
+            <h1 class="perf"><?php echo $guardian->getNombre()?></h1>
 
             <img class="huella" src=" <?php echo IMG_PATH . 'huellas-perro.png' ?> " alt="Huellas">
 
         </div>
-
         <div class="info-y-enviar">
 
         <!-- INFORMACIÓN GUARDIAN !-->
@@ -40,7 +41,7 @@ require_once 'nav.php';
             <div class="formReservaGuardian">
                 <h1>Solicitar reserva</h1>
                 
-                <form action="<?php echo FRONT_ROOT . 'Reserva/solicitarReserva'?>" method="post">
+                <form class='reservar' action="<?php echo FRONT_ROOT . 'Reserva/solicitarReserva'?>" method="post">
 
                     <div class="inputs">
 
@@ -57,25 +58,25 @@ require_once 'nav.php';
 
                         <!-- INGRESAR FECHAS !-->
 
-                        <p>Fecha inicial</p> 
+                        <label>Fecha inicial
                         <input class="datePickerInicio" id="inputFechaInicio"  name="fechaInicio" oninput="validarFecha()" type="date" min="<?php echo $fecha_inicio; ?>" max="<?php echo $guardian->getFechaFinal(); ?>" required>
-                        
-                        <p>Fecha final</p>
+                        </label>
+                        <label>Fecha final
                         <input class="datePickerFinal" id="inputFechaFinal"  name="fechaFinal" disabled type="date" max="<?php echo $guardian->getFechaFinal(); ?>" required>
+                        </label>
                     </div>
                     
                     <!-- INGRESAR HORARIOS !-->
                     <div class="inputs">  
 
                         <?php $array = explode("-", $guardian->getHoraDisponible()?? "");?>
-                        
+                        <label >Hora inicial
                         <input class="horaForm timePickerInicial" id="inputHoraInicio" type="time" name="horaInicial" oninput="validarHora()" min=<?php echo $array[0] ?> required>
+                        </label>
+                        <label >Hora final
                         <input class="horaForm timePickerFinal" id="inputHoraFinal" type="time" name="horaFinal" max=<?php echo $array[1] ?> required>
-                        
-                    </div>
-                     
-                    <!-- ELEGIR MASCOTA DE ACUERDO AL TAMAÑO !-->
-                    <div>
+                        </label>
+
                         <select name="mascota" id="" required>
                             <option value="" disabled selected hidden>Mascota</option>
 
@@ -88,11 +89,16 @@ require_once 'nav.php';
                                 } 
                             } ?>
                         </select>
-
+                        
                     </div>
+                     
+                    <!-- ELEGIR MASCOTA DE ACUERDO AL TAMAÑO !-->
 
-                    <input class="button" type='button' name="Cancelar" value="Cancelar" onClick="location.href='<?php echo FRONT_ROOT . 'Home/Index' ?>'">
-                    <button name="id_guardian" value="<?php echo $guardian->getId();?>" type="submit">Solicitar</button>
+                    <div class="buttons">
+                        <button type='button' name="Cancelar" value="Cancelar" onClick="location.href='<?php echo FRONT_ROOT . 'Home/Index' ?>'">Cancelar
+                        <button name="id_guardian" value="<?php echo $guardian->getId();?>" type="submit">Solicitar</button>
+                    </div>
+                    
                 </form>
             </div>
         </div>

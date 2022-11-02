@@ -9,10 +9,10 @@
 
 .heading{
     display: flex;
-    width: 100%;
+    width: 90%;
     height: auto;
     border-bottom: 1px solid black;
-    align-items: baseline;
+    align-items: center;
 }
 
 .perf{
@@ -38,14 +38,20 @@
     margin-bottom: 5px;
 }
 
-.contenedor-datos{
+.contenedor-datos {
     justify-content: start;
     align-content: center;
     background-color: #8a8388;
     border-radius: 50px;
-    padding: 1rem;
-    width: 100%;
-    height: 21rem; 
+    padding: 2rem;
+    margin: 1rem;
+    width: auto;
+    height: auto;
+}
+
+.buttons{
+    display: flex;
+    justify-content: center;
 }
 
 .datosGuardian{
@@ -55,38 +61,53 @@
     border-bottom-style: double;
 }
 
-.info-y-enviar{
+.info-y-enviar {
     margin-top: 5%;
-    width: 50%;
+    width: 80%;
     display: flex;
-    flex-direction: column;
 }
 
 .info-y-enviar .contenedor-datos {
     align-self: center;
+    padding: 2rem;
+}
+
+.formReservaGuardian {
+    background-color: #8a8388;
+    border-radius: 50px;
+    display: grid;
+    justify-items: center;
+    padding: 2rem;
+    margin: 1rem;
+    height: auto;
+    width: auto;
 }
 
 .formReservaGuardian h1, button{
-    margin-top: 50px;
+    margin: 10px;
     font-family: 'Dokdo', cursive;
+}
+
+label{
+    font-size: x-large;
+}
+
+.inputs select{
+    width: 15rem;
+    background: #eddbc4;
+    border: 0.5px solid black;
 }
 
 .formReservaGuardian form .inputs{
     display: flex;
-    justify-content: space-between;
 }
 
 input {
-        width: 40%;
         padding: 19px 19px 19px 19px;
         background: #eddbc4;
         border: 0.5px solid black;
         border-radius: 10px;
         font-size: large;
-}
-
-.horaForm{
-    width: 23%;
 }
 
 button{
@@ -106,4 +127,8 @@ button:hover{
 .timePickerInicial, .timePickerFinal {
     padding: 1%;
     font-size: x-small;
+}
+
+.reservar{
+    display: grid;
 }

@@ -8,6 +8,7 @@ use DAO\ReservaDAO as ReservaDAO;
 use DAO\DueñoDAO as DueñoDAO;
 use DAO\PagoDAO as PagoDAO;
 use DAO\MascotaDAO as MascotaDAO;
+use Exception;
 
 class GuardianController
 {
@@ -62,10 +63,16 @@ class GuardianController
         $this->ShowMenuGuardian();
     }
 
-    public function filtrarGuardianes($fechaInicio, $fechaFinal){
+    public function filtrarGuardianes($fechaInicio = "", $fechaFinal =""){
         
+        if(!empty($fechaInicio) && !empty($fechaFinal)){
+            $guardianList = $this->guardianDAO->filtrar($fechaInicio, $fechaFinal);        
+        }else{
+            $guardianList = $this->guardianDAO->getAll();
+        }
         
-        $guardianList = $this->guardianDAO->filtrar($fechaInicio, $fechaFinal);        
+       
+        
 
         require_once(VIEWS_PATH . 'VisualizarGuardianes.php');
     }
