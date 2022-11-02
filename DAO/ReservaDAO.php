@@ -40,21 +40,63 @@ class ReservaDAO implements IRepositorio
 
     public function getAll()
     {
-        try{
-            $array = array();
-        }catch(Exception $e){
+        try
+        {
+            $array = Array();
+            $query = "SELECT * FROM Reserva";
+            $this->connection = Connection::GetInstance();
+            $resultado = $this->connection->Execute($query);
+
+            foreach ($resultado as $fila) {
+
+                $reserva = new Reserva($fila['IdReserva'], /*$fila['Idpago'],*/ $fila['IdDueño'], $fila['IdGuardian'], $fila['IdMascota'], $fila['FechaInicio'], $fila['FechaFinal'], $fila['HoraInicio'], $fila['HoraFinal'], $fila['Estado']);
+
+                array_push($array, $reserva);
+            }
+
+            return $array;
+        }
+        catch(Exception $e)
+        {
             throw $e;
         }
-        return $array;
     }
 
     public function getById($id)
     {
-        
+        //$this->RetrieveData();
+        $this->reservaLista = $this->getAll();
+
+        $reserva = null;
+
+        if (!empty($this->reservaLista)) {
+            foreach ($this->reservaLista as $reservaValue) {
+                if ($id == $reservaValue->getId_reserva()) {
+                    $reserva = $reservaValue;
+                }
+            }
+        }
+        return $reserva;
     }
 
     public function setEstadoReserva($id, $estado){//cuando se acepte la reserva se setea el idpago y se crea el pago
+        $this->connection = Connection::GetInstance();
+        $idRetornar = null;
+        $query = "SELECT TamanioMascota.IdTamanioMascota AS id FROM TamanioMascota WHERE TamanioMascota.Tamanio = '$tamanio' ";
+        $resultado = $this->connection->Execute($query);
 
+        if(empty($resultado)){
+            $query = "INSERT INTO TamanioMascota (Tamanio) VALUES (:Tamanio)";
+            $parameters['Tamanio'] = $tamanio;
+            $this->connection->ExecuteNonQuery($query, $parameters);
+            $query = "SELECT MAX(IdTamanioMascota) AS id FROM TamanioMascota";
+            $idRetornar = $this->connection->Execute($query);
+        }
+        else{
+            $idRetornar = $resultado;
+        }
+
+        return $idRetornar[0][0];
     }
 
     /*public function add($reserva)
