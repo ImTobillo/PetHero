@@ -168,10 +168,17 @@ class MascotaDAO implements IRepositorio
 
     private function getArch($IdArch)
     {
-        $query = "SELECT Url_ FROM Archivo WHERE IdArchivo = '$IdArch'";
-        $this->connection = Connection::GetInstance();
-        $resultado = $this->connection->Execute($query);
-        return $resultado[0][0];
+        if ($IdArch)
+        {
+            $query = "SELECT Url_ FROM Archivo WHERE IdArchivo = '$IdArch'";
+            $this->connection = Connection::GetInstance();
+            $resultado = $this->connection->Execute($query);
+            return $resultado[0][0];
+        }
+        else
+        {
+            return null;
+        }
     }
 
     public function getById($id)

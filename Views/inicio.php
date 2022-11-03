@@ -1,6 +1,12 @@
 <?php
 require_once 'header.php'; 
 require_once 'nav.php';
+if (isset($_SESSION['errorMessage']))
+{
+    echo $_SESSION['errorMessage'];
+    $_SESSION['errorMessage'] = null;
+}
+
 ?>
 
   <link rel="stylesheet" property="stylesheet" href=" <?php echo CSS_PATH . 'inicio.css' ?> " />

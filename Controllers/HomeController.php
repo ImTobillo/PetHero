@@ -27,57 +27,51 @@ class HomeController
 
     public function Index($message = "")
     {
-        if (isset($_SESSION['loggedUser']))
-        {
+        if (isset($_SESSION['loggedUser'])) {
             if (get_class($_SESSION['loggedUser']) == "Models\Dueño")
                 require_once(VIEWS_PATH . "MenuDueño.php");
             else
                 require_once(VIEWS_PATH . "MenuGuardian.php");
-
-        }
-        else
-        {
+        } else {
             require_once(VIEWS_PATH . "inicio.php");
         }
     }
 
-    public function verPerfil(){
+    public function verPerfil()
+    {
         require_once VIEWS_PATH . 'validarSesion.php';
-        if(get_class($_SESSION['loggedUser']) == "Models\Dueño"){ 
+        if (get_class($_SESSION['loggedUser']) == "Models\Dueño") {
             require_once(VIEWS_PATH . 'ver-perfil-dueño.php');
-        }else{
+        } else {
             require_once(VIEWS_PATH . 'ver-perfil-guardian.php');
-        } 
+        }
     }
-    
+
     public function Login($username, $password)
     {
-        try{
+        try {
             $user = $this->userDAO->getByUser($username);
-            
-            if (($user != null) && ($user->getPassword() == $password)) {
+
+            if (($user != null) && $user->getPassword() == $password) {
 
                 $userLogueado = null;
-                
-                if ($user->getTipoCuenta() == 'Guardian'){
+
+                if ($user->getTipoCuenta() == 'Guardian') {
                     $userLogueado = $this->guardianesDAO->getById($user->getId());
-                }
-                else{
+                } else {
                     $userLogueado = $this->dueñosDAO->getById($user->getId());
                 }
-                
+
                 $_SESSION['loggedUser'] = $userLogueado;
             }
+            else
+                $_SESSION['errorMessage'] = "<script> if(confirm('Contraseña incorrecta')); </script>";
 
             $this->Index();
-            
-        }catch(Exception $e){
-            
-            echo "<script> if(confirm('Usuario y/o Contraseña incorrectos')); </script>";
+        } catch (Exception $e) {
+            $_SESSION['errorMessage'] = $e->getMessage();;
             $this->Index();
-            
         }
-        
     }
 
     public function registrarCuenta($tipoCuenta)
@@ -94,49 +88,42 @@ class HomeController
     #agregar funcion de registro que guarde los datos de persona
     public function registro($nombre, $apellido, $dni, $email, $contraseña, $telefono, $fechaNacimiento, $ciudad, $calle, $numCalle, $nombreUser, $tipoCuenta)
     {
-        try{
+        try {
             $newUser = new User($nombreUser, $contraseña, $tipoCuenta);
-            $this->userDAO->add($newUser);
-        }catch(Exception $e){
-            echo "<script> if(confirm('Nombre de usuario no disponible')); </script>";
-            require_once(VIEWS_PATH . "registro.php");
-        }
+            $this->userDAO->validarEmail($email);
+            $this->userDAO->validarDni($dni);
+            $this->userDAO->validarUsername($nombreUser);
 
-        if ($tipoCuenta == "dueño") { //se quiere registrar un dueño
-            
-            $user = $this->userDAO->getByUser($newUser->getUsername());
-            
-            try{
+            $this->userDAO->add($newUser);
+
+            if ($tipoCuenta == "dueño") { //se quiere registrar un dueño
+
+                $user = $this->userDAO->getByUser($newUser->getUsername());
+
                 $dueño = new Dueño($user->getId(), $nombre, $apellido, $fechaNacimiento, $dni, $telefono, $email, $ciudad, $calle, $numCalle);
-                
+
                 $this->dueñosDAO->add($dueño);
 
                 $_SESSION['loggedUser'] = $dueño;
-                
+
                 require_once(VIEWS_PATH . "crear-mascota.php");
-            }catch(Exception $e){
-                echo "<script> if(confirm('Uno de los datos ya existe en otro usuario')); </script>";
-                require_once(VIEWS_PATH . "registro.php");
-            }
-                
-            
-        } else {
-            $user = $this->userDAO->getByUser($newUser->getUsername());
-            
-            try{
+            } else {
+                $user = $this->userDAO->getByUser($newUser->getUsername());
+
                 $guardian = new Guardian($user->getId(), $nombre, $apellido, $fechaNacimiento, $dni, $telefono, $email, $ciudad, $calle, $numCalle);
 
                 $_SESSION['loggedUser'] = $guardian;
-                
+
                 require_once(VIEWS_PATH . "registro2-guardian.php");
-            }catch(Exception $e){
-                echo "<script> if(confirm('Uno de los datos ya existe en otro usuario')); </script>";
-                require_once(VIEWS_PATH . "registro.php");
             }
+        } catch (Exception $e) {
+            $_SESSION['errorMessage'] = $e->getMessage();
+            require_once(VIEWS_PATH . "registro.php");
         }
+    }
 
 
-        /*$user = $this->userDAO->getByUser($nombreUser);
+    /*$user = $this->userDAO->getByUser($nombreUser);
         
         if($user != null){ // ya hay un usuario con ese nombre
 
@@ -195,8 +182,5 @@ class HomeController
                     require_once(VIEWS_PATH . "registro2-guardian.php");
                 }
             }
-        }*/   
-    }
-
-    
+        }*/
 }

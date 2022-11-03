@@ -39,8 +39,8 @@ require_once 'nav.php';
         </div>
 
         <div class="inputsFecha">
-          <input class="opcionFecha timePickerInicial" id="inputHoraInicio" type="time" name="horaInicial" oninput="validarHora()"/>
-          <input class="opcionFecha timePickerFinal" id="inputHoraFinal" type="time" name="horaFinal" />
+          <input class="opcionFecha timePickerInicial" id="inputHoraInicio" type="time" max="22:59" name="horaInicial" oninput="validarHora()" required/>
+          <input class="opcionFecha timePickerFinal" id="inputHoraFinal" type="time" name="horaFinal" required />
         </div>
 
         <div class="botonesForm">

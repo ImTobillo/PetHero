@@ -71,10 +71,10 @@ require_once 'nav.php';
 
                         <?php $array = explode("-", $guardian->getHoraDisponible()?? "");?>
                         <label >Hora inicial
-                        <input class="horaForm timePickerInicial" id="inputHoraInicio"  type="time" name="horaInicial" oninput="validarHora()" min=<?php echo $array[0] ?> required>
+                        <input class="horaForm timePickerInicial" id="inputHoraInicio"  type="time" name="horaInicial" oninput="validarHora();" min=<?php echo $array[0] ?> max=<?php echo $array[1] ?> required>
                         </label>
                         <label >Hora final
-                        <input class="horaForm timePickerFinal" id="inputHoraFinal" step="3600000" type="time" name="horaFinal" max=<?php echo $array[1] ?> required>
+                        <input class="horaForm timePickerFinal" id="inputHoraFinal" type="time" name="horaFinal" min=<?php echo $array[0] ?> max=<?php echo $array[1] ?> required>
                         </label>
 
                         <select name="mascota" id="" required>

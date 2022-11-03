@@ -37,16 +37,13 @@ require_once 'nav.php';
                   <td><?php echo $dueño->getDni(); ?></td>
                   <td><?php echo $mascota->getNombre(); ?></td>
                   <td><?php echo $mascota->getRaza(); ?></td>
-                  <td><?php echo 
-                  (((((new DateTime($reserva->getHora_inicio()))->diff((new DateTime($reserva->getHora_final()))))->format('%i') >= 120) // si la reserva es por mas de dos horas
-                      ? ((new DateTime($reserva->getHora_inicio()))->diff((new DateTime($reserva->getHora_final()))))->format('%H') 
-                      : 1) 
-                    
-                    * (($reserva->getFechaInicio() != $reserva->getFechaFinal()) 
+                  <td><?php echo ((int)(((new DateTime($reserva->getHora_inicio()))->diff(new DateTime($reserva->getHora_final())))->format('%H')) // cantidad de horas
+
+                    * (int)(($reserva->getFechaInicio() != $reserva->getFechaFinal()) 
                       ? ((new DateTime($reserva->getFechaInicio()))->diff((new DateTime($reserva->getFechaFinal()))))->format('%D') 
-                      : 1)
+                      : 1) // = cantidad de días
                     
-                    * 1 /* monto por hora */); ?></td> <!-- $pago->getMonto() -->
+                    * $_SESSION["loggedUser"]->getRemuneracion() /* monto por hora */); ?></td> <!-- $pago->getMonto() -->
                 </tr>
           <?php }
               }
@@ -79,7 +76,7 @@ require_once 'nav.php';
         <tbody>
           <?php
           if (!empty($listaReservas)) {
-            foreach ($listaReservas as $reserva) {
+            foreach ($listaReservas as $reserva ) {
               if (($_SESSION["loggedUser"]->getId() == $reserva->getId_guardian()) && ($reserva->getEstado() == "Aceptado") && (strtotime($reserva->getFechaFinal()) <= date("y-m-d"))) {
                 //$pago = $this->pagoDAO->getById($reserva->getId_pago());
                 $dueño = $this->dueñoDAO->getById($reserva->getId_dueño());
