@@ -90,6 +90,19 @@ class ReservaDAO implements IRepositorio
         $this->connection->Execute($query);
     }
 
+    public function remove($idReserva){
+        try{
+            $this->connection = Connection::GetInstance();
+
+            $query = "DELETE FROM Reserva WHERE IdReserva = '$idReserva'";
+
+            $this->connection->Execute($query);
+
+        }catch(Exception $e){
+            throw($e);
+        }
+    }
+
     /*public function add($reserva)
     {
         $this->RetrieveData();

@@ -7,6 +7,12 @@ input, select, textarea{
     padding: .5rem;
 }
 
+h1{
+    text-align: center;
+    font-family: "Dokdo", cursive;
+    color: #ffb353;
+}
+
 .contenedor-perfil{
     display: flex;
     justify-content: space-between;
@@ -18,12 +24,26 @@ input, select, textarea{
 
 .contenedor-datos{
     justify-content: start;
+    grid-column: 1/2;
     align-content: center;
     background-color: #8a8388;
     border-radius: 50px;
     padding: 1rem;
+    margin: 2rem;
     width: 30rem;
-    height: auto;
+    height: 90%;
+}
+
+.contenedor-datos-servicio{
+    justify-content: start;
+    grid-column: 2/3;
+    align-content: center;
+    background-color: #8a8388;
+    border-radius: 50px;
+    padding: 1rem;
+    margin: 2rem;
+    width: 30rem;
+    height: 90%;
 }
 
 .parrafo{

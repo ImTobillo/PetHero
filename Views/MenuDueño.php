@@ -26,7 +26,7 @@ require_once 'nav.php';
 
             <div class="iguales">
 
-                <a href="VerPagosPendientes.html" class="enlace"></a>
+                <a href="<?php echo FRONT_ROOT . 'Reserva/ShowListPagos'?>" class="enlace"></a>
 
                 <h2>Pagos pendientes</h2>
 

@@ -60,6 +60,17 @@ class ReservaController
 
         return $bool; 
     }
+
+    public function ShowListPagos(){
+        require_once VIEWS_PATH . 'validarSesion.php';
+        $reservas = $this->reservaDAO->getAll();
+        require_once (VIEWS_PATH . 'VerPagosPendientes.php');
+    }
+
+    public function borrarReserva($idReserva){
+        $this->reservaDAO->remove($idReserva);
+        $this->ShowListPagos();
+     }
 }
 
 

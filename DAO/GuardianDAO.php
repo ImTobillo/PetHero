@@ -184,6 +184,26 @@ class GuardianDAO implements IRepositorio
         return $resultado[0][0];
     }
 
+    public function edit($idGuardian, $tamanio, $remuneracion, $fechaInicio, $fechaFinal, $horaDisponible){
+        try{
+
+            $this->connection = Connection::GetInstance();
+
+            $idtamanio = $this->devuelveIdTamanio($tamanio);
+            $query = "UPDATE Guardian SET Remuneracion = '$remuneracion',
+                                          IdTamanio = '$idtamanio', 
+                                          FechaInicio = '$fechaInicio', 
+                                          FechaFinal = '$fechaFinal', 
+                                          HoraDisponible = '$horaDisponible'
+                        where IdUser = '$idGuardian'";
+
+            $this->connection->Execute($query);
+            
+        }catch(Exception $e){
+            throw($e);
+        }
+    }
+
     }
 
     /*
