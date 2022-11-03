@@ -51,7 +51,5 @@ require_once 'nav.php';
     </div>
   </main>
   <script src="<?php echo JS_PATH . "validar.js" ?>"></script> 
-  <script>
-    
-  </script>
+
   <?php require_once 'footer.php' ?>
