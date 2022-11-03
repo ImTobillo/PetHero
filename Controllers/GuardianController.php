@@ -76,6 +76,20 @@ class GuardianController
 
         require_once(VIEWS_PATH . 'VisualizarGuardianes.php');
     }
+
+    public function ShowEditar(){
+        require_once(VIEWS_PATH . 'editar-guardian.php');
+    }
+
+    public function ShowVerPerfil(){
+        require_once(VIEWS_PATH . 'ver-perfil-guardian.php');
+    }
+
+    public function Editar($tamanio, $remuneracion, $fechaInicio, $fechaFinal, $horaInicial, $horaFinal, $idGuardian){
+        $horaDisponible = $horaInicial . '-' . $horaFinal;
+        $this->guardianDAO->edit($idGuardian, $tamanio, $remuneracion, $fechaInicio, $fechaFinal, $horaDisponible);
+        $this->ShowVerPerfil();
+    }
 }
 
 ?>
