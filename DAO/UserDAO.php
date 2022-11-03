@@ -42,7 +42,9 @@ class UserDAO implements IRepositorio
             $resultado = $this->connection->Execute($query);
 
             if (empty($resultado))
+            {
                 throw new Exception("<script> if(confirm('El usuario no existe')); </script>");
+            }
             else {
                 $user = new User($resultado[0]['Username'], $resultado[0]['Contrasenia'], $this->getTipo($resultado[0]['IdTipo']));
                 $user->setId($resultado[0]['IdUser']);

@@ -30,15 +30,14 @@ if (isset($_SESSION['errorMessage']))
                     <input name="numCalle" class="input-num-calle" type="number" required placeholder="Numero" min="0">
                     <input name="nombreUser" class="" type="text" required placeholder="Nombre de usuario"> <!-- arreglar -->
 
-                    <?php if($tipoCuenta == "dueño"){ ?>
-                        <input type="text" name="tipoCuenta" value="dueño" hidden>
+                    <?php if($tipoCuenta == "Dueño"){ ?>
+                        <input type="text" name="tipoCuenta" value="Dueño" hidden>
                    <?php } else{ ?>
-                        <input type="text" name="tipoCuenta" value="guardian" hidden>
+                        <input type="text" name="tipoCuenta" value="Guardian" hidden>
                     <?php } ?>
 
 
                     <div class="contenedor_button">
-                        <input class="button" type='button' name="Cancelar" value="Cancelar" onClick="location.href='<?php echo FRONT_ROOT . 'Home/Index' ?>'">
                         <button class="button" type="submit">Registrarse</button>
                     </div>
                     

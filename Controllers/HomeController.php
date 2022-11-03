@@ -67,9 +67,11 @@ class HomeController
             else
                 $_SESSION['errorMessage'] = "<script> if(confirm('Contraseña incorrecta')); </script>";
 
-            $this->Index();
         } catch (Exception $e) {
-            $_SESSION['errorMessage'] = $e->getMessage();;
+            $_SESSION['errorMessage'] = $e->getMessage();       
+        }
+        finally
+        {
             $this->Index();
         }
     }
@@ -96,7 +98,7 @@ class HomeController
 
             $this->userDAO->add($newUser);
 
-            if ($tipoCuenta == "dueño") { //se quiere registrar un dueño
+            if ($tipoCuenta == "Dueño") { //se quiere registrar un dueño
 
                 $user = $this->userDAO->getByUser($newUser->getUsername());
 

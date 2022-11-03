@@ -23,6 +23,7 @@ class Reserva{
         $this->hora_inicio = $hora_inicio;
         $this->hora_final = $hora_final;
         $this->id_mascota = $id_mascota;
+        $this->estado = "En espera";
     }
 
     public function setFechaInicio($fechaInicio)

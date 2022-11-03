@@ -15,7 +15,7 @@ require_once 'nav.php';
     if (!empty($listaReservas)) { // guardian recibe solo mascotas que coincidan con el tamaño que cuida (validacion hecha ya en lado del dueño)
         foreach ($listaReservas as $reserva) {
             
-            if (($reserva->getEstado() == null) && ($reserva->getId_guardian() == $_SESSION['loggedUser']->getId())){
+            if (($reserva->getEstado() == "En espera") && ($reserva->getId_guardian() == $_SESSION['loggedUser']->getId())){
                 
                 $mascota = $this->mascotaDAO->getById($reserva->getId_mascota());
     ?>

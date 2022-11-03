@@ -15,9 +15,10 @@ require_once 'nav.php';
 
                 <select name="tamaño" class="selector-tamaño" required>
                     <option disabled selected>Tamaño</option>
-                    <option value="Pequeño">Pequeño</option>
+                    <option value="Chiquito">Chiquito</option>
                     <option value="Mediano">Mediano</option>
                     <option value="Grande">Grande</option>
+                    <option value="Enorme">Enorme</option>
                 </select>
 
                 <input class="input-edad" name="edad" type="number" placeholder="Edad" required min="0" max="20">

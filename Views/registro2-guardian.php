@@ -12,7 +12,7 @@ require_once 'nav.php';
       <form action="<?php echo FRONT_ROOT . "Guardian/agregarGuardian"?>" method="post" id="formularioRegistroGuardian" class="formulario" enctype="multipart/form-data">
         <div class="opciones">
           <div class="lado1">
-            <input name="remuneracion" type="number" required placeholder="Remuneracion por hora" />
+            <input name="remuneracion" type="number" min="1" required placeholder="Remuneracion por hora" />
             <select name="tamanio">
               <option value="" disabled selected hidden>Tamaño</option>
               <!--placeholder-->
@@ -44,7 +44,6 @@ require_once 'nav.php';
         </div>
 
         <div class="botonesForm">
-          <input class="button" type='button' name="Cancelar" value="Cancelar" onClick="location.href='<?php echo FRONT_ROOT . 'Home/Index' ?>'">
           <button class="button" type="submit">Registrarse</button>
         </div>
       </form>

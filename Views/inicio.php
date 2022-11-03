@@ -27,8 +27,8 @@ if (isset($_SESSION['errorMessage']))
         <h2 class="tituloh2">Registrarse como</h2>
 
         <form class="formu" action=" <?php echo FRONT_ROOT . 'Home/registrarCuenta' ?> " method="post">
-          <button type="submit" class="button" name="tipoCuenta" value="dueño">Dueño</button>
-          <button type="submit" class="button" name="tipoCuenta" value="guardian">Guardian</button>
+          <button type="submit" class="button" name="tipoCuenta" value="Dueño">Dueño</button>
+          <button type="submit" class="button" name="tipoCuenta" value="Guardian">Guardian</button>
         </form>
       </div>
     </div>
