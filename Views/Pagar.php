@@ -8,49 +8,44 @@ require_once 'nav.php';
     <main>
         <div class="contenedor">
 
-            <form class="formulario" action="" method="">
+            <form class="formulario" action="<?php echo FRONT_ROOT . 'Pago/pagar'?>" method="post">
 
-                <!-- <div class="item1">
-                    <label for="">Fecha de pago</label>
-                    <input type="text" name="" id="">
-                </div> se crea automaticamente ¿?  -->  
+                <div>
+                    <h3>Numero de comprobante</h3>
+                    <p><?php /*echo $pago->getIdPago()*/?></p>
+                </div>
+
+                <div class="item5">
+                    <h3>Importe a pagar</h3>
+                    <p><?php /*echo $pago->getMonto()*/?></p>
+                </div>
 
                 <div class="item6">
                     <label for="">Metodo de pago</label>
-                    <select name="" id="">
-                        <option value="">Tarjeta de credito</option>
-                        <option value="">Tarjeta de debito</option>
+                    <select name="tipoTarjeta" required>
+                        <option value="credito">Tarjeta de credito</option>
+                        <option value="debito">Tarjeta de debito</option>
                     </select>
                 </div>
 
-                <div class="item2">
-                    <label for="">Numero comprobante</label>
-                    <input type="text" name="" id="">
+                <div>
+                    <label for="">Titular</label>
+                    <input type="text" name="titular" required>
                 </div>
 
                 <div class="item7">
                     <label for="">Numero tarjeta</label>
-                    <input type="text" name="" id="">
+                    <input type="number" name="nroTarjeta" min='1000000000000000' required>
                 </div>
-
-                <!-- <div class="item3">
-                    <label for="">Propina</label>
-                    <input type="text" name="" id="">
-                </div> -->
 
                 <div class="item8">
                     <label for="">Codigo de seguridad</label>
-                    <input type="text" name="" id="">
+                    <input type="number" name="codSeguridad" min='100' max='999' required>
                 </div>
 
-                <div class="item4">
-                    <label for="">Documento</label>
-                    <input type="text" name="" id="">
-                </div>
-
-                <div class="item5">
-                    <label for="">Importe total</label>
-                    <input type="text" name="" id="">
+                <div>
+                    <label for="">Fecha de vencimiento</label>
+                    <input type="text" name="fechaVencimiento" placeholder="mm/dd">
                 </div>
 
                 <div class="item9">
