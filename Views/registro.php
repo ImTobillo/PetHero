@@ -1,6 +1,11 @@
 <?php
 require_once 'header.php'; 
 require_once 'nav.php';
+if (isset($_SESSION['errorMessage']))
+{
+    echo $_SESSION['errorMessage'];
+    $_SESSION['errorMessage'] = null;
+}
 ?>
 
     <link property="stylesheet" href=" <?php echo CSS_PATH . 'registro.css' ?> " rel="stylesheet">

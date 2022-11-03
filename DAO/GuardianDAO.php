@@ -41,7 +41,6 @@ class GuardianDAO implements IRepositorio
             $this->connection->ExecuteNonQuery($query, $parameters);
         }
         catch(Exception $e){
-            echo $e->getMessage();
             throw $e;
         }
     }
@@ -125,7 +124,7 @@ class GuardianDAO implements IRepositorio
             }
         }
         return $guardian;
-    }
+    } 
     
     private function devuelveIdCiudad($ciudad){
 

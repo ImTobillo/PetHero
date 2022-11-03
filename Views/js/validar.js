@@ -16,10 +16,13 @@ function validarHora()
     let inputHoraInicio = document.getElementById("inputHoraInicio");
     let inputHoraFinal = document.getElementById("inputHoraFinal");
 
-    inputHoraFinal.setAttribute("min", inputHoraInicio.value);
-
-    if (!inputHoraFinal.value) // si todavia no puso hora final
-        inputHoraFinal.disabled = false;
-    else if (inputFechaInicio.value >= inputHoraFinal.value)// si ya habia puesto hora final y la nueva inicial es mayor
-        inputHoraFinal.value = inputHoraInicio.value;
+    let arregloHoraInicio = inputHoraInicio.value.split(':');
+    
+    if ((parseInt(arregloHoraInicio[0]) < 10))
+        arregloHoraInicio[0] = `0${(parseInt(arregloHoraInicio[0]) + 1)}`;
+    else
+        arregloHoraInicio[0] = (parseInt(arregloHoraInicio[0]) + 1).toString();
+    
+    inputHoraFinal.setAttribute("min", arregloHoraInicio.join(':'));
+    console.log(inputHoraFinal.value);
 }

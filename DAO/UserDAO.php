@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace DAO;
 
@@ -15,8 +15,9 @@ class UserDAO implements IRepositorio
 
     private $connection;
 
-    public function add($user){
-        try{
+    public function add($user)
+    {
+        try {
             $this->connection = Connection::GetInstance();
 
             $query = "INSERT INTO User (IdTipo, Username, Contrasenia)
@@ -27,35 +28,34 @@ class UserDAO implements IRepositorio
             $parameters['Contrasenia'] = $user->getPassword();
 
             $this->connection->ExecuteNonQuery($query, $parameters);
-        }
-        catch(Exception $e){
-            throw $e;
-        }
-    }
-
-    public function getByUser($username){
-
-        try {
-            $this->connection = Connection::GetInstance();
-            $query = "SELECT * FROM User WHERE Username = '$username' ";
-            $resultado = $this->connection->Execute($query);
-           
-            if (!empty($resultado))
-            {
-                $user = new User($resultado[0]['Username'], $resultado[0]['Contrasenia'], $this->getTipo($resultado[0]['IdTipo']));
-                $user->setId($resultado[0]['IdUser']);
-            }
-            else
-                $user = null;                
-
-            return $user;
-
         } catch (Exception $e) {
             throw $e;
         }
     }
 
-    public function getById($id){
+    public function getByUser($username)
+    {
+
+        try {
+            $this->connection = Connection::GetInstance();
+            $query = "SELECT * FROM User WHERE Username = '$username' ";
+            $resultado = $this->connection->Execute($query);
+
+            if (empty($resultado))
+                throw new Exception("<script> if(confirm('El usuario no existe')); </script>");
+            else {
+                $user = new User($resultado[0]['Username'], $resultado[0]['Contrasenia'], $this->getTipo($resultado[0]['IdTipo']));
+                $user->setId($resultado[0]['IdUser']);
+            }
+
+            return $user;
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
+
+    public function getById($id)
+    {
         try {
             $this->connection = Connection::GetInstance();
             $query = "SELECT * FROM User WHERE IdUser = '$id' ";
@@ -65,13 +65,13 @@ class UserDAO implements IRepositorio
             $user->setId($resultado[0]['IdUser']);
 
             return $user;
-
         } catch (Exception $e) {
             throw $e;
         }
     }
 
-    private function getTipo($id){
+    private function getTipo($id)
+    {
         $this->connection = Connection::GetInstance();
         $query = "SELECT Tipo AS nombreTipo FROM TipoUser WHERE IdTipo = '$id' ";
         $resultado = $this->connection->Execute($query);
@@ -79,13 +79,14 @@ class UserDAO implements IRepositorio
         return $resultado[0][0];
     }
 
-    private function getIdTipo($tipoCuenta){
+    private function getIdTipo($tipoCuenta)
+    {
         $this->connection = Connection::GetInstance();
         $idRetornar = null;
         $query = "SELECT IdTipo AS id FROM TipoUser WHERE Tipo = '$tipoCuenta' ";
         $resultado = $this->connection->Execute($query);
 
-        if(empty($resultado)){
+        if (empty($resultado)) {
             $query = "INSERT INTO TipoUser (Tipo) VALUES (:tipo)";
             $parameters['tipo'] = $tipoCuenta;
 
@@ -94,17 +95,53 @@ class UserDAO implements IRepositorio
             $query = "SELECT MAX(IdTipo) AS id FROM TipoUser";
 
             $idRetornar = $this->connection->Execute($query);
-        }
-        else{
+        } else {
             $idRetornar = $resultado;
         }
 
         return $idRetornar[0][0];
     }
 
+    public function validarEmail($email)
+    {
+        $this->connection = Connection::GetInstance();
+        $query = "SELECT guardian.Email FROM guardian WHERE guardian.Email = '$email'
+                    UNION
+                  SELECT duenio.Email FROM duenio WHERE duenio.Email = '$email'";
+        $resultado = $this->connection->Execute($query);
+
+
+        if (!empty($resultado)) {
+            throw new Exception("<script> if(confirm('El email ya lo usa otra persona')); </script>");
+        }
+    }
+
+    public function validarDni($dni)
+    {
+        $this->connection = Connection::GetInstance();
+        $query = "SELECT guardian.Dni FROM guardian WHERE guardian.Dni = '$dni'
+                    UNION
+                  SELECT duenio.Dni FROM duenio WHERE duenio.Dni = '$dni'";
+        $resultado = $this->connection->Execute($query);
+
+        if (!empty($resultado)) {
+            throw new Exception("<script> if(confirm('El DNI ya lo tiene otra persona')); </script>");
+        }
+    }
+
+    public function validarUsername($username)
+    {
+        $this->connection = Connection::GetInstance();
+        $query = "SELECT user.Username FROM user WHERE user.Username = '$username'";
+        $resultado = $this->connection->Execute($query);
+
+        if (!empty($resultado)) {
+            throw new Exception("<script> if(confirm('Nombre de usuario no disponible')); </script>");
+        }
+    }
+
     public function getAll()
     {
-        
     }
 
 
@@ -221,8 +258,3 @@ class UserDAO implements IRepositorio
         return $id;
     }*/
 }
-
-
-
-
-?>
