@@ -10,12 +10,10 @@ use PDOException;
 
 class DueñoDAO implements IRepositorio
 {
-    private $dueñosLista = array();
-    private $fileName = ROOT . 'Data/dueños.json';
-
     private $connection;
 
-    public function add($dueño){
+    public function add($dueño)
+    {
         try {
             $this->connection = Connection::GetInstance();
 
@@ -40,7 +38,8 @@ class DueñoDAO implements IRepositorio
         }
     }
 
-    public function getById($id){
+    public function getById($id)
+    {
         try {
             $this->connection = Connection::GetInstance();
             $query = "SELECT * FROM Duenio WHERE IdUser = '$id' ";
@@ -91,7 +90,12 @@ class DueñoDAO implements IRepositorio
     public function getAll(){
     }
 
-   /* public function add($dueño)
+   /* 
+   
+    private $dueñosLista = array();
+    private $fileName = ROOT . 'Data/dueños.json';
+   
+   public function add($dueño)
     {
         $this->RetrieveData();
         array_push($this->dueñosLista, $dueño);

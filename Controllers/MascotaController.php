@@ -2,7 +2,6 @@
 
 namespace Controllers;
 
-use Models\Mascota as Mascota;
 use DAO\MascotaDAO as MascotaDAO;
 use Models\Perro as Perro;
 use Models\Gato as Gato;
@@ -16,6 +15,7 @@ class MascotaController
         $this->mascotasDAO = new MascotaDAO();
     }
 
+    /*FUNCIONES DE VISTAS*/
     public function ShowAddView()
     {
         require_once VIEWS_PATH . 'validarSesion.php';
@@ -29,6 +29,13 @@ class MascotaController
         require_once(VIEWS_PATH . "VisualizarMascotas.php");
     }
 
+    public function verPerfil($id)
+    {
+        require_once VIEWS_PATH . 'validarSesion.php';
+        $mascota = $this->mascotasDAO->getById($id);
+        require_once(VIEWS_PATH . "ver-perfil-mascota.php");
+    }
+    
     public function creaMascota($nombre, $tamaño, $edad, $raza, $observaciones, $tipoMascota, $planVacunacion, $imgPerro, $videoPerro)
     {
         if($tipoMascota == "Perro"){
@@ -99,10 +106,5 @@ class MascotaController
         }
     }
 
-    public function verPerfil($id)
-    {
-        require_once VIEWS_PATH . 'validarSesion.php';
-        $mascota = $this->mascotasDAO->getById($id);
-        require_once(VIEWS_PATH . "ver-perfil-mascota.php");
-    }
+    
 }

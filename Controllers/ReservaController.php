@@ -23,6 +23,7 @@ class ReservaController
         $this->pagoDAO = new PagoDAO();
     }
 
+    /*FUNCIONES VISTAS*/
     public function ShowListaReservas()
     {
         require_once VIEWS_PATH . 'validarSesion.php';
@@ -30,14 +31,14 @@ class ReservaController
         require_once VIEWS_PATH . 'visualizarFechasSolicitadas.php';
     }
 
-    public function solicitarReserva($fechaInicio, $fechaFinal, $horaInicial, $horaFinal, $mascota, $id_guardian){
-        $reserva = new Reserva($id_guardian, $_SESSION['loggedUser']->getId(), $fechaInicio, $fechaFinal, $horaInicial, $horaFinal, $mascota);
-
-        $this->reservaDAO->add($reserva);
-
-        require_once(VIEWS_PATH . 'MenuDueño.php');
+    public function ShowListPagos()
+    {
+        require_once VIEWS_PATH . 'validarSesion.php';
+        $reservas = $this->reservaDAO->getAllById($_SESSION['loggedUser']->getId());
+        require_once (VIEWS_PATH . 'VerPagosPendientes.php');
     }
 
+    /*SETEAR ESTADOS DE RESERVA*/
     public function aceptarReserva($id)
     {
         $this->reservaDAO->setEstadoReserva($id, "Aceptado"); 
@@ -56,7 +57,38 @@ class ReservaController
         $this->ShowListaReservas();
     }
 
-    public function calcularMonto($idReserva){
+    public function rechazarReserva($id)
+    {
+        $this->reservaDAO->setEstadoReserva($id, "Rechazado");
+        $this->ShowListaReservas();
+    }
+
+    public function confirmarReserva($tarjeta, $idPago)
+    {
+
+        $pago = $this->pagoDAO->getById($idPago);
+
+        //seteo estado
+        $this->reservaDAO->setEstadoReserva($pago->getIdReserva(), "Confirmado");
+
+        //asigno la tarjeta al pago
+        $this->pagoDAO->setTarjeta($tarjeta, $idPago);
+        $this->ShowListPagos();
+    }
+
+    /*******/
+    public function solicitarReserva($fechaInicio, $fechaFinal, $horaInicial, $horaFinal, $mascota, $id_guardian)
+    {
+        $reserva = new Reserva($id_guardian, $_SESSION['loggedUser']->getId(), $fechaInicio, $fechaFinal, $horaInicial, $horaFinal, $mascota);
+
+        $this->reservaDAO->add($reserva);
+
+        require_once(VIEWS_PATH . 'MenuDueño.php');
+    }
+
+
+    public function calcularMonto($idReserva)
+    {
 
         $reserva = $this->reservaDAO->getById($idReserva);
 
@@ -71,11 +103,13 @@ class ReservaController
 
     }
 
-    public function rechazarReserva($id)
+    public function borrarReserva($idReserva)
     {
-        $this->reservaDAO->setEstadoReserva($id, "Rechazado");
-        $this->ShowListaReservas();
+        $this->reservaDAO->remove($idReserva);
+        $this->ShowListPagos();
     }
+
+    /*VALIDACIONES*/
 
     public function puedeAceptarRaza($reserva) // se valida que no haya otra raza ACEPTADA en la misma fecha
     {
@@ -94,17 +128,7 @@ class ReservaController
         return $bool; 
     }
 
-    public function ShowListPagos(){
-        require_once VIEWS_PATH . 'validarSesion.php';
-        $reservas = $this->reservaDAO->getAllById($_SESSION['loggedUser']->getId());
-        $pagos = $this->pagoDAO->getAll();
-        require_once (VIEWS_PATH . 'VerPagosPendientes.php');
-    }
-
-    public function borrarReserva($idReserva){
-        $this->reservaDAO->remove($idReserva);
-        $this->ShowListPagos();
-     }
+    
 }
 
 

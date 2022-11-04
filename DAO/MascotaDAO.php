@@ -13,7 +13,6 @@ use PDOException;
 class MascotaDAO implements IRepositorio
 {
     private $connection;
-    //private $fileName = ROOT . 'Data/mascotas.json';
 
     public function add($mascota)
     {
@@ -202,6 +201,7 @@ class MascotaDAO implements IRepositorio
 
     // Funciones para Json
 
+    private $fileName = ROOT . 'Data/mascotas.json';
     private function GetNextId()
     {
         $id = 0;
