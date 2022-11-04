@@ -3,18 +3,24 @@
 namespace Controllers;
 
 use Models\Reserva as Reserva;
+use Models\Pago as Pago;
 use DAO\ReservaDAO as ReservaDAO;
 use DAO\MascotaDAO as MascotaDAO;
+use DAO\PagoDAO as PagoDAO;
+
+use DateTime;
 
 class ReservaController
 {
     private $reservaDAO;
     private $mascotaDAO;
+    private $pagoDAO;
 
     function __construct()
     {
         $this->reservaDAO = new ReservaDAO;
         $this->mascotaDAO = new MascotaDAO;
+        $this->pagoDAO = new PagoDAO();
     }
 
     public function ShowListaReservas()
@@ -34,8 +40,35 @@ class ReservaController
 
     public function aceptarReserva($id)
     {
-        $this->reservaDAO->setEstadoReserva($id, "Aceptado");
+        $this->reservaDAO->setEstadoReserva($id, "Aceptado"); 
+        //generar cupon de pago
+
+        $pago = new Pago();
+        $pago->setFecha(date('Y-m-d'));
+        $pago->setEstado('No pagado');
+        $pago->setMonto($this->calcularMonto($id));
+        $pago->setIdReserva($id);
+        
+        $this->pagoDAO->add($pago);
+        
+        //aca deberia mandarse por mail
+        
         $this->ShowListaReservas();
+    }
+
+    public function calcularMonto($idReserva){
+
+        $reserva = $this->reservaDAO->getById($idReserva);
+
+        $monto =  ((int)(((new DateTime($reserva->getHora_inicio()))->diff(new DateTime($reserva->getHora_final())))->format('%H')) // cantidad de horas
+
+                                  * ((int)(($reserva->getFechaInicio() != $reserva->getFechaFinal()) 
+                                  ? ((new DateTime($reserva->getFechaInicio()))->diff((new DateTime($reserva->getFechaFinal()))))->format('%D') 
+                                  : 1)+1) // = cantidad de días
+
+                                  * $_SESSION["loggedUser"]->getRemuneracion() /* monto por hora */);
+        return $monto;                                  
+
     }
 
     public function rechazarReserva($id)
@@ -63,7 +96,8 @@ class ReservaController
 
     public function ShowListPagos(){
         require_once VIEWS_PATH . 'validarSesion.php';
-        $reservas = $this->reservaDAO->getAll();
+        $reservas = $this->reservaDAO->getAllById($_SESSION['loggedUser']->getId());
+        $pagos = $this->pagoDAO->getAll();
         require_once (VIEWS_PATH . 'VerPagosPendientes.php');
     }
 
