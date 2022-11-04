@@ -7,6 +7,8 @@ class Pago
     private $idPago;
     private $fecha;
     private $monto;
+    private $estado; #pagado / no pagado
+    private $idReserva;
 
     public function getIdPago()
     {
@@ -42,6 +44,22 @@ class Pago
         $this->monto = $monto;
 
         return $this;
+    }
+
+    public function getEstado(){
+        return $this->estado;
+    }
+
+    public function setEstado($estado){
+        $this->estado = $estado;
+    }
+
+    public function getIdReserva(){
+        return $this->idReserva;
+    }
+
+    public function setIdReserva($idReserva){
+        $this->idReserva = $idReserva;
     }
 }
 
