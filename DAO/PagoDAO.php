@@ -10,12 +10,10 @@ use PDOException;
 
 class PagoDAO implements IRepositorio
 {
-    private $pagoLista = array();
-    private $fileName = ROOT . 'Data/pagos.json';
-
     private $connection;
 
-    public function add($pago){
+    public function add($pago)
+    {
         try {
             $this->connection = Connection::GetInstance();
 
@@ -46,6 +44,7 @@ class PagoDAO implements IRepositorio
 
                 $pago = new Pago();
 
+                $pago->setIdPago($fila['IdPago']);
                 $pago->setFecha($fila['Fecha']);
                 $pago->setEstado($fila['Estado']);
                 $pago->setMonto($fila['Monto']);
@@ -74,6 +73,7 @@ class PagoDAO implements IRepositorio
 
             $pago = new Pago();
 
+            $pago->setIdPago($resultado[0]['IdPago']);
             $pago->setFecha($resultado[0]['Fecha']);
             $pago->setEstado($resultado[0]['Estado']);
             $pago->setMonto($resultado[0]['Monto']);
@@ -98,6 +98,7 @@ class PagoDAO implements IRepositorio
 
             $pago = new Pago();
 
+            $pago->setIdPago($resultado[0]['IdPago']);
             $pago->setFecha($resultado[0]['Fecha']);
             $pago->setEstado($resultado[0]['Estado']);
             $pago->setMonto($resultado[0]['Monto']);
@@ -111,7 +112,21 @@ class PagoDAO implements IRepositorio
         }
     }
 
-    /*public function add($pago)
+    public function setTarjeta($idTarjeta, $idPago)
+    {
+        $this->connection = Connection::GetInstance();
+        
+        $query = "UPDATE Pago SET IdTarjeta = '$idTarjeta' WHERE IdPago = '$idPago' ";
+
+        $this->connection->Execute($query);
+    }
+
+    /*
+    
+    private $pagoLista = array();
+    private $fileName = ROOT . 'Data/pagos.json';
+
+    public function add($pago)
     {
         $this->RetrieveData();
         $pago->setIdPago($this->GetNextId());

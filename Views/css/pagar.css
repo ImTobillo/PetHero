@@ -1,18 +1,15 @@
 .contenedor{
     background-color: #8A8388;
-    width: 60%;
-    margin: 0 auto;
+    width: 50%;
+    margin: auto;
     height: auto;
     border-radius: 10px;
 }
 
 .formulario{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 20px;
     height: auto;
-    margin: 0 auto;
-    margin-top: 30px;
+    margin: auto;
+    justify-items: center;
 }
 
 input, label, select{
@@ -36,35 +33,29 @@ option{
     background-color: #EDDBC4;
 }
 
-div{    
+div{  
     width: 80%;
+    margin:1rem;
     align-self: center;
     justify-self: center;
 }    
 
-.item1, .item2, .item3, .item4, .item5{
-    grid-column: 1 / 2;
-}
-
-.item9{
-    grid-column: 1 / 4;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
 button{
-    font-family: 'Dokdo', cursive;
-    font-size: 30px;
+    font-size: 10px;
     background-color: #FFB353;
     border-radius: 10px;
     width: 90%;
     height: 50px;
     border: none;
-    margin-top: 20px;
-    margin-bottom: 30px;
+    margin:1rem;
 }
 
 button:hover{
     background-color: #FB6A3D;
+}
+
+h1{
+    font-family: "Dokdo", cursive;
+    color: #ffb353;
+    text-align: center;
 }

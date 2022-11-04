@@ -1,55 +1,46 @@
 <?php
 require_once 'header.php'; 
 require_once 'nav.php';
+
+use DAO\TarjetaDAO as TarjetaDAO;
+$tarjetasDAO = new TarjetaDAO();
+$tarjetas = $tarjetasDAO->getAllByIdDuenio($_SESSION['loggedUser']->getId());
 ?>
 
-    <link property="stylesheet" rel="stylesheet" href=" <?php echo CSS_PATH . 'pagar.css' ?> ">
+    <link property="stylesheet" rel="stylesheet" href=" <?php echo CSS_PATH . 'pagar.css?v=4' ?> ">
 
     <main>
         <div class="contenedor">
 
-            <form class="formulario" action="<?php echo FRONT_ROOT . 'Pago/pagar'?>" method="post">
+            <form class="formulario" action="<?php echo FRONT_ROOT . 'Reserva/confirmarReserva'?>" method="post">
 
-                <div>
-                    <h3>Numero de comprobante</h3>
-                    <p><?php /*echo $pago->getIdPago()*/?></p>
+            <h1>Cupon de pago</h1>
+                
+                <div class="item1">
+                    <h3>Numero de comprobante: <?php echo $pago->getIdPago()?></h3>
                 </div>
+
+                <div class="item2">
+                    <h3>Fecha de emision: <?php echo $pago->getFecha()?></h3>
+                </div>
+
+                <div class="item3">
+                    <h3>Importe a pagar: <?php echo $pago->getMonto() / 2?></h3>
+                </div>
+
+                <div class="item4">
+                    <h3>Seleccionar tarjeta</h3>
+                    <select name="tarjeta" id="" required>
+                        <?php foreach($tarjetas as $tarjeta){ ?>
+                            <option value="<?php echo $tarjeta->getIdTarjeta();?>"><?php echo $tarjeta->getNroTarjeta();?></option>
+                            <?php } ?>
+                    </select>
+                    <p>¿No tiene tarjetas cargadas?</p>
+                    <a class="button" href="<?php echo FRONT_ROOT . 'Tarjeta/ShowAddTarjeta'; ?>">Cargar tarjeta</a>
+                </div>                
 
                 <div class="item5">
-                    <h3>Importe a pagar</h3>
-                    <p><?php /*echo $pago->getMonto()*/?></p>
-                </div>
-
-                <div class="item6">
-                    <label for="">Metodo de pago</label>
-                    <select name="tipoTarjeta" required>
-                        <option value="credito">Tarjeta de credito</option>
-                        <option value="debito">Tarjeta de debito</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label for="">Titular</label>
-                    <input type="text" name="titular" required>
-                </div>
-
-                <div class="item7">
-                    <label for="">Numero tarjeta</label>
-                    <input type="number" name="nroTarjeta" min='1000000000000000' required>
-                </div>
-
-                <div class="item8">
-                    <label for="">Codigo de seguridad</label>
-                    <input type="number" name="codSeguridad" min='100' max='999' required>
-                </div>
-
-                <div>
-                    <label for="">Fecha de vencimiento</label>
-                    <input type="text" name="fechaVencimiento" placeholder="mm/dd">
-                </div>
-
-                <div class="item9">
-                    <button type="submit">Confirmar pago</button>
+                    <button class="button" type="submit" name="idPago" value="<?php echo $pago->getIdPago();?>">Confirmar pago</button>
                 </div>
 
             </form>

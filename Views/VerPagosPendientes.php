@@ -47,7 +47,7 @@ $pagoDAO = new PagoDAO();
                             <h3>Estado del pago: <?php echo $pago->getEstado(); ?></h3>
 
                             <form action="<?php echo FRONT_ROOT . 'Pago/ShowPagar'?>" method="post">
-                               <button type="submit" name='idPago' value='<?php echo $pago->getIdPago();?>'>Pagar</button> 
+                               <button class="button" type="submit" name='idPago' value='<?php echo $pago->getIdPago();?>'>Pagar</button> 
                             </form>
 
                         <?php } 
@@ -56,7 +56,7 @@ $pagoDAO = new PagoDAO();
                         else if($reserva->getEstado() == 'Rechazado') { ?>
                             
                             <form action="<?php echo FRONT_ROOT . 'Reserva/borrarReserva'?>" method="post">
-                               <button type="submit" name='idReserva' value='<?php echo $reserva->getId_reserva();?>'>Aceptar</button> 
+                               <button class="button" type="submit" name='idReserva' value='<?php echo $reserva->getId_reserva();?>'>Aceptar</button> 
                             </form>
                             
                         <?php } else if($reserva->getEstado() == 'Confirmado'){ ?>
