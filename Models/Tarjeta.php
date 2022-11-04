@@ -4,6 +4,7 @@
 namespace Models;
 
 class Tarjeta{
+    private $idTarjeta;
     private $tipo; #credito o debito
     private $nroTarjeta;
     private $id_duenio;
@@ -18,6 +19,13 @@ class Tarjeta{
         $this->titular = $titular;
         $this->cod_seguridad = $cod_seguridad;
         $this->fechaVencimiento = $fechaVencimiento;
+    }
+    public function getIdTarjeta(){
+        return $this->idTarjeta;
+    }
+
+    public function setIdTarjeta($idtarjeta){
+        $this->idTarjeta = $idtarjeta;
     }
     
     public function getTipo(){
