@@ -35,24 +35,36 @@ $pagoDAO = new PagoDAO();
                         
                         <!--ACA MUESTRO SI ESTADO ES ACEPTADO!-->
                         <?php if($reserva->getEstado() == 'Aceptado'){ ?>
-                            <!--<h3>Monto a pagar: 
+                            <h2>Cupon de pago: </h2>
+                            <h3>
+                                Monto a pagar:
                                 <?php 
-                                /*$pago = $pagoDAO->getById($reserva->getIdPago());
-                                echo $pago->getMonto();*/
-                                ?></h3>!-->
+                                $pago = $pagoDAO->getByIdReserva($reserva->getId_reserva());
+                                echo $pago->getMonto() / 2;
+                                ?> 
+                            </h3>
+                              
+                            <h3>Estado del pago: <?php echo $pago->getEstado(); ?></h3>
+
                             <form action="<?php echo FRONT_ROOT . 'Pago/ShowPagar'?>" method="post">
-                               <button type="submit" name='idPago' value='<?php /*echo $reserva->getIdPago()*/?>'>Pagar</button> 
+                               <button type="submit" name='idPago' value='<?php echo $pago->getIdPago();?>'>Pagar</button> 
                             </form>
-                        <?php } else if($reserva->getEstado() == 'Rechazado') { ?>
-                            <!--ACA MUESTRO SI ESTADO ES RECHAZADO!-->
+
+                        <?php } 
+                        
+                        /*ACA MUESTRO SI ESTADO ES RECHAZADO*/
+                        else if($reserva->getEstado() == 'Rechazado') { ?>
+                            
                             <form action="<?php echo FRONT_ROOT . 'Reserva/borrarReserva'?>" method="post">
                                <button type="submit" name='idReserva' value='<?php echo $reserva->getId_reserva();?>'>Aceptar</button> 
                             </form>
                             
-                        <?php } else if($reserva->getEstado() == 'Confirmada'){ ?>
+                        <?php } else if($reserva->getEstado() == 'Confirmado'){ ?>
+
                             <h3>Fecha inicio: <?php echo $reserva->getFechaInicio();?></h3>
                             <h3>Fecha final: <?php echo $reserva->getFechaFinal();?></h3>
                             <h3>Horario: <?php echo $reserva->getHora_inicio() . '-' . $reserva->getHora_final();?></h3>
+
                         <?php } 
                                 else{ }?>
                                 
