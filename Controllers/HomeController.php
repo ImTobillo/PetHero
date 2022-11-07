@@ -37,6 +37,7 @@ class HomeController
         }
     }
 
+    /*FUNCIONES VISTAS*/
     public function verPerfil()
     {
         require_once VIEWS_PATH . 'validarSesion.php';
@@ -45,6 +46,11 @@ class HomeController
         } else {
             require_once(VIEWS_PATH . 'ver-perfil-guardian.php');
         }
+    }
+
+    public function registrarCuenta($tipoCuenta)
+    {
+        require_once(VIEWS_PATH . 'registro.php');
     }
 
     public function Login($username, $password)
@@ -76,18 +82,13 @@ class HomeController
         }
     }
 
-    public function registrarCuenta($tipoCuenta)
-    {
-        require_once(VIEWS_PATH . 'registro.php');
-    }
-
     public function cerrarSesion()
     {
         $_SESSION = []; // resetea el session
         $this->Index();
     }
 
-    #agregar funcion de registro que guarde los datos de persona
+    #REGISTRO DATOS PERSONA
     public function registro($nombre, $apellido, $dni, $email, $contraseña, $telefono, $fechaNacimiento, $ciudad, $calle, $numCalle, $nombreUser, $tipoCuenta)
     {
         try {
@@ -125,7 +126,11 @@ class HomeController
     }
 
 
-    /*$user = $this->userDAO->getByUser($nombreUser);
+    /*
+    
+    REGISTRO CON JSON
+    
+    $user = $this->userDAO->getByUser($nombreUser);
         
         if($user != null){ // ya hay un usuario con ese nombre
 

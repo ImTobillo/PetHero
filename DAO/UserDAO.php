@@ -10,9 +10,6 @@ use PDOException;
 
 class UserDAO implements IRepositorio
 {
-    private $usersList = array();
-    private $fileName = ROOT . 'Data/users.json';
-
     private $connection;
 
     public function add($user)
@@ -80,6 +77,10 @@ class UserDAO implements IRepositorio
 
         return $resultado[0][0];
     }
+    
+    public function getAll()
+    {
+    }
 
     private function getIdTipo($tipoCuenta)
     {
@@ -142,12 +143,14 @@ class UserDAO implements IRepositorio
         }
     }
 
-    public function getAll()
-    {
-    }
+    
 
 
-    /*public function add($user)
+    /*
+    private $usersList = array();
+    private $fileName = ROOT . 'Data/users.json';
+    
+    public function add($user)
     {
         $this->RetrieveData();
         $user->setId($this->GetNextId());

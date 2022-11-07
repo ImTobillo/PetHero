@@ -11,17 +11,17 @@ use PDOException;
 class ReservaDAO implements IRepositorio
 {
     private $reservaLista = array();
-    // private $fileName = ROOT . 'Data/reservas.json';
+    
     private $connection;
 
-    public function add($reserva){
+    public function add($reserva)
+    {
             try{
                 $this->connection = Connection::GetInstance();
     
                 $query = "INSERT INTO Reserva (IdDuenio, IdGuardian, IdMascota, FechaInicio, FechaFinal, HoraInicio, Estado, HoraFinal)
                           VALUES (:IdDuenio, :IdGuardian, :IdMascota, :FechaInicio, :FechaFinal, :HoraInicio, :Estado, :HoraFinal)";
     
-                //no pongo id pago porque todavia no está aceptada la reserva, no hay un pago
                 $parameters['IdDuenio'] = $reserva->getId_dueño();
                 $parameters['IdGuardian'] = $reserva->getId_guardian();
                 $parameters['IdMascota'] = $reserva->getId_mascota();
@@ -38,6 +38,20 @@ class ReservaDAO implements IRepositorio
             }
     }
 
+    public function remove($idReserva)
+    {
+        try{
+            $this->connection = Connection::GetInstance();
+
+            $query = "DELETE FROM Reserva WHERE IdReserva = '$idReserva'";
+
+            $this->connection->Execute($query);
+
+        }catch(Exception $e){
+            throw($e);
+        }
+    }
+
     public function getAll()
     {
         try
@@ -50,6 +64,33 @@ class ReservaDAO implements IRepositorio
             foreach ($resultado as $fila) {
 
                 $reserva = new Reserva($fila['IdGuardian'], /*$fila['Idpago'],*/ $fila['IdDuenio'], $fila['FechaInicio'], $fila['FechaFinal'], $fila['HoraInicio'], $fila['HoraFinal'], $fila['IdMascota']);
+
+                $reserva->setId_reserva($fila['IdReserva']);
+                $reserva->setEstado($fila['Estado']);
+
+                array_push($array, $reserva);
+            }
+
+            return $array;
+        }
+        catch(Exception $e)
+        {
+            throw $e;
+        }
+    }
+
+    public function getAllById($idDuenio)
+    {
+        try
+        {
+            $array = Array();
+            $query = "SELECT * FROM Reserva r WHERE r.IdDuenio = '$idDuenio'";
+            $this->connection = Connection::GetInstance();
+            $resultado = $this->connection->Execute($query);
+
+            foreach ($resultado as $fila) {
+
+                $reserva = new Reserva($fila['IdGuardian'], $fila['IdDuenio'], $fila['FechaInicio'], $fila['FechaFinal'], $fila['HoraInicio'], $fila['HoraFinal'], $fila['IdMascota']);
 
                 $reserva->setId_reserva($fila['IdReserva']);
                 $reserva->setEstado($fila['Estado']);
@@ -82,7 +123,9 @@ class ReservaDAO implements IRepositorio
         return $reserva;
     }
 
-    public function setEstadoReserva($id, $estado){//cuando se acepte la reserva se setea el idpago y se crea el pago
+    /*SET*/
+    public function setEstadoReserva($id, $estado)
+    {//cuando se acepte la reserva se setea el idpago y se crea el pago
         $this->connection = Connection::GetInstance();
         
         $query = "UPDATE Reserva SET Reserva.Estado = '$estado' WHERE Reserva.IdReserva = '$id' ";
@@ -90,20 +133,9 @@ class ReservaDAO implements IRepositorio
         $this->connection->Execute($query);
     }
 
-    public function remove($idReserva){
-        try{
-            $this->connection = Connection::GetInstance();
-
-            $query = "DELETE FROM Reserva WHERE IdReserva = '$idReserva'";
-
-            $this->connection->Execute($query);
-
-        }catch(Exception $e){
-            throw($e);
-        }
-    }
-
-    /*public function add($reserva)
+    /*
+    // private $fileName = ROOT . 'Data/reservas.json';
+    public function add($reserva)
     {
         $this->RetrieveData();
         $reserva->setId_reserva($this->GetNextId());
