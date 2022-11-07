@@ -53,10 +53,12 @@ class ReservaController
         foreach ($listaReservas as $reservaValue) {
             if (($reservaValue->getId_guardian() == $reserva->getId_guardian()) // si este guardian
             && ($reservaValue->getEstado() == "Aceptado")  // ya acepto una mascota
-            && (($reservaValue->getFechaInicio() <= $reserva->getFechaFinal()))  // en las mismas fechas
+            && (($reservaValue->getFechaInicio() <= $reserva->getFechaFinal()) && ($reservaValue->getFechaInicio() >= $reserva->getFechaFinal()))  // en las mismas fechas
             && ($this->mascotaDAO->getById($reservaValue->getId_mascota())->getRaza() != $this->mascotaDAO->getById($reserva->getId_mascota())->getRaza() || $reservaValue->getId_mascota() == $reserva->getId_mascota())) // con una raza distinta o a la misma mascota
                     $bool = false; // no puede cuidar una raza distinta
         }
+
+        var_dump($bool);
 
         return $bool; 
     }
