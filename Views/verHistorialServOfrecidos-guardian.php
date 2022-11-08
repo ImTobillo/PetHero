@@ -2,6 +2,7 @@
 require_once 'header.php';
 require_once 'nav.php';
 
+use DAO\DueñoDAO;
 use DAO\PagoDAO as PagoDAO;
 $pagos = new PagoDAO();
 
@@ -33,7 +34,6 @@ $pagos = new PagoDAO();
 
               if (($_SESSION["loggedUser"]->getId() == $reserva->getId_guardian()) && ($reserva->getEstado() == "Aceptado")) 
               { 
-                
                 $pago = $pagos->getById($reserva->getId_pago());
                 $dueño = $this->dueñoDAO->getById($reserva->getId_dueño());
                 $mascota = $this->mascotaDAO->getById($reserva->getId_mascota()); ?>
