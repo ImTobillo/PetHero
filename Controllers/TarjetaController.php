@@ -22,7 +22,7 @@ class TarjetaController{
     }
 
     
-    public function agregarTarjeta($tipoTarjeta, $nroTarjeta, $titular, $codSeguridad, $fechaVencimiento){
+    public function agregarTarjeta($tipoTarjeta, $titular, $nroTarjeta, $codSeguridad, $fechaVencimiento){
         $tarjeta = new Tarjeta($tipoTarjeta, $nroTarjeta, $_SESSION['loggedUser']->getId(), $titular, $codSeguridad, $fechaVencimiento);
         //validar vencimiento
         $this->tarjetaDAO->add($tarjeta);

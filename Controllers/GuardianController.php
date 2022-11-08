@@ -2,11 +2,13 @@
 
 namespace Controllers;
 
+use Models\Guardian as Guardian;
 use DAO\GuardianDAO as GuardianDAO;
-use DAO\DueñoDAO as DueñoDAO;
-use DAO\MascotaDAO as MascotaDAO;
-use DAO\PagoDAO as PagoDAO;
 use DAO\ReservaDAO as ReservaDAO;
+use DAO\DueñoDAO as DueñoDAO;
+use DAO\PagoDAO as PagoDAO;
+use DAO\MascotaDAO as MascotaDAO;
+use Exception;
 
 class GuardianController
 {
@@ -29,7 +31,7 @@ class GuardianController
     public function ShowHistorial()
     {
         require_once VIEWS_PATH . 'validarSesion.php';
-        $listaReservas = $this->reservasDAO->getAll();
+        $listaPagos = $this->pagoDAO->getAll();
         require_once VIEWS_PATH . 'verHistorialServOfrecidos-guardian.php';
     }
 

@@ -29,12 +29,13 @@ $pagos = new PagoDAO();
         </thead>
         <tbody>
           <?php
-          if (!empty($listaReservas)) {
-            foreach ($listaReservas as $reserva) {
+          if (!empty($listaPagos)) {
+            foreach ($listaPagos as $pago) {
+              $reserva = $this->reservasDAO->getById($pago->getIdReserva());
 
               if (($_SESSION["loggedUser"]->getId() == $reserva->getId_guardian()) && ($reserva->getEstado() == "Aceptado")) 
               { 
-                $pago = $pagos->getById($reserva->getId_pago());
+                $pago = $pagos->getById($pago->getIdPago());
                 $dueño = $this->dueñoDAO->getById($reserva->getId_dueño());
                 $mascota = $this->mascotaDAO->getById($reserva->getId_mascota()); ?>
                 

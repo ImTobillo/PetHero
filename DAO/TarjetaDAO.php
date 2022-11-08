@@ -67,7 +67,7 @@ class TarjetaDAO implements IRepositorio
                 $tarjeta = new Tarjeta($value['tipo'], $value['nroTarjeta'], $value['id_duenio'], $value['titular'], $value['codSeguridad'],
                               $value['fechaVencimiento']);
 
-                $tarjeta->setIdTarjeta($value['idTarjeta']);
+                $tarjeta->setIdTarjeta($value['IdTarjeta']);
 
                 array_push($array, $tarjeta);
             }
