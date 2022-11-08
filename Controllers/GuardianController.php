@@ -3,17 +3,26 @@
 namespace Controllers;
 
 use DAO\GuardianDAO as GuardianDAO;
+use DAO\DueñoDAO as DueñoDAO;
+use DAO\MascotaDAO as MascotaDAO;
+use DAO\PagoDAO as PagoDAO;
 use DAO\ReservaDAO as ReservaDAO;
 
 class GuardianController
 {
     private $guardianDAO;
     private $reservasDAO;
+    private $pagoDAO;
+    private $dueñoDAO;
+    private $mascotaDAO;
 
     function __construct()
     {
         $this->guardianDAO = new GuardianDAO();
         $this->reservasDAO = new ReservaDAO();
+        $this->pagoDAO = new PagoDAO();
+        $this->dueñoDAO = new DueñoDAO();
+        $this->mascotaDAO = new MascotaDAO();
     }
 
     /*FUNCIONES VISTAS*/
