@@ -40,7 +40,7 @@ $tarjetas = $tarjetasDAO->getAllByIdDuenio($_SESSION['loggedUser']->getId());
                 </div>                
 
                 <div class="item5">
-                    <button class="button" type="submit" name="idPago" value="<?php echo $pago->getIdPago();?>">Confirmar pago</button>
+                    <button class="button" type="submit" onclick="location.href='<?php echo FRONT_ROOT . 'Email/enviaEmail/' . $_SESSION['loggedUser']->getId() ?>'" name="idPago" value="<?php echo $pago->getIdPago();?>">Confirmar pago</button>                
                 </div>
 
             </form>
