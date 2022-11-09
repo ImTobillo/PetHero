@@ -35,7 +35,8 @@ require_once 'nav.php';
                     <div class="datosGuardian"><p>Telefono: <?php echo $guardian->getTelefono(); ?></p></div>
                     <div class="datosGuardian"><p>Tamaño de mascota: <?php echo $guardian->getTamaño(); ?></p></div>
                     <div class="datosGuardian"><p>Precio por hora: $<?php echo $guardian->getRemuneracion(); ?></p></div>
-            </div>
+                    <div class="datosGuardian"><p>Horario: <?php echo $guardian->getHoraDisponible(); ?></p></div>            
+                </div>
     
         <!-- SOLICITUD RESERVA !-->    
             <div class="formReservaGuardian">

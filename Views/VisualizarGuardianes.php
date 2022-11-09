@@ -36,7 +36,8 @@ require_once 'nav.php';
                     <p> <?php echo $guardian->getNombre(); ?> </p>
                     <p>Disponibilidad: </p>
                     <p> <?php echo $guardian->getFechaInicio() . ' - ' . $guardian->getFechaFinal(); ?></p>
-                    
+                    <p> <?php echo $guardian->getTamaño(); ?> </p>
+
                     <form action="<?php echo FRONT_ROOT . 'Duenio/ShowViewReservar'?>" method="post">
                         <button class="boton" type="submit" name="id_guardian" value="<?php echo $guardian->getId(); ?>">Ver perfil</button>
                     </form>
