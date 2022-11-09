@@ -32,7 +32,7 @@ require_once 'nav.php';
                     <div class="Aceptar-Rechazar">
                         <?php if($this->puedeAceptarRaza($reserva)){ ?>
                             <button type="button">
-                                <a href="<?php echo FRONT_ROOT . 'Reserva/aceptarReserva?id=' . $reserva->getId_reserva(); ?>"
+                                <a href="<?php echo FRONT_ROOT . 'Reserva/aceptarReserva?id=' . $reserva->getId_reserva() . '&idDueño=' . $reserva->getId_dueño(); ?>"
                                     >Aceptar
                                 </a>
                             </button>

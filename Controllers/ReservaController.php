@@ -22,11 +22,13 @@ use DateTime;
 class ReservaController
 {
     private $reservaDAO;
+    private $dueñoDAO;
     private $mascotaDAO;
     private $pagoDAO;
 
     function __construct()
     {
+        $this->dueñoDAO = new DueñoDAO();
         $this->reservaDAO = new ReservaDAO;
         $this->mascotaDAO = new MascotaDAO;
         $this->pagoDAO = new PagoDAO();
@@ -48,7 +50,7 @@ class ReservaController
     }
 
     /*SETEAR ESTADOS DE RESERVA*/
-    public function aceptarReserva($id)
+    public function aceptarReserva($id, $idDueño)
     {
         $this->reservaDAO->setEstadoReserva($id, "Aceptado"); 
         //generar cupon de pago
@@ -61,7 +63,7 @@ class ReservaController
         
         $this->pagoDAO->add($pago);
         
-        $this->enviaEmail($_SESSION['loggedUser']->getId());   // Envia email
+        $this->enviaEmail($idDueño);   // Envia email
 
         $this->ShowListaReservas();
     }
@@ -137,10 +139,8 @@ class ReservaController
         return $bool; 
     }
 
-    static public function enviaEmail($id){
-        
-        $dueñoDAO = new DueñoDAO();
-        $dueño = $dueñoDAO->getById($id);
+    public function enviaEmail($id){
+        $dueño = $this->dueñoDAO->getById($id);
 
         $mail = new PHPMailer(true);
 
@@ -162,8 +162,8 @@ class ReservaController
 
             //Content
             $mail->isHTML(true);                                  //Set email format to HTML
-            $mail->Subject = 'Recibo de pago'; // Asunto
-            $mail->Body    = "Se confirmo tu pago " . $dueño->getNombre() . " gracias por elegirnos.";
+            $mail->Subject = 'Cupón de pago'; // Asunto
+            $mail->Body    = "Se confirmo la reserva que solicitaste" . $dueño->getNombre() . " gracias por elegirnos.";
         
             $mail->send();
             echo 'Enviado correctamente';

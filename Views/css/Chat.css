@@ -1,0 +1,40 @@
+header{
+    margin-bottom: 50px;
+}
+
+main{
+    background-color: #8A8388;
+    width: 85%;
+    border-radius: 10px;
+    margin: 0 auto;
+}
+
+
+
+button{
+    font-family: 'Dokdo', cursive;
+    font-size: 30px;
+    background-color: #FFB353;
+    border-radius: 10px;
+    width: 100%;
+    height: 50px;
+    border: none;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+button:hover{
+    background-color: #FB6A3D;
+}
+
+@keyframes slidein {
+    from {
+      margin-left: 100%;
+      width: 300%;
+    }
+  
+    to {
+      margin-left: 7.5%;
+      width: 85%;
+    }
+  }
