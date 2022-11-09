@@ -14,15 +14,10 @@ use PHPMailer\PHPMailer\Exception;
 
 class EmailController{
 
-    private $dueñoDAO;
-
-    function __construct(){
-        $this->dueñoDAO = new DueñoDAO();
-    }
-
-    function enviaEmail($id){
+    static public function enviaEmail($id){
         
-        $dueño = $this->dueñoDAO->getById($id);
+        $dueñoDAO = new DueñoDAO();
+        $dueño = $dueñoDAO->getById($id);
 
         $mail = new PHPMailer(true);
 

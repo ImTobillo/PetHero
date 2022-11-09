@@ -7,6 +7,7 @@ use Models\Pago as Pago;
 use DAO\ReservaDAO as ReservaDAO;
 use DAO\MascotaDAO as MascotaDAO;
 use DAO\PagoDAO as PagoDAO;
+use Controllers\EmailController as EmailController;
 
 use DateTime;
 
@@ -52,8 +53,8 @@ class ReservaController
         
         $this->pagoDAO->add($pago);
         
-        //aca deberia mandarse por mail
-        
+        $this->EmailController->enviaEmail($_SESSION['loggedUser']->getId());   // Envia email
+
         $this->ShowListaReservas();
     }
 

@@ -28,6 +28,11 @@ input, select, textarea{
     grid-row: 2/3;
 }
 
+.selector-raza{
+    grid-row: 4/5;
+    grid-column: 1/2;
+}
+
 .input-edad{
     grid-column: 1/2;
     grid-row: 3/4;
