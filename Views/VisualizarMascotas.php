@@ -1,32 +1,33 @@
 <?php
-require_once 'header.php'; 
+require_once 'header.php';
 require_once 'nav.php';
 ?>
 
 <link property="stylesheet" rel="stylesheet" href="<?php echo CSS_PATH . 'visualizarGuardianes-Mascotas.css' ?>">
 
-    <main>
-        <h1 class="tituloG">Mascotas</h1>
-        <form class="formul" action="<?php echo FRONT_ROOT . "Mascota/verPerfil" ?>" method="post">
-            
-            <?php foreach ($listMascotas as $value) {
-                if ($value->getIdDueño() == $_SESSION['loggedUser']->getId()) { ?>
+<main>
+    <h1 class="tituloG">Mascotas</h1>
+    <form class="formul" action="<?php echo FRONT_ROOT . "Mascota/verPerfil" ?>" method="post">
 
-                    <div class="igual">
+        <?php foreach ($listMascotas as $value) {
+            if ($value->getIdDueño() == $_SESSION['loggedUser']->getId()) { ?>
 
-                        <img class="imagenPerf" src="<?php echo IMG_PATH . 'ImgMascotas/' . $value->getImgPerro() ?> " alt="Mascota">
+                <div class="igual">
+                    <?php if ($value->getImgPerro() != null) { ?>
+                        <img class="imagenPerf" src="<?php echo IMG_PATH . 'ImgMascotas/' . $value->getImgPerro()[0]['Url_'] ?> " alt="Mascota">
+                    <?php } ?>
 
-                        <div class="info">
-                            <p><b>Nombre:</b> <?php echo $value->getNombre(); ?></p>
-                            <p><b>Tamaño:</b> <?php echo $value->getTamaño(); ?></p>
+                    <div class="info">
+                        <p><b>Nombre:</b> <?php echo $value->getNombre(); ?></p>
+                        <p><b>Tamaño:</b> <?php echo $value->getTamaño(); ?></p>
 
-                            <button class="boton" type="submit" name="id" value="<?php echo $value->getId(); ?>"> Ver perfil </button>
-                        </div>
+                        <button class="boton" type="submit" name="id" value="<?php echo $value->getId(); ?>"> Ver perfil </button>
                     </div>
-            <?php }
-            } ?>
-        </form>
+                </div>
+        <?php }
+        } ?>
+    </form>
 
-    </main>
+</main>
 
-    <?php require_once 'footer.php' ?>
+<?php require_once 'footer.php' ?>

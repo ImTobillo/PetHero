@@ -26,6 +26,7 @@ class MascotaController
     {
         require_once VIEWS_PATH . 'validarSesion.php';
         $listMascotas = $this->mascotasDAO->getAll();
+        //var_dump($listMascotas);
         require_once(VIEWS_PATH . "VisualizarMascotas.php");
     }
 
@@ -38,23 +39,21 @@ class MascotaController
     
     public function creaMascota($nombre, $tamaño, $edad, $raza, $observaciones, $tipoMascota, $planVacunacion, $imgPerro, $videoPerro)
     {
+    
         if($tipoMascota == "Perro"){
-        $mascota = new Perro($_SESSION['loggedUser']->getId(), $tipoMascota, $nombre, $tamaño, $edad, $raza, $observaciones/*, $planVacunacion, $imgPerro, $videoPerro*/);
+            $mascota = new Perro($_SESSION['loggedUser']->getId(), $tipoMascota, $nombre, $tamaño, $edad, $raza, $observaciones, $planVacunacion['name'], $imgPerro['name'], $videoPerro['name']);
         }
         else{
-        $mascota = new Gato($_SESSION['loggedUser']->getId(), $tipoMascota, $nombre, $tamaño, $edad, $raza, $observaciones/*,$planVacunacion, $imgPerro, $videoPerro*/);
+            $mascota = new Gato($_SESSION['loggedUser']->getId(), $tipoMascota, $nombre, $tamaño, $edad, $raza, $observaciones, $planVacunacion['name'], $imgPerro['name'], $videoPerro['name']);
         }
 
-        $mascota->setPlanVacunacion($_FILES['planVacunacion']['name']); // Guarda nombre de la imagen
-        $this->subirArch("planVacunacion", $planVacunacion);   // Guarda imagen en carpeta del proyecto
+        $this->subirArch($planVacunacion['name'], $planVacunacion);   // Guarda imagen en carpeta del proyecto
 
-        $mascota->setImgPerro($_FILES['imgPerro']['name']);
-        $this->subirArch("imgPerro", $imgPerro);
+        $this->subirArch($imgPerro['name'], $imgPerro);
 
         if ($videoPerro)
         {
-            $mascota->setVideoPerro($_FILES['videoPerro']['name']);
-            $this->subirArch("videoPerro", $videoPerro);
+            $this->subirArch($videoPerro['name'], $videoPerro);
         }
 
         $this->mascotasDAO->add($mascota);
@@ -67,12 +66,12 @@ class MascotaController
 
         if (isset($arch)) {
             //Recogemos el archivo enviado por el formulario
-            $archivo = $_FILES[$nombreArch]['name'];
+            $archivo = $nombreArch;
             //Si el archivo contiene algo y es diferente de vacio
             if (isset($archivo) && $archivo != "") {
-                $tipo = $_FILES[$nombreArch]['type'];
-                $tamano = $_FILES[$nombreArch]['size'];
-                $temp = $_FILES[$nombreArch]['tmp_name'];
+                $tipo = $arch['type'];
+                $tamano = $arch['size'];
+                $temp = $arch['tmp_name'];
 
                 //Se comprueba si el archivo a cargar es correcto observando su extensión y tamaño
                 if (!((strpos($tipo, "jpeg") || strpos($tipo, "jpg") || strpos($tipo, "mp4") || strpos($tipo, "png")) && ($tamano < 10000000000000))) {
