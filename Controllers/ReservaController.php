@@ -146,7 +146,7 @@ class ReservaController
 
         try {
             //Server settings
-            $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+            $mail->SMTPDebug = 0;                      //Enable verbose debug output
             $mail->isSMTP();                                            //Send using SMTP
             $mail->Host       = 'smtp.gmail.com';  //Esto varia         //Set the SMTP server to send through
             $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
@@ -162,8 +162,8 @@ class ReservaController
 
             //Content
             $mail->isHTML(true);                                  //Set email format to HTML
-            $mail->Subject = 'Cupón de pago'; // Asunto
-            $mail->Body    = "Se confirmo la reserva que solicitaste" . $dueño->getNombre() . " gracias por elegirnos.";
+            $mail->Subject = 'Cupon de pago'; // Asunto
+            $mail->Body    = "Se confirmo la reserva que solicitaste " . $dueño->getNombre() . " gracias por elegirnos.";
         
             $mail->send();
             echo 'Enviado correctamente';
