@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace DAO;
 
@@ -32,7 +32,6 @@ class DueñoDAO implements IRepositorio
             $parameters['NumCalle'] = $dueño->getNumCalle();
 
             $this->connection->ExecuteNonQuery($query, $parameters);
-
         } catch (Exception $e) {
             throw $e;
         }
@@ -44,53 +43,71 @@ class DueñoDAO implements IRepositorio
             $this->connection = Connection::GetInstance();
             $query = "SELECT * FROM Duenio WHERE IdUser = '$id' ";
             $resultado = $this->connection->Execute($query);
-            
-            $user = new Dueño($resultado[0]['IdUser'], $resultado[0]['Nombre'], $resultado[0]['Apellido'], $resultado[0]['FechaNacimiento'], $resultado[0]['Dni'],
-                              $resultado[0]['Telefono'], $resultado[0]['Email'], $this->getCiudad($resultado[0]['IdCiudad']), $resultado[0]['Calle'], $resultado[0]['NumCalle']);
+
+            $user = new Dueño(
+                $resultado[0]['IdUser'],
+                $resultado[0]['Nombre'],
+                $resultado[0]['Apellido'],
+                $resultado[0]['FechaNacimiento'],
+                $resultado[0]['Dni'],
+                $resultado[0]['Telefono'],
+                $resultado[0]['Email'],
+                $this->getCiudad($resultado[0]['IdCiudad']),
+                $resultado[0]['Calle'],
+                $resultado[0]['NumCalle']
+            );
 
             return $user;
-
         } catch (Exception $e) {
             throw $e;
         }
     }
 
-    private function getCiudad($id){
-        $this->connection = Connection::GetInstance();
-        $query = "SELECT Nombre FROM Ciudad WHERE IdCiudad = '$id' ";
-        $resultado = $this->connection->Execute($query);
+    private function getCiudad($id)
+    {
+        try {
+            $this->connection = Connection::GetInstance();
+            $query = "SELECT Nombre FROM Ciudad WHERE IdCiudad = '$id' ";
+            $resultado = $this->connection->Execute($query);
 
-        return $resultado[0][0];
-    }
-
-    private function getIdCiudad($ciudad){
-
-        $this->connection = Connection::GetInstance();
-        $idRetornar = null;
-        $query = "SELECT IdCiudad AS id FROM Ciudad WHERE nombre = '$ciudad' ";
-        $resultado = $this->connection->Execute($query);
-
-        if(empty($resultado)){
-            $query = "INSERT INTO Ciudad (Nombre) VALUES (:ciudad)";
-            $parameters['ciudad'] = $ciudad;
-
-            $this->connection->ExecuteNonQuery($query, $parameters);
-
-            $query = "SELECT MAX(IdCiudad) AS id FROM Ciudad";
-
-            $idRetornar = $this->connection->Execute($query);
+            return $resultado[0][0];
+        } catch (Exception $e) {
+            throw $e;
         }
-        else{
-            $idRetornar = $resultado;
+    }
+
+    private function getIdCiudad($ciudad)
+    {
+        try {
+            $this->connection = Connection::GetInstance();
+            $idRetornar = null;
+            $query = "SELECT IdCiudad AS id FROM Ciudad WHERE nombre = '$ciudad' ";
+            $resultado = $this->connection->Execute($query);
+
+            if (empty($resultado)) {
+                $query = "INSERT INTO Ciudad (Nombre) VALUES (:ciudad)";
+                $parameters['ciudad'] = $ciudad;
+
+                $this->connection->ExecuteNonQuery($query, $parameters);
+
+                $query = "SELECT MAX(IdCiudad) AS id FROM Ciudad";
+
+                $idRetornar = $this->connection->Execute($query);
+            } else {
+                $idRetornar = $resultado;
+            }
+
+            return $idRetornar[0][0];
+        } catch (Exception $e) {
+            throw $e;
         }
-
-        return $idRetornar[0][0];
-    }
-    
-    public function getAll(){
     }
 
-   /* 
+    public function getAll()
+    {
+    }
+
+    /* 
    
     private $dueñosLista = array();
     private $fileName = ROOT . 'Data/dueños.json';
@@ -184,4 +201,3 @@ class DueñoDAO implements IRepositorio
         file_put_contents($this->fileName, $fileContent);
     }*/
 }
-?>

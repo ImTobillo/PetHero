@@ -10,6 +10,14 @@ class Pago
     private $estado; #pagado / no pagado
     private $idReserva;
 
+    function __construct($fecha, $monto, $estado, $idReserva)
+    {
+        $this->fecha = $fecha;
+        $this->monto = $monto;
+        $this->estado = $estado;
+        $this->idReserva = $idReserva;
+    }
+
     public function getIdPago()
     {
         return $this->idPago;

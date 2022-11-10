@@ -16,6 +16,20 @@ abstract class Mascota{
     private $imgPerro;
     private $videoPerro;
 
+    function __construct($idDueño, $tipoMascota, $nombre, $tamaño, $edad, $raza, $observaciones/*$planVacunacion, $imgPerro, $videoPerro*/)
+    {
+        $this->idDueño = $idDueño;
+        $this->tipoMascota = $tipoMascota;
+        $this->nombre = $nombre;
+        $this->tamaño = $tamaño;
+        $this->edad = $edad;
+        $this->raza = $raza;
+        $this->observaciones = $observaciones;
+        /*$this->planVacunacion = $planVacunacion;
+        $this->imgPerro = $imgPerro;
+        $this->videoPerro = $videoPerro;*/
+    }
+
     public function getNombre()
     {
         return $this->nombre;

@@ -10,7 +10,14 @@ class Chat
     private $mensaje;
     private $fecha;
 
-    // constructor ¿?
+    function __construct($idChat, $idUserFrom, $idUserTo, $mensaje, $fecha)
+    {
+        $this->idChat = $idChat;
+        $this->idUserFrom = $idUserFrom;
+        $this->idUserTo = $idUserTo;
+        $this->mensaje = $mensaje;
+        $this->fecha = $fecha;
+    }
     
     public function getIdChat()
     {

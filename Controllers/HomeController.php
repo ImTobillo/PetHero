@@ -72,20 +72,19 @@ class HomeController
                 $_SESSION['loggedUser'] = $userLogueado;
             }
             else
-                $_SESSION['errorMessage'] = "<script> if(confirm('Contraseña incorrecta')); </script>";
+                throw new Exception("Contraseña incorrecta");
+
+            $this->Index();
 
         } catch (Exception $e) {
-            $_SESSION['errorMessage'] = $e->getMessage();       
-        }
-        finally
-        {
-            $this->Index();
+            $errorMessage = $e->getMessage();
+            require_once(VIEWS_PATH . "inicio.php");
         }
     }
 
     public function cerrarSesion()
     {
-        $_SESSION = []; // resetea el session
+        unset($_SESSION['loggedUser']); // resetea el session
         $this->Index();
     }
 
@@ -121,7 +120,7 @@ class HomeController
                 require_once(VIEWS_PATH . "registro2-guardian.php");
             }
         } catch (Exception $e) {
-            $_SESSION['errorMessage'] = $e->getMessage();
+            $errorMessage = $e->getMessage();
             require_once(VIEWS_PATH . "registro.php");
         }
     }

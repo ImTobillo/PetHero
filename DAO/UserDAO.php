@@ -38,11 +38,9 @@ class UserDAO implements IRepositorio
             $query = "SELECT * FROM User WHERE Username = '$username' ";
             $resultado = $this->connection->Execute($query);
 
-            if (empty($resultado))
-            {
-                throw new Exception("<script> if(confirm('El usuario no existe')); </script>");
-            }
-            else {
+            if (empty($resultado)) {
+                throw new Exception("El usuario no existe");
+            } else {
                 $user = new User($resultado[0]['Username'], $resultado[0]['Contrasenia'], $this->getTipo($resultado[0]['IdTipo']));
                 $user->setId($resultado[0]['IdUser']);
             }
@@ -71,80 +69,97 @@ class UserDAO implements IRepositorio
 
     private function getTipo($id)
     {
-        $this->connection = Connection::GetInstance();
-        $query = "SELECT Tipo AS nombreTipo FROM TipoUser WHERE IdTipo = '$id' ";
-        $resultado = $this->connection->Execute($query);
+        try {
+            $this->connection = Connection::GetInstance();
+            $query = "SELECT Tipo AS nombreTipo FROM TipoUser WHERE IdTipo = '$id' ";
+            $resultado = $this->connection->Execute($query);
 
-        return $resultado[0][0];
+            return $resultado[0][0];
+        } catch (Exception $e) {
+            throw $e;
+        }
     }
-    
+
     public function getAll()
     {
     }
 
     private function getIdTipo($tipoCuenta)
     {
-        $this->connection = Connection::GetInstance();
-        $idRetornar = null;
-        $query = "SELECT IdTipo AS id FROM TipoUser WHERE Tipo = '$tipoCuenta' ";
-        $resultado = $this->connection->Execute($query);
+        try {
+            $this->connection = Connection::GetInstance();
+            $idRetornar = null;
+            $query = "SELECT IdTipo AS id FROM TipoUser WHERE Tipo = '$tipoCuenta' ";
+            $resultado = $this->connection->Execute($query);
 
-        if (empty($resultado)) {
-            $query = "INSERT INTO TipoUser (Tipo) VALUES (:tipo)";
-            $parameters['tipo'] = $tipoCuenta;
+            if (empty($resultado)) {
+                $query = "INSERT INTO TipoUser (Tipo) VALUES (:tipo)";
+                $parameters['tipo'] = $tipoCuenta;
 
-            $this->connection->ExecuteNonQuery($query, $parameters);
+                $this->connection->ExecuteNonQuery($query, $parameters);
 
-            $query = "SELECT MAX(IdTipo) AS id FROM TipoUser";
+                $query = "SELECT MAX(IdTipo) AS id FROM TipoUser";
 
-            $idRetornar = $this->connection->Execute($query);
-        } else {
-            $idRetornar = $resultado;
+                $idRetornar = $this->connection->Execute($query);
+            } else {
+                $idRetornar = $resultado;
+            }
+
+            return $idRetornar[0][0];
+        } catch (Exception $e) {
+            throw $e;
         }
-
-        return $idRetornar[0][0];
     }
 
     public function validarEmail($email)
     {
-        $this->connection = Connection::GetInstance();
-        $query = "SELECT guardian.Email FROM guardian WHERE guardian.Email = '$email'
+        try {
+            $this->connection = Connection::GetInstance();
+            $query = "SELECT guardian.Email FROM guardian WHERE guardian.Email = '$email'
                     UNION
                   SELECT duenio.Email FROM duenio WHERE duenio.Email = '$email'";
-        $resultado = $this->connection->Execute($query);
+            $resultado = $this->connection->Execute($query);
 
 
-        if (!empty($resultado)) {
-            throw new Exception("<script> if(confirm('El email ya lo usa otra persona')); </script>");
+            if (!empty($resultado)) {
+                throw new Exception("El email ya lo usa otra persona");
+            }
+        } catch (Exception $e) {
+            throw $e;
         }
     }
 
     public function validarDni($dni)
     {
-        $this->connection = Connection::GetInstance();
-        $query = "SELECT guardian.Dni FROM guardian WHERE guardian.Dni = '$dni'
+        try {
+            $this->connection = Connection::GetInstance();
+            $query = "SELECT guardian.Dni FROM guardian WHERE guardian.Dni = '$dni'
                     UNION
                   SELECT duenio.Dni FROM duenio WHERE duenio.Dni = '$dni'";
-        $resultado = $this->connection->Execute($query);
+            $resultado = $this->connection->Execute($query);
 
-        if (!empty($resultado)) {
-            throw new Exception("<script> if(confirm('El DNI ya lo tiene otra persona')); </script>");
+            if (!empty($resultado)) {
+                throw new Exception("El DNI ya lo tiene otra persona");
+            }
+        } catch (Exception $e) {
+            throw $e;
         }
     }
 
     public function validarUsername($username)
     {
-        $this->connection = Connection::GetInstance();
-        $query = "SELECT user.Username FROM user WHERE user.Username = '$username'";
-        $resultado = $this->connection->Execute($query);
+        try {
+            $this->connection = Connection::GetInstance();
+            $query = "SELECT user.Username FROM user WHERE user.Username = '$username'";
+            $resultado = $this->connection->Execute($query);
 
-        if (!empty($resultado)) {
-            throw new Exception("<script> if(confirm('Nombre de usuario no disponible')); </script>");
+            if (!empty($resultado)) {
+                throw new Exception("Nombre de usuario no disponible");
+            }
+        } catch (Exception $e) {
+            throw $e;
         }
     }
-
-    
-
 
     /*
     private $usersList = array();

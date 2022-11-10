@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace DAO;
 
@@ -12,10 +12,10 @@ class GuardianDAO implements IRepositorio
 {
     private $connection;
     private $guardianList = array();
-    
+
     public function add($guardian)
     {
-        try{
+        try {
             $this->connection = Connection::GetInstance();
 
             $query = "INSERT INTO Guardian (IdUser, IdCiudad, IdTamanio, Nombre, Apellido, FechaNacimiento, Dni, Telefono, Email, Calle, NumCalle, Remuneracion, FechaInicio, FechaFinal, HoraDisponible)
@@ -38,17 +38,15 @@ class GuardianDAO implements IRepositorio
             $parameters['HoraDisponible'] = $guardian->getHoraDisponible();
 
             $this->connection->ExecuteNonQuery($query, $parameters);
-        }
-        catch(Exception $e){
+        } catch (Exception $e) {
             throw $e;
         }
     }
 
     public function getAll()
     {
-        try
-        {
-            $array = Array();
+        try {
+            $array = array();
             $query = "SELECT * FROM Guardian";
             $this->connection = Connection::GetInstance();
             $resultado = $this->connection->Execute($query);
@@ -56,7 +54,7 @@ class GuardianDAO implements IRepositorio
             foreach ($resultado as $fila) {
 
                 $guardian = new Guardian($fila['IdUser'], $fila['Nombre'], $fila['Apellido'], $fila['FechaNacimiento'], $fila['Dni'], $fila['Telefono'], $fila['Email'], $this->getCiudad($fila['IdCiudad']), $fila['Calle'], $fila['NumCalle']);
-                                
+
                 $guardian->setTamaño($this->getTamaño($fila['IdTamanio']));
                 $guardian->setRemuneracion($fila['Remuneracion']);
                 $guardian->setFechaInicio($fila['FechaInicio']);
@@ -67,99 +65,112 @@ class GuardianDAO implements IRepositorio
             }
 
             return $array;
-        }
-        catch(Exception $e)
-        {
+        } catch (Exception $e) {
             throw $e;
         }
     }
-    
+
     public function getById($id)
     {
-        //$this->RetrieveData();
-        $this->guardianList = $this->getAll();
+        try {
+            //$this->RetrieveData();
+            $this->guardianList = $this->getAll();
 
-        $guardian = null;
+            $guardian = null;
 
-        if (!empty($this->guardianList)) {
-            foreach ($this->guardianList as $guardianValue) {
-                if ($id == $guardianValue->getId()) {
-                    $guardian = $guardianValue;
+            if (!empty($this->guardianList)) {
+                foreach ($this->guardianList as $guardianValue) {
+                    if ($id == $guardianValue->getId()) {
+                        $guardian = $guardianValue;
+                    }
                 }
             }
+            return $guardian;
+        } catch (Exception $e) {
+            throw $e;
         }
-        return $guardian;
-    } 
-    
+    }
+
     /*GET ID*/
     private function devuelveIdCiudad($ciudad)
     {
+        try {
+            $this->connection = Connection::GetInstance();
+            $idRetornar = null;
+            $query = "SELECT Ciudad.IdCiudad AS id FROM Ciudad WHERE Ciudad.Nombre = '$ciudad' ";
+            $resultado = $this->connection->Execute($query);
 
-        $this->connection = Connection::GetInstance();
-        $idRetornar = null;
-        $query = "SELECT Ciudad.IdCiudad AS id FROM Ciudad WHERE Ciudad.Nombre = '$ciudad' ";
-        $resultado = $this->connection->Execute($query);
+            if (empty($resultado)) {
+                $query = "INSERT INTO Ciudad (Nombre) VALUES (:Nombre)";
+                $parameters['Nombre'] = $ciudad;
+                $this->connection->ExecuteNonQuery($query, $parameters);
+                $query = "SELECT MAX(IdCiudad) AS id FROM Ciudad";
+                $idRetornar = $this->connection->Execute($query);
+            } else {
+                $idRetornar = $resultado;
+            }
 
-        if(empty($resultado)){
-            $query = "INSERT INTO Ciudad (Nombre) VALUES (:Nombre)";
-            $parameters['Nombre'] = $ciudad;
-            $this->connection->ExecuteNonQuery($query, $parameters);
-            $query = "SELECT MAX(IdCiudad) AS id FROM Ciudad";
-            $idRetornar = $this->connection->Execute($query);
+            return $idRetornar[0][0];
+        } catch (Exception $e) {
+            throw $e;
         }
-        else{
-            $idRetornar = $resultado;
-        }
-
-        return $idRetornar[0][0];
     }
 
     private function devuelveIdTamanio($tamanio)
     {
+        try {
+            $this->connection = Connection::GetInstance();
+            $idRetornar = null;
+            $query = "SELECT TamanioMascota.IdTamanioMascota AS id FROM TamanioMascota WHERE TamanioMascota.Tamanio = '$tamanio' ";
+            $resultado = $this->connection->Execute($query);
 
-        $this->connection = Connection::GetInstance();
-        $idRetornar = null;
-        $query = "SELECT TamanioMascota.IdTamanioMascota AS id FROM TamanioMascota WHERE TamanioMascota.Tamanio = '$tamanio' ";
-        $resultado = $this->connection->Execute($query);
+            if (empty($resultado)) {
+                $query = "INSERT INTO TamanioMascota (Tamanio) VALUES (:Tamanio)";
+                $parameters['Tamanio'] = $tamanio;
+                $this->connection->ExecuteNonQuery($query, $parameters);
+                $query = "SELECT MAX(IdTamanioMascota) AS id FROM TamanioMascota";
+                $idRetornar = $this->connection->Execute($query);
+            } else {
+                $idRetornar = $resultado;
+            }
 
-        if(empty($resultado)){
-            $query = "INSERT INTO TamanioMascota (Tamanio) VALUES (:Tamanio)";
-            $parameters['Tamanio'] = $tamanio;
-            $this->connection->ExecuteNonQuery($query, $parameters);
-            $query = "SELECT MAX(IdTamanioMascota) AS id FROM TamanioMascota";
-            $idRetornar = $this->connection->Execute($query);
+            return $idRetornar[0][0];
+        } catch (Exception $e) {
+            throw $e;
         }
-        else{
-            $idRetornar = $resultado;
-        }
-
-        return $idRetornar[0][0];
     }
 
     /*GET BY ID*/
     private function getTamaño($IdTamanio)
     {
-        $query = "SELECT Tamanio FROM TamanioMascota WHERE IdTamanioMascota = '$IdTamanio' ";
-        $this->connection = Connection::GetInstance();
-        $resultado = $this->connection->Execute($query);
-        return $resultado[0][0];
+        try {
+            $query = "SELECT Tamanio FROM TamanioMascota WHERE IdTamanioMascota = '$IdTamanio' ";
+            $this->connection = Connection::GetInstance();
+            $resultado = $this->connection->Execute($query);
+            return $resultado[0][0];
+        } catch (Exception $e) {
+            throw $e;
+        }
     }
 
     private function getCiudad($idCiudad)
     {
-        $query = "SELECT Ciudad.Nombre FROM Ciudad WHERE Ciudad.IdCiudad = '$idCiudad' ";
-        $this->connection = Connection::GetInstance();
-        $resultado = $this->connection->Execute($query);
-        return $resultado[0][0];
+        try {
+            $query = "SELECT Ciudad.Nombre FROM Ciudad WHERE Ciudad.IdCiudad = '$idCiudad' ";
+            $this->connection = Connection::GetInstance();
+            $resultado = $this->connection->Execute($query);
+            return $resultado[0][0];
+        } catch (Exception $e) {
+            throw $e;
+        }
     }
 
     /*LOGICA*/
     public function filtrar($fechaInicio, $fechaFinal)
     {
-       
-        try
-        {
-            $array = Array();
+
+        try {
+            $array = array();
             $query = "SELECT * FROM Guardian 
                       WHERE FechaInicio <= '$fechaInicio' AND FechaFinal >= '$fechaInicio' 
                             AND FechaFinal >= '$fechaFinal' AND FechaInicio <= '$fechaFinal'";
@@ -169,11 +180,21 @@ class GuardianDAO implements IRepositorio
 
             foreach ($resultado as $fila) {
 
-                $guardian = new Guardian($fila['IdUser'], $fila['Nombre'], $fila['Apellido'], $fila['FechaNacimiento'], $fila['Dni'], $fila['Telefono'],
-                                         $fila['Email'], $this->getCiudad($fila['IdCiudad']), $fila['Calle'], $fila['NumCalle']);
+                $guardian = new Guardian(
+                    $fila['IdUser'],
+                    $fila['Nombre'],
+                    $fila['Apellido'],
+                    $fila['FechaNacimiento'],
+                    $fila['Dni'],
+                    $fila['Telefono'],
+                    $fila['Email'],
+                    $this->getCiudad($fila['IdCiudad']),
+                    $fila['Calle'],
+                    $fila['NumCalle']
+                );
 
                 $guardian->setTamaño($this->getTamaño($fila['IdTamanio'])); // c
-                
+
                 $guardian->setRemuneracion($fila['Remuneracion']);
                 $guardian->setFechaInicio($fila['FechaInicio']);
                 $guardian->setFechaFinal($fila['FechaFinal']);
@@ -183,16 +204,14 @@ class GuardianDAO implements IRepositorio
             }
 
             return $array;
-        }
-        catch(Exception $e)
-        {
+        } catch (Exception $e) {
             throw $e;
         }
     }
 
     public function edit($idGuardian, $tamanio, $remuneracion, $fechaInicio, $fechaFinal, $horaDisponible)
     {
-        try{
+        try {
 
             $this->connection = Connection::GetInstance();
 
@@ -205,13 +224,11 @@ class GuardianDAO implements IRepositorio
                         where IdUser = '$idGuardian'";
 
             $this->connection->Execute($query);
-            
-        }catch(Exception $e){
-            throw($e);
+        } catch (Exception $e) {
+            throw ($e);
         }
     }
-
-    }
+}
 
     /*
     private $fileName = ROOT . 'Data/guardianes.json';
@@ -298,4 +315,3 @@ class GuardianDAO implements IRepositorio
         file_put_contents($this->fileName, $fileContent);
     }
 }*/
-?>

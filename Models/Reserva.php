@@ -11,7 +11,6 @@ class Reserva{
     private $hora_inicio;
     private $hora_final;
     private $estado; #aceptado/rechazado
-    private $id_pago;
     private $id_mascota;
 
     public function __construct($id_guardian, $id_dueño, $fechaInicio, $fechaFinal, $hora_inicio, $hora_final, $id_mascota)
@@ -94,21 +93,6 @@ class Reserva{
 
         return $this;
     }
-
-
-    public function getId_pago()
-    {
-        return $this->id_pago;
-    }
-
-
-    public function setId_pago($id_pago)
-    {
-        $this->id_pago = $id_pago;
-
-        return $this;
-    }
-
 
     public function getId_mascota()
     {

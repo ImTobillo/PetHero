@@ -39,19 +39,11 @@ class MascotaController
     public function creaMascota($nombre, $tamaño, $edad, $raza, $observaciones, $tipoMascota, $planVacunacion, $imgPerro, $videoPerro)
     {
         if($tipoMascota == "Perro"){
-            $mascota = new Perro();
+        $mascota = new Perro($_SESSION['loggedUser']->getId(), $tipoMascota, $nombre, $tamaño, $edad, $raza, $observaciones/*, $planVacunacion, $imgPerro, $videoPerro*/);
         }
         else{
-            $mascota = new Gato();
+        $mascota = new Gato($_SESSION['loggedUser']->getId(), $tipoMascota, $nombre, $tamaño, $edad, $raza, $observaciones/*,$planVacunacion, $imgPerro, $videoPerro*/);
         }
-
-        $mascota->setIdDueño($_SESSION['loggedUser']->getId());    // $_SESSION['userLogged'] 
-        $mascota->setNombre($nombre);
-        $mascota->setTamaño($tamaño);
-        $mascota->setEdad($edad);
-        $mascota->setRaza($raza);
-        $mascota->setTipoMascota($tipoMascota);
-        $mascota->setObservaciones($observaciones);
 
         $mascota->setPlanVacunacion($_FILES['planVacunacion']['name']); // Guarda nombre de la imagen
         $this->subirArch("planVacunacion", $planVacunacion);   // Guarda imagen en carpeta del proyecto

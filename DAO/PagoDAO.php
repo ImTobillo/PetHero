@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace DAO;
 
@@ -33,92 +33,74 @@ class PagoDAO implements IRepositorio
 
     public function getAll()
     {
-        try
-        {
-            $array = Array();
+        try {
+            $array = array();
             $query = "SELECT * FROM Pago";
             $this->connection = Connection::GetInstance();
             $resultado = $this->connection->Execute($query);
 
             foreach ($resultado as $fila) {
 
-                $pago = new Pago();
+                $pago = new Pago($fila['Fecha'], $fila['Monto'], $fila['Estado'], $fila['IdReserva']);
 
-                $pago->setIdPago($fila['IdPago']);
-                $pago->setFecha($fila['Fecha']);
-                $pago->setEstado($fila['Estado']);
-                $pago->setMonto($fila['Monto']);
-                $pago->setIdReserva($fila['IdReserva']);
+                $pago->setIdPago($$fila['IdPago']);
 
                 array_push($array, $pago);
             }
 
             return $array;
-        }
-        catch(Exception $e)
-        {
+        } catch (Exception $e) {
             throw $e;
         }
     }
 
     public function getById($id)
     {
-        try
-        {
-            $array = Array();
+        try {
+            $array = array();
             $query = "SELECT * FROM Pago WHERE IdPago = '$id'";
             $this->connection = Connection::GetInstance();
             $resultado = $this->connection->Execute($query);
 
-
-            $pago = new Pago();
+            $pago = new Pago($resultado[0]['Fecha'], $resultado[0]['Monto'], $resultado[0]['Estado'], $resultado[0]['IdReserva']);
 
             $pago->setIdPago($resultado[0]['IdPago']);
-            $pago->setFecha($resultado[0]['Fecha']);
-            $pago->setEstado($resultado[0]['Estado']);
-            $pago->setMonto($resultado[0]['Monto']);
-            $pago->setIdReserva($resultado[0]['IdReserva']);
 
             return $pago;
-        }
-        catch(Exception $e)
-        {
+        } catch (Exception $e) {
             throw $e;
         }
     }
 
     public function getByIdReserva($idReserva)
     {
-        try
-        {
+        try {
             $this->connection = Connection::GetInstance();
             $query = "SELECT * FROM Pago WHERE IdReserva = '$idReserva'";
-            
+
             $resultado = $this->connection->Execute($query);
 
-            $pago = new Pago();
+            $pago = new Pago($resultado[0]['Fecha'], $resultado[0]['Monto'], $resultado[0]['Estado'], $resultado[0]['IdReserva']);
 
             $pago->setIdPago($resultado[0]['IdPago']);
-            $pago->setFecha($resultado[0]['Fecha']);
-            $pago->setEstado($resultado[0]['Estado']);
-            $pago->setMonto($resultado[0]['Monto']);
-            $pago->setIdReserva($resultado[0]['IdReserva']);
 
             return $pago;
-        }
-        catch(Exception $e)
-        {
+        } catch (Exception $e) {
             throw $e;
         }
     }
 
     public function setTarjeta($idTarjeta, $idPago)
     {
-        $this->connection = Connection::GetInstance();
-        
-        $query = "UPDATE Pago SET IdTarjeta = '$idTarjeta' WHERE IdPago = '$idPago' ";
+        try {
+            $this->connection = Connection::GetInstance();
 
-        $this->connection->Execute($query);
+            $query = "UPDATE Pago SET IdTarjeta = '$idTarjeta' WHERE IdPago = '$idPago' ";
+
+            $this->connection->Execute($query);
+        } catch (Exception $e) {
+            throw $e;
+        }
     }
 
     /*
@@ -223,4 +205,3 @@ class PagoDAO implements IRepositorio
         file_put_contents($this->fileName, $fileContent);
     }*/
 }
-?>

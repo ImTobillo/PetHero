@@ -35,14 +35,14 @@ class ReservaController
     }
 
     /*FUNCIONES VISTAS*/
-    public function ShowListaReservas()
+    public function ShowListaReservas($errorMessage = null)
     {
         require_once VIEWS_PATH . 'validarSesion.php';
         $listaReservas = $this->reservaDAO->getAll();
         require_once VIEWS_PATH . 'visualizarFechasSolicitadas.php';
     }
 
-    public function ShowListPagos()
+    public function ShowListPagos($errorMessage = null)
     {
         require_once VIEWS_PATH . 'validarSesion.php';
         $reservas = $this->reservaDAO->getAllById($_SESSION['loggedUser']->getId());
@@ -52,49 +52,78 @@ class ReservaController
     /*SETEAR ESTADOS DE RESERVA*/
     public function aceptarReserva($id, $idDueño)
     {
-        $this->reservaDAO->setEstadoReserva($id, "Aceptado"); 
-        //generar cupon de pago
+        try
+        {
+            $this->reservaDAO->setEstadoReserva($id, "Aceptado"); 
+            //generar cupon de pago
 
-        $pago = new Pago();
-        $pago->setFecha(date('Y-m-d'));
-        $pago->setEstado('No pagado');
-        $pago->setMonto($this->calcularMonto($id));
-        $pago->setIdReserva($id);
+            $pago = new Pago(date('Y-m-d'), 'No pagado', $this->calcularMonto($id), $id);
         
-        $this->pagoDAO->add($pago);
+            $this->pagoDAO->add($pago);
         
-        $this->enviaEmail($idDueño);   // Envia email
+            $this->enviaEmail($idDueño);   // Envia email
 
-        $this->ShowListaReservas();
+            $this->ShowListaReservas();
+        }
+        catch (Exception $e)
+        {
+            $errorMessage = $e->getMessage();
+            $this->ShowListaReservas($errorMessage);
+        }
     }
 
     public function rechazarReserva($id)
     {
-        $this->reservaDAO->setEstadoReserva($id, "Rechazado");
-        $this->ShowListaReservas();
+        try
+        {
+            $this->reservaDAO->setEstadoReserva($id, "Rechazado");
+            $this->ShowListaReservas();
+        }
+        catch (Exception $e)
+        {
+            $errorMessage = $e->getMessage();
+            $this->ShowListaReservas($errorMessage);
+        }
     }
 
     public function confirmarReserva($tarjeta, $idPago)
     {
+        try
+        {
+            $pago = $this->pagoDAO->getById($idPago);
 
-        $pago = $this->pagoDAO->getById($idPago);
+            //seteo estado
+            $this->reservaDAO->setEstadoReserva($pago->getIdReserva(), "Confirmado");
 
-        //seteo estado
-        $this->reservaDAO->setEstadoReserva($pago->getIdReserva(), "Confirmado");
+            //asigno la tarjeta al pago
+            $this->pagoDAO->setTarjeta($tarjeta, $idPago);
 
-        //asigno la tarjeta al pago
-        $this->pagoDAO->setTarjeta($tarjeta, $idPago);
-        $this->ShowListPagos();
+            $this->ShowListPagos();
+        }
+        catch (Exception $e)
+        {
+            $errorMessage = $e->getMessage();
+            $this->ShowListPagos($errorMessage);
+        }
     }
 
     /*******/
     public function solicitarReserva($fechaInicio, $fechaFinal, $horaInicial, $horaFinal, $mascota, $id_guardian)
     {
-        $reserva = new Reserva($id_guardian, $_SESSION['loggedUser']->getId(), $fechaInicio, $fechaFinal, $horaInicial, $horaFinal, $mascota);
+        try
+        {
+            $reserva = new Reserva($id_guardian, $_SESSION['loggedUser']->getId(), $fechaInicio, $fechaFinal, $horaInicial, $horaFinal, $mascota);
 
-        $this->reservaDAO->add($reserva);
-
-        require_once(VIEWS_PATH . 'MenuDueño.php');
+            $this->reservaDAO->add($reserva);
+        }
+        catch (Exception $e)
+        {
+            $errorMessage = $e->getMessage();
+        }
+        finally
+        {
+            require_once(VIEWS_PATH . 'MenuDueño.php');
+        }
     }
 
 
@@ -116,8 +145,16 @@ class ReservaController
 
     public function borrarReserva($idReserva)
     {
-        $this->reservaDAO->remove($idReserva);
-        $this->ShowListPagos();
+        try
+        {
+            $this->reservaDAO->remove($idReserva);
+            $this->ShowListPagos();
+        }
+        catch (Exception $e)
+        {
+            $errorMessage = $e->getMessage();
+            $this->ShowListPagos($errorMessage);
+        }
     }
 
     /*VALIDACIONES*/
@@ -166,9 +203,8 @@ class ReservaController
             $mail->Body    = "Se confirmo la reserva que solicitaste " . $dueño->getNombre() . " gracias por elegirnos.";
         
             $mail->send();
-            echo 'Enviado correctamente';
         } catch (Exception $e) {
-            echo "Hubo un error: {$mail->ErrorInfo}";
+            throw $e;
         }        
     }
     

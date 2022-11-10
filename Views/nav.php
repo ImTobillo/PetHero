@@ -1,7 +1,10 @@
 
 
 <body>
-    
+    <?php
+    if (isset($errorMessage))
+        echo "<script> if(confirm('" . $errorMessage . "')); </script>"; ?>
+
     <header> 
         <nav>
 
