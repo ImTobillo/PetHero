@@ -57,7 +57,7 @@ class ReservaController
             $this->reservaDAO->setEstadoReserva($id, "Aceptado"); 
             //generar cupon de pago
 
-            $pago = new Pago(date('Y-m-d'), 'No pagado', $this->calcularMonto($id), $id);
+            $pago = new Pago(date('Y-m-d'), $this->calcularMonto($id),'No pagado', $id);
         
             $this->pagoDAO->add($pago);
         
