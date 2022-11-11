@@ -25,6 +25,7 @@ class UserDAO implements IRepositorio
             $parameters['Contrasenia'] = $user->getPassword();
 
             $this->connection->ExecuteNonQuery($query, $parameters);
+            
         } catch (Exception $e) {
             throw $e;
         }
@@ -35,8 +36,11 @@ class UserDAO implements IRepositorio
 
         try {
             $this->connection = Connection::GetInstance();
-            $query = "SELECT * FROM User WHERE Username = '$username' ";
-            $resultado = $this->connection->Execute($query);
+            $query = "SELECT * FROM User WHERE Username = :Username ";
+
+            $parameters['Username'] = $username;
+
+            $resultado = $this->connection->Execute($query, $parameters);
 
             if (empty($resultado)) {
                 throw new Exception("El usuario no existe");
@@ -55,8 +59,11 @@ class UserDAO implements IRepositorio
     {
         try {
             $this->connection = Connection::GetInstance();
-            $query = "SELECT * FROM User WHERE IdUser = '$id' ";
-            $resultado = $this->connection->Execute($query);
+            $query = "SELECT * FROM User WHERE IdUser = :id ";
+
+            $parameters['id'] = $id;
+
+            $resultado = $this->connection->Execute($query, $parameters);
 
             $user = new User($resultado[0]['Username'], $resultado[0]['Contrasenia'], $this->getTipo($resultado[0]['IdTipo']));
             $user->setId($resultado[0]['IdUser']);
@@ -71,8 +78,11 @@ class UserDAO implements IRepositorio
     {
         try {
             $this->connection = Connection::GetInstance();
-            $query = "SELECT Tipo AS nombreTipo FROM TipoUser WHERE IdTipo = '$id' ";
-            $resultado = $this->connection->Execute($query);
+            $query = "SELECT Tipo AS nombreTipo FROM TipoUser WHERE IdTipo = :id ";
+
+            $parameters['id'] = $id;
+
+            $resultado = $this->connection->Execute($query, $parameters);
 
             return $resultado[0][0];
         } catch (Exception $e) {
@@ -89,22 +99,27 @@ class UserDAO implements IRepositorio
         try {
             $this->connection = Connection::GetInstance();
             $idRetornar = null;
-            $query = "SELECT IdTipo AS id FROM TipoUser WHERE Tipo = '$tipoCuenta' ";
-            $resultado = $this->connection->Execute($query);
+            $query = "SELECT IdTipo AS id FROM TipoUser WHERE Tipo = :Tipo ";
 
+            $parameters['Tipo'] = $tipoCuenta;
+
+            $resultado = $this->connection->Execute($query, $parameters);
+            
             if (empty($resultado)) {
-                $query = "INSERT INTO TipoUser (Tipo) VALUES (:tipo)";
-                $parameters['tipo'] = $tipoCuenta;
+                $query = "INSERT INTO TipoUser (Tipo) VALUES (:Tipo)";
+                $parameters['Tipo'] = $tipoCuenta;
 
                 $this->connection->ExecuteNonQuery($query, $parameters);
 
                 $query = "SELECT MAX(IdTipo) AS id FROM TipoUser";
 
                 $idRetornar = $this->connection->Execute($query);
+                
             } else {
                 $idRetornar = $resultado;
             }
 
+            
             return $idRetornar[0][0];
         } catch (Exception $e) {
             throw $e;
@@ -115,10 +130,13 @@ class UserDAO implements IRepositorio
     {
         try {
             $this->connection = Connection::GetInstance();
-            $query = "SELECT guardian.Email FROM guardian WHERE guardian.Email = '$email'
+            $query = "SELECT guardian.Email FROM guardian WHERE guardian.Email = :email
                     UNION
-                  SELECT duenio.Email FROM duenio WHERE duenio.Email = '$email'";
-            $resultado = $this->connection->Execute($query);
+                  SELECT duenio.Email FROM duenio WHERE duenio.Email = :email";
+
+            $parameters['email'] = $email;
+
+            $resultado = $this->connection->Execute($query, $parameters);
 
 
             if (!empty($resultado)) {
@@ -133,10 +151,13 @@ class UserDAO implements IRepositorio
     {
         try {
             $this->connection = Connection::GetInstance();
-            $query = "SELECT guardian.Dni FROM guardian WHERE guardian.Dni = '$dni'
+            $query = "SELECT guardian.Dni FROM guardian WHERE guardian.Dni = :dni
                     UNION
-                  SELECT duenio.Dni FROM duenio WHERE duenio.Dni = '$dni'";
-            $resultado = $this->connection->Execute($query);
+                  SELECT duenio.Dni FROM duenio WHERE duenio.Dni = :dni";
+
+            $parameters['dni'] = $dni;
+
+            $resultado = $this->connection->Execute($query, $parameters);
 
             if (!empty($resultado)) {
                 throw new Exception("El DNI ya lo tiene otra persona");
@@ -150,8 +171,11 @@ class UserDAO implements IRepositorio
     {
         try {
             $this->connection = Connection::GetInstance();
-            $query = "SELECT user.Username FROM user WHERE user.Username = '$username'";
-            $resultado = $this->connection->Execute($query);
+            $query = "SELECT user.Username FROM user WHERE user.Username = :username";
+
+            $parameters['username'] = $username;
+
+            $resultado = $this->connection->Execute($query, $parameters);
 
             if (!empty($resultado)) {
                 throw new Exception("Nombre de usuario no disponible");

@@ -6,6 +6,7 @@ use Models\Reserva as Reserva;
 use DAO\IRepositorio as IRepositorio;
 use DAO\Connection as Connection;
 use Exception;
+use Models\Pago;
 use PDOException;
 
 class ReservaDAO implements IRepositorio
@@ -42,9 +43,11 @@ class ReservaDAO implements IRepositorio
         try {
             $this->connection = Connection::GetInstance();
 
-            $query = "DELETE FROM Reserva WHERE IdReserva = '$idReserva'";
+            $query = "DELETE FROM Reserva WHERE IdReserva = :IdReserva";
 
-            $this->connection->Execute($query);
+            $parameters['IdReserva'] = $idReserva;
+
+            $this->connection->Execute($query, $parameters);
         } catch (Exception $e) {
             throw ($e);
         }
@@ -78,9 +81,12 @@ class ReservaDAO implements IRepositorio
     {
         try {
             $array = array();
-            $query = "SELECT * FROM Reserva r WHERE r.IdDuenio = '$idDuenio'";
+            $query = "SELECT * FROM Reserva WHERE IdDuenio = :IdDuenio";
+
+            $parameters['IdDuenio'] = $idDuenio;
+
             $this->connection = Connection::GetInstance();
-            $resultado = $this->connection->Execute($query);
+            $resultado = $this->connection->Execute($query, $parameters);
 
             foreach ($resultado as $fila) {
 
@@ -101,19 +107,24 @@ class ReservaDAO implements IRepositorio
     public function getById($id)
     {
         try {
-            //$this->RetrieveData();
-            $this->reservaLista = $this->getAll();
+            $this->connection = Connection::GetInstance();
 
-            $reserva = null;
+            $query = "SELECT * FROM Reserva WHERE IdReserva = :IdReserva";
 
-            if (!empty($this->reservaLista)) {
-                foreach ($this->reservaLista as $reservaValue) {
-                    if ($id == $reservaValue->getId_reserva()) {
-                        $reserva = $reservaValue;
-                    }
-                }
-            }
-            return $reserva;
+            $parameters['IdReserva'] = $id;
+
+            $resultado = $this->connection->Execute($query, $parameters);
+
+            $reserva = new Reserva($resultado[0]['IdGuardian'], 
+                                    $resultado[0]['IdDuenio'],
+                                    $resultado[0]['FechaInicio'],
+                                    $resultado[0]['FechaFinal'],
+                                    $resultado[0]['HoraInicio'],
+                                    $resultado[0]['HoraFinal'],
+                                    $resultado[0]['IdMascota']);
+
+            return $reserva;            
+            
         } catch (Exception $e) {
             throw $e;
         }
@@ -126,9 +137,12 @@ class ReservaDAO implements IRepositorio
             //cuando se acepte la reserva se setea el idpago y se crea el pago
             $this->connection = Connection::GetInstance();
 
-            $query = "UPDATE Reserva SET Reserva.Estado = '$estado' WHERE Reserva.IdReserva = '$id' ";
+            $query = "UPDATE Reserva SET Estado = :Estado WHERE IdReserva = :IdReserva ";
 
-            $this->connection->Execute($query);
+            $parameters['IdReserva'] = $id;
+            $parameters['Estado'] = $estado;
+
+            $this->connection->Execute($query, $parameters);
         } catch (Exception $e) {
             throw $e;
         }

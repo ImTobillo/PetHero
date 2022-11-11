@@ -37,8 +37,11 @@ class TarjetaDAO implements IRepositorio
     {
         try {
             $this->connection = Connection::GetInstance();
-            $query = "SELECT * FROM Tarjeta WHERE idTarjeta = '$idTarjeta' ";
-            $resultado = $this->connection->Execute($query);
+            $query = "SELECT * FROM Tarjeta WHERE idTarjeta = :idTarjeta ";
+
+            $parameters['idTarjeta'] = $idTarjeta;
+
+            $resultado = $this->connection->Execute($query, $parameters);
             
             $tarjeta = new Tarjeta($resultado[0]['tipo'], $resultado[0]['nroTarjeta'], $resultado[0]['idDuenio'], $resultado[0]['titular'], $resultado[0]['codSeguridad'],
                               $resultado[0]['fechaVencimiento']);
@@ -58,16 +61,18 @@ class TarjetaDAO implements IRepositorio
             $array = array();
             $this->connection = Connection::GetInstance();
 
-            $query = "SELECT * FROM Tarjeta WHERE id_duenio = '$idDuenio' ";
+            $query = "SELECT * FROM Tarjeta WHERE id_duenio = :id_duenio ";
 
-            $resultado = $this->connection->Execute($query);
+            $parameters['id_duenio'] = $idDuenio;
+
+            $resultado = $this->connection->Execute($query, $parameters);
             
             foreach ($resultado as $value) {
 
                 $tarjeta = new Tarjeta($value['tipo'], $value['nroTarjeta'], $value['id_duenio'], $value['titular'], $value['codSeguridad'],
                               $value['fechaVencimiento']);
 
-                $tarjeta->setIdTarjeta($value['IdTarjeta']);
+                $tarjeta->setIdTarjeta($value['idTarjeta']);
 
                 array_push($array, $tarjeta);
             }

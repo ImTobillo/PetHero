@@ -37,12 +37,15 @@ class DueñoDAO implements IRepositorio
         }
     }
 
-    public function getById($id)
+    public function getById($IdUser)
     {
         try {
             $this->connection = Connection::GetInstance();
-            $query = "SELECT * FROM Duenio WHERE IdUser = '$id' ";
-            $resultado = $this->connection->Execute($query);
+            $query = "SELECT * FROM Duenio WHERE IdUser = :IdUser ";
+            
+            $parameters['IdUser'] = $IdUser;
+
+            $resultado = $this->connection->Execute($query, $parameters);
 
             $user = new Dueño(
                 $resultado[0]['IdUser'],
@@ -63,12 +66,15 @@ class DueñoDAO implements IRepositorio
         }
     }
 
-    private function getCiudad($id)
+    private function getCiudad($IdCiudad)
     {
         try {
             $this->connection = Connection::GetInstance();
-            $query = "SELECT Nombre FROM Ciudad WHERE IdCiudad = '$id' ";
-            $resultado = $this->connection->Execute($query);
+            $query = "SELECT Nombre FROM Ciudad WHERE IdCiudad = :IdCiudad ";
+
+            $parameters['IdCiudad'] = $IdCiudad;
+
+            $resultado = $this->connection->Execute($query, $parameters);
 
             return $resultado[0][0];
         } catch (Exception $e) {
@@ -76,17 +82,20 @@ class DueñoDAO implements IRepositorio
         }
     }
 
-    private function getIdCiudad($ciudad)
+    private function getIdCiudad($nombre)
     {
         try {
             $this->connection = Connection::GetInstance();
             $idRetornar = null;
-            $query = "SELECT IdCiudad AS id FROM Ciudad WHERE nombre = '$ciudad' ";
-            $resultado = $this->connection->Execute($query);
+            $query = "SELECT IdCiudad AS id FROM Ciudad WHERE Nombre = :Nombre ";
+
+            $parameters['Nombre'] = $nombre;
+
+            $resultado = $this->connection->Execute($query, $parameters);
 
             if (empty($resultado)) {
-                $query = "INSERT INTO Ciudad (Nombre) VALUES (:ciudad)";
-                $parameters['ciudad'] = $ciudad;
+                $query = "INSERT INTO Ciudad (Nombre) VALUES (:Nombre)";
+                $parameters['Nombre'] = $nombre;
 
                 $this->connection->ExecuteNonQuery($query, $parameters);
 

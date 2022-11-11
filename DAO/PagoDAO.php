@@ -43,7 +43,7 @@ class PagoDAO implements IRepositorio
 
                 $pago = new Pago($fila['Fecha'], $fila['Monto'], $fila['Estado'], $fila['IdReserva']);
 
-                $pago->setIdPago($$fila['IdPago']);
+                $pago->setIdPago($fila['IdPago']);
 
                 array_push($array, $pago);
             }
@@ -58,9 +58,12 @@ class PagoDAO implements IRepositorio
     {
         try {
             $array = array();
-            $query = "SELECT * FROM Pago WHERE IdPago = '$id'";
+            $query = "SELECT * FROM Pago WHERE IdPago = :IdPago";
+
+            $parameters['IdPago'] = $id;
+
             $this->connection = Connection::GetInstance();
-            $resultado = $this->connection->Execute($query);
+            $resultado = $this->connection->Execute($query, $parameters);
 
             $pago = new Pago($resultado[0]['Fecha'], $resultado[0]['Monto'], $resultado[0]['Estado'], $resultado[0]['IdReserva']);
 
@@ -76,9 +79,11 @@ class PagoDAO implements IRepositorio
     {
         try {
             $this->connection = Connection::GetInstance();
-            $query = "SELECT * FROM Pago WHERE IdReserva = '$idReserva'";
+            $query = "SELECT * FROM Pago WHERE IdReserva = :IdReserva";
 
-            $resultado = $this->connection->Execute($query);
+            $parameters['IdReserva'] = $idReserva;
+
+            $resultado = $this->connection->Execute($query, $parameters);
 
             $pago = new Pago($resultado[0]['Fecha'], $resultado[0]['Monto'], $resultado[0]['Estado'], $resultado[0]['IdReserva']);
 
@@ -95,9 +100,13 @@ class PagoDAO implements IRepositorio
         try {
             $this->connection = Connection::GetInstance();
 
-            $query = "UPDATE Pago SET IdTarjeta = '$idTarjeta' WHERE IdPago = '$idPago' ";
+            $query = "UPDATE Pago SET IdTarjeta = :IdTarjeta WHERE IdPago = :IdPago ";
 
-            $this->connection->Execute($query);
+            $parameters['IdTarjeta'] = $idTarjeta;
+            $parameters['IdPago'] = $idPago;
+
+            $this->connection->Execute($query, $parameters);
+
         } catch (Exception $e) {
             throw $e;
         }
