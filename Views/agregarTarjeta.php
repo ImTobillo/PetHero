@@ -1,6 +1,7 @@
 <?php 
 require_once 'header.php'; 
 require_once 'nav.php';
+$IdPago;
 ?>
 
 <main>
@@ -40,7 +41,7 @@ require_once 'nav.php';
                 </div>
 
                 <div class="item9">
-                    <button class="button" type="submit">Agregar tarjeta</button>
+                    <button class="button" type="submit" name="IdPago" value="<?php echo $IdPago?>">Agregar tarjeta</button>
                 </div>
         </form>
 
