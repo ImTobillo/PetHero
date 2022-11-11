@@ -78,17 +78,18 @@ $pagos = new PagoDAO();
         </thead>
         <tbody>
           <?php
+
           if (!empty($listaReservas)) {
             foreach ($listaReservas as $reserva ) {
               if (($_SESSION["loggedUser"]->getId() == $reserva->getId_guardian()) && ($reserva->getEstado() == "Confirmado")) {
                 
-                $pago = $this->pagoDAO->getById($reserva->getId_pago());
+                $pago = $this->pagoDAO->getByIdReserva($reserva->getId_reserva());
                 $dueño = $this->dueñoDAO->getById($reserva->getId_dueño());
                 $mascota = $this->mascotaDAO->getById($reserva->getId_mascota()); ?>
                 <tr>
                   <td><?php echo $pago->getFecha();?></td>
                   <td><?php echo $reserva->getId_reserva(); ?></td>
-                  <td><?php echo $dueño->getNombre() . $dueño->getApellido(); ?></td>
+                  <td><?php echo $dueño->getNombre() ." " . $dueño->getApellido(); ?></td>
                   <td><?php echo $dueño->getDni(); ?></td>
                   <td><?php echo $mascota->getNombre(); ?></td>
                   <td><?php echo $mascota->getRaza(); ?></td>

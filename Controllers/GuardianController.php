@@ -32,6 +32,7 @@ class GuardianController
     {
         require_once VIEWS_PATH . 'validarSesion.php';
         $listaPagos = $this->pagoDAO->getAll();
+        $listaReservas = $this->reservasDAO->getAll();
         require_once VIEWS_PATH . 'verHistorialServOfrecidos-guardian.php';
     }
 
