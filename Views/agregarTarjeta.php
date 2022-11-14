@@ -37,7 +37,7 @@ $IdPago;
 
                 <div class="item5">
                     <label for="">Fecha de vencimiento</label>
-                    <input type="text" name="fechaVencimiento" placeholder="mm/dd">
+                    <input type="text" name="fechaVencimiento" placeholder="mm/aaaa">
                 </div>
 
                 <div class="item9">

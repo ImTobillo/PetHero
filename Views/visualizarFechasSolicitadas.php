@@ -20,7 +20,7 @@ require_once 'nav.php';
                 $mascota = $this->mascotaDAO->getById($reserva->getId_mascota());
     ?>
             <div class="igual">
-                <img class="imagenPerf" src="<?php echo IMG_PATH . 'ImgMascotas/' . $mascota->getImgPerro();?>" alt="foto perro">
+                <img class="imagenPerf" src="<?php echo IMG_PATH . 'ImgMascotas/' . $mascota->getImgPerro()?>" alt="foto perro">
                 <div class="info">
                     <h2><?php echo 'Fecha Inicial: ' . date("d-m-y", strtotime($reserva->getFechaInicio()))?></h2>
                     <h2><?php echo 'Fecha Final: ' . date("d-m-y", strtotime($reserva->getFechaFinal()))?></h2>

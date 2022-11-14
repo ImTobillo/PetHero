@@ -9,7 +9,7 @@ require_once 'nav.php';
     <main class="main">
         <div class="contenedor-perfil">
             <?php if ($mascota->getImgPerro() != null) { ?>
-                <img class="imgP" src="<?php echo IMG_PATH . 'ImgMascotas/' . $mascota->getImgPerro()[0]['Url_'] ?>" alt="foto perfil" width="100x100">
+                <img class="imgP" src="<?php echo IMG_PATH . 'ImgMascotas/' . $mascota->getImgPerro() ?>" alt="foto perfil" width="100x100">
             <?php } ?>
 
             <h1><?php echo $mascota->getNombre() ?></h1>
@@ -35,14 +35,14 @@ require_once 'nav.php';
             <?php if($mascota->getVideoPerro() != ""){ ?>
             <div class="video">
                 <video width="320" height="240" controls>
-                    <source src="<?php echo IMG_PATH . 'ImgMascotas/' . $mascota->getVideoPerro()[0]['Url_'] ?>" type="video/mp4">
+                    <source src="<?php echo IMG_PATH . 'ImgMascotas/' . $mascota->getVideoPerro()?>" type="video/mp4">
                 </video>
             </div>
             <?php } ?>
         </div>
 
         <div class="contenedor-multimedia">
-            <div class="imagen"><img class="imgPlan" src="<?php echo IMG_PATH . 'ImgMascotas/' . $mascota->getPlanVacunacion()[0]['Url_'] ?>" alt="imagen perro" height="200" width="200"></div>
+            <div class="imagen"><img class="imgPlan" src="<?php echo IMG_PATH . 'ImgMascotas/' . $mascota->getPlanVacunacion() ?>" alt="imagen perro" height="200" width="200"></div>
         </div>
     </main>
 

@@ -230,7 +230,7 @@ class MascotaDAO implements IRepositorio
 
                 
                 $resultado = $this->connection->Execute($query, $parameters);
-                return $resultado;
+                return $resultado[0][0];
             } else {
                 return null;
             }

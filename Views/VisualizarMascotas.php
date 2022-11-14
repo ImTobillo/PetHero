@@ -14,7 +14,7 @@ require_once 'nav.php';
 
                 <div class="igual">
                     <?php if ($value->getImgPerro() != null) { ?>
-                        <img class="imagenPerf" src="<?php echo IMG_PATH . 'ImgMascotas/' . $value->getImgPerro()[0]['Url_'] ?> " alt="Mascota">
+                        <img class="imagenPerf" src="<?php echo IMG_PATH . 'ImgMascotas/' . $value->getImgPerro() ?> " alt="Mascota">
                     <?php } ?>
 
                     <div class="info">
