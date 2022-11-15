@@ -61,7 +61,7 @@ class ReservaController
         
             $this->pagoDAO->add($pago);
         
-            $this->enviaEmail($idDueño);   // Envia email
+            $this->enviaEmail($idDueño, $pago);   // Envia email
 
             $this->ShowListaReservas();
         }
@@ -136,7 +136,7 @@ class ReservaController
 
                                   * ((int)(($reserva->getFechaInicio() != $reserva->getFechaFinal()) 
                                   ? ((new DateTime($reserva->getFechaInicio()))->diff((new DateTime($reserva->getFechaFinal()))))->format('%D') 
-                                  : 1)+1) // = cantidad de días
+                                  : 1)) // = cantidad de días
 
                                   * $_SESSION["loggedUser"]->getRemuneracion() /* monto por hora */);
         return $monto;                                  
@@ -176,7 +176,7 @@ class ReservaController
         return $bool; 
     }
 
-    public function enviaEmail($id){
+    public function enviaEmail($id, $pago){
         $dueño = $this->dueñoDAO->getById($id);
 
         $mail = new PHPMailer(true);
@@ -200,7 +200,7 @@ class ReservaController
             //Content
             $mail->isHTML(true);                                  //Set email format to HTML
             $mail->Subject = 'Cupon de pago'; // Asunto
-            $mail->Body    = "Se confirmo la reserva que solicitaste " . $dueño->getNombre() . " gracias por elegirnos.";
+            $mail->Body    = "Se confirmo la reserva que solicitaste " . $dueño->getNombre() . ", por el monto de " . $pago->getMonto() . ". Gracias por elegirnos.";
         
             $mail->send();
         } catch (Exception $e) {

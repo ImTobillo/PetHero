@@ -27,7 +27,7 @@ $IdPago;
 
                 <div class="item3">
                     <label for="">Numero tarjeta</label>
-                    <input type="number" name="nroTarjeta" min='1000000000000000' required>
+                    <input type="number" name="nroTarjeta" min='1000000000000000' max='9999999999999999'  required>
                 </div>
 
                 <div class="item4">

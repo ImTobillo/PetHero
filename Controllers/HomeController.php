@@ -99,7 +99,7 @@ class HomeController
 
             $this->userDAO->add($newUser);
 
-            if ($tipoCuenta == "Dueño") { //se quiere registrar un dueño
+            if ($tipoCuenta == "Duenio") { //se quiere registrar un dueño
 
                 $user = $this->userDAO->getByUser($newUser->getUsername());
 

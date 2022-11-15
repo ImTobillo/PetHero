@@ -4,6 +4,7 @@ require_once 'nav.php';
 
 use DAO\DueñoDAO;
 use DAO\PagoDAO as PagoDAO;
+
 $pagos = new PagoDAO();
 
 ?>
@@ -29,27 +30,24 @@ $pagos = new PagoDAO();
         </thead>
         <tbody>
           <?php
-          if (!empty($listaPagos)) {
-            foreach ($listaPagos as $pago) {
-              $reserva = $this->reservasDAO->getById($pago->getIdReserva());
 
-              if (($_SESSION["loggedUser"]->getId() == $reserva->getId_guardian()) && ($reserva->getEstado() == "Aceptado")) 
-              { 
-                $pago = $pagos->getById($pago->getIdPago());
+          if (!empty($listaReservas)) {
+            foreach ($listaReservas as $reserva) {
+              if (($_SESSION["loggedUser"]->getId() == $reserva->getId_guardian()) && ($reserva->getEstado() == "Aceptado")) {
+
+                $pago = $this->pagoDAO->getByIdReserva($reserva->getId_reserva());
                 $dueño = $this->dueñoDAO->getById($reserva->getId_dueño());
                 $mascota = $this->mascotaDAO->getById($reserva->getId_mascota()); ?>
-                
                 <tr>
-                  <td><?php echo date("d-m-y"); //$pago->getFecha(); ?></td>
+                  <td><?php echo $pago->getFecha(); ?></td>
                   <td><?php echo $reserva->getId_reserva(); ?></td>
-                  <td><?php echo $dueño->getNombre() . ' ' . $dueño->getApellido(); ?></td>
+                  <td><?php echo $dueño->getNombre() . " " . $dueño->getApellido(); ?></td>
                   <td><?php echo $dueño->getDni(); ?></td>
                   <td><?php echo $mascota->getNombre(); ?></td>
                   <td><?php echo $mascota->getRaza(); ?></td>
-                  <td><?php echo $pago->getMonto() ?></td> <!-- $pago->getMonto() -->
+                  <td><?php echo $pago->getMonto(); ?></td>
                 </tr>
-          <?php 
-              }
+          <?php }
             }
           } ?>
         </tbody>
@@ -80,16 +78,16 @@ $pagos = new PagoDAO();
           <?php
 
           if (!empty($listaReservas)) {
-            foreach ($listaReservas as $reserva ) {
+            foreach ($listaReservas as $reserva) {
               if (($_SESSION["loggedUser"]->getId() == $reserva->getId_guardian()) && ($reserva->getEstado() == "Confirmado")) {
-                
+
                 $pago = $this->pagoDAO->getByIdReserva($reserva->getId_reserva());
                 $dueño = $this->dueñoDAO->getById($reserva->getId_dueño());
                 $mascota = $this->mascotaDAO->getById($reserva->getId_mascota()); ?>
                 <tr>
-                  <td><?php echo $pago->getFecha();?></td>
+                  <td><?php echo $pago->getFecha(); ?></td>
                   <td><?php echo $reserva->getId_reserva(); ?></td>
-                  <td><?php echo $dueño->getNombre() ." " . $dueño->getApellido(); ?></td>
+                  <td><?php echo $dueño->getNombre() . " " . $dueño->getApellido(); ?></td>
                   <td><?php echo $dueño->getDni(); ?></td>
                   <td><?php echo $mascota->getNombre(); ?></td>
                   <td><?php echo $mascota->getRaza(); ?></td>
