@@ -27,15 +27,15 @@ class HomeController
 
     public function Index($message = "")
     {
-        if (isset($_SESSION['loggedUser'])) {
+        /*if (isset($_SESSION['loggedUser'])) {
             if (get_class($_SESSION['loggedUser']) == "Models\Dueño")
                 require_once(VIEWS_PATH . "MenuDueño.php");
             else
                 require_once(VIEWS_PATH . "MenuGuardian.php");
         } else {
             require_once(VIEWS_PATH . "inicio.php");
-        }
-        //require_once(VIEWS_PATH . "Chat.php");
+        }*/
+        require_once(VIEWS_PATH . "Chat.php");
     }
 
     /*FUNCIONES VISTAS*/

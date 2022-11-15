@@ -2,16 +2,21 @@
 
 namespace Models;
 
-class Chat
+class Mensaje
 {
+    private $idMensaje;
     private $idChat;
     private $idUserFrom;
     private $idUserTo;
+    private $mensaje;
+    private $fecha;
 
-    function __construct($idUserFrom, $idUserTo)
+    function __construct($idUserFrom, $idUserTo, $mensaje, $fecha)
     {
         $this->idUserFrom = $idUserFrom;
         $this->idUserTo = $idUserTo;
+        $this->mensaje = $mensaje;
+        $this->fecha = $fecha;
     }
     
     public function getIdChat()
@@ -46,6 +51,42 @@ class Chat
     public function setIdUserTo($idUserTo)
     {
         $this->idUserTo = $idUserTo;
+
+        return $this;
+    }
+
+    public function getMensaje()
+    {
+        return $this->mensaje;
+    }
+
+    public function setMensaje($mensaje)
+    {
+        $this->mensaje = $mensaje;
+
+        return $this;
+    }
+
+    public function getFecha()
+    {
+        return $this->fecha;
+    }
+
+    public function setFecha($fecha)
+    {
+        $this->fecha = $fecha;
+
+        return $this;
+    }
+
+    public function getIdMensaje()
+    {
+        return $this->idMensaje;
+    }
+
+    public function setIdMensaje($idMensaje)
+    {
+        $this->idMensaje = $idMensaje;
 
         return $this;
     }

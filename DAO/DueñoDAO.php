@@ -114,6 +114,7 @@ class DueñoDAO implements IRepositorio
 
     public function getAll()
     {
+        
     }
 
     /* 
