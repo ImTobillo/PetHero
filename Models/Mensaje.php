@@ -11,8 +11,9 @@ class Mensaje
     private $mensaje;
     private $fecha;
 
-    function __construct($idUserFrom, $idUserTo, $mensaje, $fecha)
+    function __construct($idChat, $idUserFrom, $idUserTo, $mensaje, $fecha)
     {
+        $this->idChat = $idChat;
         $this->idUserFrom = $idUserFrom;
         $this->idUserTo = $idUserTo;
         $this->mensaje = $mensaje;

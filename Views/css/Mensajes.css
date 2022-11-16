@@ -1,0 +1,68 @@
+.contenedor{
+    animation-name: none;
+    background-color: #8A8388;
+    width: 60%;
+    height: 100%;
+    margin: auto;
+    border-radius: 10px;
+}
+
+.to{
+    background-color: #6b6569;
+    height: max-content;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+h1{
+    margin-top: 0;
+    padding: 1rem;
+}
+
+.contMensajes{
+    display: flex;
+    flex-direction: column;
+}
+
+.mensajeRight{
+    background-color: #6b6569;
+    width: fit-content;
+    border-top-left-radius: 10px;
+    border-end-end-radius: 10px;
+    border-end-start-radius: 10px;
+    margin: 0.5rem;
+    align-self: flex-end;
+}
+
+.mensajeLeft{
+    background-color: #6b6569;
+    width: fit-content;
+    border-top-right-radius: 10px;
+    border-end-end-radius: 10px;
+    border-end-start-radius: 10px;
+    margin: 0.5rem;
+}
+
+h2{
+    padding: 1rem;
+    margin: 0.5rem;
+}
+
+.enviar{
+    background-color: #6b6569;
+    padding: 1rem;
+}
+
+.escribirMensaje{
+    width: 87%;
+    height: 2rem;
+    border-radius: 10px;
+}
+
+.enviarMensaje{
+    background-color: #ffb353;
+    border: none;
+    height: 2rem;
+    width: 10%;
+    border-radius: 10px;
+}
