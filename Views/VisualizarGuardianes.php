@@ -37,12 +37,19 @@ require_once 'nav.php';
                     <p>Disponibilidad: </p>
                     <p> <?php echo $guardian->getFechaInicio() . ' - ' . $guardian->getFechaFinal(); ?></p>
                     <p> <?php echo $guardian->getTamaño(); ?> </p>
+                    
+                </div>
 
+                <div class='info'>
                     <form action="<?php echo FRONT_ROOT . 'Duenio/ShowViewReservar'?>" method="post">
                         <button class="boton" type="submit" name="id_guardian" value="<?php echo $guardian->getId(); ?>">Ver perfil</button>
                     </form>
-                    
+
+                    <form action="<?php echo FRONT_ROOT . 'Chat/newChat' ?>" method="post">
+                        <button class="boton" type="submit" name="idGuardian" value="<?php echo $guardian->getId();?>">Chatear</button>
+                    </form>
                 </div>
+                
             </div>
      <?php  } ?>
     </main>

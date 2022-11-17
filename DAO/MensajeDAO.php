@@ -3,24 +3,29 @@
 namespace DAO;
 
 use DAO\ChatDAO as ChatDAO;
+use Models\Mensaje as Mensaje;
 use DAO\IRepositorio as IRepositorio;
+use DAO\Connection as Connection;
+use Exception;
+use PDOException;
 
 class MensajeDAO implements IRepositorio
 {
     private $connection;
 
-    public function add($chat)
+    public function add($mensaje)
     {
         try {
             $this->connection = Connection::GetInstance();
 
-            $query = "INSERT INTO Chat (IdUserFrom, IdUserTo, Mensaje, Fecha)
-                      VALUES (:IdUserFrom, :IdUserTo, :Mensaje, :Fecha)";
+            $query = "INSERT INTO Mensaje (IdChat, IdUserFrom, IdUserTo, Mensaje, Fecha)
+                      VALUES (:IdChat, :IdUserFrom, :IdUserTo, :Mensaje, :Fecha)";
 
-            $parameters['IdUserFrom'] = $chat->getIdUserFrom();
-            $parameters['IdUserTo'] = $chat->getIdUserTo();
-            $parameters['Mensaje'] = $chat->getMensaje();
-            $parameters['Fecha'] = $chat->getFecha();
+            $parameters['IdChat'] = $mensaje->getIdChat(); 
+            $parameters['IdUserFrom'] = $mensaje->getIdUserFrom();
+            $parameters['IdUserTo'] = $mensaje->getIdUserTo();
+            $parameters['Mensaje'] = $mensaje->getMensaje();
+            $parameters['Fecha'] = $mensaje->getFecha();
 
             $this->connection->ExecuteNonQuery($query, $parameters);
         } catch (Exception $e) {
@@ -28,41 +33,65 @@ class MensajeDAO implements IRepositorio
         }
     }
 
-    public function getById($IdChat)
+    public function getById($IdMensaje)
     {
         try {
             $this->connection = Connection::GetInstance();
-            $query = "SELECT * FROM Chat WHERE IdChat = :IdChat ";
+            $query = "SELECT * FROM Mensaje WHERE IdMensaje = :IdMensaje ";
             
-            $parameters['IdChat'] = $IdChat;
+            $parameters['IdMensaje'] = $IdMensaje;
 
             $resultado = $this->connection->Execute($query, $parameters);
 
-            $chat = new Chat(
+            $mensaje = new Mensaje(
+                $resultado[0]['IdChat'],
                 $resultado[0]['IdUserFrom'],
                 $resultado[0]['IdUserTo'],
                 $resultado[0]['Mensaje'],
                 $resultado[0]['Fecha']
             );
 
-            $chat->setIdChat($resultado[0]['IdChat']);
-
-            return $chat;
+            return $mensaje;
         } catch (Exception $e) {
             throw $e;
         }
     }
 
-    public function getAll()
+    public function getAllByIdChat($idChat)
     {
-        
+        try{
+            $array = array();
+            $query = "SELECT * FROM Mensaje WHERE IdChat = :IdChat ORDER BY Fecha DESC";
+
+            $parameters['IdChat'] = $idChat;
+
+            $this->connection = Connection::GetInstance();
+            $resultado= $this->connection->Execute($query, $parameters);
+
+            foreach($resultado as $fila){
+
+                $mensaje = new Mensaje(
+                    $fila['IdChat'],
+                    $fila['IdUserFrom'],
+                    $fila['IdUserTo'],
+                    $fila['Mensaje'],
+                    $fila['Fecha']
+                );
+
+                array_push($array, $mensaje);
+            }
+
+            return $array;
+        }catch(Exception $e){
+            throw($e);
+        }
     }
 
     public function getAllByIdUser($idUser)
     {
         try {
             $array = array();
-            $query = "SELECT * FROM Chat WHERE IdUserFrom = :IdUserFrom";
+            $query = "SELECT * FROM Mensaje WHERE IdUserFrom = :IdUserFrom";
 
             $parameters['IdUserFrom'] = $idUser;
 
@@ -71,14 +100,13 @@ class MensajeDAO implements IRepositorio
 
             foreach ($resultado as $fila) {
 
-                $chat = new Chat(
+                $chat = new Mensaje(
+                    $resultado[0]['IdChat'],
                     $resultado[0]['IdUserFrom'],
                     $resultado[0]['IdUserTo'],
                     $resultado[0]['Mensaje'],
                     $resultado[0]['Fecha']
                 );
-
-                $chat->setIdChat($resultado[0]['IdChat']);
 
                 array_push($array, $chat);
             }
@@ -87,6 +115,10 @@ class MensajeDAO implements IRepositorio
         } catch (Exception $e) {
             throw $e;
         }
+    }
+
+    public function getAll(){
+
     }
 }
 

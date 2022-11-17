@@ -5,13 +5,13 @@ namespace Models;
 class Chat
 {
     private $idChat;
-    private $idUserFrom;
-    private $idUserTo;
+    private $idDuenio;
+    private $idGuardian;
 
-    function __construct($idUserFrom, $idUserTo)
+    function __construct($idDuenio, $idGuardian)
     {
-        $this->idUserFrom = $idUserFrom;
-        $this->idUserTo = $idUserTo;
+        $this->idDuenio = $idDuenio;
+        $this->idGuardian = $idGuardian;
     }
     
     public function getIdChat()
@@ -26,28 +26,12 @@ class Chat
         return $this;
     }
 
-    public function getIdUserFrom()
-    {
-        return $this->idUserFrom;
+    public function getIdDuenio(){
+        return $this->idDuenio;
     }
 
-    public function setIdUserFrom($idUserFrom)
-    {
-        $this->idUserFrom = $idUserFrom;
-
-        return $this;
-    }
-
-    public function getIdUserTo()
-    {
-        return $this->idUserTo;
-    }
-
-    public function setIdUserTo($idUserTo)
-    {
-        $this->idUserTo = $idUserTo;
-
-        return $this;
+    public function getIdGuardian(){
+        return $this->idGuardian;
     }
 }
 
