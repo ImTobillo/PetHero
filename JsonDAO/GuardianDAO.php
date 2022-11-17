@@ -57,47 +57,19 @@ class GuardianDAO implements IRepositorio
 
     public function filtrar($fechaInicio, $fechaFinal)
     {
+        $this->RetrieveData();
 
-        try {
-            $array = array();
-            $query = "SELECT * FROM Guardian 
-                      WHERE FechaInicio <= :FechaInicio AND FechaFinal >= :FechaInicio 
-                            AND FechaFinal >= :FechaFinal AND FechaInicio <= :FechaFinal";
+        $resultado = array();
 
-            $parameters['FechaInicio'] = $fechaInicio;
-            $parameters['FechaFinal'] = $fechaFinal;
-
-            $this->connection = Connection::GetInstance();
-            $resultado = $this->connection->Execute($query, $parameters);
-
-            foreach ($resultado as $fila) {
-
-                $guardian = new Guardian(
-                    $fila['IdUser'],
-                    $fila['Nombre'],
-                    $fila['Apellido'],
-                    $fila['FechaNacimiento'],
-                    $fila['Dni'],
-                    $fila['Telefono'],
-                    $fila['Email'],
-                    $this->getCiudad($fila['IdCiudad']),
-                    $fila['Calle'],
-                    $fila['NumCalle']
-                );
-
-                $guardian->setTamaño($this->getTamaño($fila['IdTamanio'])); 
-                $guardian->setRemuneracion($fila['Remuneracion']);
-                $guardian->setFechaInicio($fila['FechaInicio']);
-                $guardian->setFechaFinal($fila['FechaFinal']);
-                $guardian->setHoraDisponible($fila['HoraDisponible']);
-
-                array_push($array, $guardian);
+        if (!empty($this->guardianList)) {
+            foreach ($this->guardianList as $guardianValue) {
+                if ($guardianValue->getFechaInicio() <= $fechaInicio && $guardianValue->getFechaFinal() >= $fechaInicio && $guardianValue->getFechaFinal() >= $fechaFinal && $guardianValue->getFechaInicio() <= $fechaFinal) {
+                    array_push($resultado, $guardianValue);
+                }
             }
-
-            return $array;
-        } catch (Exception $e) {
-            throw $e;
         }
+
+        return $resultado;
     }
 
     // métodos JSON

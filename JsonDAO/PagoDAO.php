@@ -56,6 +56,23 @@ class PagoDAO implements IRepositorio
         return $pago;
     }
 
+    public function getByIdReserva($idReserva)
+    {
+        $this->RetrieveData();
+
+        $pago = null;
+
+        if (!empty($this->pagoLista)) {
+            foreach ($this->pagoLista as $pagoValues) {
+                if ($idReserva == $pagoValues->getByIdReserva()) {
+                    $pago = $pagoValues;
+                }
+            }
+        }
+
+        return $pago;
+    }
+
     private function GetNextId()
     {
         $id = 0;
