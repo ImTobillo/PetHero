@@ -1,18 +1,23 @@
-<?php 
+<?php
 
 namespace Controllers;
 
-require_once(ROOT.'PHPMailer/PHPMailer.php');
-require_once(ROOT.'PHPMailer/SMTP.php');
-require_once(ROOT.'PHPMailer/Exception.php');
+require_once(ROOT . 'PHPMailer/PHPMailer.php');
+require_once(ROOT . 'PHPMailer/SMTP.php');
+require_once(ROOT . 'PHPMailer/Exception.php');
 
 use Models\Reserva as Reserva;
 use Models\Pago as Pago;
 use DAO\ReservaDAO as ReservaDAO;
 use DAO\MascotaDAO as MascotaDAO;
 use DAO\PagoDAO as PagoDAO;
+use DAO\DueñoDAO as DueñoDAO;
 
-use DAO\DueñoDAO AS DueñoDAO;
+/*use JsonDAO\ReservaDAO as ReservaDAO;
+use JsonDAO\MascotaDAO as MascotaDAO;
+use JsonDAO\PagoDAO as PagoDAO;
+use JsonDAO\DueñoDAO as DueñoDAO;*/
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
@@ -37,36 +42,43 @@ class ReservaController
     /*FUNCIONES VISTAS*/
     public function ShowListaReservas($errorMessage = null)
     {
-        require_once VIEWS_PATH . 'validarSesion.php';
-        $listaReservas = $this->reservaDAO->getAll();
-        require_once VIEWS_PATH . 'visualizarFechasSolicitadas.php';
+        try {
+            require_once VIEWS_PATH . 'validarSesion.php';
+            $listaReservas = $this->reservaDAO->getAll();
+            require_once VIEWS_PATH . 'visualizarFechasSolicitadas.php';
+        } catch (Exception $e) {
+            $errorMessage = $e->getMessage();
+            require_once VIEWS_PATH . 'MenuGuardian.php';
+        }
     }
 
     public function ShowListPagos($errorMessage = null)
     {
-        require_once VIEWS_PATH . 'validarSesion.php';
-        $reservas = $this->reservaDAO->getAllById($_SESSION['loggedUser']->getId());
-        require_once (VIEWS_PATH . 'VerPagosPendientes.php');
+        try {
+            require_once VIEWS_PATH . 'validarSesion.php';
+            $reservas = $this->reservaDAO->getAllById($_SESSION['loggedUser']->getId());
+            require_once(VIEWS_PATH . 'VerPagosPendientes.php');
+        } catch (Exception $e) {
+            $errorMessage = $e->getMessage();
+            require_once VIEWS_PATH . 'MenuDueño.php';
+        }
     }
 
     /*SETEAR ESTADOS DE RESERVA*/
     public function aceptarReserva($id, $idDueño)
     {
-        try
-        {
-            $this->reservaDAO->setEstadoReserva($id, "Aceptado"); 
+        try {
+            $this->reservaDAO->setEstadoReserva($id, "Aceptado");
             //generar cupon de pago
 
-            $pago = new Pago(date('Y-m-d'), $this->calcularMonto($id),'No pagado', $id);
-        
+            $pago = new Pago(date('Y-m-d'), $this->calcularMonto($id), 'No pagado', $id);
+
             $this->pagoDAO->add($pago);
-        
+
             $this->enviaEmail($idDueño, $pago);   // Envia email
 
             $this->ShowListaReservas();
-        }
-        catch (Exception $e)
-        {
+        } catch (Exception $e) {
             $errorMessage = $e->getMessage();
             $this->ShowListaReservas($errorMessage);
         }
@@ -74,13 +86,10 @@ class ReservaController
 
     public function rechazarReserva($id)
     {
-        try
-        {
+        try {
             $this->reservaDAO->setEstadoReserva($id, "Rechazado");
             $this->ShowListaReservas();
-        }
-        catch (Exception $e)
-        {
+        } catch (Exception $e) {
             $errorMessage = $e->getMessage();
             $this->ShowListaReservas($errorMessage);
         }
@@ -88,8 +97,7 @@ class ReservaController
 
     public function confirmarReserva($tarjeta, $idPago)
     {
-        try
-        {
+        try {
             $pago = $this->pagoDAO->getById($idPago);
 
             //seteo estado
@@ -99,9 +107,7 @@ class ReservaController
             $this->pagoDAO->setTarjeta($tarjeta, $idPago);
 
             $this->ShowListPagos();
-        }
-        catch (Exception $e)
-        {
+        } catch (Exception $e) {
             $errorMessage = $e->getMessage();
             $this->ShowListPagos($errorMessage);
         }
@@ -110,18 +116,13 @@ class ReservaController
     /*******/
     public function solicitarReserva($fechaInicio, $fechaFinal, $horaInicial, $horaFinal, $mascota, $id_guardian)
     {
-        try
-        {
+        try {
             $reserva = new Reserva($id_guardian, $_SESSION['loggedUser']->getId(), $fechaInicio, $fechaFinal, $horaInicial, $horaFinal, $mascota);
 
             $this->reservaDAO->add($reserva);
-        }
-        catch (Exception $e)
-        {
+        } catch (Exception $e) {
             $errorMessage = $e->getMessage();
-        }
-        finally
-        {
+        } finally {
             require_once(VIEWS_PATH . 'MenuDueño.php');
         }
     }
@@ -129,29 +130,28 @@ class ReservaController
 
     public function calcularMonto($idReserva)
     {
+        try {
+            $reserva = $this->reservaDAO->getById($idReserva);
 
-        $reserva = $this->reservaDAO->getById($idReserva);
+            $monto =  ((int)(((new DateTime($reserva->getHora_inicio()))->diff(new DateTime($reserva->getHora_final())))->format('%H')) // cantidad de horas
 
-        $monto =  ((int)(((new DateTime($reserva->getHora_inicio()))->diff(new DateTime($reserva->getHora_final())))->format('%H')) // cantidad de horas
+                * ((int)(($reserva->getFechaInicio() != $reserva->getFechaFinal())
+                    ? ((new DateTime($reserva->getFechaInicio()))->diff((new DateTime($reserva->getFechaFinal()))))->format('%D')
+                    : 1)) // = cantidad de días
 
-                                  * ((int)(($reserva->getFechaInicio() != $reserva->getFechaFinal()) 
-                                  ? ((new DateTime($reserva->getFechaInicio()))->diff((new DateTime($reserva->getFechaFinal()))))->format('%D') 
-                                  : 1)) // = cantidad de días
-
-                                  * $_SESSION["loggedUser"]->getRemuneracion() /* monto por hora */);
-        return $monto;                                  
-
+                * $_SESSION["loggedUser"]->getRemuneracion() /* monto por hora */);
+            return $monto;
+        } catch (Exception $e) {
+            throw $e;
+        }
     }
 
     public function borrarReserva($idReserva)
     {
-        try
-        {
+        try {
             $this->reservaDAO->remove($idReserva);
             $this->ShowListPagos();
-        }
-        catch (Exception $e)
-        {
+        } catch (Exception $e) {
             $errorMessage = $e->getMessage();
             $this->ShowListPagos($errorMessage);
         }
@@ -161,27 +161,33 @@ class ReservaController
 
     public function puedeAceptarRaza($reserva) // se valida que no haya otra raza ACEPTADA en la misma fecha
     {
-        $bool = true;
-        
-        $listaReservas = $this->reservaDAO->getAll();
+        try {
+            $bool = true;
 
-        foreach ($listaReservas as $reservaValue) {
-            if (($reservaValue->getId_guardian() == $reserva->getId_guardian()) // si este guardian
-            && ($reservaValue->getEstado() == "Aceptado")  // ya acepto una mascota
-            && (($reserva->getFechaFinal() >= $reservaValue->getFechaInicio() && $reserva->getFechaFinal() <= $reservaValue->getFechaFinal()) || ($reserva->getFechaInicio() <= $reservaValue->getFechaFinal() && $reserva->getFechaInicio() >= $reservaValue->getFechaInicio()))  // en las mismas fechas
-            && ($this->mascotaDAO->getById($reservaValue->getId_mascota())->getRaza() != $this->mascotaDAO->getById($reserva->getId_mascota())->getRaza() || $reservaValue->getId_mascota() == $reserva->getId_mascota())) // con una raza distinta o a la misma mascota
+            $listaReservas = $this->reservaDAO->getAll();
+
+            foreach ($listaReservas as $reservaValue) {
+                if (($reservaValue->getId_guardian() == $reserva->getId_guardian()) // si este guardian
+                    && ($reservaValue->getEstado() == "Aceptado")  // ya acepto una mascota
+                    && (($reserva->getFechaFinal() >= $reservaValue->getFechaInicio() && $reserva->getFechaFinal() <= $reservaValue->getFechaFinal()) || ($reserva->getFechaInicio() <= $reservaValue->getFechaFinal() && $reserva->getFechaInicio() >= $reservaValue->getFechaInicio()))  // en las mismas fechas
+                    && ($this->mascotaDAO->getById($reservaValue->getId_mascota())->getRaza() != $this->mascotaDAO->getById($reserva->getId_mascota())->getRaza() || $reservaValue->getId_mascota() == $reserva->getId_mascota())
+                ) // con una raza distinta o a la misma mascota
                     $bool = false; // no puede cuidar una raza distinta
+            }
+        } catch (Exception $e) {
+            $bool = false;
+        } finally {
+            return $bool;
         }
-
-        return $bool; 
     }
 
-    public function enviaEmail($id, $pago){
-        $dueño = $this->dueñoDAO->getById($id);
-
-        $mail = new PHPMailer(true);
-
+    public function enviaEmail($id, $pago)
+    {
         try {
+            $dueño = $this->dueñoDAO->getById($id);
+
+            $mail = new PHPMailer(true);
+
             //Server settings
             $mail->SMTPDebug = 0;                      //Enable verbose debug output
             $mail->isSMTP();                                            //Send using SMTP
@@ -191,7 +197,7 @@ class ReservaController
             $mail->Password   = 'jmgmbaurzxaxtkak';                            //SMTP password
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
             $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-        
+
             //Recipients
             $mail->setFrom('petheroutn@gmail.com', 'El mejor grupo');
             $mail->addAddress($dueño->getEmail());     //Add a recipient
@@ -201,14 +207,10 @@ class ReservaController
             $mail->isHTML(true);                                  //Set email format to HTML
             $mail->Subject = 'Cupon de pago'; // Asunto
             $mail->Body    = "Se confirmo la reserva que solicitaste " . $dueño->getNombre() . ", por el monto de " . $pago->getMonto() . ". Gracias por elegirnos.";
-        
+
             $mail->send();
         } catch (Exception $e) {
             throw $e;
-        }        
+        }
     }
-    
 }
-
-
-?>
