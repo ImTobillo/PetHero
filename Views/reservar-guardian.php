@@ -1,14 +1,6 @@
 <?php
 require_once 'header.php'; 
 require_once 'nav.php';
-
-    use DAO\GuardianDAO as GuardianDAO;
-    use DAO\MascotaDAO as MascotaDAO;
-    $listaGuardianes = new GuardianDAO();
-    $guardian = $listaGuardianes->getById($id_guardian);
-
-    $listaMascotas = new MascotaDAO();
-    $mascotasDuenio = $listaMascotas->getAll();
 ?>
     <link rel="stylesheet" href=" <?php echo CSS_PATH . 'reservar-guardian.css?v=32' ?> ">
 
