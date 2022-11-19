@@ -1,15 +1,18 @@
 <?php
 
-namespace DAO;
+namespace JsonDAO;
 
 use Models\User as User;
-use DAO\IRepositorio as IRepositorio;
+use JsonDAO\IRepositorio as IRepositorio;
+use JsonDAO\GuardianDAO as GuardianDAO;
+use JsonDAO\DueñoDAO as DueñoDAO;
+use Exception;
 
 class UserDAO implements IRepositorio
 {
     private $usersList = array();
     private $fileName = ROOT . 'Data/users.json';
-    
+
     public function add($user)
     {
         $this->RetrieveData();
@@ -38,7 +41,7 @@ class UserDAO implements IRepositorio
         $this->RetrieveData();
         return $this->usersList;
     }
-    
+
     public function getById($id)
     {
         $this->RetrieveData();
@@ -55,7 +58,71 @@ class UserDAO implements IRepositorio
 
         return $user;
     }
-    
+
+    public function validarEmail($email)
+    {
+        try {
+            $dueñoDAO = new DueñoDAO();
+            $guardianDAO = new GuardianDAO();
+            $listaDuenios = $dueñoDAO->getAll();
+            $listaGuardianes = $guardianDAO->getAll();
+
+            foreach ($listaDuenios as $value) {
+                if ($value->getEmail() == $email) {
+                    throw new Exception("El email ya lo usa otra persona");
+                }
+            }
+
+            foreach ($listaGuardianes as $value) {
+                if ($value->getEmail() == $email) {
+                    throw new Exception("El email ya lo usa otra persona");
+                }
+            }
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
+
+    public function validarDni($dni)
+    {
+        try {
+            $dueñoDAO = new DueñoDAO();
+            $guardianDAO = new GuardianDAO();
+            $listaDuenios = $dueñoDAO->getAll();
+            $listaGuardianes = $guardianDAO->getAll();
+
+            foreach ($listaDuenios as $value) {
+                if ($value->getDni() == $dni) {
+                    throw new Exception("El DNI ya lo tiene otra persona");
+                }
+            }
+
+            foreach ($listaGuardianes as $value) {
+                if ($value->getDni() == $dni) {
+                    throw new Exception("El DNI ya lo tiene otra persona");
+                }
+            }
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
+
+    public function validarUsername($user)
+    {
+        try {
+            $this->RetrieveData();
+
+            foreach ($this->usersList as $value) {
+                if ($value->getUsername() == $user) {
+                    throw new Exception("Nombre de usuario no disponible");
+                }
+            }
+
+        } catch (Exception $e) {
+            throw $e;
+        }
+    }
+
     // metodos User
 
     public function getByUser($username)

@@ -11,8 +11,6 @@ use PDOException;
 
 class ReservaDAO implements IRepositorio
 {
-    private $reservaLista = array();
-
     private $connection;
 
     public function add($reserva)

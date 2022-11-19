@@ -1,6 +1,6 @@
 <?php
 
-namespace DAO;
+namespace JsonDAO;
 
 use Models\Pago as Pago;
 use DAO\IRepositorio as IRepositorio;

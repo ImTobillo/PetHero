@@ -1,6 +1,6 @@
 <?php
 
-namespace DAO;
+namespace JsonDAO;
 
 use Models\Guardian as Guardian;
 use DAO\IRepositorio as IRepositorio;

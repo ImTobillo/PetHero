@@ -1,6 +1,6 @@
 <?php
 
-namespace DAO;
+namespace JsonDAO;
 
 use Models\Dueño as Dueño;
 use DAO\IRepositorio as IRepositorio;

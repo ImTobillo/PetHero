@@ -1,6 +1,6 @@
 <?php
 
-namespace DAO;
+namespace JsonDAO;
 
 use DAO\IRepositorio as IRepositorio;
 use Models\Mascota as Mascota;

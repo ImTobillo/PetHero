@@ -1,13 +1,15 @@
 <?php
 
-namespace DAO;
+namespace JsonDAO;
 
 use Models\Reserva as Reserva;
 use DAO\IRepositorio as IRepositorio;
 
 class ReservaDAO implements IRepositorio
 {
+    private $reservaLista = array();
     private $fileName = ROOT . 'Data/reservas.json';
+
     public function add($reserva)
     {
         $this->RetrieveData();
@@ -29,6 +31,23 @@ class ReservaDAO implements IRepositorio
                 }
             }
         }
+    }
+
+    public function getAllById($idDuenio)
+    {
+        $this->RetrieveData();
+
+        $reservas = array();
+
+        if (!empty($this->reservaLista)) {
+            foreach ($this->reservaLista as $reservaValues) {
+                if ($idDuenio == $reservaValues->getId_dueño()) {
+                    array_push($reservas, $reservaValues);
+                }
+            }
+        }
+
+        return $reservas;
     }
 
     public function getAll()
