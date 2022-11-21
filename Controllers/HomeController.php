@@ -5,6 +5,11 @@ namespace Controllers;
 use DAO\UserDAO as UserDAO;
 use DAO\GuardianDAO as GuardianDAO;
 use DAO\DueñoDAO as DueñoDAO;
+
+/*use JsonDAO\UserDAO as UserDAO;
+use JsonDAO\GuardianDAO as GuardianDAO;
+use JsonDAO\DueñoDAO as DueñoDAO;*/
+
 use Models\Dueño as Dueño;
 use Models\Guardian as Guardian;
 use Models\User as User;
@@ -99,7 +104,7 @@ class HomeController
 
             $this->userDAO->add($newUser);
 
-            if ($tipoCuenta == "Dueño") { //se quiere registrar un dueño
+            if ($tipoCuenta == "Duenio") { //se quiere registrar un dueño
 
                 $user = $this->userDAO->getByUser($newUser->getUsername());
 

@@ -1,6 +1,7 @@
 <?php 
 require_once 'header.php'; 
 require_once 'nav.php';
+$IdPago;
 ?>
 
 <main>
@@ -26,7 +27,7 @@ require_once 'nav.php';
 
                 <div class="item3">
                     <label for="">Numero tarjeta</label>
-                    <input type="number" name="nroTarjeta" min='1000000000000000' required>
+                    <input type="number" name="nroTarjeta" min='1000000000000000' max='9999999999999999'  required>
                 </div>
 
                 <div class="item4">
@@ -36,11 +37,11 @@ require_once 'nav.php';
 
                 <div class="item5">
                     <label for="">Fecha de vencimiento</label>
-                    <input type="text" name="fechaVencimiento" placeholder="mm/dd">
+                    <input type="text" name="fechaVencimiento" placeholder="mm/aaaa">
                 </div>
 
                 <div class="item9">
-                    <button class="button" type="submit">Agregar tarjeta</button>
+                    <button class="button" type="submit" name="IdPago" value="<?php echo $IdPago?>">Agregar tarjeta</button>
                 </div>
         </form>
 

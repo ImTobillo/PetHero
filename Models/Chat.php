@@ -5,18 +5,13 @@ namespace Models;
 class Chat
 {
     private $idChat;
-    private $idUserFrom;
-    private $idUserTo;
-    private $mensaje;
-    private $fecha;
+    private $idDuenio;
+    private $idGuardian;
 
-    function __construct($idChat, $idUserFrom, $idUserTo, $mensaje, $fecha)
+    function __construct($idDuenio, $idGuardian)
     {
-        $this->idChat = $idChat;
-        $this->idUserFrom = $idUserFrom;
-        $this->idUserTo = $idUserTo;
-        $this->mensaje = $mensaje;
-        $this->fecha = $fecha;
+        $this->idDuenio = $idDuenio;
+        $this->idGuardian = $idGuardian;
     }
     
     public function getIdChat()
@@ -31,52 +26,12 @@ class Chat
         return $this;
     }
 
-    public function getIdUserFrom()
-    {
-        return $this->idUserFrom;
+    public function getIdDuenio(){
+        return $this->idDuenio;
     }
 
-    public function setIdUserFrom($idUserFrom)
-    {
-        $this->idUserFrom = $idUserFrom;
-
-        return $this;
-    }
-
-    public function getIdUserTo()
-    {
-        return $this->idUserTo;
-    }
-
-    public function setIdUserTo($idUserTo)
-    {
-        $this->idUserTo = $idUserTo;
-
-        return $this;
-    }
-
-    public function getMensaje()
-    {
-        return $this->mensaje;
-    }
-
-    public function setMensaje($mensaje)
-    {
-        $this->mensaje = $mensaje;
-
-        return $this;
-    }
-
-    public function getFecha()
-    {
-        return $this->fecha;
-    }
-
-    public function setFecha($fecha)
-    {
-        $this->fecha = $fecha;
-
-        return $this;
+    public function getIdGuardian(){
+        return $this->idGuardian;
     }
 }
 

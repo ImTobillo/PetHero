@@ -36,7 +36,7 @@ $tarjetas = $tarjetasDAO->getAllByIdDuenio($_SESSION['loggedUser']->getId());
                             <?php } ?>
                     </select>
                     <p>¿No tiene tarjetas cargadas?</p>
-                    <a class="button" href="<?php echo FRONT_ROOT . 'Tarjeta/ShowAddTarjeta'; ?>">Cargar tarjeta</a>
+                    <a class="button" href="<?php echo FRONT_ROOT . 'Tarjeta/ShowAddTarjeta?IdPago = '. $pago->getIdPago() ; ?>">Cargar tarjeta</a>
                 </div>                
 
                 <div class="item5">

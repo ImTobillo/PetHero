@@ -12,9 +12,6 @@ class DuenioController
 
         require_once(VIEWS_PATH . 'reservar-guardian.php');
      }
-      
- 
+
+     
 }
-
-
-?>

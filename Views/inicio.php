@@ -22,7 +22,7 @@ require_once 'nav.php';
         <h2 class="tituloh2">Registrarse como</h2>
 
         <form class="formu" action=" <?php echo FRONT_ROOT . 'Home/registrarCuenta' ?> " method="post">
-          <button type="submit" class="button" name="tipoCuenta" value="Dueño">Dueño</button>
+          <button type="submit" class="button" name="tipoCuenta" value="Duenio">Dueño</button>
           <button type="submit" class="button" name="tipoCuenta" value="Guardian">Guardian</button>
         </form>
       </div>

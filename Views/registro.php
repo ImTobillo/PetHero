@@ -26,8 +26,8 @@ require_once 'nav.php';
                     <input name="numCalle" class="input-num-calle" type="number" required placeholder="Numero" min="0">
                     <input name="nombreUser" class="" type="text" required placeholder="Nombre de usuario"> <!-- arreglar -->
 
-                    <?php if($tipoCuenta == "Dueño"){ ?>
-                        <input type="text" name="tipoCuenta" value="Dueño" hidden>
+                    <?php if($tipoCuenta == "Duenio"){ ?>
+                        <input type="text" name="tipoCuenta" value="Duenio" hidden>
                    <?php } else{ ?>
                         <input type="text" name="tipoCuenta" value="Guardian" hidden>
                     <?php } ?>

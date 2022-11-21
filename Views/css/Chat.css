@@ -1,40 +1,22 @@
-header{
-    margin-bottom: 50px;
-}
-
-main{
+.contenedorChats{
     background-color: #8A8388;
-    width: 85%;
-    border-radius: 10px;
-    margin: 0 auto;
+    height: auto;
+    width: auto;
+    padding: 4rem;
+    border-radius: 50px;
 }
 
-
-
-button{
-    font-family: 'Dokdo', cursive;
-    font-size: 30px;
-    background-color: #FFB353;
-    border-radius: 10px;
-    width: 100%;
-    height: 50px;
-    border: none;
-    margin-top: 20px;
-    margin-bottom: 30px;
+h1{
+  font-family: "Dokdo", cursive;
+  text-align: center;
 }
 
-button:hover{
-    background-color: #FB6A3D;
+.chat{
+    background-color: #ffb353;
+    width: 20rem;
+    border-radius: 50px;
+    padding: 0.5rem;
+    margin: 1rem;
+    text-align: center;
+    font-size: medium;
 }
-
-@keyframes slidein {
-    from {
-      margin-left: 100%;
-      width: 300%;
-    }
-  
-    to {
-      margin-left: 7.5%;
-      width: 85%;
-    }
-  }

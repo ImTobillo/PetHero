@@ -50,8 +50,27 @@ class MascotaDAO implements IRepositorio
             foreach ($resultado as $fila) {
 
                 $mascota = ($this->getTipoMascota($fila['IdRaza']) == "Perro")
-                ? new Perro($fila['IdDuenio'], $this->getTipoMascota($fila['IdRaza']), $fila['Nombre'], $this->getTamañoBd($fila['IdTamanio']), $fila['Edad'], $this->getRaza($fila['IdRaza']), $fila['Observaciones'], $this->getArch($fila['IdArchivoImgPlanVacunacion']), $this->getArch($fila['IdArchivoImgPerfil']), $this->getArch($fila['IdArchivoVideoPerro'])) 
-                : new Gato($fila['IdDuenio'], $this->getTipoMascota($fila['IdRaza']), $fila['Nombre'], $this->getTamañoBd($fila['IdTamanio']), $fila['Edad'], $this->getRaza($fila['IdRaza']), $fila['Observaciones'], $this->getArch($fila['IdArchivoImgPlanVacunacion']), $this->getArch($fila['IdArchivoImgPerfil']), $this->getArch($fila['IdArchivoVideoPerro']));
+                ? new Perro($fila['IdDuenio'], 
+                            $this->getTipoMascota($fila['IdRaza']), 
+                            $fila['Nombre'], 
+                            $this->getTamañoBd($fila['IdTamanio']), 
+                            $fila['Edad'], 
+                            $this->getRaza($fila['IdRaza']), 
+                            $fila['Observaciones'], 
+                            $this->getArch($fila['IdArchivoImgPlanVacunacion']), 
+                            $this->getArch($fila['IdArchivoImgPerfil']), 
+                            $this->getArch($fila['IdArchivoVideoPerro']))
+
+                : new Gato($fila['IdDuenio'], 
+                           $this->getTipoMascota($fila['IdRaza']), 
+                           $fila['Nombre'], 
+                           $this->getTamañoBd($fila['IdTamanio']), 
+                           $fila['Edad'], 
+                           $this->getRaza($fila['IdRaza']), 
+                           $fila['Observaciones'], 
+                           $this->getArch($fila['IdArchivoImgPlanVacunacion']), 
+                           $this->getArch($fila['IdArchivoImgPerfil']), 
+                           $this->getArch($fila['IdArchivoVideoPerro']));
 
                 $mascota->setId($fila['IdMascota']);
 
@@ -71,14 +90,19 @@ class MascotaDAO implements IRepositorio
         try {
             $this->connection = Connection::GetInstance();
             $idRetornar = null;
-            $query = "SELECT Raza.IdRaza AS id FROM Raza WHERE Raza.Raza = '$nombreRaza' ";
-            $resultado = $this->connection->Execute($query);
+            $query = "SELECT Raza.IdRaza AS id FROM Raza WHERE Raza.Raza = :Raza ";
+
+            $parameters['Raza'] = $nombreRaza;
+
+            $resultado = $this->connection->Execute($query, $parameters);
 
             if (empty($resultado)) {
-                $query = "INSERT INTO Raza (Raza, Especie) VALUES (:nombreRaza, :tipoMascota)";
-                $parameters['nombreRaza'] = $nombreRaza;
-                $parameters['tipoMascota'] = $tipoMascota;
+                $query = "INSERT INTO Raza (Raza, Especie) VALUES (:Raza, :Especie)";
+                $parameters['Raza'] = $nombreRaza;
+                $parameters['Especie'] = $tipoMascota;
+
                 $this->connection->ExecuteNonQuery($query, $parameters);
+
                 $query = "SELECT MAX(IdRaza) AS id FROM Raza";
                 $idRetornar = $this->connection->Execute($query);
             } else {
@@ -96,13 +120,18 @@ class MascotaDAO implements IRepositorio
         try {
             $this->connection = Connection::GetInstance();
             $idRetornar = null;
-            $query = "SELECT TamanioMascota.IdTamanioMascota AS id FROM TamanioMascota WHERE TamanioMascota.Tamanio = '$tamanio' ";
-            $resultado = $this->connection->Execute($query);
+            $query = "SELECT TamanioMascota.IdTamanioMascota AS id FROM TamanioMascota WHERE TamanioMascota.Tamanio = :Tamanio ";
+
+            $parameters['Tamanio'] = $tamanio;
+
+            $resultado = $this->connection->Execute($query, $parameters);
 
             if (empty($resultado)) {
                 $query = "INSERT INTO TamanioMascota (Tamanio) VALUES (:Tamanio)";
                 $parameters['Tamanio'] = $tamanio;
+
                 $this->connection->ExecuteNonQuery($query, $parameters);
+
                 $query = "SELECT MAX(IdTamanioMascota) AS id FROM TamanioMascota";
                 $idRetornar = $this->connection->Execute($query);
             } else {
@@ -125,6 +154,7 @@ class MascotaDAO implements IRepositorio
             if ($arch != null) {
                 $query = "INSERT INTO Archivo(Url_) VALUES (:Url_)";
                 $parameters['Url_'] = $arch;
+
                 $this->connection->ExecuteNonQuery($query, $parameters);
 
                 $query = "SELECT MAX(IdArchivo) AS id FROM Archivo";
@@ -144,9 +174,13 @@ class MascotaDAO implements IRepositorio
     private function getTipoMascota($IdRaza)
     {
         try {
-            $query = "SELECT Especie FROM Raza WHERE IdRaza = " . $IdRaza;
+            $query = "SELECT Especie FROM Raza WHERE IdRaza = :IdRaza" ;
+
+            $parameters['IdRaza'] = $IdRaza;
+
             $this->connection = Connection::GetInstance();
-            $resultado = $this->connection->Execute($query);
+            $resultado = $this->connection->Execute($query, $parameters);
+
             return $resultado[0][0];
         } catch (Exception $e) {
             throw $e;
@@ -156,9 +190,13 @@ class MascotaDAO implements IRepositorio
     private function getRaza($IdRaza)
     {
         try {
-            $query = "SELECT Raza FROM Raza WHERE IdRaza = " . $IdRaza;
+            $query = "SELECT Raza FROM Raza WHERE IdRaza = :IdRaza";
+
+            $parameters['IdRaza'] = $IdRaza;
+
             $this->connection = Connection::GetInstance();
-            $resultado = $this->connection->Execute($query);
+            $resultado = $this->connection->Execute($query, $parameters);
+
             return $resultado[0][0];
         } catch (Exception $e) {
             throw $e;
@@ -168,9 +206,13 @@ class MascotaDAO implements IRepositorio
     private function getTamañoBd($IdTamanio)
     {
         try {
-            $query = "SELECT Tamanio FROM TamanioMascota WHERE IdTamanioMascota = " . $IdTamanio;
+            $query = "SELECT Tamanio FROM TamanioMascota WHERE IdTamanioMascota = :IdTamanioMascota";
+
+            $parameters['IdTamanioMascota'] = $IdTamanio;
+
             $this->connection = Connection::GetInstance();
-            $resultado = $this->connection->Execute($query);
+            $resultado = $this->connection->Execute($query, $parameters);
+
             return $resultado[0][0];
         } catch (Exception $e) {
             throw $e;
@@ -181,10 +223,14 @@ class MascotaDAO implements IRepositorio
     {
         try {
             if ($IdArch) {
-                $query = "SELECT Url_ FROM Archivo WHERE IdArchivo = '$IdArch'";
                 $this->connection = Connection::GetInstance();
-                $resultado = $this->connection->Execute($query);
-                return $resultado;
+                $query = "SELECT Url_ FROM Archivo WHERE IdArchivo = :IdArchivo";
+
+                $parameters['IdArchivo'] = $IdArch;
+
+                
+                $resultado = $this->connection->Execute($query, $parameters);
+                return $resultado[0][0];
             } else {
                 return null;
             }
@@ -197,8 +243,10 @@ class MascotaDAO implements IRepositorio
     {
         try {
             //$this->RetrieveData();
-            $listMascotas = $this->getAll();
-            $mascota = null; 
+            
+
+            $mascota = null;
+
             if (!empty($listMascotas)) {
                 foreach ($listMascotas as $masc) {
                     if ($id == $masc->getId()) {
@@ -211,111 +259,4 @@ class MascotaDAO implements IRepositorio
             throw $e;
         }
     }
-
-    /*
-
-    // Funciones para Json
-
-    private $fileName = ROOT . 'Data/mascotas.json';
-    private function GetNextId()
-    {
-        $id = 0;
-
-        if (!empty($this->listMascotas))
-            $id = end($this->listMascotas)->getId() + 1;
-
-        return $id;
-    }
-
-    public function add($mascota)
-    {
-        $this->RetrieveData();
-        $mascota->setId($this->GetNextId());
-        array_push($this->listMascotas, $mascota);
-        $this->SaveData();
-    }
-
-    public function SaveData(){
-
-        $arrayToEncode = array();
-
-        foreach ($this->listMascotas as $mascota) {
-            $valuesArray = array();
-            $valuesArray['id'] = $mascota->getId();
-            $valuesArray['idDueño'] = $mascota->getIdDueño();
-            $valuesArray['tipoMascota'] = $mascota->getTipoMascota();
-            $valuesArray['nombre'] = $mascota->getNombre();
-            $valuesArray['tamaño'] = $mascota->getTamaño();
-            $valuesArray['edad'] = $mascota->getEdad();
-            $valuesArray['raza'] = $mascota->getRaza();
-            $valuesArray['observaciones'] = $mascota->getObservaciones();
-            $valuesArray['planVacunacion'] = $mascota->getPlanVacunacion(); 
-            $valuesArray["imgPerro"] = $mascota->getImgPerro(); 
-            $valuesArray["videoPerro"] = $mascota->getVideoPerro(); 
-
-            array_push($arrayToEncode, $valuesArray);
-        }
-
-        $fileContent = json_encode($arrayToEncode, JSON_PRETTY_PRINT);
-
-        file_put_contents($this->fileName, $fileContent);
-    }
-
-    public function remove($id)
-    {
-        //$this->RetrieveData();
-        $this->getAll();
-        
-        if (!empty($this->listMascotas)) {
-            foreach ($this->listMascotas as $mascota) {
-                if ($id == $mascota->getId()) {
-                    $index = array_search($mascota, $this->listMascotas);
-                    array_splice($this->listMascotas, $index, 1);
-                    $this->SaveData();
-                }
-            }
-        }
-    }
-
-    public function RetrieveData(){
-
-        $this->listMascotas = array();
-
-        if (file_exists($this->fileName)) {
-            $jsonToDecode = file_get_contents($this->fileName);
-
-            $contentArray = ($jsonToDecode) ? json_decode($jsonToDecode, true) : array();
-
-            foreach ($contentArray as $content) {
-                
-                if($content['tipoMascota'] == "Perro"){
-                    $mascota = new Perro();
-                }
-                else{
-                    $mascota = new Gato();
-                }
-
-                $mascota->setId($content['id']);
-                $mascota->setIdDueño($content['idDueño']);
-                $mascota->setTipoMascota($content['tipoMascota']);
-                $mascota->setNombre($content['nombre']);
-                $mascota->setTamaño($content['tamaño']);
-                $mascota->setEdad($content['edad']);
-                $mascota->setRaza($content['raza']);
-                $mascota->setObservaciones($content['observaciones']);
-                $mascota->setPlanVacunacion($content['planVacunacion']);
-                $mascota->setImgPerro($content['imgPerro']);
-                $mascota->setVideoPerro($content['videoPerro']);
-
-                array_push($this->listMascotas, $mascota);
-            }
-        }
-    }
-  
-    public function getAll()
-    {
-        $this->RetrieveData();
-        return $this->listMascotas;
-    }
-*/
 }

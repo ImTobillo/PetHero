@@ -37,12 +37,15 @@ class DueñoDAO implements IRepositorio
         }
     }
 
-    public function getById($id)
+    public function getById($IdUser)
     {
         try {
             $this->connection = Connection::GetInstance();
-            $query = "SELECT * FROM Duenio WHERE IdUser = '$id' ";
-            $resultado = $this->connection->Execute($query);
+            $query = "SELECT * FROM Duenio WHERE IdUser = :IdUser ";
+            
+            $parameters['IdUser'] = $IdUser;
+
+            $resultado = $this->connection->Execute($query, $parameters);
 
             $user = new Dueño(
                 $resultado[0]['IdUser'],
@@ -63,12 +66,15 @@ class DueñoDAO implements IRepositorio
         }
     }
 
-    private function getCiudad($id)
+    private function getCiudad($IdCiudad)
     {
         try {
             $this->connection = Connection::GetInstance();
-            $query = "SELECT Nombre FROM Ciudad WHERE IdCiudad = '$id' ";
-            $resultado = $this->connection->Execute($query);
+            $query = "SELECT Nombre FROM Ciudad WHERE IdCiudad = :IdCiudad ";
+
+            $parameters['IdCiudad'] = $IdCiudad;
+
+            $resultado = $this->connection->Execute($query, $parameters);
 
             return $resultado[0][0];
         } catch (Exception $e) {
@@ -76,17 +82,20 @@ class DueñoDAO implements IRepositorio
         }
     }
 
-    private function getIdCiudad($ciudad)
+    private function getIdCiudad($nombre)
     {
         try {
             $this->connection = Connection::GetInstance();
             $idRetornar = null;
-            $query = "SELECT IdCiudad AS id FROM Ciudad WHERE nombre = '$ciudad' ";
-            $resultado = $this->connection->Execute($query);
+            $query = "SELECT IdCiudad AS id FROM Ciudad WHERE Nombre = :Nombre ";
+
+            $parameters['Nombre'] = $nombre;
+
+            $resultado = $this->connection->Execute($query, $parameters);
 
             if (empty($resultado)) {
-                $query = "INSERT INTO Ciudad (Nombre) VALUES (:ciudad)";
-                $parameters['ciudad'] = $ciudad;
+                $query = "INSERT INTO Ciudad (Nombre) VALUES (:Nombre)";
+                $parameters['Nombre'] = $nombre;
 
                 $this->connection->ExecuteNonQuery($query, $parameters);
 
@@ -105,99 +114,31 @@ class DueñoDAO implements IRepositorio
 
     public function getAll()
     {
-    }
+        try {
+            $array = array();
+            $query = "SELECT * FROM Duenio";
+            $this->connection = Connection::GetInstance();
+            $resultado = $this->connection->Execute($query);
 
-    /* 
-   
-    private $dueñosLista = array();
-    private $fileName = ROOT . 'Data/dueños.json';
-   
-   public function add($dueño)
-    {
-        $this->RetrieveData();
-        array_push($this->dueñosLista, $dueño);
-        $this->SaveData();
-    }
+            foreach ($resultado as $fila) {
 
-    public function remove($id)
-    {
-        $this->RetrieveData();
+                $dueño = new Dueño($fila['IdUser'], 
+                                         $fila['Nombre'], 
+                                         $fila['Apellido'], 
+                                         $fila['FechaNacimiento'], 
+                                         $fila['Dni'], 
+                                         $fila['Telefono'], 
+                                         $fila['Email'], 
+                                         $this->getCiudad($fila['IdCiudad']), 
+                                         $fila['Calle'], 
+                                         $fila['NumCalle']);
 
-        if (!empty($this->dueñosLista)) {
-            foreach ($this->dueñosLista as $dueño) {
-                if ($id == $dueño->getId()) {
-                    $index = array_search($dueño, $this->dueñosLista);
-                    array_splice($this->dueñosLista, $index, 1);
-                    $this->SaveData();
-                }
+                array_push($array, $dueño);
             }
+
+            return $array;
+        } catch (Exception $e) {
+            throw $e;
         }
     }
-
-    public function getAll()
-    {
-        $this->RetrieveData();
-        return $this->dueñosLista;
-    }
-    
-    public function getById($id)
-    {
-        $this->RetrieveData();
-
-        $dueño = null;
-
-        if (!empty($this->dueñosLista)) {
-            foreach ($this->dueñosLista as $dueñoValue) {
-                if ($id == $dueñoValue->getId()) {
-                    $dueño = $dueñoValue;
-                }
-            }
-        }
-
-        return $dueño;
-    }
-    
-    
-    // métodos JSON
-
-    private function RetrieveData()
-    {
-        $this->dueñosLista = array();
-
-        if (file_exists($this->fileName)) {
-            $jsonToDecode = file_get_contents($this->fileName);
-
-            $contentArray = ($jsonToDecode) ? json_decode($jsonToDecode, true) : array();
-
-            foreach ($contentArray as $content) {
-                $dueño = new Dueño($content["id"], $content["nombre"], $content["apellido"], $content['fechaNacimiento'], $content['dni'], $content['telefono'],  $content['email'], $content['ciudad'], $content['calle'], $content['numCalle']);
-
-                array_push($this->dueñosLista, $dueño);
-            }
-        }
-    }
-
-    private function SaveData()
-    {
-        $arrayToEncode = array();
-
-        foreach ($this->dueñosLista as $dueño) {
-            $valuesArray = array();
-            $valuesArray["id"] = $dueño->getId();
-            $valuesArray["nombre"] = $dueño->getNombre();
-            $valuesArray["apellido"] = $dueño->getApellido();
-            $valuesArray["fechaNacimiento"] = $dueño->getFechaNacimiento();
-            $valuesArray["dni"] = $dueño->getDni();
-            $valuesArray["telefono"] = $dueño->getTelefono();
-            $valuesArray["email"] = $dueño->getEmail();
-            $valuesArray["ciudad"] = $dueño->getCiudad();
-            $valuesArray["calle"] = $dueño->getCalle();
-            $valuesArray["numCalle"] = $dueño->getNumCalle();
-            array_push($arrayToEncode, $valuesArray);
-        }
-
-        $fileContent = json_encode($arrayToEncode, JSON_PRETTY_PRINT);
-
-        file_put_contents($this->fileName, $fileContent);
-    }*/
 }
