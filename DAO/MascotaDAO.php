@@ -198,9 +198,7 @@ class MascotaDAO implements IRepositorio
         try {
             //$this->RetrieveData();
             $listMascotas = $this->getAll();
-
-            $mascota = null;
-
+            $mascota = null; 
             if (!empty($listMascotas)) {
                 foreach ($listMascotas as $masc) {
                     if ($id == $masc->getId()) {
