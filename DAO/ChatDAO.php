@@ -61,17 +61,17 @@ class ChatDAO implements IRepositorio
             
             $parameters['IdUserFrom'] = $idUserFrom;
             $parameters['IdUserTo'] = $idUserTo;
-            
             $resultado = $this->connection->Execute($query, $parameters);
 
             if (empty($resultado)) {
                 $query = "INSERT INTO Chat (IdUserFrom, IdUserTo) VALUES (:IdUserFrom, IdUserTo)";
                 $parameters['IdUserFrom'] = $idUserFrom;
                 $parameters['idUserTo'] = $idUserTo;
-
+                echo 'error';
                 $this->connection->ExecuteNonQuery($query, $parameters);
-
-                $query= "SELECT MAX(IdChat) FROM chat";
+                
+                $query= "SELECT MAX(IdChat) FROM Chat";
+                
                 $idChat = $this->connection->Execute($query);
 
             } else {
